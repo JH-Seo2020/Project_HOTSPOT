@@ -9,7 +9,9 @@
 </head>
 <body>
 
-	test!
+    <jsp:include page="common/menubar.jsp"/>
+    <!-- 추후에 메인페이지 전체로 바꿀 예정입니다
+    지금은 일단 테스트용 -->
 
 </body>
 </html>
