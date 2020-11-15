@@ -107,28 +107,29 @@
         <div id="menuOptions">
             <div><a></a></div>
             <!-- 로그인 버튼 -->
-            <div><a id="loginBtn" class="btn-open" style="cursor: pointer;">로그인</a></div>
+            <div><a id="loginBtn" style="cursor: pointer;">로그인</a></div>
 
             <!-- 로그인 모달  -->
             <div class="login_popup">
                 <div>
                     <span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
                 </div>
-                <form action="" method="GET">
+                <form action="" method="POST">
                     <br>
                     <img src="resources/images/hospot_logo.png" width="60px" height="60px">
                     <label style="font-size: 25px; font-weight: bold;">로그인</label><br>
                     <br>
                         <input type="text" name="userId" id="userId" placeholder="아이디" style="width: 280px;"><br><br>
-                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;"><br>
-
-                   	   <div style="font-size: small;">
-                        <input type="checkbox" id="idSaveCheck">
-                        <label for="idSaveCheck">아이디 기억하기</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="">비밀번호 찾기</a>
-                        <br><br>
-                        </div>
-                    <button type="submit" id="loginInputBtn">로그인 하기</button> 
+                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;">
+					<br><br>
+                    	<button type="submit" id="loginInputBtn">로그인 하기</button> 
+                    <br><br>
+                    <div style="font-size: 12px;">
+	                    <input type="checkbox" id="idSaveCheck">
+	                    <label for="idSaveCheck">아이디 기억하기</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                        <a href="">비밀번호 찾기</a>
+	                <br>
+                    </div>
                 </form>
                 <br><br>
             </div>
