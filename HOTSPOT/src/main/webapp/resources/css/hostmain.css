@@ -23,14 +23,7 @@
        width:130px;
        margin:20px 45px 30px 0px;
   } 
- /*부트스트랩 변경*/
-.btn-primary {
-    color: #fff;
-    background-color:var(--color-purple)!important ;
-    border-color:var(--color-purple) !important;}
- .btn-primary:hover{
- 	 background-color:rgb(61, 8, 77)!important;
- }
+
  #calculator{
      background: center url("../images/host_images/calimg.png");
      height: 300px;

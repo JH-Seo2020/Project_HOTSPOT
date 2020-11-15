@@ -1,0 +1,78 @@
+@charset "UTF-8";
+.importh{
+        color: var(--color-yellow);
+    }
+    #hostInsertContainer{
+        margin-top: 70px;
+        margin-left: 90px;
+    }
+    #hostInsertContainer h5{
+        font-size: 18px;
+    }
+    .comment1{
+        font-weight: lighter;
+        font-size: 12px;
+    }
+    #hostInsertForm{
+        margin-top: 30px;
+    }
+    #hostInsertForm th{
+        margin: 10px;
+    }
+    .hostInsertTable{
+        width:700px;
+    }
+    .form-control{
+    height: calc(1.3em + .75rem + 2px);
+    font-weight: 300;
+    border-radius: 0rem;
+        }
+    ::placeholder{
+    font-size: 12px;
+    }
+    .hostInsertTable th{
+       width:130px;
+    }
+    .hostInsertTable input{
+        margin: 5px;
+    }
+    label{
+        height: 35px;
+    }
+    input[type="file"] { 
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip:rect(0,0,0,0); border: 0; }
+        
+     label { display: inline-block; margin-bottom:0rem !important; padding: .5em .75em; text-align: center; line-height: 30px; 
+        color: rgb(252, 252, 252); font-size: 13px; line-height: normal; vertical-align: middle; 
+        background-color: var(--color-yellow); cursor: pointer; border: 1px solid var(--color-yellow); 
+        border-bottom-color: #e2e2e2; border-radius: .25em; margin: 0px 0px 0px 10px; margin-bottom:0px;}
+    #dropdownMenuOffset{
+        width:100px;
+        height:30px;
+        font-size: 13px;
+        margin-left:5px;
+    }
+    .dropdown-menu{
+        position: absolute;
+        transform: translate3d(10px, 30px, 0px) !important;
+        top: 0px;
+        left: 0px;
+        will-change: transform;
+    }
+    .dropdown-item{
+        padding: .15rem 1.0rem;
+        font-size: 13px;
+        width: 35px;
+    }
+    .hostInfoBtn{
+        margin: 30px 140px 0px 200px;
+        
+    }
+    #dropdownMenuOffset{
+        color: white;
+    }
+    .hostInfoBtn button{
+        width:160px;
+        margin: 10px;
+    }

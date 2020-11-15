@@ -61,3 +61,11 @@ p {
   background-color: #673ab7;
   border-radius: 4px;
 }
+ /*부트스트랩 변경*/
+.btn-primary {
+    color: #fff;
+    background-color:var(--color-purple)!important ;
+    border-color:var(--color-purple) !important;}
+ .btn-primary:hover{
+ 	 background-color:rgb(61, 8, 77)!important;
+ }

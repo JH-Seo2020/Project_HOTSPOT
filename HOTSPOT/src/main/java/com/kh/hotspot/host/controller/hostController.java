@@ -9,6 +9,6 @@ public class hostController {
 	@RequestMapping("test.do")
 	public String test( Model model) {
 		
-		return "host/hostMain";
+		return "host/hostEnrollForm";
 	}
 }
