@@ -52,21 +52,21 @@
             <form action="" method="POST" id="myProfile" enctype="multipart/form-data">
                 <div id="profileImage"><img src="../../resources/images/profileImage.png"><h2 align="center">USER01</h2></div>
 	                <div id="mainProfile">
-	                    <div id="nickName">닉네임 : &nbsp;&nbsp;&nbsp;동동이</div>
-	                    <div id="profileEmail">이메일 : &nbsp;&nbsp;&nbsp;user01@naver.com</div>
-	                    <div id="profilePhone">연락처 : &nbsp;&nbsp;&nbsp;010-1111-2222</div> <br>
-	                    <div id="switch">마케팅 수신동의 : <br><br>
+	                    <div>닉네임  &nbsp;&nbsp;&nbsp;동동이</div>
+	                    <div>이메일  &nbsp;&nbsp;&nbsp;user01@naver.com</div>
+	                    <div>연락처  &nbsp;&nbsp;&nbsp;010-1111-2222</div> <br>
+	                    <div>마케팅 수신동의  <br><br>
 	
-	                       	 이메일 <input type="checkbox" name="marketingEmail" value="yes" disabled> 예
-	                               <input type="checkbox" name="marketingEmail" value="no" checked> 아니오
+	                       	 이메일 <input type="radio" name="marketingEmail" value="yes" disabled> 예
+	                               <input type="radio" name="marketingEmail" value="no" checked> 아니오
 	                               <br>&nbsp;&nbsp;
-	                        SMS <input type="checkbox" name="marketingSms" value="yes" disabled> 예
-	                              <input type="checkbox" name="marketingSms" value="no" checked > 아니오
+	                        SMS <input type="radio" name="marketingSms" value="yes" disabled> 예
+	                              <input type="radio" name="marketingSms" value="no" checked > 아니오
 	                	</div>
 	                </div>
                		<br><br><hr><br>
 	                <div id="profileBtn" align="center"> 
-	                    <button type="submit">내 프로필 수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <a href="">내 프로필 수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	                    <button type="button">서비스 탈퇴하기</button>
                 	</div>
             </form>
