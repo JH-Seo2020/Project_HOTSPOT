@@ -49,7 +49,6 @@
         #menuOptions>div{
             margin: auto;
             text-align: center;
-            height: 100%;
             width: 25%;
             float: left;
             padding-top: 25px;
@@ -59,10 +58,44 @@
             color: black;
             text-decoration: none;
         }
+        /* LoginModal */
+        .login_popup{
+            display: none;
+            position: realtive;
+            z-index: 2;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 3px 3px 3px 3px rgba(39, 39, 39, 0.582);
+            padding-right: 13px;
+        }
+        #loginInputBtn{
+            width: 280px;
+            height: 40px;
+            background: rgb(145, 37, 247);
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        /* myPageModal */
+        .myPage_popup{
+            display: none;
+            position: realtive;
+            z-index: 2;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 3px 3px 3px 5px rgba(39, 39, 39, 0.582);
+            width: 50%;
+            padding-right: 13px;
+        }
+        #myPage_Content ul{
+            text-decoration: none;
+            list-style: none;
+            color: black;
+        }
     </style>
 </head>
 <body>
-
 	    <div id="menubar">
         <div id="logoSpace"><a href=""><img src="resources/images/logo_letter_1.png" width="100%" height="100%"></a></div>
         <div id="search">
@@ -73,17 +106,137 @@
         </div>
         <div id="menuOptions">
             <div><a></a></div>
-            <div id="loginBtn"><a href="">로그인</a></div>
+            <!-- 로그인 버튼 -->
+            <div><a id="loginBtn" class="btn-open" style="cursor: pointer;">로그인</a></div>
+
+            <!-- 로그인 모달  -->
+            <div class="login_popup">
+                <div>
+                    <span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
+                </div>
+                <form action="" method="GET">
+                    <br>
+                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
+                    <label style="font-size: 25px; font-weight: bold;">로그인</label><br>
+                    <br>
+                        <input type="text" name="userId" id="userId" placeholder="아이디" style="width: 280px;"><br><br>
+                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;"><br>
+
+                   	   <div style="font-size: small;">
+                        <input type="checkbox" id="idSaveCheck">
+                        <label for="idSaveCheck">아이디 기억하기</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="">비밀번호 찾기</a>
+                        <br><br>
+                        </div>
+                    <button type="submit" id="loginInputBtn">로그인 하기</button> 
+                </form>
+                <br><br>
+            </div>
+
+       
+            <script>
+                function closeLayer( obj ) {
+	            $(obj).parent().parent().hide();
+            }
+
+                $(function(){
+
+                    $('#loginBtn').click(function(e)
+                    {
+                        var sWidth = window.innerWidth;
+                        var sHeight = window.innerHeight;
+
+                        var oWidth = $('.login_popup').width();
+                        var oHeight = $('.login_popup').height();
+
+                        var divLeft = e.clientX + (-200);
+                        var divTop = e.clientY + 30;
+
+                        $('.login_popup').css({
+                            "top": divTop,
+                            "left": divLeft,
+                            "position": "absolute"
+                        }).show();
+                    });
+
+                });
+            </script>
             <div id="signUp"><a href="">회원가입</a></div>
 
             <!--로그인 후 보여질 부분들-->
             <!--<div id="GoToHostPage"><a href="">🏚&nbsp;호스트페이지</a></div>-->
             <!--<div><a href="">로그아웃</a></div>-->
-            <!--<div><a href="">마이페이지</a></div>-->
+            <!-- <div><a id="myPageBtn" style="cursor: pointer;">마이페이지</a></div>
+                       
+
+            <div class="myPage_popup">
+                <div>
+                    <span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
+                </div>
+                <div id="myPage_Content">
+                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
+                    <label style="font-size: 25px; font-weight: bold;">USER01</label><br>
+                    <a href=""><span>프로필 관리</span></a>
+                    <br><hr>
+                    <ul>
+                        <li>
+                        <div id="myPage_ReservationBtn">
+                            <img src="resources/images/Calendar.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
+                            <a href=""><span>나의 예약 리스트</sapn></a>
+                        </div>
+                        <br>
+                        </li>
+                        <li>
+                            <div id="myPage_ReservationBtn">
+                                <img src="resources/images/list.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
+                                <a href=""><span>이용후기 / 문의 관리</sapn></a>
+                            </div>
+                            <br>
+                        </li>
+                        <li>
+                        <div id="myPage_ReservationBtn">
+                            <img src="resources/images/heart.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
+                            <a href=""><span>찜한공간</sapn></a>
+                        </div>
+                        <br>
+                        </li>
+                    </ul>    
+                </div>
+            </div>
+
+
+            <script>
+                function closeLayer( obj ) {
+	            $(obj).parent().parent().hide();
+            }
+
+                $(function(){
+
+                    $('#myPageBtn').click(function(e)
+                    {
+                        var sWidth = window.innerWidth;
+                        var sHeight = window.innerHeight;
+
+                        var oWidth = $('.myPage_popup').width();
+                        var oHeight = $('.myPage_popup').height();
+
+                        var divLeft = e.clientX + (-200);
+                        var divTop = e.clientY + 30;
+
+                        $('.myPage_popup').css({
+                            "top": divTop,
+                            "left": divLeft,
+                            "position": "absolute"
+                        }).show();
+                    });
+
+                });
+            </script>
+            -->
             
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  고객센터
+                 	 고객센터
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">공지사항조회</a>
