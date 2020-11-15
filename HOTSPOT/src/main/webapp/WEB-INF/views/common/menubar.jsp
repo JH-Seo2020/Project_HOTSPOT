@@ -162,7 +162,7 @@
 
                 });
             </script>
-            <div id="signUp"><a href="">회원가입</a></div>
+            <div id="signUp"><a href="test.do">회원가입</a></div>
 
             <!--로그인 후 보여질 부분들-->
             <!--<div id="GoToHostPage"><a href="">🏚&nbsp;호스트페이지</a></div>-->

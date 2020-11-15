@@ -1,0 +1,130 @@
+@charset "UTF-8";
+ #hostMain{
+   	  margin-top: 30px;
+   }
+   #hostMain p{
+      color: #4d4952;
+      font-weight: lighter;
+   }
+   #hostMainContent{
+       text-align: center;
+       margin-bottom: 30px;
+   }
+   #host_container{
+       text-align: center;
+   }
+   #hostMainBtn{
+       text-align: center;
+   }
+  #hostBtn{
+      color: white;
+  }
+  #hostMainBtn button{
+       width:130px;
+       margin:20px 45px 30px 0px;
+  } 
+ /*부트스트랩 변경*/
+.btn-primary {
+    color: #fff;
+    background-color:var(--color-purple)!important ;
+    border-color:var(--color-purple) !important;}
+ .btn-primary:hover{
+ 	 background-color:rgb(61, 8, 77)!important;
+ }
+ #calculator{
+     background: center url("../images/host_images/calimg.png");
+     height: 300px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 60px;
+ }
+.calitem{
+    border: 1px solid #e0e0e0
+}
+ #calculator_1{
+     width:300px;
+     height: 260px;
+     background-color:#fff;
+ }
+ #calculator_input{
+     width: 650px;
+     height: 260px;
+     background-color:#f6f6f6;
+ }
+ #calculator_1 img{
+     width: 40px;
+     height: 55px;
+    margin: 10px 1px 10px 100px;
+ }
+ .calitem{
+     padding: 30px;
+ }
+ .calitem2{
+     font-size: 13px;
+     color: rgb(90, 85, 85);
+
+ }
+ .form-control{
+     height: calc(1.3em + .75rem + 2px);
+     font-weight: 300;
+     border-radius: 0rem;
+ }
+ .calculator_input_table td{
+     padding: 5px 15px 0px 10px;
+ }
+ #calculatorBtn{
+     color: white;
+ }
+ .timeRadio{
+     font-size: 13px;
+     font-weight: 300;
+     color: rgb(70, 67, 67);
+ }
+ .timeRadio:checked{
+     background-color: var(--color-purple);
+ }
+ .clickChat{
+     margin-top: 25px;
+     cursor: pointer;
+     font-size: 13px;
+     font-weight: 300;
+     color: rgb(136, 131, 131);
+ }
+ ::placeholder{
+     font-size: 11px;
+ }
+ #calculator_result{
+     width:650px; 
+     height:260px; border: solid black 1px; text-align: center;
+     background-color:#8C52FF;
+ }
+ strong{
+     color: var(--color-yellow);
+     text-decoration: underline;
+     font-weight: lighter;
+
+ }
+ #calculator_result span{
+     color: white;
+ }
+ #calculator_result hr{
+     color: white;
+     border: white solid 2px;
+     width: 280px;
+
+ }
+ .commission{
+    
+     font-size: 13px;
+ }
+ #calculator_result{
+     position: relative;
+     left: 615px;    /* x축 */
+     top: -350px;
+     border: white solid 1px;
+ }
+ .closePng{
+    width: 20px; height:20px; margin-left: 590px;
+    cursor: pointer;
+ }
