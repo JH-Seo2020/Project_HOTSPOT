@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/hostmenubar.css" type="text/css"/>
+<link rel="stylesheet" href="resources/css/host/hostmenubar.css" type="text/css"/>
 <style> 
        #floatMenu{
             position: absolute;

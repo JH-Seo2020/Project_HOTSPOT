@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/hostEnrollForm.css" type="text/css"/>
+<link rel="stylesheet" href="resources/css/host/hostEnrollForm.css" type="text/css"/>
 </head>
 <body>
-<jsp:include page="hostMenubar.jsp"/>
+<jsp:include page="common/hostMenubar.jsp"/>
 
 <div id="hostInsertContainer">
         <h5><span class="importh">호스트등록</span>을 원하시나요?</h5>
