@@ -53,7 +53,7 @@
 </style>
 </head>
 <body>
-     <jsp:include page="../common/menubar.jsp"/>
+     <jsp:include page="../../common/menubar.jsp"/>
 
      <div class="content">
          <div id="profile">
@@ -112,6 +112,6 @@
          </div>
      </div>
  
-     <jsp:include page="../common/footer.jsp"/>
+     <jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>
