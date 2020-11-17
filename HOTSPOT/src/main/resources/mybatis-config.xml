@@ -7,6 +7,9 @@
 	
 	<typeAliases>
 		
+		<!-- admin(선경) -->
+		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="Member" />
+		
 	</typeAliases>
 	
 	<!-- 주의! mapper파일 없는데 등록하지말기, 만들고 등록하기 -->
