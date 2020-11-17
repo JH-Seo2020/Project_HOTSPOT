@@ -1,0 +1,98 @@
+@charset "UTF-8";
+ /* 여기서부터 정산페이지 */
+        #calculate_container{
+            width:900px;
+            /* background-color: lightgrey; */
+            position: relative;
+            top:130px;
+            left:300px;
+        }
+        .container1{
+            width:700px;
+            margin:auto;
+            margin-bottom: 60px;
+        }
+        .container1_head{
+            height:40px;
+            background-color: var(--color-purple);
+            text-align: center;
+            line-height: 40px;
+        }
+        .container2{
+        	margin-top:60px;
+            margin:auto;
+            width:900px;
+        }
+        .container1_box{
+            height: 150px;
+            border: 1px solid var(--color-purple);
+            padding:30px;
+          
+        }
+        .box_1{
+            width:50%;
+            height:100%;
+            float: left;
+        }
+        .box_2{
+            width:50%;
+            height:100%;
+            float: left;
+        }
+      
+        .container1_box p{
+            display: block; margin-top:10px;
+        }
+        .payment{
+            width:150px;
+            height: 40px;
+            text-align: center;
+            font-size: 15px;
+        }
+        .payment_clear{
+            width:60%; 
+            background-color: var(--color-yellow);
+            color: white;
+            line-height: 40px;
+            border-right:1px solid rgb(223, 213, 213);
+            
+        }
+        .payment_cancel{
+            width:40%;
+            background-color: var(--color-yellow);
+            color: white;
+            line-height: 40px;
+        }
+        .payment div{
+            height:100%;
+            float:left;
+        }
+        .container2_title{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container2_title p{
+            color: var(--color-yellow);
+        }
+        .box_1 input{
+            width:90px;
+        }
+        input[type=submit]{
+            display: block;
+            width:26px;
+            height: 26px;
+            /* border: 1px solid var(--color-purple); */
+            
+        }
+        .searchIcon{
+            transition: all var(--animation-duration) ease;
+        }
+        .searchIcon:hover{
+            transform: rotate(30deg) scale(1.1);
+        }
+        ::placeholder{
+            font-size: 13px;
+        }
+        #paymentList tr{
+            font-size: 15px;
+        }
