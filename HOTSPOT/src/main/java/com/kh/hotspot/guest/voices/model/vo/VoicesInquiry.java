@@ -14,5 +14,5 @@ public class VoicesInquiry {
 	private String replyStatus;		// 답변 유무
 	private Date inquiryDate;		// 문의글작성일
 	private Date replyDate;			// 문의글답변일
-	private String Status;			// 기본(Y),삭제(N)
+	private String inquiryStatus;	// 기본(Y),삭제(N)
 }

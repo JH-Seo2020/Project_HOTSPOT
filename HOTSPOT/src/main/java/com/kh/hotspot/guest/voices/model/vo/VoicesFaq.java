@@ -11,6 +11,6 @@ public class VoicesFaq {
 	private String faqTitle;	// 제목
 	private Clob faqContent;	// 내용
 	private String faqType;		// 이용후기및작성,취소및환불,기타...
-	private Date enrollDate;	// faq등록일
+	private Date faqEnrollDate;	// faq등록일
 
 }
