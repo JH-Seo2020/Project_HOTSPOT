@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="resources/css/hostEnrollForm.css" type="text/css"/>
 </head>
 <body>
-<jsp:include page="hostmenubar.jsp"/>
+<jsp:include page="hostMenubar.jsp"/>
 
 <div id="hostInsertContainer">
         <h5><span class="importh">호스트등록</span>을 원하시나요?</h5>

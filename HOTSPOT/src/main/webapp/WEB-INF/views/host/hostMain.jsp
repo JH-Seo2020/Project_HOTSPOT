@@ -7,11 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/hostmain.css" type="text/css"/>
-
 </head>
 <body>
 
-<jsp:include page="hostmenubar.jsp"/>
+<jsp:include page="hostMenubar.jsp"/>
 
    <!--호스트 메인화면 -->
    <section id="hostMain">
