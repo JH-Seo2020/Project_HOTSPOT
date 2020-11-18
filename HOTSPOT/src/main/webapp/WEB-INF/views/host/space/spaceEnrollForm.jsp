@@ -11,39 +11,44 @@
 </head>
 <body>
 <jsp:include page="../common/hostMenubar.jsp"/>
- <script>
-        $(function(){
-            
-            $("#spcInt").keyup(function(){
-                var inputLength = $(this).val().length;
+<script>
+    $(function(){
+    	
+        $("#nextBtn").click(function(){
+            $("#spaceForm2").css({"display":"block"});
+            $("#spaceForm").css({"display":"none"});
+        })
+           
 
-                $("#intCount").html(inputLength);
+        $("#spcInt").keyup(function(){
+            var inputLength = $(this).val().length;
 
-                if(20-inputLength < 0){ 
-                    $("#intCount").css("color","red");
-                }else{
-                    $("#intCount").css("color","black");
-                }
+            $("#intCount").html(inputLength);
 
-            });
-            $("#introduceSpc").keyup(function(){
-                var inputLength = $(this).val().length;
+            if(20-inputLength < 0){ 
+                $("#intCount").css("color","red");
+            }else{
+                $("#intCount").css("color","black");
+            }
 
-                $("#count").html(inputLength);
+        });
+        $("#introduceSpc").keyup(function(){
+            var inputLength = $(this).val().length;
 
-                if(200-inputLength < 0){ 
-                    $("#count").css("color","red");
-                }else{
-                    $("#count").css("color","black");
-                }
+            $("#count").html(inputLength);
 
-            });
-    
-    });
+            if(200-inputLength < 0){ 
+                $("#count").css("color","red");
+            }else{
+                $("#count").css("color","black");
+            }
+
+        });
+});
+
     </script>
-<body>
-	 <div id="spaceInsertContainer">
-        <form action="" method="post">
+    <div id="spaceInsertContainer">
+        <form id="spaceInsertForm"action="" method="post">
             <h5><span class="importh">공간등록</span>을 원하시나요?</h5>
                 <hr>
             <span class="comment1"><p style="color:red">*</p> 필수 입력사항</span>
@@ -77,7 +82,7 @@
                             <td>
                                 <input type="text" class="form-control"name="tag" placeholder="">
                             </td>
-                            <td><button class="btn btn-primary" style="height: 30px; width:80px; font-size: 14px; margin-top:8px; line-height: 10px;"> 추가 </button></td>
+                            <td><button class="btn btn-primary" style="height: 30px; width:80px; font-size: 14px; margin-top:8px; line-height: 10px;">추가 </button></td>
                         </tr>
                         <tr>
                             <th></p></th>
@@ -143,28 +148,17 @@
                             </td>
                         </tr>
                     </table>
-                </div>
-                <div class="spaceBtn"style="margin:100px 0px 100px 200px">
-                    <button id="backBtn"class="btn btn-secondary">돌아가기</button>
-                    <button id="nextBtn"class="btn btn-primary" > 다음으로 </button>
-                </div>
-            </div>
-
-            <div id="spaceForm2";>
-                <p>대표이미지<span style="color:red">*</span></p>
-                <div class="imgbox">
-                </div>
-                <input type="file"class="btn btn-primary" style="margin-bottom: 20px;"></input><br>
-                <p>상세 이미지<span style="color:red">*</span></p>
-                <div class="many_imgbox">
-                    <div class="imgbox">
+                    <div class="spaceBtn" style="margin-top: 80px; margin-left: 100px;">
+                        <button type="button" id="backBtn"class="btn btn-secondary">돌아가기</button>
+                        <button type="button" id="nextBtn"class="btn btn-primary" >다음으로</button>
                     </div>
-                    <div class="imgbox">
-                    </div>
-                </div>
-                <input type="file"class="btn btn-primary" style="margin-bottom: 20px;"></input><br>
+                </div> 
+                
+            </div> 
+            <div id="spaceForm2">
+          
                  <div class="holiday" style="margin-top:15px";>
-                    <p>휴무일<span style="color:red;margin-right: 15px; margin-top: 15px;">*</span></p>
+                    <p style="margin-right: 85px;">휴무일</p>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                             <label class="form-check-label" for="inlineCheckbox1">월</label>
@@ -195,16 +189,16 @@
                         </div>
                     </div> 
                     <div class="notes" style="margin-top: 35px;">
-                        <p>이용시 유의사항<span style="color:red;">*</p>
+                        <p style="margin-right: 15px;">이용시 유의사항</p>
                         <input type="text" class="form-control"> 
                         <button class="btn btn-primary">추가</button>
                         <div class="many_notes">
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="" class="form-control"> <img src="resources/images/host_images/close.png" style="width:20px; height:20px;">
                             <input type="text" name="" class="form-control">
                         </div>
                     </div>
-                    <div class="convenience" style="margin-top:35px";>
-                        <p>편의사항<span style="color:red;margin-right: 15px; margin-top: 15px;">*</span></p>
+                    <div class="convenience" style="margin-top:35px; margin-bottom:40px";>
+                        <p style="margin-right: 65px;">편의사항</p>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                                 <label class="form-check-label" for="inlineCheckbox1">냉난방</label>
@@ -238,10 +232,25 @@
                                 <label class="form-check-label" for="inlineCheckbox2">와이파이</label>
                             </div>
                         </div> 
+                        <p >대표 이미지<span style="color:red">*</span></p>
+                        <div class="imgbox">
+                        </div>
+                        <label for="spc_img">파일첨부</label>
+                        <input type="file"  id="spc_img" ></input><br>
+                        <p>상세 이미지<span style="color:red">*</span></p>
+                        <div class="many_imgbox">
+                            <div class="imgbox">
+                                <img src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px";>
+                            </div>
+                        </div>
+                        <label for="spc_imgs">파일첨부</label>
+                        <input type="file" id="spc_imgs"></input><br>
+
+                        <button type="submit" id="spcaeInsertBtn"class="btn btn-primary" > 등록하기 </button>
             </div>
         </form>
     </div>
+    
+ </body>
 
-</body>
-
-</html>
+</html> 
