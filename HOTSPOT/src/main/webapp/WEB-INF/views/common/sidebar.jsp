@@ -60,7 +60,7 @@
             <br>
             <ul>
                 <li>
-                    <a href=""> <img src="resources/images/admin/회원관리.png">&nbsp;회원관리</a>
+                    <a href="userList.ad"> <img src="resources/images/admin/회원관리.png">&nbsp;회원관리</a>
                 </li>
                 <br><br>
                 <li>

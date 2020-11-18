@@ -8,7 +8,7 @@ import com.kh.hotspot.admin.model.dao.AdminUserDao;
 
 
 @Service
-public class AdminUserServiceImpl {
+public class AdminUserServiceImpl implements AdminUserService{
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
