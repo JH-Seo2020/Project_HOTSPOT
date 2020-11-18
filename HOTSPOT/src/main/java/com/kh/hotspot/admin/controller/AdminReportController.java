@@ -4,23 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.hotspot.admin.model.service.ReportService;
+import com.kh.hotspot.admin.model.service.AdminReportService;
+
 
 @Controller
-public class ReportController {
+public class AdminReportController {
 	
 	@Autowired
-	private ReportService reportService;
+	private AdminReportService adminReportService;
 	
-	// Report 화면 진입
+	// 신고관리 화면 진입
 	@RequestMapping("reportList.ad")
 	public String selectReportList() {
 		return "admin/adminReportList";	
 	}
 	
-	// Review 화면 진입
-	@RequestMapping("reviewList.ad")
-	public String selectReviewList() {
-		return "admin/adminReviewList";
-	}
+
 }

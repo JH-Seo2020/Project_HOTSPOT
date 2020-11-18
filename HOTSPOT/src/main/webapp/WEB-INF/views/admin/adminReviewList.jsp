@@ -20,7 +20,7 @@
 
             <div id="reviewList">
                 <select id="select_reviewSearchSelect" name="reviewSearchSelect" class="custom-select custom-select-sm mb-3">
-                    <option value="" selected>선택</option>
+                    <option selected disabled>선택</option>
                     <option value="reviewWriter">작성자</option>
                     <option value="spcNo">공간번호</option>
                 </select>

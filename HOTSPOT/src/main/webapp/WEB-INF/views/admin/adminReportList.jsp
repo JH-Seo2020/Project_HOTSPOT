@@ -20,7 +20,7 @@
 
             <div id="reportList">
                 <select id="select_reportSearchSelect" name="reportSearchSelect" class="custom-select custom-select-sm mb-3">
-                    <option value="reportWriter">선택</option>
+                    <option selected disabled>선택</option>
                     <option value="reportWriter">신고자</option>
                     <option value="reportTarget">신고대상</option>
                 </select>

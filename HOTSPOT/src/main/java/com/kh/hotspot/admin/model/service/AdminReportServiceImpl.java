@@ -4,15 +4,16 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.hotspot.admin.model.dao.ReportDao;
+import com.kh.hotspot.admin.model.dao.AdminReportDao;
+
 
 @Service
-public class ReportServiceImpl implements ReportService {
+public class AdminReportServiceImpl implements AdminReportService {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Autowired
-	private ReportDao reportDao;
+	private AdminReportDao adminReportDao;
 	
 
 }
