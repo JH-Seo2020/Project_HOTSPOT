@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.hotspot.admin.model.service.ReportService;
-import com.kh.hotspot.admin.model.service.UserService;
+import com.kh.hotspot.admin.model.service.AdminUserService;
+
 
 @Controller
-public class UserController {
+public class AdminUserController {
 	
 	@Autowired
-	private UserService userService;
+	private AdminUserService adminUserService;
 	
 	// 회원정보화면 진입
 	@RequestMapping("userList.ad")

@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.hotspot.admin.model.service.ReviewService;
+import com.kh.hotspot.admin.model.service.AdminReviewService;
+
 
 @Controller
-public class ReviewController {
+public class AdminReviewController {
 	
 	@Autowired
-	private ReviewService reviewService;
+	private AdminReviewService adminReviewService;
 	
 	// 리뷰관리화면 진입
 	@RequestMapping("reviewList.ad")
