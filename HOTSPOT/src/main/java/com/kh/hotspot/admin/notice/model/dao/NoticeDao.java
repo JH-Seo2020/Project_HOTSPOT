@@ -14,6 +14,7 @@ public class NoticeDao {
 
 	public int selectListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("noticeMapper.selectListCount");
+		
 	}
 	
 	public ArrayList<Notice> selectList(SqlSessionTemplate sqlSession, PageInfo pi){

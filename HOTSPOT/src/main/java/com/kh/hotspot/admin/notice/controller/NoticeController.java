@@ -27,7 +27,11 @@ public class NoticeController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
-		ArrayList<Notice> selectList = nService.selectList(pi);
+		ArrayList<Notice> list = nService.selectList(pi);
+		
+		model.addAttribute("list", list);
+		
+		model.addAttribute("pi", pi);
 		return "admin/notice/noticeList";
 	}
 }

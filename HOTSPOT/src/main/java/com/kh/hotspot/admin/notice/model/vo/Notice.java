@@ -1,5 +1,18 @@
 package com.kh.hotspot.admin.notice.model.vo;
 
+import java.sql.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
 public class Notice {
 	
 	private int noticeNo;
@@ -8,6 +21,6 @@ public class Notice {
 	private String noticeContent;
 	private int count;
 	private String createDate;
-	private String modifyDate;
+	private Date modifyDate;
 	private String status;
 }

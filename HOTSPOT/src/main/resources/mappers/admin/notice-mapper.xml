@@ -3,13 +3,13 @@
 <mapper namespace="noticeMapper">
   <resultMap id="noticeResultSet" type="Notice">
   		<id column="notice_no" property="noticeNo"/>
-  		<result column="user_id" property="noticeWriter"/>
   		<result column="notice_title" property="noticeTitle"/>
   		<result column="notice_content" property="noticeContent"/>
   		<result column="count" property="count"/>
   		<result column="create_date" property="createDate"/>
   		<result column="modify_date" property="modifyDate"/>
   		<result column="status" property="status"/>
+  		<result column="user_nickname" property="noticeWriter"/>
   </resultMap>
   <select id="selectListCount"
           resultType="_int">
@@ -22,15 +22,17 @@
           resultMap="noticeResultSet">
       select
              notice_no
-           , user_id
+           , user_nickname
            , notice_title
            , notice_content
            , count
-           , to_char(create_date, 'YYYY-MM-DD') create_date
-           , to_char(modify_date, 'YYYY-MM-DD) modify_date
-        from notice
+		   , to_char(create_date, 'YYYY-MM-DD') create_date
+           , n.modify_date
+		   	           	           		          
+        from notice n
+        join member using(user_id)
        where status='Y'
        order
-          by notice_no desc;           
+          by notice_no desc          
   </select>
 </mapper>

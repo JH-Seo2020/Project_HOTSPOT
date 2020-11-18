@@ -38,87 +38,16 @@
                     <th>작성일</th>
                     <th>수정일</th>
                 </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>환불 정책 관련</td>
-                    <td>admin</td>
-                    <td>2020-11-08</td>
-                    <td>2020-11-08</td>
-                </tr>
-                
+               	<c:forEach var="n" items="${list }">
+	                <tr>
+	                    <td><input type="checkbox"></td>
+	                    <td>${n.noticeNo}</td>
+	                    <td>${n.noticeTitle }</td>
+	                    <td>${n.noticeWriter}</td>
+	                    <td>${n.createDate }</td>
+	                    <td>${n.modifyDate }</td>
+	                </tr>
+	        	</c:forEach>                       
             </table>
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
@@ -130,14 +59,26 @@
                     <input type="text" style="line-height:29px; width:150px;">
                    <button class="btn btn-primary" style="margin-bottom:4px;">검색</button>
                 </form>
-                <button style="margin-left:90px;" class="btn btn-secondary"><</button>
-                <button class="btn btn-secondary">1</button>
-                <button class="btn btn-secondary">2</button>
-                <button class="btn btn-secondary">3</button>
-                <button class="btn btn-secondary">4</button>
-                <button class="btn btn-secondary">5</button>
-                <button class="btn btn-secondary">></button>
-
+                <c:choose>
+                	<c:when test="${ pi.currentPage ne pi.startPage}">
+                		<button onclick="location.href='list.no?currentPage=${ pi.currentPage-1 }'" style="margin-left:90px;" class="btn btn-secondary"><</button>
+                	</c:when>
+                	<c:otherwise>
+                		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
+                	</c:otherwise>	
+                </c:choose>
+                <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">
+                	<button class="btn btn-secondary" onclick="location.href='list.no?currentPage=${ p }'">${ p }</button>
+                </c:forEach>
+                
+                <c:choose>
+                	<c:when test="${ pi.currentPage ne pi.endPage }">
+                		<button onclick="location.href='list.no?currentPage=${ pi.currentPage+1 }'" class="btn btn-secondary">></button>
+                	</c:when>
+                	<c:otherwise>
+                		<button disabled class="btn btn-secondary">></button>
+                	</c:otherwise>	
+				</c:choose>
                 <button style="margin-left:180px" class="btn btn-secondary">글작성</button>
                 <button class="btn btn-secondary">삭제</button>        
             </div>
