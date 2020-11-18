@@ -64,7 +64,23 @@
             		$("#adminNotice tbody tr").click(function(){
             			location.href="detail.no?nno="+$(this).children("#nno").text();
             		})
+            		
+            		$("#adminNotice thead input[type=checkbox]").change(function(){
+            		
+            			if($("#adminNotice thead input[type=checkbox]").prop("checked")){
+            				
+           					$("#adminNotice tbody input[type=checkbox]").attr("checked", true); 
+            			}else{	
+            				
+            				$("#adminNotice tbody input[type=checkbox]").attr("checked", false);             			
+            			}
+            		});
+           				
+            			
+            			
             	});
+            	
+            	
             </script>
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
@@ -96,7 +112,7 @@
                 		<button disabled class="btn btn-secondary">></button>
                 	</c:otherwise>	
 				</c:choose>
-                <button style="margin-left:180px" class="btn btn-secondary">글작성</button>
+                <button onclick="location.href='enrollForm.no'" style="margin-left:180px" class="btn btn-secondary">글작성</button>
                 <button class="btn btn-secondary">삭제</button>        
             </div>
         </div>

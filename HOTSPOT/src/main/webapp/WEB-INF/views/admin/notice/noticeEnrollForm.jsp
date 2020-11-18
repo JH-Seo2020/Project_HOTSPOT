@@ -15,11 +15,11 @@
             <hr style="background:ligthgrey;">
             <br><br>
         <div class="adminNotice" style="width:1000px; margin:auto;">
-            <form action="">
-                <input type="text" name="title" style="width: 100%; margin-bottom:20px;"
+            <form action="insert.no">
+                <input type="text" name="noticeTitle" style="width: 100%; margin-bottom:20px;"
                 placeholder="제목입력" class="form-control" required> 
-                
-                <textarea  id="summernote" name="content" required></textarea>
+                <input type="hidden" name="noticeWriter">
+                <textarea  id="summernote" name="noticeContent" required></textarea>
                 <br>
                 <button type="reset" class="btn btn-secondary" style="margin-left:380px;">취소하기</button>
                 <button type="submit" class="btn btn-primary" style="margin-left:50px;">등록하기</button>

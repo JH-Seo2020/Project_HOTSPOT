@@ -34,6 +34,7 @@ public class NoticeController {
 		model.addAttribute("pi", pi);
 		return "admin/notice/noticeList";
 	}
+	
 	@RequestMapping("detail.no")
 	public String selectNotice(int nno, Model model) {
 		
@@ -43,5 +44,16 @@ public class NoticeController {
 		
 		return "admin/notice/noticeDetail";
 		
+	}
+	
+	@RequestMapping("enrollForm.no")
+	public String enrollForm() {
+		
+		return "admin/notice/noticeEnrollForm";
+	}
+	
+	@RequestMapping("insert.no")
+	public void noticeInsert(Notice n) {
+		System.out.println(n);
 	}
 }
