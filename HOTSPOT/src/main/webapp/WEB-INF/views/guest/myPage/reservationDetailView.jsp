@@ -116,6 +116,7 @@
             </div>
             <br>
             <button type="button" id="cancelReserve">예약 취소하기</button>
+            <!-- 이용완료시 신고버튼이 보여짐 -->
         </div>
     </div>
 

@@ -7,55 +7,60 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#content{
-	    background: rgba(228, 228, 228, 0.623);
-	    position: absolute;
-	    top: 30%;
-	    left: 50%;
-	    margin: 100px;
-	    margin-left: -350px;
-	    margin-top: -80px;
-	    padding: 50px;
-	    /* width: 100%; */
-	}
-	#reservation_listArea{
-	    border: 1px soild black;
-	}
-	#reservation_listArea td{
-	    width: 700px;
-	    padding: 20px;
-	}
-	.reservation_thumbnail{
-	    width:130px;
-	    height:120px; 
-	    float: left;
-	    padding: 10px;
-	    padding-right: 20px;
-	}
-	#reservation_listArea{
-	    display: inline-block;
-	    width: 700px;
-	}
-	#reservation_listArea div{
-	    background: white;
-	    border-radius: 4px;
-	    padding: 10px;
-	}
-	#reservation_listArea>div:hover{
-	    box-shadow: 3px 3px 3px 3px rgb(207, 207, 207);
-	    cursor:pointer;
-	}
+   #content{
+        background: rgb(243, 243, 243);
+        margin-top: 10%;
+    }
+    .reservation_thumbnail{
+        width:130px;
+        height:120px; 
+        float: left;
+        padding: 10px;
+        padding-right: 20px;
+    }
+    .listInfo1 a{
+        color: rgb(145, 37, 247);
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .listInfo2{font-size: 15px}
+    
+    #reservation_listArea{
+        padding: 100px;
+        margin: auto;
+        margin-top: -30px;
+        width: 70%;
+    }
+    #reservation_listArea div{
+        background: white;
+        border-radius: 3px;
+        padding: 10px;
+    }
+    #reservation_listArea>div:hover{
+        box-shadow: 3px 3px 3px 3px rgb(207, 207, 207);
+        cursor:pointer;
+    }
+    .reserveInfo{
+        border: 1px solid rgb(218, 218, 218);
+        margin-bottom: -8px;
+    }
+    #paging-area li>a{color: rgb(139, 138, 138)}
+    .selectArray{
+        float: right;
+        margin-right: 22%;
+        box-sizing: border-box;
+    }
 </style>
 </head>
 <body>
-<jsp:include page="../../common/menubar.jsp"/>
+    <jsp:include page="../../common/menubar.jsp"/>
 
     <div id="content">
-        <div id="reservation_list">
-            <br>
+        <div id="reservation_list" >
+            <br><br><br>
             <h2 align="center"><b>예약 내역 리스트</b></h2>
             <br><br>
-            <form action="" align="right">
+            <form action="" class="selectArray">
                 <select name="reservationAlign">
                     <option value="" selected>예약번호순 정렬</option>
                     <option value="">이용날짜순 정렬</option>
@@ -68,60 +73,71 @@
                     <option value="">이용완료</option>
                 </select>
             </form>
-            <br>
             <div id="reservation_listArea">
-                <div onclick="location.href">
+                <div class="reserveInfo" onclick="location.href">
                     <input type="hidden" value="">
                     <img src="../../resources/images/cafe_1.jpg" class="reservation_thumbnail">
                     <div>
-                        <span><b style="font-size: 18px;">[카페][경복궁역] 그리다</b></span><br>
-                        <span>2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
-                        <span>20,000원</span>
+                        <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
+                        <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
+                        <span class="listInfo2">20,000원</span>
+                        <span class="badge badge-pill badge-warning" class="statusRable"  style="background: #ffe714; width: 80px; height: 30px; float: right;">
+                            	예약확정
+                        </span>
                     </div>
                 </div>
                 <br>
-                <div onclick="location.href">
+                <div class="reserveInfo" onclick="location.href">
                     <input type="hidden" value="">
                     <img src="../../resources/images/cafe_1.jpg" class="reservation_thumbnail">
                     <div>
-                        <span><b style="font-size: 18px;">[카페][경복궁역] 그리다</b></span><br>
-                        <span>2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
-                        <span>20,000원</span>
+                        <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
+                        <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
+                        <span class="listInfo2">20,000원</span>
+                        <span class="badge badge-pill badge-warning" style="background: #49adff; width: 80px; height: 30px; float: right;">
+                            	결제대기
+                        </span>
                     </div>
                 </div>
                 <br>
-                <div onclick="location.href">
+                <div class="reserveInfo" onclick="location.href">
                     <input type="hidden" value="">
                     <img src="../../resources/images/cafe_1.jpg" class="reservation_thumbnail">
                     <div>
-                        <span><b style="font-size: 18px;">[카페][경복궁역] 그리다</b></span><br>
-                        <span>2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
-                        <span>20,000원</span>
+                        <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
+                        <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
+                        <span class="listInfo2">20,000원</span>
+                        <span class="badge badge-pill badge-warning" style="background: #ff4931; width: 80px; height: 30px; float: right;">
+                            	취소환불
+                        </span>
                     </div>
                 </div>
                 <br>
-                <div onclick="location.href">
+                <div class="listArea" onclick="location.href">
                     <input type="hidden" value="">
                     <img src="../../resources/images/cafe_1.jpg" class="reservation_thumbnail">
                     <div>
-                        <b style="font-size: 18px;">[카페][경복궁역] 그리다</b><br>
-                        2020.11.19(목) 11시~13시 2시간 8명<br><br>
-                        20,000원
+                        <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
+                        <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
+                        <span class="listInfo2">20,000원</span>
+                        <span class="badge badge-pill badge-warning" style="background: #b6b6b6; width: 80px; height: 30px; float: right;">
+                           	 이용완료
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
-        <br><br><br><br>
 
-        <div id="paging-area" align="center" >
+        <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">이전</a></li>
+                <li class="page-item"><a class="page-link" href="javascript:void(0);">&lt</a></li>
                 <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
                 <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
                 <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">다음</a></li>
+                <li class="page-item"><a class="page-link" href="javascript:void(0);">&gt</a></li>
             </ul>
         </div>
+        <br><br>
     </div>
 
     <jsp:include page="../../common/footer.jsp"/>
