@@ -68,7 +68,7 @@
                 </li>
                 <br><br>
                 <li>
-                    <a href=""><img src="resources/images/admin/후기.png">&nbsp;후기관리</a>
+                    <a href="reviewList.ad"><img src="resources/images/admin/후기.png">&nbsp;후기관리</a>
                 </li>
                 <br><br>
                 <li>
