@@ -35,4 +35,22 @@
        order
           by notice_no desc          
   </select>
+  <select id="selectNotice"
+          parameterType="_int"
+          resultMap="noticeResultSet">
+  	
+  	select
+  	       notice_no
+  	     , notice_title  
+  	     , user_nickname
+  	     , notice_content
+  	     , count
+  	     , to_char(create_date, 'YYYY-MM-DD') create_date
+  	     , n.modify_date
+  	  from notice n
+  	  join member using(user_id)
+  	 where status='Y' 
+  	   and notice_no = #{ nno }    
+  </select>
+          
 </mapper>

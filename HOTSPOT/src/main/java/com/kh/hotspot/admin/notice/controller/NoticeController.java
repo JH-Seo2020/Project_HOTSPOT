@@ -34,4 +34,14 @@ public class NoticeController {
 		model.addAttribute("pi", pi);
 		return "admin/notice/noticeList";
 	}
+	@RequestMapping("detail.no")
+	public String selectNotice(int nno, Model model) {
+		
+		Notice n = nService.selectNotice(nno);
+		
+		model.addAttribute("n", n);
+		
+		return "admin/notice/noticeDetail";
+		
+	}
 }

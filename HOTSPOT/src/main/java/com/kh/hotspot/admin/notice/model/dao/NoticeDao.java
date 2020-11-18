@@ -25,4 +25,9 @@ public class NoticeDao {
 		
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectList", null, rowBounds);
 	}
+	
+	public Notice selectNotice(SqlSessionTemplate sqlSession, int nno) {
+		
+		return sqlSession.selectOne("noticeMapper.selectNotice", nno);
+	}
 }

@@ -18,6 +18,12 @@
         #adminFooter form{
             display:inline;
         }
+        #adminNotice tbody tr{
+        	cursor:pointer;
+        }
+        #adminNotice tbody tr:hover{
+        	background:mintcream;
+        }
     </style>
 </head>
 <body>
@@ -26,10 +32,11 @@
         <div>
 
             <br>
-            <div style="font-size:20px; margin-left:20px;">공지사항</div>
+            <div style="font-size:20px; margin-left:20px; margin-top:11px;">공지사항</div>
             <hr style="background:ligthgrey;">
             <br><br>
             <table class="table" id="adminNotice" style="text-align:center; margin:auto;">
+            <thead>
                 <tr>
                     <th><input type="checkbox"></th>
                     <th>번호</th>
@@ -38,17 +45,27 @@
                     <th>작성일</th>
                     <th>수정일</th>
                 </tr>
+            </thead>
+            <tbody>
                	<c:forEach var="n" items="${list }">
 	                <tr>
 	                    <td><input type="checkbox"></td>
-	                    <td>${n.noticeNo}</td>
+	                    <td id="nno">${n.noticeNo}</td>
 	                    <td>${n.noticeTitle }</td>
 	                    <td>${n.noticeWriter}</td>
 	                    <td>${n.createDate }</td>
 	                    <td>${n.modifyDate }</td>
 	                </tr>
 	        	</c:forEach>                       
+            </tbody>    
             </table>
+            <script>
+            	$(function(){
+            		$("#adminNotice tbody tr").click(function(){
+            			location.href="detail.no?nno="+$(this).children("#nno").text();
+            		})
+            	});
+            </script>
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
                 <form action="">
@@ -84,5 +101,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>

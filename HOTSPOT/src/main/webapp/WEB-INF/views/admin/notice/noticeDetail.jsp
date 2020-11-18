@@ -18,14 +18,19 @@
 
         <div style="margin:auto; width:1000px;">
             <fieldset style="width:1000px; height:300px; border:1px solid">
-                <div style="font-size:22px; margin:10px; font-weight:bold;">1:1문의 채팅봇 서비스 시작</div>
-                <div style="float:right; margin-right:20px;">2020-11-10</div>
-                <div style="margin:10px;">관리자</div>
-                
+                <div style="font-size:22px; margin:10px; font-weight:bold;">${ n.noticeTitle }</div>
+                <c:choose>
+                	<c:when test="${ empty n.modifyDate  }">
+	                	<div style="float:right; margin-right:20px;">${ n.createDate }</div>
+	                </c:when>
+	                <c:otherwise>
+	                	<div style="float:right; margin-right:20px;">${ n.modifyDate }</div>
+	                </c:otherwise>
+                </c:choose>
+	                <div style="margin:10px;">${ n.noticeWriter }</div>
                 <hr>
                 <div style="font-size:15px; margin:10px;">
-                    안녕하세요 핫스팟 회원 여러분 관리자입니다.
-                    따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며 얼마나 아름다우냐? 이것을 얼음 속에서 불러 내는 것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 것은 청춘의
+					${ n.noticeContent }
                 </div>
             </fieldset>
             
