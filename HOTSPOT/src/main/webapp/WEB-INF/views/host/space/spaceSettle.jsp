@@ -14,10 +14,10 @@
 </style>
 </head>
 <body>
-<jsp:include page="hostMenubar.jsp" />
+<jsp:include page="../common/hostMenubar.jsp" />
 	
 
-<jsp:include page="subMenubar.jsp" />
+<jsp:include page="../common/subMenubar.jsp" />
 
 <div id="calculate_container">
 		<form action="" method="">
@@ -161,6 +161,6 @@
         
 	</div>
 	
-	<jsp:include page="../common/footer.jsp"/>
+	<jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>
