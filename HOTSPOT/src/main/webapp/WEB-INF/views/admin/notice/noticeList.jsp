@@ -62,7 +62,11 @@
             <script>
             	$(function(){
             		$("#adminNotice tbody tr").click(function(){
-            			location.href="detail.no?nno="+$(this).children("#nno").text();
+            			
+            				
+            				location.href="detail.no?nno="+$(this).children("#nno").text();
+            			      				
+            			
             		})
             		
             		$("#adminNotice thead input[type=checkbox]").change(function(){
