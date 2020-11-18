@@ -76,7 +76,7 @@
 <body>
 
 	<!-- 메뉴바 -->
-    <jsp:include page="../common/menubar.jsp"/>
+    <jsp:include page="../../common/menubar.jsp"/>
 
     <div id="hostSiteWrap">
         <div id="whoishost">
@@ -195,7 +195,7 @@
     </div>
 	
     <!-- 푸터 -->
-    <jsp:include page="../common/footer.jsp"/>
+    <jsp:include page="../../common/footer.jsp"/>
 	
 </body>
 </html>
