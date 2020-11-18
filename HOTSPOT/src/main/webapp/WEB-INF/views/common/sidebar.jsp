@@ -64,7 +64,7 @@
                 </li>
                 <br><br>
                 <li>
-                    <a href=""><img src="resources/images/admin/신고.png">&nbsp;신고관리</a>
+                    <a href="reportList.ad"><img src="resources/images/admin/신고.png">&nbsp;신고관리</a>
                 </li>
                 <br><br>
                 <li>
