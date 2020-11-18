@@ -7,11 +7,15 @@
 	
 	<typeAliases>
 		
+		<!-- admin(선경) -->
+		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="Member" />
+		<!-- admin(현우 -->
+		<typeAlias type="com.kh.hotspot.admin.notice.model.vo.Notice" alias="Notice"/>
 	</typeAliases>
 	
 	<!-- 주의! mapper파일 없는데 등록하지말기, 만들고 등록하기 -->
 	<mappers>
-		
+		<mapper resource="mappers/admin/notice-mapper.xml"/>
 	</mappers>
 	
 

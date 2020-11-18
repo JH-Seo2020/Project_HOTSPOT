@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+* {
+	font-family: "Nanum Gothic", sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+/* 큰 틀 */
+.outer {
+	width: 1200px;
+	height: 700px;
+	margin: auto;
+	position: absolute;
+}
+
+body {
+	margin: 0px;
+}
+/* 작은 틀*/
+.outer>div {
+	height: 100%;
+	float: left;
+}
+
+#logo {
+	width: 100%;
+	height: 10%;
+	background: #2c3e50;
+	border-bottom: 2px solid white;
+}
+
+#categoryName {
+	width: 100%;
+	height: 10%;
+	border-bottom: 2px solid gray;
+}
+
+#leftSpace {
+	width: 20%;
+	background: #2c3e50;
+	color: white;
+}
+
+#rightSpace {
+	width: 80%;
+}
+
+#reportList {
+	padding: 20px;
+	padding-top: 45px;
+}
+
+#select_reportSearchSelect {
+	width: 85px;
+	font-size: 11px;
+	float: left;
+	border-radius: 0px;
+}
+
+#input_reportSearch {
+	width: 150px;
+	height: 27px;
+	font-size: 11px;
+	float: left;
+	border-radius: 0px;
+	margin-left: 5px;
+}
+
+#btn_reportSearch {
+	background: #E0E0E0;
+	font-size: 11px;
+	width: 50px;
+	height: 27px;
+	float: left;
+	border-radius: 0px;
+	border: 0px;
+}
+
+#select_reportStatus {
+	width: 85px;
+	font-size: 11px;
+	float: right;
+	border-radius: 0px;
+}
+
+.pagination {
+	margin-top: 45px;
+	margin-left: 370px;
+}
+
+/* 문구 */
+#span_name {
+	font-size: 20px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 35px;
+}
+
+#categoryName span {
+	float: left;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+#leftSpace ul {
+	list-style-type: none;
+	padding-left: 0px;
+	padding: 20px;
+	margin-top: 0px;
+}
+
+#leftSpace ul>li {
+	padding: 25px;
+}
+
+#leftSpace ul>li>span {
+	float: right;
+	margin-top: 10px;
+	font-size: large;
+	margin-right: 10px;
+}
+
+#reportList table {
+	font-size: 11px;
+	text-align: center;
+}
+
+.pagination-sm .page-link {
+	color: black;
+	font-size: 12px;
+}
+
+.page-link:hover {
+	color: black;
+}
+
+#adminSpace>ul>li>a, #adminFaq>ul>li>a {
+	font-size: 14px;
+	color: white;
+	text-decoration: none;
+}
+
+/* 이미지 */
+#img_hotspotLogo {
+	width: 65px;
+	height: 65px;
+	margin-left: 15px;
+}
+
+.img_icon {
+	width: 40px;
+	height: 40px;
+}

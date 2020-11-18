@@ -46,7 +46,7 @@
                 #사업자등록번호 : 202012091520<br>
                 #영업 소재지 : 역삼역 3번출구<br>
                 #이메일 : yeok3@gmail.com<br>
-                <button class="badge badge-pill badge-warning">관리자페이지로 이동</button>
+                <button class="badge badge-pill badge-warning" onclick="location.href='main.ad'">관리자페이지로 이동</button>
             </div>
         </div>
         <div id="footerNotice">

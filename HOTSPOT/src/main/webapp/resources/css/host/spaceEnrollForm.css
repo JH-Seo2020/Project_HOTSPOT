@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+    .importh{
+           color: var(--color-yellow);
+       }
+       #spaceInsertContainer{
+           margin:auto;
+           width:1000px;
+           height:700px;
+       }
+       #spaceInsertContainer h5{
+           font-size: 18px;
+           margin-top: 70px;
+       }
+       .comment1{
+       font-weight: lighter;
+       font-size: 12px;
+   }
+       ::placeholder{ font-size: 12px; font-weight: 300}
+       #spaceForm{
+           width:1000px;
+           margin-top: 30px;
+           height: 500px;
+           background-color: rgb(247, 246, 248);
+           padding:10px;
+       }
+       #form_1{
+           width:50%;
+           height:100%;
+   
+       }
+       #form_2{
+           width:50%;
+           height:100%;
+   
+       }
+       #spaceForm>div{
+           float: left;
+       }
+       .form_1_table input:not([name=tag]){
+           width: 280px;
+           margin: 10px;
+       }
+       .form_1_table [name=tag]{
+           margin-left: 10px;
+           margin-right: 0px;
+           width: 200px;
+           margin-top: 10px;
+       }
+       .form_1_table textarea{
+           width: 280px;
+           margin: 10px;
+       }
+       .form_2_table th{
+           width:180px;
+       }
+       /*부트스트랩 변경*/
+       .form-control:not(textarea){
+           height: calc(1.2em + .75rem + 2px) !important;
+           font-weight: 300 !important;
+           border-radius: 0rem !important;
+           font-size: 13px !important;
+       }
+       .form_2_table input{
+           margin-bottom: 15px;
+       }
+       .form_2_table input[name=category]{
+           width: 280px;
+       }
+       .form_2_table input[type=number]{
+           width:100px;
+       }
+       .form_2_table input:not([name=mapLocation]){
+           margin:10px;
+       }
+       .form_2_table th{
+           width:130px;
+       }
+       input[name=mapLocation]{
+           width: 280px;
+           margin-left: 10px;
+           margin-bottom: 10px;
+          
+       }
+       .minNmax p{
+           margin-left: 10px;
+           font-size: 14px;
+       }
+      .minNmax{
+          width: 100px;
+      }
+      .location{
+          width:150px;
+      }
+      .introduce p{
+          margin-left: 10px;
+          font-size: 15px;
+          color: rgb(82, 29, 82);
+      }
+      #spacePrice{
+       width:100px;
+      }
+      #unit{
+          width:100px;
+      }
+      input[type=time]{
+          width:100px;
+      }
+      
+      #spaceForm2{
+         display: none;
+         position: absolute;
+         margin-top: 30px;
+          background-color: rgb(247, 246, 248);
+          width:1000px;
+          height:1000px;
+          padding:10px;
+          
+      }
+      .imgbox{
+          width:180px;
+          height:160px;
+          background-color: gray;
+          margin-top: 20px;
+          margin-right: 10px;
+      }
+      .many_imgbox{
+          margin-top: 20px;
+          width:680px;
+          height:180px;
+          background-color: #eeeeee;
+      }
+      .many_imgbox div{
+          float: left;
+      }
+      #spaceForm2 input[type=file]{
+          width:180px;
+          font-size: 13px;
+          margin-bottom: 25px;
+      }
+      #spaceForm2 .form-control:not(#realNotes){
+        display: inline-block;
+        width:250px;
+        margin:5px;
+      }
+      .notes .btn-primary{
+          height: 35px;
+      }
+   
+      .many_notes input{
+        width:315px;
+        margin-top: 10px;
+      }
+      .many_notes{
+          margin-top: 15px;
+          width: 350px;
+          height:100px;
+          background-color: #eeeeee;
+          margin: 5px 0px 10px 128px;
+          padding: 5px;
+      }
+      #spaceForm2 label[for=spc_img]{
+          margin: 5px 0px 25px 0px;
+          padding: 3px;
+          color: white;
+          background-color: teal;
+          cursor: pointer;
+          
+      }
+      #spaceForm2 label[for=spc_imgs]{
+          margin: 5px 0px 25px 0px;
+          padding: 3px;
+          color: white;
+          background-color: teal;
+          cursor: pointer;
+          
+      }
+      #spaceForm2 input[type=file]{
+          display: none;
+          background-color: var(--color-purple);
+      }
+      #spcaeInsertBtn{
+          margin: 20px 300px 20px 360px;
+          width:160px;
+      }
