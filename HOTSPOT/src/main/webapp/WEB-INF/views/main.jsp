@@ -67,7 +67,7 @@
         /*이용자 후기*/
         #userReview{
             width: 100%;
-            height: 1500px;
+            height: 1600px;
         }
         #userReviewTitle{
             text-align: center;

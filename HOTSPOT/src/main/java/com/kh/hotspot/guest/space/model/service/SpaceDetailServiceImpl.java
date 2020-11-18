@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
-import com.kh.hotspot.guest.space.model.vo.UserReview;
+import com.kh.hotspot.guest.space.model.vo.Review;
 
 public class SpaceDetailServiceImpl implements SpaceDetailService {
 
@@ -15,7 +15,7 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 	}
 
 	@Override
-	public ArrayList<UserReview> selectUserReviewDetail() {
+	public ArrayList<Review> selectUserReviewDetail() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -52,6 +52,12 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 
 	@Override
 	public int insertQuestion() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteLike() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

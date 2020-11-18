@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <style>
         #footerWrap{
-            margin-top: 10%;
             width: 100%;
             height: 350px;
             background-color: lightgray;
