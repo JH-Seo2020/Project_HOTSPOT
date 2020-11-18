@@ -49,7 +49,7 @@
             <tbody>
                	<c:forEach var="n" items="${list }">
 	                <tr>
-	                    <td><input type="checkbox"></td>
+	                    <td ><input id="check" type="checkbox" value="${ n.noticeNo }"></td>
 	                    <td id="nno">${n.noticeNo}</td>
 	                    <td>${n.noticeTitle }</td>
 	                    <td>${n.noticeWriter}</td>
@@ -60,31 +60,50 @@
             </tbody>    
             </table>
             <script>
+            	
             	$(function(){
-            		$("#adminNotice tbody tr").click(function(){
-            			
+            		
+            		$("#adminNotice tbody tr").find("td:eq(2)").click(function(){
             				
-            				location.href="detail.no?nno="+$(this).children("#nno").text();
-            			      				
-            			
+            				location.href="detail.no?nno="+$(this).prev().text(); 			            				            			      			            			
             		})
             		
             		$("#adminNotice thead input[type=checkbox]").change(function(){
             		
             			if($("#adminNotice thead input[type=checkbox]").prop("checked")){
             				
-           					$("#adminNotice tbody input[type=checkbox]").attr("checked", true); 
+           					$("#adminNotice tbody input[type=checkbox]").prop("checked", true); 
+           					
+           					
             			}else{	
             				
-            				$("#adminNotice tbody input[type=checkbox]").attr("checked", false);             			
+            				$("#adminNotice tbody input[type=checkbox]").prop("checked", false);             			
             			}
             		});
-           				
+           			
+            			$("#delete").click(function(){
+            				
+	            				var selected = new Array;
+	            			$("#check:checked").each(function(){
+	            					
+	            				selected.push(this.value);
+	            				
+	            			})
+	            			
+	            			if(selected == ""){
+	            				alert("선택된 항목이 없습니다.");
+	            			}else{		
+	            				location.href = "deleteList.no?nno="+selected;
+	            			}
+            				
+            			})
+            			
+            			
+            		
             			
             			
             	});
-            	
-            	
+            		
             </script>
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
@@ -117,7 +136,7 @@
                 	</c:otherwise>	
 				</c:choose>
                 <button onclick="location.href='enrollForm.no'" style="margin-left:180px" class="btn btn-secondary">글작성</button>
-                <button class="btn btn-secondary">삭제</button>        
+                <button class="btn btn-secondary" id="delete">삭제</button>        
             </div>
         </div>
     </div>

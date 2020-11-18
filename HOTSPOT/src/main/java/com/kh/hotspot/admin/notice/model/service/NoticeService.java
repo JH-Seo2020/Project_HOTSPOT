@@ -17,8 +17,8 @@ public interface NoticeService {
 	Notice selectNotice(int noticeNo);
 	
 	int updateNotice(Notice n);
-	int deleteNotice(String noString);
-	
+	int deleteListNotice(String[] nno);
+	int deleteNotice(int nno);
 	int searchListCount(SearchCondition sc);
 	ArrayList<Notice> searchList(PageInfo pi, SearchCondition sc);
 }

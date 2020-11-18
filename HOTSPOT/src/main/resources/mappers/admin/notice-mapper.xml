@@ -52,5 +52,21 @@
   	 where status='Y' 
   	   and notice_no = #{ nno }    
   </select>
-          
+   <update id="deleteListNotice">
+   	update 
+   	       notice
+   	   set status= 'N'
+     where notice_no in
+   	 <foreach item="nno" index="index" collection="array"
+   	 			open="(" separator="," close=")">
+   	  #{nno}      	   
+   	 </foreach>
+   	 	     
+   </update>
+   <update id="deleteNotice">
+   		update 
+   		       notice
+   		   set status= 'N'
+   		 where notice_no = #{nno}      
+   </update>       
 </mapper>

@@ -52,8 +52,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public int deleteNotice(String noString) {
-		return 0;
+	public int deleteListNotice(String[] nno) {
+		return nDao.deleteListNotice(sqlSession, nno);
 	}
 
 	@Override
@@ -64,6 +64,12 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public ArrayList<Notice> searchList(PageInfo pi, SearchCondition sc) {
 		return null;
+	}
+
+	@Override
+	public int deleteNotice(int nno) {
+		
+		return nDao.deleteNotice(sqlSession, nno);
 	}
 
 }

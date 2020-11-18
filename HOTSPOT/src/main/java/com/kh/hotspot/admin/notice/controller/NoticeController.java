@@ -54,6 +54,18 @@ public class NoticeController {
 	
 	@RequestMapping("insert.no")
 	public void noticeInsert(Notice n) {
-		System.out.println(n);
+		
+	}
+	@RequestMapping("deleteList.no")
+	public void deleteListNotice(String[] nno) {
+		
+		int result = nService.deleteListNotice(nno);
+	}
+	
+	@RequestMapping("delete.no")
+	public void deleteNotice(int nno) {
+	
+		int result = nService.deleteNotice(nno);
+		System.out.println(nno);
 	}
 }
