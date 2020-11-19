@@ -70,7 +70,7 @@
         <h3 class="result_title" style="color: white; margin: 25px;">월 예상 수익은?</h3>
            <span><strong id="resultCount">1개 </strong>의 공간을 한시간에 <strong id="resultPrice">200원</strong>에 주 <strong id="resultTotalHours">4회</strong>, <strong id="resultDayHours">2시간씩</strong> 대관시!</span>
             <hr>
-        <div class="result_value"><span class="text">월 예상 수익<br></span><span ><strong class="total">￦5,760</strong></span><br>(서비스 수수료 ￦<strong class="commission"></strong>)</div>
+        <div class="result_value"><span class="text">월 예상 수익<br></span><span ><strong class="total">￦5,760</strong></span>원<br>(서비스 수수료 ￦<strong class="commission"></strong>)</div>
     </div>
    <script>
        $(function(){

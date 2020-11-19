@@ -25,7 +25,7 @@
   } 
 
  #calculator{
-     background: center url("../images/host_images/calimg.png");
+     background: center url("../../images/host_images/calimg.png");
      height: 300px;
      display: flex;
      justify-content: center;
