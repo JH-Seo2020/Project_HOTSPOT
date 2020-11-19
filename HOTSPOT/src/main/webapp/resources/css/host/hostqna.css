@@ -1,0 +1,75 @@
+@charset "UTF-8";
+/*여기서부터 qna css*/
+        h5{
+            font-size: 17px!important;
+            color : var(--color-purple);
+        }
+        #qnaContainer{
+        width:900px;
+        position: absolute;
+        top:130px;
+        left:400px;
+        }
+        .qnaContainer_1{
+            width:900px;
+            margin:auto;
+        }
+        .container_head{
+            height:40px;
+            background-color: var(--color-purple);
+            text-align: center;
+            line-height: 40px;
+        }
+        .searchContainer {
+            text-align: center;
+            padding: 30px;
+        }
+        .searchContainer p{
+            margin-top: 10px;
+        }
+        .searchContainer{
+            border:1px solid var(--color-purple);
+            margin-top:25px;
+            height:170px;
+        }
+        .searchContainer input[type=text]{
+            width:400px;
+            margin-top: 30px;
+            display: inline;
+        }
+        .searchIcon{
+            position: relative;
+            top:8px;
+        }
+        .searchIcon{
+            transition: all var(--animation-duration) ease;
+        }
+        .searchIcon:hover{
+            transform: rotate(30deg) scale(1.1);
+        }
+        .qna_1{
+            width:410px;
+            border: solid 2px lightgray;
+            padding:15px;
+            margin:15px;
+            display: inline-block;
+        }
+        .btn-warning{
+            color: white;
+        }
+        .qnaSpace button{
+            height:35px;
+            margin:5px;
+        }
+        .question p{
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .qna_1 span{
+            color: gray;
+            margin-top: 10px;
+        }
+        .searchSpace{
+            border: 2px solid var(--color-purple);
+            border-radius: 10px;
+        }

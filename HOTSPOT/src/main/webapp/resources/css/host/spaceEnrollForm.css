@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-    .importh{
+      .importh{
            color: var(--color-yellow);
        }
        #spaceInsertContainer{
@@ -68,7 +68,7 @@
            width: 280px;
        }
        .form_2_table input[type=number]{
-           width:100px;
+           width:130px;
        }
        .form_2_table input:not([name=mapLocation]){
            margin:10px;
@@ -87,7 +87,7 @@
            font-size: 14px;
        }
       .minNmax{
-          width: 100px;
+          width: 130px;
       }
       .location{
           width:150px;
@@ -98,15 +98,15 @@
           color: rgb(82, 29, 82);
       }
       #spacePrice{
-       width:100px;
+       width:130px;
       }
       #unit{
-          width:100px;
+          width:130px;
       }
       input[type=time]{
-          width:100px;
+          width:130px;
       }
-      
+
       #spaceForm2{
          display: none;
          position: absolute;

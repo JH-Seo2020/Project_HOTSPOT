@@ -82,7 +82,7 @@
                             <td>
                                 <input type="text" class="form-control"name="tag" placeholder="">
                             </td>
-                            <td><button class="btn btn-primary" style="height: 30px; width:80px; font-size: 14px; margin-top:8px; line-height: 10px;">추가 </button></td>
+                            <td><button type="button" class="btn btn-primary" style="height: 30px; width:80px; font-size: 14px; margin-top:8px; line-height: 10px;">추가 </button></td>
                         </tr>
                         <tr>
                             <th></p></th>
@@ -111,7 +111,7 @@
                             <td class="location">
                                 <input type="text" class="form-control"name="location_search" placeholder="">
                             </td>
-                            <td><button class="btn btn-primary" style="height: 30px; width:100px; margin-left:10px;font-size: 14px;"> 찾기 </button></td>
+                            <td><button type="button" class="btn btn-primary" style="height: 30px; width:100px; margin-left:10px;font-size: 14px;"> 찾기 </button></td>
                         </tr>
                         <tr>
                             <th></th>
@@ -191,7 +191,7 @@
                     <div class="notes" style="margin-top: 35px;">
                         <p style="margin-right: 15px;">이용시 유의사항</p>
                         <input type="text" class="form-control"> 
-                        <button class="btn btn-primary">추가</button>
+                        <button type="button" class="btn btn-primary">추가</button>
                         <div class="many_notes">
                             <input type="text" name="" class="form-control"> <img src="resources/images/host_images/close.png" style="width:20px; height:20px;">
                             <input type="text" name="" class="form-control">
@@ -252,5 +252,5 @@
     </div>
     
  </body>
-
+<jsp:include page="../../common/footer.jsp"/>
 </html> 

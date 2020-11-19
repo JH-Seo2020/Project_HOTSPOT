@@ -1,9 +1,39 @@
 @charset "UTF-8";
- /* 여기서부터 정산페이지 */
+  #floatMenu{
+            position: relative;
+            top:120px;
+            left:80px;
+        }
+        #floatMenu img{
+            width:25px; height:25px;
+            margin-left: 10px;
+            margin-right: 5px;
+            margin:10px 5px 5px 20px;
+            transition: all var(--animation-duration) ease;
+            
+        }
+        #floatMenu img:hover{
+            transform: rotate(-30deg) scale(1.1);
+            
+        }
+        #floatMenu li{
+            width:180px;
+            height:50px;
+            border: 0.5px solid #dad1db;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        #floatMenu li:hover{
+            background-color: rgb(243, 243, 243);
+            color: var(--color-purple);
+            transform: scale(1.02);
+            border: 1.5px solid gray;
+        }
+        /* 여기서부터 정산페이지 */
         #calculate_container{
             width:900px;
             /* background-color: lightgrey; */
-            position: relative;
+            position: absolute;
             top:130px;
             left:300px;
         }
@@ -18,16 +48,17 @@
             text-align: center;
             line-height: 40px;
         }
-        .container2{
-        	margin-top:60px;
-            margin:auto;
-            width:900px;
+        .containert2{
+            margin-top: 60px;
         }
         .container1_box{
             height: 150px;
+            display: flexbox;
             border: 1px solid var(--color-purple);
             padding:30px;
-          
+            flex-direction: row;
+            /* justify-content: space-between; */
+            /* align-items: center; */
         }
         .box_1{
             width:50%;
@@ -39,7 +70,10 @@
             height:100%;
             float: left;
         }
-      
+        .box_2 input[type=text]{
+            position: absolute;
+
+        }
         .container1_box p{
             display: block; margin-top:10px;
         }
@@ -77,12 +111,18 @@
         .box_1 input{
             width:90px;
         }
-        input[type=submit]{
-            display: block;
-            width:26px;
-            height: 26px;
-            /* border: 1px solid var(--color-purple); */
-            
+        input[type=image]{
+            display: inline;
+            width:25px;
+            height: 25px;
+            position: relative;
+            left: 180px;
+            top:5px;      
+        }
+        input[type=image]:active{
+            display: inline;
+            width:25px;
+            height: 25px; 
         }
         .searchIcon{
             transition: all var(--animation-duration) ease;
