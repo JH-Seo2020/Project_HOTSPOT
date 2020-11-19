@@ -22,7 +22,7 @@ public class InquiryController {
 	@RequestMapping("list.inq")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1")int currentPage,@RequestParam(value="head", defaultValue="전체") String head, Model model) {
 				
-		int listCount = iService.selectListCount();
+		int listCount = iService.selectListCount(head);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
@@ -30,7 +30,22 @@ public class InquiryController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pi", pi);
-		
+		model.addAttribute("head", head);
 		return "admin/inquiry/inquiryList";
+	}
+	@RequestMapping("detail.inq")
+	public String selectInquiry(int ino, Model model ) {
+		
+		Inquiry i = iService.selectInquiry(ino); 
+		
+		model.addAttribute("i", i);
+		return "admin/inquiry/inquiryDetail";
+	}
+	
+	@RequestMapping("deleteList.inq")
+	
+	public void deleteList(String[] ino) {
+		
+		int result = iService.deleteListInquiry(ino);
 	}
 }

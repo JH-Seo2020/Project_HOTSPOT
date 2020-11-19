@@ -19,7 +19,15 @@
   		select
   		       count(*)
   		  from inquiry
-  		 where status='Y'     
+  		 where status='Y' 
+  		   <choose>
+  		   	  <when test="head == '답변'">
+  		   	   and reply_status = 'Y'
+  		   	  </when>
+  		   	  <when test="head == '미답변'">
+  		   	   and reply_status = 'N'
+  		   	  </when>
+  		   </choose>     
   	</select>
   	<select id="selectList"
   	        resultMap="inquiryResultSet">
@@ -34,7 +42,42 @@
   	       , to_char(i.reply_date, 'YYYY-MM-MM') reply_date
   	    from inquiry i      
   	    join member using(user_id)
-  	   where status='Y'	
-    
+  	   where status='Y'
+  	     <choose>
+  	     	<when test="head == '답변'">
+	  	     	and reply_status = 'Y'	
+  	     	</when>
+  	     	<when test="head == '미답변'">
+  	     		and reply_status = 'N'
+  	     	</when>
+  	     </choose>
+       order
+          by inquiry_no desc
     </select>
+    <select id="selectInquiry"
+            resultMap="inquiryResultSet">
+    	select
+    	       inquiry_no
+    	     , user_nickname
+    	     , inquiry_title
+    	     , inquiry_content
+    	     , inquiry_reply
+    	     , to_char(i.enroll_date, 'YYYY-MM-DD') enroll_date
+    	  from inquiry i
+    	  join member using(user_id)
+    	 where status='Y'    
+    	   and inquiry_no = #{ino}  
+    </select>
+    <update id="deleteListInquiry">
+    	update
+    	       inquiry
+    	   set status = 'N'
+    	 where inquiry_no in 
+    	 <foreach item="ino" index="index" collection="array" 
+    	          open="(" separator="," close=")">
+			 #{ino}   	 	
+    	 </foreach>
+    	 	
+    	       
+    </update>
 </mapper>

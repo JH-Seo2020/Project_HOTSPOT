@@ -21,8 +21,8 @@ public class InquiryServiceImpl implements InquiryService {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int selectListCount() {
-		return iDao.selectListCount(sqlSession);
+	public int selectListCount(String head) {
+		return iDao.selectListCount(sqlSession, head);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class InquiryServiceImpl implements InquiryService {
 
 	@Override
 	public Inquiry selectInquiry(int ino) {
-		return null;
+		return iDao.selectInquiry(sqlSession, ino);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class InquiryServiceImpl implements InquiryService {
 
 	@Override
 	public int deleteListInquiry(String[] ino) {
-		return 0;
+		return iDao.deleteListInquiry(sqlSession, ino);
 	}
 
 	@Override

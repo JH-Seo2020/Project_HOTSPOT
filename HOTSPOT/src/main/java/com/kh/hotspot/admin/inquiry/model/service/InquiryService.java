@@ -8,7 +8,7 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 
 public interface InquiryService {
 
-	int selectListCount();
+	int selectListCount(String head);
 	ArrayList<Inquiry> selectList(PageInfo pi, String head);
 	
 	Inquiry selectInquiry(int ino);

@@ -12,9 +12,9 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 @Repository
 public class InquiryDao {
 	
-	public int selectListCount(SqlSessionTemplate sqlSession) {
+	public int selectListCount(SqlSessionTemplate sqlSession, String head) {
 		
-		return sqlSession.selectOne("inquiryMapper.selectListCount");
+		return sqlSession.selectOne("inquiryMapper.selectListCount", head);
 	}
 	
 	public ArrayList<Inquiry> selectList(SqlSessionTemplate sqlSession, PageInfo pi, String head){
@@ -25,5 +25,14 @@ public class InquiryDao {
 		RowBounds rowbounds = new RowBounds(offset, limit);
 		
 		return (ArrayList)sqlSession.selectList("inquiryMapper.selectList", head, rowbounds);
+	}
+	
+	public Inquiry selectInquiry(SqlSessionTemplate sqlSession, int ino) {
+		return sqlSession.selectOne("inquiryMapper.selectInquiry", ino);
+	}
+	
+	public int deleteListInquiry(SqlSessionTemplate sqlSession, String[] ino) {
+		
+		return sqlSession.update("inquiryMapper.deleteListInquiry", ino);
 	}
 }
