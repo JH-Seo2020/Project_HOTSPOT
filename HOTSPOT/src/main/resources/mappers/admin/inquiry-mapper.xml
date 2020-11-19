@@ -76,8 +76,13 @@
     	 <foreach item="ino" index="index" collection="array" 
     	          open="(" separator="," close=")">
 			 #{ino}   	 	
-    	 </foreach>
-    	 	
-    	       
+    	 </foreach> 	       
+    </update>
+    <update id="deleteInquiry"
+            parameterType="_int">
+    	update
+    	       inquiry
+    	   set status='N'
+    	 where inquiry_no = #{ino}     
     </update>
 </mapper>

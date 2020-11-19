@@ -44,8 +44,17 @@ public class InquiryController {
 	
 	@RequestMapping("deleteList.inq")
 	
-	public void deleteList(String[] ino) {
+	public String deleteList(String[] ino) {
 		
 		int result = iService.deleteListInquiry(ino);
+		
+		return "redirect:list.inq";
+	}
+	
+	@RequestMapping("delete.inq")
+	public String delete(int ino) {
+		int result = iService.deleteInquiry(ino);
+
+		return "redirect:list.inq";
 	}
 }

@@ -57,15 +57,18 @@ public class NoticeController {
 		
 	}
 	@RequestMapping("deleteList.no")
-	public void deleteListNotice(String[] nno) {
+	public String deleteListNotice(String[] nno) {
 		
 		int result = nService.deleteListNotice(nno);
+		
+		return "redirect:list.no";
 	}
 	
 	@RequestMapping("delete.no")
-	public void deleteNotice(int nno) {
+	public String deleteNotice(int nno) {
 	
 		int result = nService.deleteNotice(nno);
-		System.out.println(nno);
+		
+		return "redirect:list.no";
 	}
 }

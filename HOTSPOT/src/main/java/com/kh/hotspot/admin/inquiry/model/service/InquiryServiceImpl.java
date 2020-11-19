@@ -47,7 +47,7 @@ public class InquiryServiceImpl implements InquiryService {
 
 	@Override
 	public int deleteInquiry(int ino) {
-		return 0;
+		return iDao.deleteInquiry(sqlSession, ino);
 	}
 
 	@Override

@@ -36,9 +36,10 @@
 ${ i.inquiryReply }
                     </textarea>
                     <hr>
-                    <button style="float:right" class="btn btn-secondary">목록으로</button>
+                    <button style="float:right" class="btn btn-secondary" onclick="history.back()">목록으로</button>
                     <br>
-                    <button style="margin-left:420px;" class="btn btn-danger">삭제</button>
+                    <a href="delete.inq?ino=${ i.inquiryNo }" style="margin-left:420px;" class="btn btn-danger" >삭제</a>
+            														  
                     <button style="margin-left:30px;"class="btn btn-primary">답변하기</button>
                     
                 </form>

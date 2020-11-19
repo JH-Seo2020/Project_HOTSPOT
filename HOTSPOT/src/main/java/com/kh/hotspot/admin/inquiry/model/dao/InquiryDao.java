@@ -35,4 +35,8 @@ public class InquiryDao {
 		
 		return sqlSession.update("inquiryMapper.deleteListInquiry", ino);
 	}
+	
+	public int deleteInquiry(SqlSessionTemplate sqlSession, int ino) {
+		return sqlSession.update("inquiryMapper.deleteInquiry", ino);
+	}
 }
