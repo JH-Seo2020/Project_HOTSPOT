@@ -83,7 +83,7 @@
                     <div href="" id="adminCenter"><img src="resources/images/admin/고객센터.png">&nbsp;고객센터 관리</div>
                     <ul style="display:none;" id="subAdminCenter">
                         <li><a href="list.no" style="font-size:15px;">공지사항</a></li>
-                        <li><a href="" style="font-size:15px;">예약관리</a></li>
+                        <li><a href="list.inq" style="font-size:15px;">1:1문의</a></li>
                         <li><a href="" style="font-size:15px;">FAQ</a></li>
                     </ul>
                 </li>

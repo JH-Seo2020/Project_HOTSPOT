@@ -42,87 +42,24 @@
                     <th>처리상태</th>
                     <th>작성일</th>
                 </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>공간등록은 어떻게 하나요?</td>
-                    <td>user01</td>
-                    <td>미답변</td>
-                    <td>2020-11-10</td>
-                </tr>
-                
+                <c:forEach var="i" items="${ list }">
+	                <tr>
+	                    <td><input type="checkbox"></td>
+	                    <td>${ i.inquiryNo }</td>
+	                    <td>${ i.inquiryTitle }</td>
+	                    <td>${ i.inquiryWriter }</td>
+	                    <c:choose>
+	                    	<c:when test="${ i.replyStatus ne 'Y' }">
+	                    		<td>미답변</td>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<td>답변</td>
+	                    	</c:otherwise>
+	                    </c:choose>	
+	                    
+	                    <td>${ i.enrollDate }</td>
+	                </tr>
+                </c:forEach>
             </table>
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >

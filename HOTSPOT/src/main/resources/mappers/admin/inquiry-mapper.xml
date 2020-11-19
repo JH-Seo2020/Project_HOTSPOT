@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="inquiryMapper">
+  	<resultMap id="inquiryResultSet" type="Inquiry">
+  		<id column="inquiry_no" property="inquiryNo"/>
+  		<result column="user_nickname" property="inquiryWriter"/>
+  		<result column="inquiry_title" property="inquiryTitle"/>
+  		<result column="inquiry_content" property="inquiryContent"/>
+  		<result column="inquiry_reply" property="inquiryReply"/>
+  		<result column="reply_status" property="replyStatus"/>
+  		<result column="enroll_date" property="enrollDate"/>
+  		<result column="reply_date" property="replyDate"/>
+  		<result column="status" property="status"/> 	
+  	</resultMap>
+  	
+  	
+  	<select id="selectListCount"
+  	        resultType="_int">
+  		select
+  		       count(*)
+  		  from inquiry
+  		 where status='Y'     
+  	</select>
+  	<select id="selectList"
+  	        resultMap="inquiryResultSet">
+  	  select
+  	         inquiry_no
+  	       , user_nickname
+  	       , inquiry_title
+  	       , inquiry_content
+  	       , inquiry_reply
+  	       , reply_status
+  	       , to_char(i.enroll_date, 'YYYY-MM-DD') enroll_date
+  	       , to_char(i.reply_date, 'YYYY-MM-MM') reply_date
+  	    from inquiry i      
+  	    join member using(user_id)
+  	   where status='Y'	
+    
+    </select>
+</mapper>
