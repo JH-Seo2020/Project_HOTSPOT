@@ -8,7 +8,7 @@
 	<typeAliases>
 		
 		<!-- admin(선경) -->
-		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="Member" />
+		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="Report" />
 		<!-- admin(현우 -->
 		<typeAlias type="com.kh.hotspot.admin.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.hotspot.admin.inquiry.model.vo.Inquiry" alias="Inquiry"/>
@@ -18,6 +18,9 @@
 	<mappers>
 		<mapper resource="mappers/admin/notice-mapper.xml"/>
 		<mapper resource="mappers/admin/inquiry-mapper.xml"/>
+		
+		<!-- admin(선경) -->
+		<mapper resource="mappers/admin/admin-reportMapper.xml"/>
 	</mappers>
 	
 
