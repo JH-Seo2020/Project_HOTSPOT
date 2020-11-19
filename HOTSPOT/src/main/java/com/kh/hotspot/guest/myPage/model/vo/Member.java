@@ -2,7 +2,17 @@ package com.kh.hotspot.guest.myPage.model.vo;
 
 import java.sql.Date;
 
-// 어노테이션 붙이기
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
 public class Member {
 	
 	private String userId;		// 회원아이디

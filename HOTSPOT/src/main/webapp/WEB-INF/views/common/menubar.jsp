@@ -6,94 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <!--부트스트랩-->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <!--제이쿼리-->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <style>
-        #menubar{
-            width: 1200px;
-            height: 80px;
-            margin: auto;
-        }
-        #menubar>div{
-            float: left;
-            height: 80%;
-            margin-left: 2%;
-        }
-        #logoSpace{width: 15%;}
-        #search{width: 30%; height: 50%; }
-        #search>form{
-            width: 100%; height: 100%;
-        }
-        #search>form>input{
-            margin-top: 20px;
-            border:none;
-            border-bottom: 2px solid lavender !important;
-            width: 80%;
-            height: 50%;
-        }
-        #search>form>div{
-            float: right;
-            border: none;
-            background-color: none;
-            width: 20%;
-            height: 100%;
-        }
-        #menuOptions{width: 49%; }
-        #menuOptions>div{
-            margin: auto;
-            text-align: center;
-            width: 25%;
-            float: left;
-            padding-top: 25px;
-        }
-        .nav-item{padding-top: 18px !important;}
-        #menuOptions>div>a{
-            color: black;
-            text-decoration: none;
-        }
-        /* LoginModal */
-        .login_popup{
-            display: none;
-            position: realtive;
-            z-index: 2;
-            background: white;
-            border-radius: 2px;
-            box-shadow: 3px 3px 3px 3px rgba(39, 39, 39, 0.582);
-            padding-right: 13px;
-        }
-        #loginInputBtn{
-            width: 280px;
-            height: 40px;
-            background: rgb(145, 37, 247);
-            color: white;
-            border: none;
-            border-radius: 4px;
-        }
-        
-        /* myPageModal */
-        .myPage_popup{
-            display: none;
-            position: realtive;
-            z-index: 2;
-            background: white;
-            border-radius: 2px;
-            box-shadow: 3px 3px 3px 5px rgba(39, 39, 39, 0.582);
-            width: 50%;
-            padding-right: 13px;
-        }
-        #myPage_Content ul{
-            text-decoration: none;
-            list-style: none;
-            color: black;
-        }
-    </style>
+<!--부트스트랩-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<!--제이쿼리-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- 메뉴바 css -->
+<link rel="stylesheet" href="resources/css/guest/menubar.css" type="text/css"/>
+<!-- 구글폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&amp;display=swap" rel="stylesheet">
 </head>
 <body>
 	    <div id="menubar">

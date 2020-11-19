@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+#menubar{
+    width: 1200px;
+    height: 80px;
+    margin: auto;
+}
+#menubar>div{
+    float: left;
+    height: 80%;
+    margin-left: 2%;
+}
+#logoSpace{width: 15%;}
+#search{width: 30%; height: 50%; }
+#search>form{
+    width: 100%; height: 100%;
+}
+#search>form>input{
+    margin-top: 20px;
+    border:none;
+    border-bottom: 2px solid lavender !important;
+    width: 80%;
+    height: 50%;
+}
+#search>form>div{
+    float: right;
+    border: none;
+    background-color: none;
+    width: 20%;
+    height: 100%;
+}
+#menuOptions{width: 49%; }
+#menuOptions>div{
+    margin: auto;
+    text-align: center;
+    width: 25%;
+    float: left;
+    padding-top: 25px;
+}
+.nav-item{padding-top: 18px !important;}
+#menuOptions>div>a{
+    color: black;
+    text-decoration: none;
+}
+/* LoginModal */
+.login_popup{
+    display: none;
+    position: realtive;
+    z-index: 2;
+    background: white;
+    border-radius: 2px;
+    box-shadow: 3px 3px 3px 3px rgba(39, 39, 39, 0.582);
+    padding-right: 13px;
+}
+#loginInputBtn{
+    width: 280px;
+    height: 40px;
+    background: rgb(145, 37, 247);
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+/* myPageModal */
+.myPage_popup{
+    display: none;
+    position: realtive;
+    z-index: 2;
+    background: white;
+    border-radius: 2px;
+    box-shadow: 3px 3px 3px 5px rgba(39, 39, 39, 0.582);
+    width: 50%;
+    padding-right: 13px;
+}
+#myPage_Content ul{
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
