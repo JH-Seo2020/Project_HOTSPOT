@@ -21,7 +21,7 @@
 	    font-weight: bold;
 	    font-size: 20px;
 	}
-	#cancelReserve{
+	.reserveBtn{
 	    width: 150px;
 	    height: 30px;
 	    background:  rgb(145, 37, 247);
@@ -30,10 +30,31 @@
 	    border-radius: 3px;
 	    float:right
 	}
-</style>
+	#reserveAlert{
+	    position: relative;
+	    background: rgb(243, 243, 243);
+	    padding: 15px;
+	    margin: 30%;
+	    margin-left: 40%;
+	    width: 400px;
+	    box-shadow: 3px 3px 3px 3px rgb(207, 207, 207);
+	}
+	.submitBtn{
+	    width: 90px;
+	    height: 30px;
+	    background:  rgb(145, 37, 247);
+	    color:white;
+	    border: none;
+	    border-radius: 3px;
+	}
+	#reportEnrollForm{
+	    border-collapse: separate;
+	    border-spacing: 0 10px;
+	}
+ </style>
 </head>
 <body>
-	<jsp:include page="../../common/menubar.jsp"/>
+	 <jsp:include page="../../common/menubar.jsp"/>
 
 
     <div id="content">
@@ -44,7 +65,6 @@
             <div>
                 <span class="reservTitle">공간 예약정보</span> &nbsp;&nbsp;
                 <span class="badge badge-pill badge-warning" style="background: #ffe714; width: 70px;">예약확정</span>
-
             </div>
             <hr>
             <div id="reserveTable">
@@ -115,11 +135,76 @@
                 </div>
             </div>
             <br>
-            <button type="button" id="cancelReserve">예약 취소하기</button>
-            <!-- 이용완료시 신고버튼이 보여짐 -->
+            <button type="button" class="reserveBtn" onclick="">예약 취소하기</button>
+            <!-- 이용완료시에 보이는 신고하기버튼 
+            <button type="button" class="reserveBtn" onclick="">신고하기</button>
+            -->
         </div>
     </div>
 
+
+    <!-- 예약취소 버튼 클릭시 뜨는 alert
+    <div id="reserveAlert">
+        <div align="center">
+            <br>
+            <h6><b>예약을 정말로 취소하시겠습니까?</b></h6>
+            <div>
+                <span><b> 예약을 취소하시면 입력한 정보가 모두 소멸됩니다.</b></span><br><br>
+                <button type="submit" class="submitBtn">확인</button> &nbsp;
+                <button type="button" class="submitBtn">취소</button>
+            </div>
+        </div>
+        <br>
+    </div>
+    -->
+
+    <!-- 신고하기 버튼 클릭시 뜨는 alert
+    <div id="reserveAlert">
+        <div align="center">
+            <br>
+            <h5 style="color:  rgb(145, 37, 247)"><b>신고</b></h5>
+            <form action="" method="POST">
+                <table id="reportEnrollForm">
+                    <tr>
+                        <td>신고유형</td> &nbsp;&nbsp;
+                        <td>
+                            <select name="reportType"> 
+                                <option value="hostReport">호스트신고</option>
+                                <option value="spaceReport">공간신고</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>신고상세유형</td>
+                        <td>
+                            <select name="reportDetailType">
+                                <option value="">서비스불만족</option>
+                                <option value="">허위내용</option>
+                                <option value="">광고</option>
+                                <option value="">기타</option>
+                            </select>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>신고자</td>
+                        <td><input type="text" name="userId" value="userId01" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>신고내용</td>
+                        <td>
+                            <textarea name="" id="" cols="30" rows="5" style="resize: none;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <button type="submit" class="submitBtn">신고하기</button>
+            </form>
+        </div>
+        <br>
+    </div>
+     -->
+
     <jsp:include page="../../common/footer.jsp"/>
+    
 </body>
 </html>
