@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/host/hostmenubar.css" type="text/css"/>
 <link rel="stylesheet" href="resources/css/host/hostmain.css" type="text/css"/>
 </head>
 <body>
@@ -39,38 +40,38 @@
                <table class="calculator_input_table">
                    <tr>
                        <td>예약단위</td>
-                       <td colspan="2"><input type="radio" >
+                       <td colspan="2"><input type="radio" checked >
                            <label class="timeRadio">시간단위</label>
                        </td>
                    </tr>
-                   <tr>
-                       <td>공간 수</td>
-                       <td colspan="2"><input type="text" name="spaceCount" id="spaceConunt" class="form-control" placeholder="공간 개수를 입력해주세요   예시) 2"></td>
-                   </tr>
-                   <tr>
-                       <td>가격</td>
-                       <td colspan="2"><input type="text" class="form-control" placeholder="시간당 가격을 입력해주세요   예시) 5000"></td>
-                   </tr>
-                   <tr>
-                       <td>공유</td>
-                       <td><input type="text"class="form-control" placeholder="하루 총 공유 시간  예시) 4"></td>
-                       <td><input type="text"class="form-control"placeholder="일주일 총 공유 시간  예시) 8"></td>
-                   </tr>
-                   <tr>
-                       <td></td>
-                       <td colspan="2"> <button class="btn btn-warning" id="calculatorBtn" style="margin-top:10px; width:440px">예상수익 계산하기</button></td>
-                   </tr>
+                 	<tr>
+                        <td>공간 수</td>
+                        <td colspan="2"><input type="text" name="spaceCount" id="spaceConunt" class="form-control" placeholder="공간 개수를 입력해주세요   예시) 2"></td>
+                    </tr>
+                    <tr>
+                        <td>가격</td>
+                        <td colspan="2"><input type="text" class="form-control" id="price" placeholder="시간당 가격을 입력해주세요   예시) 5000"></td>
+                    </tr>
+                    <tr>
+                        <td>공유</td>
+                        <td><input type="text"class="form-control" id="dayHours"placeholder="하루 총 공유 시간  예시) 4"></td>
+                        <td><input type="text"class="form-control" id="totalHours"placeholder="일주일 총 공유 시간  예시) 8"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2"> <button class="btn btn-warning" id="calculatorBtn" onclick="printSpace();"style="margin-top:10px; width:440px">예상수익 계산하기</button></td>
+                    </tr>
                </table>
               </div>
    </section>
    <br><br><Br>
-   <div id="calculator_result" >
-       <img src="resources/images/host_images/close.png" class="closePng">
-       <h3 class="result_title" style="color: white; margin: 25px;">월 예상 수익은?</h3>
-          <span><strong>1개 </strong>의 공간을 한시간에 <strong>200원</strong>에 주 <strong>4회</strong>, <strong>2시간씩</strong> 대관시!</span>
-           <hr>
-       <div class="result_value"><span class="text">월 예상 수익<br></span><span class="total"><strong>￦5,760</strong></span><br><span class="commission">(서비스 수수료 ￦640)</span></div>
-   </div>
+    <div id="calculator_result" >
+        <img src="resources/images/host_images/close.png" class="closePng">
+        <h3 class="result_title" style="color: white; margin: 25px;">월 예상 수익은?</h3>
+           <span><strong id="resultCount">1개 </strong>의 공간을 한시간에 <strong id="resultPrice">200원</strong>에 주 <strong id="resultTotalHours">4회</strong>, <strong id="resultDayHours">2시간씩</strong> 대관시!</span>
+            <hr>
+        <div class="result_value"><span class="text">월 예상 수익<br></span><span ><strong class="total">￦5,760</strong></span><br>(서비스 수수료 ￦<strong class="commission"></strong>)</div>
+    </div>
    <script>
        $(function(){
            $("#calculator_result").hide();
@@ -81,12 +82,24 @@
                $("#calculator_result").hide();
            });
        })
-     
+       function printSpace(){
+                var $space = Number($('#spaceConunt').val());
+                var $price = Number($('#price').val());
+                var $totalHours = Number($("#totalHours").val());
+                var $dayHours = Number($("#dayHours").val());
+
+                $("#resultCount").text($space+'개');
+                $('#resultPrice').text($price+'원')
+                $('#resultTotalHours').text($totalHours+'회')
+                $('#resultDayHours').text($dayHours+'시간씩')
+                $(".total").text($space*$price*$totalHours*$dayHours)
+                $(".commission").text($space*$price*$totalHours*$dayHours/10)
+            }
 
    </script>
  
 
 
-<jsp:include page="../common/footer.jsp"/>
+<jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>
