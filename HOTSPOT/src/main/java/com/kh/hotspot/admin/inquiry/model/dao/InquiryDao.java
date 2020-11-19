@@ -39,4 +39,8 @@ public class InquiryDao {
 	public int deleteInquiry(SqlSessionTemplate sqlSession, int ino) {
 		return sqlSession.update("inquiryMapper.deleteInquiry", ino);
 	}
+	
+	public int insertReply(SqlSessionTemplate sqlSession, Inquiry i) {
+		return sqlSession.update("inquiryMapper.insertReply", i);
+	}
 }

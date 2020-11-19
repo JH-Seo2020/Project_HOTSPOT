@@ -57,4 +57,11 @@ public class InquiryController {
 
 		return "redirect:list.inq";
 	}
+	
+	@RequestMapping("reply.inq")
+	public void insertReply(Inquiry i) {
+		
+		
+		int result = iService.insertReply(i);
+	}
 }

@@ -85,4 +85,11 @@
     	   set status='N'
     	 where inquiry_no = #{ino}     
     </update>
+    <update id="insertReply">
+    	update
+    	       inquiry
+    	   set inquiry_reply = #{inquiryReply}
+             , reply_status = 'Y'   	   
+    	 where inquiry_no = #{ inquiryNo }     
+    </update>
 </mapper>

@@ -36,11 +36,6 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 
 	@Override
-	public int insertReply(int ino) {
-		return 0;
-	}
-
-	@Override
 	public int deleteListInquiry(String[] ino) {
 		return iDao.deleteListInquiry(sqlSession, ino);
 	}
@@ -58,6 +53,12 @@ public class InquiryServiceImpl implements InquiryService {
 	@Override
 	public ArrayList<Inquiry> searchList(SearchCondition sc, PageInfo pi) {
 		return null;
+	}
+
+	@Override
+	public int insertReply(Inquiry i) {
+		
+		return iDao.insertReply(sqlSession, i);
 	}
 
 }

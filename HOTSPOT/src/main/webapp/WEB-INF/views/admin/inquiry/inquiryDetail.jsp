@@ -31,17 +31,24 @@
             </fieldset>
             <br><br>
             <div style="width:1000px; margin:auto;" id="inquireForm">
-                <form action="">
-                    <textarea name="" id="" cols="140" rows="10" style="resize:none; font-size:15px;" >
-${ i.inquiryReply }
-                    </textarea>
+                <form action="reply.inq">
+                <c:choose>
+                	<c:when test="${!empty i.inquiryReply }">
+                   	 	<textarea name="inquiryReply" id="" cols="140" rows="10" style="resize:none; font-size:15px;" readonly>${ i.inquiryReply }</textarea>
+                	</c:when>
+                	<c:otherwise>
+                		<textarea name="inquiryReply" id="" cols="140" rows="10" style="resize:none; font-size:15px;" >${ i.inquiryReply }</textarea>
+                	</c:otherwise>
+                </c:choose>
                     <hr>
+                    <input type="hidden" name="inquiryNo" value="${i.inquiryNo }">
                     <button style="float:right" class="btn btn-secondary" onclick="history.back()">목록으로</button>
                     <br>
                     <a href="delete.inq?ino=${ i.inquiryNo }" style="margin-left:420px;" class="btn btn-danger" >삭제</a>
-            														  
-                    <button style="margin-left:30px;"class="btn btn-primary">답변하기</button>
-                    
+            		
+            		<c:if test="${ empty i.inquiryReply }">												  
+                    <button style="margin-left:30px;"class="btn btn-primary" >답변하기</button>
+                    </c:if>
                 </form>
             </div>
         </div>

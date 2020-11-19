@@ -13,7 +13,7 @@ public interface InquiryService {
 	
 	Inquiry selectInquiry(int ino);
 	
-	int insertReply(int ino);
+	int insertReply(Inquiry i);
 	
 	int deleteListInquiry(String[] ino);
 	int deleteInquiry(int ino);
