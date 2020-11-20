@@ -18,7 +18,6 @@ public interface InquiryService {
 	int deleteListInquiry(String[] ino);
 	int deleteInquiry(int ino);
 	
-	int searchListCount(SearchCondition sc);
-	ArrayList<Inquiry> searchList(SearchCondition sc, PageInfo pi);
+	
 	
 }

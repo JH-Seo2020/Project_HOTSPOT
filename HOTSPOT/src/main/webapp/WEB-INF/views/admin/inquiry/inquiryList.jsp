@@ -104,20 +104,21 @@
             
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
-                <form action="">
-                    <select name="" id="" style="height:34px;">
-                    <option value="">글번호</option>
-                    <option value="">제목</option>
+                <%-- <form action="search.inq">
+                    <select name="search" id="" style="height:34px;">
+                    <option value="no">글번호</option>
+                    <option value="tilte">제목</option>
                     </select>
-                    <input type="text" style="line-height:29px; width:150px;">
+                    <input type="hidden" name="schead" value="${ head }">
+                    <input type="text" name="keyword" style="line-height:29px; width:150px;">
                    <button class="btn btn-primary" style="margin-bottom:4px;">검색</button>
-                </form>
+                </form> --%>
                 <c:choose>
                 	<c:when test="${ pi.currentPage eq 1 }">
-                		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
+                		<button style="margin-left:350px;" class="btn btn-secondary" disabled><</button>
                 	</c:when>
                 	<c:otherwise>
-                		<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.inq?currentPage=${ pi.currentPage -1}&head=${head}'"><</button>
+                		<button style="margin-left:350px;" class="btn btn-secondary" onclick="location.href='list.inq?currentPage=${ pi.currentPage -1}&head=${head}'"><</button>
                 	</c:otherwise>
                 </c:choose>
                 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">

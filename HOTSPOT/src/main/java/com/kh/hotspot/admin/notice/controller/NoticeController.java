@@ -40,7 +40,7 @@ public class NoticeController {
 	public String selectNotice(int nno, Model model) {
 		
 		Notice n = nService.selectNotice(nno);
-		
+		int result = nService.increaseCount(nno); 
 		model.addAttribute("n", n);
 		
 		return "admin/notice/noticeDetail";

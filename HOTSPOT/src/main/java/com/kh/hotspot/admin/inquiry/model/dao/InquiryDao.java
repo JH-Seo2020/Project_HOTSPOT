@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.admin.inquiry.model.vo.Inquiry;
+import com.kh.hotspot.admin.notice.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
 @Repository
@@ -43,4 +44,7 @@ public class InquiryDao {
 	public int insertReply(SqlSessionTemplate sqlSession, Inquiry i) {
 		return sqlSession.update("inquiryMapper.insertReply", i);
 	}
+	
+	
+	
 }

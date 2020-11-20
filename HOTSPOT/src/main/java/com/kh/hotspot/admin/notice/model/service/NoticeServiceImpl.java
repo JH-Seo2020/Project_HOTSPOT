@@ -37,8 +37,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public int increaseCount(int noticeNo) {
-		return 0;
+	public int increaseCount(int nno) {
+		return nDao.increaseCount(sqlSession, nno);
 	}
 
 	@Override

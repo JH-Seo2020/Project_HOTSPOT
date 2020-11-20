@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.kh.hotspot.admin.inquiry.model.dao.InquiryDao;
 import com.kh.hotspot.admin.inquiry.model.vo.Inquiry;
-import com.kh.hotspot.admin.notice.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
 @Service
@@ -45,15 +44,6 @@ public class InquiryServiceImpl implements InquiryService {
 		return iDao.deleteInquiry(sqlSession, ino);
 	}
 
-	@Override
-	public int searchListCount(SearchCondition sc) {
-		return 0;
-	}
-
-	@Override
-	public ArrayList<Inquiry> searchList(SearchCondition sc, PageInfo pi) {
-		return null;
-	}
 
 	@Override
 	public int insertReply(Inquiry i) {

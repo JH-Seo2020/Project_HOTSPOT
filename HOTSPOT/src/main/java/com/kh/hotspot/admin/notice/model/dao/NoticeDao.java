@@ -62,4 +62,9 @@ public class NoticeDao {
 		
 		return (ArrayList)sqlSession.selectList("noticeMapper.searchList", sc, rowbounds);
 	}
+	
+	public int increaseCount(SqlSessionTemplate sqlSession, int nno) {
+		
+		return sqlSession.update("noticeMapper.increaseCount", nno);
+	}
 }

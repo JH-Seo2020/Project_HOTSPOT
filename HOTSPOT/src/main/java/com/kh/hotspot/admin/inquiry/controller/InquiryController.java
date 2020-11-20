@@ -1,6 +1,8 @@
 package com.kh.hotspot.admin.inquiry.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.hotspot.admin.inquiry.model.service.InquiryService;
 import com.kh.hotspot.admin.inquiry.model.vo.Inquiry;
+import com.kh.hotspot.admin.notice.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 
@@ -59,9 +62,30 @@ public class InquiryController {
 	}
 	
 	@RequestMapping("reply.inq")
-	public void insertReply(Inquiry i) {
+	public String insertReply(Inquiry i) {
 		
 		
 		int result = iService.insertReply(i);
+		
+		return "redirect:detail.inq?ino="+i.getInquiryNo();
 	}
+//	@RequestMapping("search.inq")
+//	public void searchList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String search, String keyword, Model model, String schead) {
+//		
+//		SearchCondition sc = new SearchCondition();
+//		
+//		switch(search) {
+//			case "no" : sc.setNo(keyword); break;
+//			case "title" : sc.setTitle(keyword); break;
+//		}
+//		Map map = new HashMap();
+//		
+//		map.put("head", schead);
+//		map.put("search", search);
+//		map.put("keyword", keyword);
+//		
+//		System.out.println(map);
+//		
+//	}
+	
 }
