@@ -15,7 +15,7 @@ public interface SpaceService {
 	ArrayList<SpaceInfo> selectTodaySpace();
 	
 	//3.이용자후기 조회기능
-	ArrayList<Review> selectUserReview(int spcNo);
+	ArrayList<SpaceInfo> selectUserReview();
 	
 	//5.예약하기 기능
 	SpaceInfo selectReservView(int spcNo, String userId);

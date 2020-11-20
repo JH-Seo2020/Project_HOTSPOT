@@ -24,9 +24,14 @@
   		<result column="MAP_LOCATION" property="location" />
   		<result column="REVIEWS" property="reviews" />
   		<result column="WISHES" property="wishes" />
+  		<result column="REVIEW_CONTENT" property="reviewCon" jdbcType="CLOB" javaType="java.lang.String" />
+  		<result column="REVIEW_SCORE" property="reviewScore" />
+  		<result column="REVIEW_DATE" property="reviewDate" />
+  		
   	</resultMap>
   	
-  	 <select id="selectTodaySpace" resultMap="spaceInfoResultSet"> <!-- 투데이베스트 -->
+  	<!-- 투데이베스트 -->
+  	 <select id="selectTodaySpace" resultMap="spaceInfoResultSet"> 
   	 	select *
 		  from (
 		        SELECT * 
@@ -41,6 +46,7 @@
 		                     , COUNT(REVIEW_NO) REVIEWS
 		                  FROM SPACE_INFO
 		                  full OUTER JOIN REVIEW USING (SPC_NO)
+		                  WHERE SPC_STATUS = 'Y'
 		                  GROUP BY SPC_NO, SPC_NAME, MAP_LOCATION, SPC_TAG, SPC_PRICE, SPC_CHIMG
 		                )
 		          JOIN (   
@@ -50,10 +56,39 @@
 		                ) 
 		         USING (SPC_NO)
 		         ORDER 
-		            BY reviews, wishes desc
+		            BY reviews desc, wishes desc
 		        )
 		where rownum &lt; 4
   	 
+  	 </select>
+  	 
+  	 <!-- 오늘의 후기(장소 중복...다시 생각해보기) -->
+  	 <select id="selectUserReview" resultMap="spaceInfoResultSet">
+  	 	select *
+		  from
+		        (
+		        SELECT 
+		               SPC_NO
+		             , SPC_NAME
+		             , MAP_LOCATION
+		             , SPC_CHIMG
+		             , SPC_TAG
+		             , SPC_PRICE
+		          FROM SPACE_INFO
+		        )
+	   FULL outer
+		     join 
+		        (
+		        SELECT SUBSTR(REVIEW_CONTENT, 0, 41)AS REVIEW_CONTENT
+		             , REVIEW_SCORE
+		             , REVIEW_DATE
+		             , SPC_NO
+		          FROM REVIEW
+		         WHERE REVIEW_SCORE &gt; 3
+		         ORDER BY REVIEW_DATE DESC, REVIEW_SCORE DESC
+		        )
+		using (spc_no)
+		WHERE ROWNUM &lt; 10
   	 </select>
   	
 

@@ -1,5 +1,8 @@
 package com.kh.hotspot.guest.space.model.vo;
 
+import java.sql.Clob;
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +37,10 @@ public class SpaceInfo {
 	private String location;	//공간위치
 	private int reviews;
 	private int wishes;
+	private Clob reviewContent;
+	private int reviewScore;
+	private Date reviewDate;
+	private String reviewCon;	//CLOB String으로 받으려고 만들었음
 	
 
 }

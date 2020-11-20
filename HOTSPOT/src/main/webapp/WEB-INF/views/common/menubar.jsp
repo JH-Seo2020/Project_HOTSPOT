@@ -30,11 +30,11 @@
 	
 
 	<div id="menubar">
-        <div id="logoSpace"><a href=""><img src="resources/images/logo_letter_1.png" width="100%" height="80%"></a></div>
+        <div id="logoSpace"><a href=""><img src="resources/images/logo_letter_1.png" width="100%" height="70%"></a></div>
         <div id="search">
             <form action="" method="">
                 <input type="search" placeholder="검색어를 입력하세요!">
-                <div><a href=""><img src="resources/images/serarch_icon.png" width="100%" height="100%"></a></div>
+                <div><a href=""><img src="resources/images/serarch_icon.png" width="80%" height="90%"></a></div>
             </form>
         </div>
         <div id="menuOptions">

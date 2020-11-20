@@ -32,9 +32,9 @@ public class SpaceServiceImpl implements SpaceService {
 	}
 
 	@Override
-	public ArrayList<Review> selectUserReview(int spcNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<SpaceInfo> selectUserReview() {
+		
+		return spaceDao.selectUserReview(sqlSession);
 	}
 
 	@Override
