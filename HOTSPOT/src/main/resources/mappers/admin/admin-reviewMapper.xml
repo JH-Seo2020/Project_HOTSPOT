@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="reviewMapper">
+	<resultMap id="reviewResultSet" type="Review">
+		<id column="review_no" property="reviewNo" />
+		<result column="spc_no" property="spcNo"/>
+		<result column="review_writer" property="reviewWriter"/>
+		<result column="review_title" property="reviewTitle"/>
+		<result column="review_content" property="reviewContent"/>
+		<result column="review_score" property="reviewScore"/>
+		<result column="review_date" property="reviewDate"/>
+		<result column="review_status" property="reviewStatus"/>
+		<result column="review_reply" property="reviewReply"/>
+	</resultMap>
+	
+	<!-- 총 후기갯수 조회 -->
+	<select id="selectListCount" resultType="_int">
+		select
+		       count(*)
+		  from review
+	</select>
+</mapper>
