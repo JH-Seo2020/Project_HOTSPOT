@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- include libraries(jQuery, bootstrap) -->
-
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="resources/css/host/hostEnrollForm.css" type="text/css"/>
 <style>
