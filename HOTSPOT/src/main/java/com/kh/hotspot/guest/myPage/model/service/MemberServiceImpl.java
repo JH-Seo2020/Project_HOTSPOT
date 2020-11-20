@@ -1,6 +1,5 @@
 package com.kh.hotspot.guest.myPage.model.service;
 
-import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +23,6 @@ public class MemberServiceImpl implements MemberService {
 	private myPageDao mDao;
 	@Autowired
 	private JavaMailSender mailSender;
-	private Random random;
 
 	
 
@@ -62,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 	public int mailSend(HttpSession session, String userEmailCheck) throws Exception {
 		//인증번호 관련
 		
-		int result = 10000+random.nextInt(89999);
+		int result = 10000;
 		
 		//mail 작성 관련
 		MailUtils sendMail = new MailUtils(mailSender);

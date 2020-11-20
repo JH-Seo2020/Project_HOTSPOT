@@ -3,4 +3,40 @@
 
 <mapper namespace="reportMapper">
 
+	<resultMap id="reportResultSet" type="Report">
+		<id column="report_no" property="reportNo" />
+		<result column="spc_no" property="spcNo" />
+		<result column="review_no" property="reviewNo" />
+		<result column="report_type1" property="reportType1" />
+		<result column="report_type2" property="reportType2" />
+		<result column="report_writer" property="reportWriter" />
+		<result column="report_target" property="reportTarget" />
+		<result column="report_content" property="reportContent" />
+		<result column="report_date" property="reportDate" />
+		<result column="report_status" property="reportStatus" />
+	</resultMap>
+	
+	<select id="selectListCount" resultType="_int">
+		select
+		       count(*)
+		  from report
+	</select>
+	
+	<select id="selectList" resultMap="reportResultSet">
+		select
+		       report_no
+		     , spc_no
+		     , review_no
+		     , report_type1
+		     , report_type2
+		     , report_writer
+		     , report_target
+		     , report_content
+		     , report_date
+		     , report_status
+		  from report
+		 order
+		    by report_status desc
+	</select>
+
 </mapper>
