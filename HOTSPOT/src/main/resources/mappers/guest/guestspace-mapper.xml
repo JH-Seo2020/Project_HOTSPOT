@@ -35,12 +35,13 @@
 		                        SPC_NO
 		                     , SPC_NAME
 		                     , MAP_LOCATION
+		                     , SPC_CHIMG
 		                     , SPC_TAG
 		                     , SPC_PRICE
 		                     , COUNT(REVIEW_NO) REVIEWS
 		                  FROM SPACE_INFO
 		                  full OUTER JOIN REVIEW USING (SPC_NO)
-		                  GROUP BY SPC_NO, SPC_NAME, MAP_LOCATION, SPC_TAG, SPC_PRICE
+		                  GROUP BY SPC_NO, SPC_NAME, MAP_LOCATION, SPC_TAG, SPC_PRICE, SPC_CHIMG
 		                )
 		          JOIN (   
 		                SELECT SPC_NO, COUNT (*) WISHES

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +64,17 @@
             width: 100%;
             height: 100%;
             border: 5px solid tan;
+           -webkit-transition: all 1s ease;
+		   -moz-transition: all 1s ease;
+		   -o-transition: all 1s ease;
+		   -ms-transition: all 1s ease;
+		   transition: all 1s ease;
+		   margin-bottom:5%;
+        }
+        .todaySpace>img:hover{
+		   -webkit-filter: brightness(50%);
+		   filter: brightness(50%);
+		    transform: scale(1.03);
         }
         /*이용자 후기*/
         #userReview{
@@ -149,13 +161,16 @@
             <h1>오늘의 공간 </h1>
         </div>
         <div id="todaySpaceGroup">
-        
         	<c:forEach var="today" items="${todayList }">
-        
+        		
+        		<!-- 위치 자르기 (앞에서 두글자) -->
+        		<c:set var="location" value="${today.location}" />
+        		<c:set var="location2" value="${fn:substring(location,0,2)}" />
+        		
 		            <div class="todaySpace">
-		                <img src="resources/images/space1.jpg">	<!-- 이미지안가져왔고 위치잘라야함 -->
+		                <img src="${today.spcChimg }">	
 		                <div style="font-weight: bold; font-size: 20px;">${today.spcName }</div>
-		                <div>종로구 | #${today.spcTag }</div>
+		                <div>${location2} | #${today.spcTag }</div>
 		                <div>
 		                    <span style="color: rebeccapurple; font-weight: bold;">${today.spcPrice }원/시간</span>
 		                    <span class="badge badge-pill badge-warning">후기 ${today.reviews }개</span>
