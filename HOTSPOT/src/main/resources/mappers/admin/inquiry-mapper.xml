@@ -92,4 +92,11 @@
              , reply_status = 'Y'   	   
     	 where inquiry_no = #{ inquiryNo }     
     </update>
+    <select id="searchListCount"
+           resultType="_int">
+   		select 
+   		       count(*)
+   		  from inquiry 
+   		 where status           
+   </select> 
 </mapper>
