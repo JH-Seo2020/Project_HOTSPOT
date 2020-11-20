@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 
 @Repository
-public class myPageDao {
+public class MemberDao {
 
 	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
 
