@@ -66,7 +66,7 @@
                 <input type="text" name="" class="form-control"style="width: 710px;" placeholder="제목"/>
                 <h5>문의내용</h5>
                 <textarea id="summernote" name="content"></textarea>
-                <input id="subBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkModal" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
+                <input id="subBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkModal" value="글 작성" style="float: right;" />
 
                   <!-- Modal -->
                     <div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

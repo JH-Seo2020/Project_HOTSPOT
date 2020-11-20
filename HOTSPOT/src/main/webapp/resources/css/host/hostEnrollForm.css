@@ -7,7 +7,9 @@ th{
     }
     #hostInsertContainer{
         margin-top: 70px;
-        margin-left: 90px;
+        margin:auto;
+        width:1000px;
+        padding:30px;
     }
     #hostInsertContainer h5{
         font-size: 19px;
@@ -18,6 +20,8 @@ th{
     }
     #hostInsertForm{
         margin-top: 30px;
+        background-color:rgb(247, 246, 248);
+        padding:20px;
     }
     #hostInsertForm th{
         margin: 20px;
@@ -48,7 +52,7 @@ th{
         overflow: hidden; clip:rect(0,0,0,0); border: 0; }
         
      label { display: inline-block; margin-bottom:0rem !important; padding: .5em .75em; text-align: center; line-height: 30px; 
-        color: rgb(252, 252, 252); font-size: 13px; line-height: normal; vertical-align: middle; 
+        color: rgb(252, 252, 252); font-size: 15px; line-height: normal; vertical-align: middle; 
         background-color: var(--color-yellow); cursor: pointer; border: 1px solid var(--color-yellow); 
         border-bottom-color: #e2e2e2; border-radius: .25em; margin: 0px 0px 0px 10px; margin-bottom:0px;}
     #dropdownMenuOffset{
@@ -82,4 +86,7 @@ th{
     label{
     	margin-left:20px;
     	height:35px;
+    }
+    #accout{
+    margin-right:10px
     }

@@ -1,15 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../common/hostMenubar.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- include libraries(jQuery, bootstrap) -->
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="resources/css/host/hostEnrollForm.css" type="text/css"/>
+<style>
+.modal-dialog {
+     
+        text-align: left;
+        vertical-align: center;
+}
+
+
+</style>
 </head>
 <body>
-<jsp:include page="../common/hostMenubar.jsp"/>
+
 
 <div id="hostInsertContainer">
         <h5><span class="importh">호스트등록</span>을 원하시나요?</h5>
@@ -56,18 +69,35 @@
                                 </div>
                               </div>
                         </td>
-                        <td><input type="text" class="form-control" placeholder="- 제외한 계좌번호 입력해주세요"></td>
+                        <td><input type="text" id="account"class="form-control" placeholder="- 제외한 계좌번호 입력해주세요"></td>
                         <td><input type="text" class="form-control" placeholder="예금주"></td>   
                     </tr>
                 </table>
                 <div class="hostInfoBtn">
                     <button type="button" id="backBtn"class="btn btn-secondary" onClick="location.href='hostMain.ho'">돌아가기</button>
-                    <button type="submit" class="btn btn-primary"> 등록 신청하기</button>
+                    <button type="button" id="subBtn" data-toggle="modal"data-target="#exampleModal" class="btn btn-primary"> 등록 신청하기</button>
                 </div>
+               
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-body">
+					        등록하시겠습니까?
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-primary">등록하기</button>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>   
+					<!-- 모달끝 -->             
             </form>
         </div>
        <br><br><br>
     </div>
+         
 <jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>
