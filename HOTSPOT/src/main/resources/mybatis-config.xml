@@ -26,7 +26,7 @@
 		<!-- admin(선경) -->
 		<mapper resource="mappers/admin/admin-reportMapper.xml"/>
 		<mapper resource="mappers/admin/admin-reviewMapper.xml"/>
-		<mapper resource="mappers/admin/admin-memberMapper.xml"/>
+		<!-- <mapper resource="mappers/admin/admin-memberMapper.xml"/> -->
 	</mappers>
 	
 
