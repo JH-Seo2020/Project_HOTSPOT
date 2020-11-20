@@ -146,39 +146,24 @@
 
     <div id="todayBest">
         <div id="todayBestTitle">
-            <h1>오늘의 공간</h1>
+            <h1>오늘의 공간 </h1>
         </div>
         <div id="todaySpaceGroup">
-            <div class="todaySpace">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                    <span class="badge badge-pill badge-warning">후기 10개</span>
-                    <span class="badge badge-pill badge-warning">관심 7개</span>
-                </div>
-            </div>
-            <div class="todaySpace">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                    <span class="badge badge-pill badge-warning">후기 10개</span>
-                    <span class="badge badge-pill badge-warning">관심 7개</span>
-                </div>
-            </div>
-            <div class="todaySpace">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                    <span class="badge badge-pill badge-warning">후기 10개</span>
-                    <span class="badge badge-pill badge-warning">관심 7개</span>
-                </div>
-            </div>
+        
+        	<c:forEach var="today" items="${todayList }">
+        
+		            <div class="todaySpace">
+		                <img src="resources/images/space1.jpg">	<!-- 이미지안가져왔고 위치잘라야함 -->
+		                <div style="font-weight: bold; font-size: 20px;">${today.spcName }</div>
+		                <div>종로구 | #${today.spcTag }</div>
+		                <div>
+		                    <span style="color: rebeccapurple; font-weight: bold;">${today.spcPrice }원/시간</span>
+		                    <span class="badge badge-pill badge-warning">후기 ${today.reviews }개</span>
+		                    <span class="badge badge-pill badge-warning">관심 ${today.wishes }개</span>
+		                </div>
+		            </div>
+		            
+        	</c:forEach>
         </div>
     </div>
 

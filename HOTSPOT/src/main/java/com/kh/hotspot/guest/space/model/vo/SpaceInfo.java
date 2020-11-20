@@ -1,6 +1,16 @@
 package com.kh.hotspot.guest.space.model.vo;
 
-//어노테이션 붙이기 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class SpaceInfo {
 	
 	private int spcNo;
@@ -22,6 +32,8 @@ public class SpaceInfo {
 	private String latitude;	//위도
 	private String longitude;	//경도
 	private String location;	//공간위치
+	private int reviews;
+	private int wishes;
 	
 
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guestspaceMapper">
+
+	<resultMap id="spaceInfoResultSet" type="SpaceInfo">
+  		<id column="SPC_NO" property="spcNo" />
+  		<result column="SPC_NAME" property="spcName" />
+  		<result column="SPC_INT" property="spcInt" />
+  		<result column="SPC_LONG" property="spcLong" />
+  		<result column="SPC_TAG" property="spcTag" />
+  		<result column="SPC_TYPE" property="spcType" />
+  		<result column="SPC_MIN" property="spcMin" />
+  		<result column="SPC_MAX" property="spcMax" />
+  		<result column="SPC_IMG" property="spcImg" />
+  		<result column="SPC_CHIMG" property="spcChimg" />
+  		<result column="SPC_PRICE" property="spcPrice" />
+  		<result column="SPC_HOURS" property="spcHours" />
+  		<result column="SPC_HOLIDAY" property="spcHoliday" />
+  		<result column="SPC_STATUS" property="spcStatus" />
+  		<result column="SPC_CONVN" property="spcConvn" />
+  		<result column="USER_ID" property="userId" />
+  		<result column="MAP_LATITUDE" property="latitude" />
+  		<result column="MAP_LONGITUDE" property="longitude" />
+  		<result column="MAP_LOCATION" property="location" />
+  		<result column="REVIEWS" property="reviews" />
+  		<result column="WISHES" property="wishes" />
+  	</resultMap>
+  	
+  	 <select id="selectTodaySpace" resultMap="spaceInfoResultSet"> <!-- 투데이베스트 -->
+  	 	select *
+		  from (
+		        SELECT * 
+		          FROM (
+		                SELECT 
+		                        SPC_NO
+		                     , SPC_NAME
+		                     , MAP_LOCATION
+		                     , SPC_TAG
+		                     , SPC_PRICE
+		                     , COUNT(REVIEW_NO) REVIEWS
+		                  FROM SPACE_INFO
+		                  full OUTER JOIN REVIEW USING (SPC_NO)
+		                  GROUP BY SPC_NO, SPC_NAME, MAP_LOCATION, SPC_TAG, SPC_PRICE
+		                )
+		          JOIN (   
+		                SELECT SPC_NO, COUNT (*) WISHES
+		                FROM WISH 
+		                GROUP BY SPC_NO
+		                ) 
+		         USING (SPC_NO)
+		         ORDER 
+		            BY reviews, wishes desc
+		        )
+		where rownum &lt; 4
+  	 
+  	 </select>
+  	
+
+</mapper>

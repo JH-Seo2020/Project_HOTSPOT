@@ -16,10 +16,15 @@
 		<typeAlias type="com.kh.hotspot.admin.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 		<!-- 로그인(지수) -->
 		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Member" alias="Member"/>
+		<!-- 메인,게스트공간(지혜) -->
+		<typeAlias type="com.kh.hotspot.guest.space.model.vo.SpaceInfo" alias="SpaceInfo" />
+		
 	</typeAliases>
 	
-	<!-- 주의! mapper파일 없는데 등록하지말기, 만들고 등록하기 -->
+	
 	<mappers>
+	<!-- 주의! mapper파일 없는데 등록하지말기, 만들고 등록하기 -->
+	
 		<mapper resource="mappers/admin/notice-mapper.xml"/>
 		<mapper resource="mappers/admin/inquiry-mapper.xml"/>
 		<!-- 로그인기능 (전지수) -->
@@ -28,6 +33,10 @@
 		<mapper resource="mappers/admin/admin-reportMapper.xml"/>
 		<mapper resource="mappers/admin/admin-reviewMapper.xml"/>
 		<mapper resource="mappers/admin/admin-memberMapper.xml"/>
+		
+		<!-- 메인,게스트공간(지혜) -->
+		<mapper resource="mappers/guest/guestspace-mapper.xml"/>
+		
 	</mappers>
 	
 
