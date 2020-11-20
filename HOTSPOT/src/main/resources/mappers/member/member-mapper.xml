@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+
+	  	<resultMap id="memberResultSet" type="Guest">
+  		<id column="user_id" property="userId" />
+  		<result column="user_type" property="userType" />
+  		<result column="user_pwd" property="userPwd" />
+  		<result column="user_nickname" property="userNickname" />
+  		<result column="user_email" property="userEmail" />
+  		<result column="user_phone" property="userPhone" />
+  		<result column="user_profile" property="userProfile" />
+  		<result column="user_profile_c" property="userProfileC" />
+  		<result column="profile_path" property="profilePath" />
+  		<result column="user_status" property="userStatus" />
+  		<result column="enroll_date" property="enrollDate" />
+  		<result column="modify_date" property="modifyDate" />
+  		<result column="withdrawal_date" property="withdrawalDate" />
+  		<result column="user_memo" property="userMemo" />
+  	</resultMap>
+  	
+  	  	<select id="loginMember" parameterType="Guest" resultMap="memberResultSet">
+
+		select
+		       user_id
+		     , user_type
+		     , user_pwd
+		     , user_nickname
+		     , user_email
+		     , user_phone
+		     , user_profile
+		     , user_profile_c
+		     , profile_path
+		     , user_status
+		     , enroll_date
+		     , modify_date
+		     , withdrawal_date
+		     , user_memo
+		  from member
+		 where user_status='Y'
+		   and user_id=#{userId}
+  	</select>
+  	
+  	<insert id="insertMember" parameterType="Guest">
+  		insert 
+		  into member
+		  (
+		     user_id
+		   , user_pwd
+		   , user_phone
+		   , user_email
+		   , user_nickname
+		  )
+		  values
+		  (
+		     #{userId}
+		   , #{userPwd}
+		   , #{userPhone}
+		   , #{userEmail}
+		   , #{userNickname}
+
+		  )
+  	</insert>
+  	
+  	<select id="idCheck" resultType="_int">
+  		select 
+  		       count(*)
+  		  from member
+  		 where user_id = #{userId} 
+  	</select>
+  	
+  	  	<select id="nickCheck" resultType="_int">
+  		select 
+  		       count(*)
+  		  from member
+  		 where user_nickname = #{userNickname} 
+  	</select>
+  	
+
+</mapper>
