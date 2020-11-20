@@ -71,7 +71,7 @@
             <h1 align="center">내 프로필 관리</h1> 
 
             <br><hr><br><br>
-            <form action="" method="POST" id="myProfile" enctype="multipart/form-data">
+            <form action="profile.me" method="POST" id="myProfile" enctype="multipart/form-data">
                 <div id="profileImage"><img src="../../resources/images/profileImage.png"><h2 align="center">USER01</h2></div>
 
                 <div id="mainProfile">
@@ -80,9 +80,9 @@
                     <div id="profilePhone">연락처 : &nbsp;&nbsp;&nbsp;010-1111-2222</div> <br>
                     <div id="switch">마케팅 수신동의 : <br><br>
 
-                        이메일 <input type="checkbox" name="marketingEmail" value="yes" disabled> 예
-                               <input type="checkbox" name="marketingEmail" value="no" checked> 아니오
-                               <br>&nbsp;&nbsp;
+                                                     이메일 <input type="checkbox" name="marketingEmail" value="yes" disabled> 예
+                            <input type="checkbox" name="marketingEmail" value="no" checked> 아니오
+                            <br>&nbsp;&nbsp;
                         SMS <input type="checkbox" name="marketingSms" value="yes" disabled> 예
                               <input type="checkbox" name="marketingSms" value="no" checked > 아니오
 

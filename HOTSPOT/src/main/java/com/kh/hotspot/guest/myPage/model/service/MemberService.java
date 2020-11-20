@@ -22,4 +22,8 @@ public interface MemberService {
 	 boolean emailCertification(HttpSession session, String userEmailCheck, int parseInt);
 
 	 int nickCheck(String userNickname);
+	 
+	 int loginUpdate(String userId);
+	 
+	 int deleteloginMember(String userId);
 }

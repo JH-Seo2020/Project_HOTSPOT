@@ -128,4 +128,11 @@ public class MemberController {
 	}
 
 
+	@RequestMapping("profile.me")
+	public String selectProfileMember() {
+		
+		return "../myPage/myProfile";
+		
+		
+	}
 }

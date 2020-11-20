@@ -99,5 +99,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public int loginUpdate(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteloginMember(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 }
