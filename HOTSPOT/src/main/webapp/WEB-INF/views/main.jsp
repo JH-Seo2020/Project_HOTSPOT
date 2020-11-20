@@ -63,7 +63,7 @@
         .todaySpace>img{
             width: 100%;
             height: 100%;
-            border: 5px solid tan;
+            border: 5px solid lightgray;
            -webkit-transition: all 1s ease;
 		   -moz-transition: all 1s ease;
 		   -o-transition: all 1s ease;
@@ -96,14 +96,25 @@
         }
         .spaceReview{
             display: inline-block;
-            padding: 0 0 4% 4%;
+            padding: 0 0 1% 3%;
             width: 30%; 
             height: 500px;
         }
         .spaceReview>img{
             width: 100%;
-            height: 65%;
-            border: 5px solid rebeccapurple;
+            height: 55%;
+            border: 5px solid lightgray;
+           -webkit-transition: all 1s ease;
+		   -moz-transition: all 1s ease;
+		   -o-transition: all 1s ease;
+		   -ms-transition: all 1s ease;
+		   transition: all 1s ease;
+		   margin-bottom:5%;
+        }
+        .spaceReview>img:hover{
+		   -webkit-filter: brightness(50%);
+		   filter: brightness(50%);
+		   transform: scale(1.03);
         }
 </style>
 </head>
@@ -187,96 +198,26 @@
             <h1>이용자 후기</h1>
         </div>
         <div id="userReviewGroup">
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
-            <div class="spaceReview">
-                <img src="resources/images/space1.jpg">
-                <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                <div>종로구 | #한옥카페 #그리다꿈</div>
-                <div>
-                    <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                </div>
-                <div class="badge badge-pill badge-warning">★★★★★</div>
-                <div class="badge badge-light">아주 좋았어요! 어쩌구 저쩌구 40자에서 자를거야...</div>
-            </div>
+        	<c:forEach var="review" items="${reviewList }">
+        	
+        	
+		            <div class="spaceReview">
+		                <img src="${review.spcChimg }">
+		                <div style="font-weight: bold; font-size: 20px;">${review.spcName }</div>
+		                <div> | #${review.spcTag }</div>
+		                <div>
+		                    <span style="color: rebeccapurple; font-weight: bold;">${review.spcPrice }원/시간</span>
+		                </div>
+		                	<div class="badge badge-pill badge-warning">
+		                		<c:forEach var="i" begin="1" end="${review.reviewScore }" step="1"> 
+		                			★
+				                </c:forEach>
+		                	</div>
+		                	<br>
+		                <div class="badge badge-light">${review.reviewCon }</div>
+		            </div>
+		            
+        	</c:forEach>    
         </div>
     </div>
     

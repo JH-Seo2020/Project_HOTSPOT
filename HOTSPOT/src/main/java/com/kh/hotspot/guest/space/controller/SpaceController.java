@@ -24,7 +24,8 @@ public class SpaceController {
 		model.addAttribute("todayList",todayList);
 		
 		//2.이용자후기 9개
-		
+		ArrayList<SpaceInfo> reviewList = spaceService.selectUserReview();
+		model.addAttribute("reviewList",reviewList);
 		
 		return "main";
 	}

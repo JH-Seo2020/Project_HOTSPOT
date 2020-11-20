@@ -15,4 +15,9 @@ public class SpaceDao {
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectTodaySpace");
 	}
 
+	public ArrayList<SpaceInfo> selectUserReview(SqlSessionTemplate sqlSession) {
+		
+		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectUserReview");
+	}
+
 }
