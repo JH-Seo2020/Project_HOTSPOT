@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="memberMapper">
+
+	<resultMap id="memberResultSet1" type="adminMember">
+		<id column="user_id" property="userId"></id>
+		<result column="user_type" property="userType" />
+		<result column="user_pwd" property="userPwd" />
+		<result column="user_nickname" property="userNickname" />
+		<result column="user_email" property="userEmail" />
+		<result column="user_phone" property="userPhone" />
+		<result column="user_profile" property="userProfile" />
+		<result column="user_profile_c" property="userProfileC" />
+		<result column="profile_path" property="profilePath" />
+		<result column="user_status" property="userStatus" />
+		<result column="enroll_date" property="enrollDate" />
+		<result column="modify_date" property="modifyDate" />
+		<result column="withdrawal_date" property="withdrawalDate" />
+		<result column="user_memo" property="userMemo" />
+	</resultMap>
+	
+	<!-- 총 회원수 조회 -->
+	<select id="selectListCount" resultType="_int">
+		select
+		       count(*)
+		  from member
+	</select>
+	
+	<!-- 모든 회원리스트 조회 -->
+	<select id="selectList" resultMap="memberResultSet1">
+		select
+		       user_type
+		     , user_id
+		     , user_nickname
+		     , user_email
+		     , user_phone
+		     , enroll_date
+		     , modify_date
+		     , user_status
+		  from member
+		 order
+		    by user_status desc
+	</select>
+	
+</mapper>

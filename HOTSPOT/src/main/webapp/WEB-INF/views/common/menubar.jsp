@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +21,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&amp;display=swap" rel="stylesheet">
 </head>
 <body>
+	<c:if test="${ !empty alertMsg }">
+		<script>
+			alertify.alert("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session"/> <!-- session영역 지우기 -->
+	</c:if>
+	
+
 	<div id="menubar">
-        <div id="logoSpace"><a href=""><img src="resources/images/logo_letter_1.png" width="100%" height="100%"></a></div>
+        <div id="logoSpace"><a href=""><img src="resources/images/logo_letter_1.png" width="100%" height="80%"></a></div>
         <div id="search">
             <form action="" method="">
                 <input type="search" placeholder="검색어를 입력하세요!">
@@ -89,7 +97,6 @@
             </script>
             
             <div id="signUp"><a href="test.ho">회원가입</a></div>
-
             <!--로그인 후 보여질 부분들-->
             <!--<div id="GoToHostPage"><a href="">🏚&nbsp;호스트페이지</a></div>-->
             <!--<div><a href="">로그아웃</a></div>-->
@@ -170,7 +177,66 @@
                   <a class="dropdown-item" href="#">자주묻는질문(챗봇,1:1문의)</a>
                 </div>
             </div> 
+          
         </div>
+        
+  
+        <script>
+        function closeLayer( obj ) {
+         $(obj).parent().parent().hide();
+        }
+
+         $(function(){
+
+             $('#loginBtn').click(function(e)
+             {
+                 var sWidth = window.innerWidth;
+                 var sHeight = window.innerHeight;
+
+                 var oWidth = $('.login_popup').width();
+                 var oHeight = $('.login_popup').height();
+
+                 var divLeft = e.clientX + (-200);
+                 var divTop = e.clientY + 30;
+
+                 $('.login_popup').css({
+                     "top": divTop,
+                     "left": divLeft,
+                     "position": "absolute"
+                 }).show();
+             });
+
+         });
+        </script>
+  
+        
+         <script>
+         function closeLayer( obj ) {
+          $(obj).parent().parent().hide();
+         }
+
+          $(function(){
+
+              $('#myPageBtn').click(function(e)
+              {
+                  var sWidth = window.innerWidth;
+                  var sHeight = window.innerHeight;
+
+                  var oWidth = $('.myPage_popup').width();
+                  var oHeight = $('.myPage_popup').height();
+
+                  var divLeft = e.clientX + (-200);
+                  var divTop = e.clientY + 30;
+
+                  $('.myPage_popup').css({
+                      "top": divTop,
+                      "left": divLeft,
+                      "position": "absolute"
+                  }).show();
+              });
+
+          });
+         </script>
     </div>
 
 </body>

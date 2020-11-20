@@ -6,26 +6,26 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.hotspot.admin.model.vo.Review;
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 
 @Repository
-public class AdminReviewDao {
+public class AdminMemberDao {
 	
-	// 총 후기갯수 조회
+	// 총 회원수 조회
 	public int selectListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("reviewMapper.selectListCount");
+		return sqlSession.selectOne("memberMapper.selectListCount");
 	}
 	
-	// 총 후기내역 조회
-	public ArrayList<Review> selectList(SqlSessionTemplate sqlSession, PageInfo pageInfo){
+	// 모든 회원리스트 조회
+	public ArrayList<Member> selectList(SqlSessionTemplate sqlSession, PageInfo pageInfo) {
 		
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
 		int limit = pageInfo.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("reviewMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("memberMapper.selectList", null, rowBounds);
 	}
 
 }

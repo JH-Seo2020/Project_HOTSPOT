@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.kh.hotspot.guest.myPage.model.dao.myPageDao;
+import com.kh.hotspot.guest.myPage.model.dao.MemberDao;
 import com.kh.hotspot.guest.myPage.model.vo.MailUtils;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 
@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Autowired
-	private myPageDao mDao;
+	private MemberDao mDao;
 	@Autowired
 	private JavaMailSender mailSender;
 
@@ -96,6 +96,19 @@ public class MemberServiceImpl implements MemberService {
 	public int nickCheck(String userNickname) {
 		
 		return mDao.nickCheck(sqlSession, userNickname);
+	}
+
+
+	@Override
+	public int loginUpdate(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteloginMember(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

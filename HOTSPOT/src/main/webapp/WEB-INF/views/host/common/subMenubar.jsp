@@ -35,7 +35,7 @@
         }
         #floatMenu ul:hover{
             background-color: rgb(243, 243, 243);
-            color: var(--color-purple);
+            color: var(--color-purple)!important;
             transform: scale(1.02);
             border: 1.5px solid gray;
         }
@@ -43,7 +43,14 @@
         display: none;
         font-size: 15px;
     }
-    
+    #floatMenu a{
+    	text-decoration:none;
+    	color:black;
+    }
+      #floatMenu a:hover{
+    	text-decoration:none;
+    	color: var(--color-purple)!important;
+    }
     </style>
     <script>
         //floatMenu 
@@ -60,23 +67,29 @@
 <body>
 	<div id="floatMenu">
     
-          <ul class="f_profile"><img src="resources/images/host_images/reservation.png">  프로필 관리</ul>
-          <ul class="f_space"><img src="resources/images/host_images/hosthome.png">  공간정보 관리</ul>
-          <ul class="f_reservation"><img src="resources/images/host_images/clipboard-regular.png">  예약리스트</ul>
-          <ul class="f_qna"><img src="resources/images/host_images/comment.png">  Q&A</ul>
-          <ul class="f_review"><img src="resources/images/host_images/camera.png">  이용후기</ul>
-          <ul class="f_question"><img src="resources/images/host_images/person.png">  1:1 문의</ul>
-          <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6px;margin-left:30px;">  1:1 챗봇 문의</ul>
-          <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6px;margin-left:30px;">  1:1 관리자 문의</ul>
-          <ul class="f_notice"><img src="resources/images/host_images/volume.png" style="width:20px">  공지사항</ul>
-          <ul class="f_calculate"><img src="resources/images/host_images/money.png">  정산</ul>
+          <ul class="f_profile"><img src="resources/images/host_images/reservation.png"><a href=""> 프로필 관리</a></ul>
+          <ul class="f_space"><img src="resources/images/host_images/hosthome.png"><a href=""> 공간정보관리 </a></ul>
+          <ul class="f_reservation"><img src="resources/images/host_images/clipboard-regular.png"><a href=""> 예약리스트 </a></ul>
+          <ul class="f_qna"><img src="resources/images/host_images/comment.png"><a href=""> Q&A </a></ul>
+          <ul class="f_review"><img src="resources/images/host_images/camera.png"> <a href=""> 이용후기 </a></ul>
+          <ul class="f_question"><img src="resources/images/host_images/person.png"> <a href=""> 1:1문의</a></ul>
+          <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6pdx;margin-left:30px;"> <a href="">1:1챗봇 문의</a></ul>
+          <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6px;margin-left:30px;">  <a href="">1:1관리자 문의</a></ul>
+          <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6px;margin-left:30px;">  <a href="">나의 문의 내역</a></ul>
+          <ul class="f_notice"><img src="resources/images/host_images/volume.png" style="width:20px"><a href="">공지사항</a></ul>
+          <ul class="f_calculate"><img src="resources/images/host_images/money.png"><a href="calculateForm.ho">정산</a></ul>
      
 
     </div>
       <script>
-        $(".f_question").click(function(){
+        $(".f_question").hover(function(){
             $(".f_question_").show();
-        })
+            $(".f_question_").hover(function(){
+            	  $(".f_question_").show();
+            });
+        	},function(){
+            	 $(".f_question_").hide();
+            });
     </script>
         <!-- <div id="brr" style="height:1000px;"></div> <!--스크롤 테스트--> 
 </body>

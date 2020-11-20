@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/host/hostmenubar.css" type="text/css"/>
 <link rel="stylesheet" href="resources/css/host/hostmain.css" type="text/css"/>
 </head>
 <body>
@@ -24,8 +23,8 @@
            <h6 class="clickChat">궁금한 점이 있으신가요? 1:1 문의하기</h6>
        </div>
        <div id="hostMainBtn">
-           <button id="hostBtn" class="btn btn-warning btn-lg">호스트등록</button>
-           <button id="spaceBtn" class="btn btn-primary btn-lg">공간등록</button>
+           <button id="hostBtn" class="btn btn-warning btn-lg" onClick="location.href='hostEnrollForm.ho'">호스트등록</button>
+           <button id="spaceBtn" class="btn btn-primary btn-lg" onClick="location.href='spaceEnrollForm.ho'">공간등록</button>
        </div>
      
    </section>

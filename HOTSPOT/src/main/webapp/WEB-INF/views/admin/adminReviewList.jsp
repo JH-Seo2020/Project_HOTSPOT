@@ -43,104 +43,43 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1000</td>
-                            <td>1000</td>
-                            <td>userId1userId1</td>
-                            <td>제목이구요 제목이라서 제목입니다.</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>userId1</td>
-                            <td>userId1</td> 
-                            <td>★★★★★</td>
-                            <td>2020-10-26</td>
-                            <td>Y</td>
-                        </tr>
+                    	<c:forEach var="re" items="${ list }">
+	                        <tr>
+	                            <td>${ re.reviewNo }</td>
+	                            <td>${ re.spcNo }</td>
+	                            <td>${ re.reviewWriter }</td>
+	                            <td>${ re.reviewTitle }</td>
+	                            <td>${ re.reviewScore }</td>
+	                            <td>${ re.reviewDate }</td>
+	                            <td>${ re.reviewStatus }</td>
+	                        </tr>
+                        </c:forEach>
                     </tbody>
                   </table>
                   <ul class="pagination pagination-sm">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  	<c:choose>
+                  		<c:when test="${ pageInfo.currentPage eq 1 }">
+                  			<li class="page-item disabled"><a class="page-link">Previous</a></li>
+                  		</c:when>
+                  		<c:otherwise>
+                  			<li class="page-item"><a class="page-link" href="reviewList.ad?currentPage=${ pageInfo.currentPage-1 }">Previous</a></li>
+                  		</c:otherwise>
+                  	</c:choose>
+                    
+                    <c:forEach var="page" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+	                    <li class="page-item">
+	                    <a class="page-link" href="reviewList.ad?currentPage=${ page }">${ page }</a>
+	                    </li>
+                    </c:forEach>
+                    
+                    <c:choose>
+                    	<c:when test="${ pageInfo.currentPage eq pageInfo.maxPage }">
+                    		<li class="page-item disabled"><a class="page-link">Next</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li class="page-item"><a class="page-link" href="reviewList.ad?currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
+                    	</c:otherwise>
+                    </c:choose>
                   </ul>
             </div>
         </div>

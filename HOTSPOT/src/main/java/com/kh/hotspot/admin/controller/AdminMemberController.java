@@ -8,34 +8,34 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kh.hotspot.admin.model.service.AdminReportService;
-import com.kh.hotspot.admin.model.vo.Report;
+import com.kh.hotspot.admin.model.service.AdminMemberService;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 
 
 @Controller
-public class AdminReportController {
+public class AdminMemberController {
 	
 	@Autowired
-	private AdminReportService reportService;
+	private AdminMemberService memberService;
 	
-	// 신고관리 리스트 조회 요청
-	@RequestMapping("reportList.ad")
+	// 회원리스트 조회요청
+	@RequestMapping("memberList.ad")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 							 Model model) {
 		
-		// 총 신고내역 수 조회
-		int listCount = reportService.selectListCount();
+		// 총 회원수 조회
+		int listCount = memberService.selectListCount();
 		// 페이지 정보 조회
 		PageInfo pageInfo = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-		// 총 신고내역 조회
-		ArrayList<Report> list = reportService.selectList(pageInfo);
+		// 모든 회원리스트 조회
+		ArrayList<Member> list = memberService.selectList(pageInfo);
 		
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("list", list);
 		
-		return "admin/adminReportList";
+		return "admin/adminMemberList";
 	}
 	
 

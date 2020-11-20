@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,8 +39,9 @@ public class MemberController {
 			return "redirect:/";
 			
 		}else { // 실패
-			session.invalidate();
-			return "redirect:/";
+			
+			model.addAttribute("errorMsg", "로그인에 실패하셨습니다!");
+			return "common/errorPage";
 		}
 	
 	}
@@ -133,4 +135,11 @@ public class MemberController {
 	}
 
 
+	@RequestMapping("profile.me")
+	public String selectProfileMember() {
+		
+		return "../myPage/myProfile";
+		
+		
+	}
 }
