@@ -58,12 +58,12 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int searchListCount(SearchCondition sc) {
-		return 0;
+		return nDao.searchListCount(sqlSession, sc);
 	}
 
 	@Override
 	public ArrayList<Notice> searchList(PageInfo pi, SearchCondition sc) {
-		return null;
+		return nDao.searchList(sqlSession, pi, sc);
 	}
 
 	@Override

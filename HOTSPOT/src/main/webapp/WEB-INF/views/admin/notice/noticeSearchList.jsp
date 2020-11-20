@@ -117,40 +117,19 @@
                 </form>
                 <c:choose>
                 	<c:when test="${ pi.currentPage ne pi.startPage}">
-                		<c:choose>
-                			<c:when test="${ empty sc }">	
-                				<button onclick="location.href='list.no?currentPage=${ pi.currentPage-1 }'" style="margin-left:90px;" class="btn btn-secondary"><</button>
-                			</c:when>
-                			<c:otherwise>
-                				<button onclick="location.href='search.no?currentPage=${ pi.currentPage-1 }&search=${ search }&keyword=${ keyword }'" style="margin-left:90px;" class="btn btn-secondary"><</button>
-                			</c:otherwise>
-                		</c:choose>
+                		<button onclick="location.href='list.no?currentPage=${ pi.currentPage-1 }'" style="margin-left:90px;" class="btn btn-secondary"><</button>
                 	</c:when>
                 	<c:otherwise>
                 		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
                 	</c:otherwise>	
                 </c:choose>
-                <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">
-                	<c:choose>
-                		<c:when test="${ empty sc }">
-                			<button class="btn btn-secondary" onclick="location.href='list.no?currentPage=${ p }'">${ p }</button>
-                		</c:when>
-                		<c:otherwise>
-                			<button class="btn btn-secondary" onclick="location.href='search.no?currentPage=${ p }&search=${ search }&keyword=${ keyword }'">${ p }</button>	
-                		</c:otherwise>
-                	</c:choose>	
+                <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">                	                		
+                	<button class="btn btn-secondary" onclick="location.href='search.no?currentPage=${ p }&search=${ search }&keyword=${ keyword }'">${ p }</button>               		                		
                 </c:forEach>
                 
                 <c:choose>
                 	<c:when test="${ pi.currentPage ne pi.endPage }">
-                		<c:choose>
-                			<c:when test="${ empty sc }">	
-                				<button onclick="location.href='list.no?currentPage=${ pi.currentPage+1 }'" class="btn btn-secondary">></button>
-                			</c:when>
-                			<c:otherwise>
-                				<button onclick="location.href='search.no?currentPage=${ pi.currentPage+1 }&search=${ search }&keyword=${ keyword }'" class="btn btn-secondary">></button>
-                			</c:otherwise>
-                		</c:choose>
+                		<button onclick="location.href='list.no?currentPage=${ pi.currentPage+1 }'" class="btn btn-secondary">></button>
                 	</c:when>
                 	<c:otherwise>
                 		<button disabled class="btn btn-secondary">></button>

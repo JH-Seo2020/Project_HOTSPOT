@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.admin.notice.model.vo.Notice;
+import com.kh.hotspot.admin.notice.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
 @Repository
@@ -46,5 +47,19 @@ public class NoticeDao {
 	
 	public int updateNotice(SqlSessionTemplate sqlSession, Notice n ) {
 		return sqlSession.update("noticeMapper.updateNotice", n);
+	}
+	
+	public int searchListCount(SqlSessionTemplate sqlSession, SearchCondition sc) {
+		return sqlSession.selectOne("noticeMapper.searchListCount", sc);
+	}
+	
+	public ArrayList<Notice> searchList(SqlSessionTemplate sqlSession, PageInfo pi, SearchCondition sc){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowbounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.searchList", sc, rowbounds);
 	}
 }
