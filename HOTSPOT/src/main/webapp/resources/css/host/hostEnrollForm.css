@@ -1,4 +1,7 @@
 @charset "UTF-8";
+th{
+ font-size: 16px;
+ }
 .importh{
         color: var(--color-yellow);
     }
@@ -7,17 +10,17 @@
         margin-left: 90px;
     }
     #hostInsertContainer h5{
-        font-size: 18px;
+        font-size: 19px;
     }
     .comment1{
         font-weight: lighter;
-        font-size: 12px;
+        font-size: 13px;
     }
     #hostInsertForm{
         margin-top: 30px;
     }
     #hostInsertForm th{
-        margin: 10px;
+        margin: 20px;
     }
     .hostInsertTable{
         width:700px;
@@ -28,13 +31,14 @@
     border-radius: 0rem;
         }
     ::placeholder{
-    font-size: 12px;
+    font-size: 13px;
     }
     .hostInsertTable th{
        width:130px;
     }
     .hostInsertTable input{
-        margin: 5px;
+        margin: 10px;
+        height:40px;
     }
     label{
         height: 35px;
@@ -69,10 +73,13 @@
         margin: 30px 140px 0px 200px;
         
     }
-    #dropdownMenuOffset{
-        color: white;
-    }
+   
     .hostInfoBtn button{
         width:160px;
         margin: 10px;
+        height:40px;
+    }
+    label{
+    	margin-left:20px;
+    	height:35px;
     }

@@ -61,12 +61,12 @@
                     </tr>
                 </table>
                 <div class="hostInfoBtn">
-                    <button id="backBtn"class="btn btn-secondary">돌아가기</button>
+                    <button type="button" id="backBtn"class="btn btn-secondary" onClick="location.href='hostMain.ho'">돌아가기</button>
                     <button type="submit" class="btn btn-primary"> 등록 신청하기</button>
                 </div>
             </form>
         </div>
-       
+       <br><br><br>
     </div>
 <jsp:include page="../../common/footer.jsp"/>
 </body>
