@@ -67,17 +67,20 @@
 
 /* myPageModal */
 .myPage_popup{
+    position:relative;
     display: none;
-    position: realtive;
     z-index: 2;
     background: white;
     border-radius: 2px;
     box-shadow: 3px 3px 3px 5px rgba(39, 39, 39, 0.582);
-    width: 50%;
-    padding-right: 13px;
+    width: 300px;
+    padding: 30px;
 }
-#myPage_Content ul{
+#myPage_Content div{
     text-decoration: none;
-    list-style: none;
     color: black;
+}
+#myPageMenu{
+    border-spacing: length;
+    padding: 10px;
 }

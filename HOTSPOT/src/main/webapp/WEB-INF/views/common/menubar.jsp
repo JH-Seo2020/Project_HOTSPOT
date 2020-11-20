@@ -87,46 +87,39 @@
 		            <div><a id="myPageBtn" style="cursor: pointer;">마이페이지</a></div>
 		                       
 		
-		            <div class="myPage_popup">
+		            <div class="myPage_popup" style=" width:300px; padding:50px; border-spacing: 5px 10px;">
 		                <div>
 		                    <span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
 		                </div>
 		                <div id="myPage_Content">
 		                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
-		                    <label style="font-size: 25px; font-weight: bold;">USER01</label><br>
-		                    <a href=""><span>프로필 관리</span></a>
+		                    <label style="font-size: 25px; font-weight: bold;">${ loginUser.userNickname }</label><br>
+		                    <a href="myProfile.me"><span>프로필 관리</span></a>
 		                    <br><hr>
-		                    <table>
+		                    <table id="myPageMenu">
 		                    	<tr>
 			                        <td>
-				                        <div id="myPage_ReservationBtn">
-				                            <img src="resources/images/Calendar.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-				                            <a href=""><span>나의 예약 리스트</sapn></a>
-				                        </div><br>
+			                            <img src="resources/images/Calendar.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
+			                            <a href=""><span>나의 예약 리스트</span></a><br>
 			                        </td>
 		                        </tr>
 		                        <tr>
 			                        <td>
-			                            <div id="myPage_ReservationBtn">
-			                                <img src="resources/images/list.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-			                                <a href=""><span>이용후기 / 문의 관리</sapn></a>
-			                            </div>
-			                            <br>
+		                                <img src="resources/images/list.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
+		                                <a href=""><span>이용후기 / 문의 관리</span></a> <br>
 			                        </td>
 			                    </tr>
 			                    <tr>
 			                        <td>
-			                        <div id="myPage_ReservationBtn">
 			                            <img src="resources/images/heart.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-			                            <a href=""><span>찜한공간</sapn></a>
-			                        </div>
-			                        <br>
+			                            <a href=""><span>찜한공간</span></a><br>
 			                        </td>
 			                     </tr>
 		                    </table>    
 		                </div>
 		            </div>
 		            
+		            <div><a href="logout.me">로그아웃</a></div>
 		            <div class="nav-item dropdown">
 		                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		                 	 고객센터
@@ -136,12 +129,10 @@
 		                  <a class="dropdown-item" href="#">자주묻는질문(챗봇,1:1문의)</a>
 		                </div>
 		            </div>
-		            <div><a href="">로그아웃</a></div>
 		            
 	        	</c:otherwise>
 	         </c:choose>
 	       </div>
-	      
   
         <script>
         function closeLayer( obj ) {
