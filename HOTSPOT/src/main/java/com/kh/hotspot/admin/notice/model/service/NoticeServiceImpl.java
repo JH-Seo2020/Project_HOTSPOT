@@ -33,7 +33,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int insertNotice(Notice n) {
-		return 0;
+		return nDao.insertNotice(sqlSession, n);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int updateNotice(Notice n) {
-		return 0;
+		return nDao.updateNotice(sqlSession, n);
 	}
 
 	@Override

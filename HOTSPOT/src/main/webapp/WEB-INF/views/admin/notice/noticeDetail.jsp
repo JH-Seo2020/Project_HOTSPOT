@@ -37,8 +37,16 @@
             <hr style="width:1000px;">
             <button style="float:right;" class="btn btn-secondary" onclick="history.back()">목록으로</button><br>
             <button style="margin-left:450px;" class="btn btn-danger" onclick="location.href='delete.no?nno=${n.noticeNo}'">삭제</button>
-            <button style="" class="btn btn-primary">수정</button>
+            <button style="" class="btn btn-primary" onclick="updateForm();">수정</button>
         </div>
     </div>
+    <form action="" method="post" id="update">
+    	<input type="hidden" name="nno" value="${ n.noticeNo }">
+    </form>
+    <script>
+    	function updateForm(){
+    		$("#update").attr("action", "updateForm.no").submit();
+    	}
+    </script>
 </body>
 </html>

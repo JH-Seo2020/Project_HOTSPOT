@@ -68,5 +68,30 @@
    		       notice
    		   set status= 'N'
    		 where notice_no = #{nno}      
+   </update>
+   <insert id="insertNotice">
+   		insert
+   		  into notice
+   		  (
+   		    notice_no
+   		  , user_id
+   		  , notice_title
+   		  , notice_content
+   		  )
+   		  values
+   		  (
+   		  	seq_notice.nextval
+   		  , #{noticeWriter}
+   		  , #{noticeTitle}
+   		  , #{noticeContent}
+   		  )   
+   </insert>
+   <update id="updateNotice">
+   		update 
+   		       notice
+   		   set notice_title = #{noticeTitle}
+   		     , notice_content = #{noticeContent}
+   		     , modify_date = sysdate
+   		 where notice_no = #{noticeNo}         
    </update>       
 </mapper>

@@ -53,8 +53,11 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("insert.no")
-	public void noticeInsert(Notice n) {
+	public String noticeInsert(Notice n) {
 		
+		int result = nService.insertNotice(n);
+		
+		return "redirect:detail.no?nno="+n.getNoticeNo();
 	}
 	@RequestMapping("deleteList.no")
 	public String deleteListNotice(String[] nno) {
@@ -71,4 +74,21 @@ public class NoticeController {
 		
 		return "redirect:list.no";
 	}
+	@RequestMapping("updateForm.no")
+	public String updateForm(int nno, Model model) {
+		
+		Notice n = nService.selectNotice(nno);
+		
+		model.addAttribute("n", n);
+		
+		return "admin/notice/noticeUpdateForm";
+	}
+	@RequestMapping("update.no")
+	public String update(Notice n) {
+		
+		int result = nService.updateNotice(n);
+		
+		return "redirect:detail.no?nno="+n.getNoticeNo();
+	}
+	
 }
