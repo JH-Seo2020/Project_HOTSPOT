@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.hotspot.guest.myPage.model.service.MemberService;
@@ -22,7 +23,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.me")
-	public String loginMember(Member m, HttpSession session) {
+	public String loginMember(Member m, HttpSession session, Model model) {
 		
 		Member loginUser = mService.loginMember(m);
 		
@@ -34,8 +35,9 @@ public class MemberController {
 			return "redirect:/";
 			
 		}else { // 실패
-			session.invalidate();
-			return "redirect:/";
+			
+			model.addAttribute("errorMsg", "로그인에 실패하셨습니다!");
+			return "common/errorPage";
 		}
 	
 	}
