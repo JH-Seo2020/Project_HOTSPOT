@@ -8,15 +8,11 @@
 <title>Insert title here</title>
 <style>
 	#profile{
-	    position: absolute;
 	    top: 25%;
 	    left: 50%;
-	    margin: 100px;
-	    margin-left: -350px;
-	    margin-top: -80px;
+	    margin: 50px;
 	    padding: 50px;
 	    width: 700px;
-	    /* background: rgba(209, 208, 208, 0.24); */
 	}
 	#profileImage{
 	    float: left;
