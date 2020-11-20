@@ -45,114 +45,45 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>게스트신고</td>
-                            <td>서비스불만족</td>
-                            <td>userId1</td>
-                            <td>userId1</td>
-                            <td>가나다라를신고합니다</td>
-                            <td>2020-10-26</td>
-                            <td>접수완료</td>
-                        </tr>
+                    	<c:forEach var="re" items="${list}">
+	                        <tr>
+	                            <td>${ re.reportNo }</td>
+	                            <td>${ re.reportType1 }</td>
+	                            <td>${ re.reportType2 }</td>
+	                            <td>${ re.reportWriter }</td>
+	                            <td>${ re.reportTarget }</td>
+	                            <td>${ re.reportContent }</td>
+	                            <td>${ re.reportDate }</td>
+	                            <td>${ re.reportStatus }</td>
+	                        </tr>
+                        </c:forEach>
                     </tbody>
                   </table>
                   <ul class="pagination pagination-sm">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  	<c:choose>
+                  		<c:when test="${ pageInfo.currentPage eq 1 }">
+                  			<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                  		</c:when>
+                  		<c:otherwise>
+                  			<li class="page-item"><a class="page-link" href="reportList.ad?currentPage=${ pageInfo.currentPage-1 }">Previous</a></li>
+                  		</c:otherwise>
+                  	</c:choose>
+                  	
+                  	<c:forEach var="page" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+	                    <li class="page-item">
+	                    <a class="page-link" href="reportList.ad?currentPage=${ page }">${ page }</a>
+	                    </li>
+                    </c:forEach>
+                    
+                    <c:choose>
+                    	<c:when test="${ pageInfo.currentPage eq pageInfo.maxPage }">
+                    		<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li class="page-item"><a class="page-link" href="reportList.ad?currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
+                    	</c:otherwise>
+                    </c:choose>
+                    
                   </ul>
             </div>
         </div>
