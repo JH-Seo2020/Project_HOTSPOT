@@ -25,7 +25,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.me")
-	public String loginMember(@RequestParam("userId") String userId, HttpSession session) {
+	public String loginMember(@RequestParam("userId") String userId, HttpSession session, Model model) {
 		
 		
 		
