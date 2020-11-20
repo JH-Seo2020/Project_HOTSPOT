@@ -93,5 +93,48 @@
    		     , notice_content = #{noticeContent}
    		     , modify_date = sysdate
    		 where notice_no = #{noticeNo}         
-   </update>       
+   </update>
+   <select id="searchListCount"
+           resultType="_int">
+       select
+              count(*)
+         from notice
+        where status = 'Y'
+        <choose>
+        	<when test="title != null">
+	          and notice_title like '%'|| #{title} || '%'    
+        	</when>
+        	<when test="no != null">
+        	  and notice_no like '%'|| #{no} || '%'
+        	</when>
+        </choose>  
+   </select>
+   
+   <select id="searchList"
+           resultMap="noticeResultSet">
+   	select
+             notice_no
+           , user_nickname
+           , notice_title
+           , notice_content
+           , count
+		   , to_char(create_date, 'YYYY-MM-DD') create_date
+           , n.modify_date
+		   	           	           		          
+        from notice n
+        join member using(user_id)
+       where status='Y'
+       <choose>
+       	<when test="no != null">
+       		and notice_no like '%'|| #{no} || '%'
+       	</when>
+       	<when test="title != null">
+       		and notice_title like '%'|| #{title} || '%'
+       	</when>
+       </choose>
+       order
+          by notice_no desc 
+   
+   </select>
+          
 </mapper>

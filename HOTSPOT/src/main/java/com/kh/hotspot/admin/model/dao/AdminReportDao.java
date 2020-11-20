@@ -12,10 +12,12 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 @Repository
 public class AdminReportDao {
 	
+	// 총 신고갯수 조회
 	public int selectListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("reportMapper.selectListCount");
 	}
 	
+	// 총 신고내역 조회
 	public ArrayList<Report> selectList(SqlSessionTemplate sqlSession, PageInfo pageInfo) {
 		
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();

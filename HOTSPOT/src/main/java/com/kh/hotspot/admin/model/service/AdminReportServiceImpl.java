@@ -19,12 +19,12 @@ public class AdminReportServiceImpl implements AdminReportService {
 	@Autowired
 	private AdminReportDao reportDao;
 	
-	@Override
+	@Override	// 총 신고갯수 조회
 	public int selectListCount() {
 		return reportDao.selectListCount(sqlSession);
 	}
 	
-	@Override
+	@Override	// 총 신고내역 조회
 	public ArrayList<Report> selectList(PageInfo pageInfo) {
 		return reportDao.selectList(sqlSession, pageInfo);
 	}
