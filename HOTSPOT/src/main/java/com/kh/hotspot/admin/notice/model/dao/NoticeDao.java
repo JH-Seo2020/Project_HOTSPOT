@@ -39,4 +39,12 @@ public class NoticeDao {
 	public int deleteNotice(SqlSessionTemplate sqlSession, int nno) {
 		return sqlSession.update("noticeMapper.deleteNotice", nno);
 	}
+	
+	public int insertNotice(SqlSessionTemplate sqlSession, Notice n) {
+		return sqlSession.insert("noticeMapper.insertNotice", n);
+	}
+	
+	public int updateNotice(SqlSessionTemplate sqlSession, Notice n ) {
+		return sqlSession.update("noticeMapper.updateNotice", n);
+	}
 }

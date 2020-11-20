@@ -46,7 +46,9 @@
                 #사업자등록번호 : 202012091520<br>
                 #영업 소재지 : 역삼역 3번출구<br>
                 #이메일 : yeok3@gmail.com<br>
+                
                 <button class="badge badge-pill badge-warning" onclick="location.href='main.ad'">관리자페이지로 이동</button>
+               
             </div>
         </div>
         <div id="footerNotice">
@@ -55,6 +57,6 @@
             따라서 핫스팟은 공간 거래정보 및 거래에 대해 책임지지 않습니다.
         </div>
     </div>
-
+	
 </body>
 </html>

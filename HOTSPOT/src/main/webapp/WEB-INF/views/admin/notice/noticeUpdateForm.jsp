@@ -15,14 +15,15 @@
             <hr style="background:ligthgrey;">
             <br><br>
         <div class="adminNotice" style="width:1000px; margin:auto;">
-            <form action="insert.no">
-            	<input type="hidden" name="noticeWriter" value="${ loginUser.userId }">
+            <form action="update.no">
+            	<input type="hidden" name="noticeWriter" value="${ n.noticeWriter }">
+            	<input type="hidden" name="noticeNo" value="${ n.noticeNo }">
                 <input type="text" name="noticeTitle" style="width: 100%; margin-bottom:20px;"
-                placeholder="제목입력" class="form-control" required> 
-                <textarea  id="summernote" name="noticeContent" required></textarea>
+                placeholder="제목입력" class="form-control" value="${ n.noticeTitle } " required>
+                <textarea  id="summernote" name="noticeContent" required>${n.noticeContent }</textarea>
                 <br>
                 <button type="reset" class="btn btn-secondary" style="margin-left:380px;">취소</button>
-                <button type="submit" class="btn btn-primary" style="margin-left:50px;">등록하기</button>
+                <button type="submit" class="btn btn-primary" style="margin-left:50px;">수정하기</button>
             </form>
         </div>
             <script>
