@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../common/hostMenubar.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/host/spaceEnrollForm.css" type="text/css"/>
-<!--  <link rel="stylesheet" href="resources/css/host/hostmenubar.css" type="text/css"/>-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<jsp:include page="../common/hostMenubar.jsp"/>
+
 <script>
     $(function(){
     	
@@ -160,43 +161,82 @@
                  <div class="holiday" style="margin-top:15px";>
                     <p style="margin-right: 85px;">휴무일</p>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="월">
                             <label class="form-check-label" for="inlineCheckbox1">월</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="화">
                             <label class="form-check-label" for="inlineCheckbox2">화</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="수">
                             <label class="form-check-label" for="inlineCheckbox2">수</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="목">
                             <label class="form-check-label" for="inlineCheckbox2">목</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="금">
                             <label class="form-check-label" for="inlineCheckbox2">금</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="토">
                             <label class="form-check-label" for="inlineCheckbox2">토</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="일">
                             <label class="form-check-label" for="inlineCheckbox2">일</label>
                         </div>
                     </div> 
                     <div class="notes" style="margin-top: 35px;">
                         <p style="margin-right: 15px;">이용시 유의사항</p>
-                        <input type="text" class="form-control"> 
-                        <button type="button" class="btn btn-primary">추가</button>
+                        <input type="text" id="note" class="form-control"> 
+                        <button type="button" id="notePlus"class="btn btn-primary">추가</button>
                         <div class="many_notes">
-                            <input type="text" name="" class="form-control"> <img src="resources/images/host_images/close.png" style="width:20px; height:20px;">
-                            <input type="text" name="" class="form-control">
+                        <!--<div class="content">
+                          	  <input type="text" name="" class="form-control"><img src="resources/images/host_images/close.png" id="noteClose">
+                            </div>-->
                         </div>
                     </div>
+                    <script>
+                    $(function(){
+                    	$("#notePlus").click(function(){
+                    		
+                    		if($("#note1") != val('')){
+                    		var $note = $("#note").val()
+                    		var contents = '';
+                    	
+                    		contents += '<div class="content">'
+                    		contents += '<input type="text" name=""id="note1"class="form-control"><img src="resources/images/host_images/close.png" id="noteClose">'
+                    		contents += '</div>'
+	                  
+                    		$(".many_notes").append(contents);
+                   			$("#note1").val($note);
+                    		} else{
+                    		
+                    			var $note = $("#note").val()
+                        		var contents = '';
+                        	
+                        		contents += '<div class="content">'
+                        		contents += '<input type="text" name=""id="note2"class="form-control"><img src="resources/images/host_images/close.png" id="noteClose">'
+                        		contents += '</div>'
+    	                  
+                        		$(".many_notes").append(contents);
+                       			$("#note2").val($note);
+                    		}
+                        		
+                    		}
+                    		
+                    		});
+
+                   
+                    	
+                    });
+                    
+                    
+                    </script>
+                    
                     <div class="convenience" style="margin-top:35px; margin-bottom:40px";>
                         <p style="margin-right: 65px;">편의사항</p>
                             <div class="form-check form-check-inline">
@@ -246,11 +286,28 @@
                         <label for="spc_imgs">파일첨부</label>
                         <input type="file" id="spc_imgs"></input><br>
 
-                        <button type="submit" id="spcaeInsertBtn"class="btn btn-primary" > 등록하기 </button>
+                        <button type="button" id="subBtn" class="btn btn-primary"data-toggle="modal"data-target="#exampleModal"> 등록하기 </button>
             </div>
+            <!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-body">
+					        등록하시겠습니까?
+					      </div>
+					      <div class="modal-footer">
+					        <button type="submit" class="btn btn-primary">등록하기</button>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>   
+					<!-- 모달끝 -->      	
+          
         </form>
     </div>
     
+   <!--  <jsp:include page="../../common/footer.jsp"/>  -->
  </body>
-<jsp:include page="../../common/footer.jsp"/>
+
 </html> 
