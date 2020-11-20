@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="reviewMapper">
+
 	<resultMap id="reviewResultSet" type="Review">
 		<id column="review_no" property="reviewNo" />
 		<result column="spc_no" property="spcNo"/>
@@ -12,6 +13,7 @@
 		<result column="review_date" property="reviewDate"/>
 		<result column="review_status" property="reviewStatus"/>
 		<result column="review_reply" property="reviewReply"/>
+		
 	</resultMap>
 	
 	<!-- 총 후기갯수 조회 -->
@@ -19,5 +21,20 @@
 		select
 		       count(*)
 		  from review
+	</select>
+	
+	<!-- 총 후기내역 조회 -->
+	<select id="selectList" resultMap="reviewResultSet">
+		select
+		       review_no
+		     , spc_no
+		     , review_writer
+		     , review_title
+		     , review_score
+		     , review_date
+		     , review_status
+		  from review
+		 order
+		    by review_status desc
 	</select>
 </mapper>

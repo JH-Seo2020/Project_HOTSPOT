@@ -7,10 +7,10 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 
 public interface AdminReportService {
 	
-	// 신고내역 조회
-	// 총 신고내역 수 조회
+	// 총 신고갯수 조회
 	int selectListCount();
 	
+	// 총 신고내역 조회
 	ArrayList<Report> selectList(PageInfo pageInfo);
 
 }
