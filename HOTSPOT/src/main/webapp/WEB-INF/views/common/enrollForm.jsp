@@ -45,7 +45,7 @@
 
 <jsp:include page="menubar.jsp"/>
 
-
+	
     <div align="left" id="noticebar">
         <img src="resources/images/logo_letter_1.png" width="100px" height="25px" >
         <label style="color: yellowgreen; font-size: large ;">회원가입을 환영합니다</label><hr>
@@ -161,7 +161,7 @@
   			
   			var regExpPw = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
 
-  			if(!refExpPw.test($("#userPwd")){
+  			if(!refExpPw.test($("#userPwd"))){
   				$("#pwdCheckResult").css("color", "red").text("숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력해주세요");
   				$("#confirm").prop("disabled", true);
   			}else{
@@ -223,7 +223,7 @@
                   url:"email.certify",
                   data:{userEmailCheck:clientEmail},
                   success : function(data){
-
+					  alert('메일이 전송되었습니다.')
                   },error : function(e){
                       alert('오류입니다. 다시 시도해주십시오.')
                   }
@@ -234,7 +234,7 @@
       }
 
       function isEmail(asValue){
-          var regExp = /^[0-9a-zA-Z]([-_\.]?[0-0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+          var regExp =/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
           return regExp.test(asValue);
       }
       

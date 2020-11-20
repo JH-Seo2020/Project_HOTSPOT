@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
 
-	  	<resultMap id="memberResultSet" type="Guest">
+	  <resultMap id="memberResultSet" type="Member">
   		<id column="user_id" property="userId" />
   		<result column="user_type" property="userType" />
   		<result column="user_pwd" property="userPwd" />
@@ -19,8 +19,7 @@
   		<result column="user_memo" property="userMemo" />
   	</resultMap>
   	
-  	  	<select id="loginMember" parameterType="Guest" resultMap="memberResultSet">
-
+  	 <select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 		select
 		       user_id
 		     , user_type
@@ -41,7 +40,7 @@
 		   and user_id=#{userId}
   	</select>
   	
-  	<insert id="insertMember" parameterType="Guest">
+  	<insert id="insertMember" parameterType="Member">
   		insert 
 		  into member
 		  (
