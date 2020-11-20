@@ -62,14 +62,14 @@
                   			<li class="page-item disabled"><a class="page-link">Previous</a></li>
                   		</c:when>
                   		<c:otherwise>
-                  			<li class="page-item"><a class="page-link" href="reviewList.ad?currentPage=${ pageInfo.currentPage - 1 }">Previous</a></li>
+                  			<li class="page-item"><a class="page-link" href="reviewList.ad?currentPage=${ pageInfo.currentPage-1 }">Previous</a></li>
                   		</c:otherwise>
                   	</c:choose>
                     
                     <c:forEach var="page" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
-                    	<li class="page-item">
-                    	<a class="page-link" href="reviewList.ad?currentPage="${ page }">${ page }</a>
-                    	</li>
+	                    <li class="page-item">
+	                    <a class="page-link" href="reviewList.ad?currentPage=${ page }">${ page }</a>
+	                    </li>
                     </c:forEach>
                     
                     <c:choose>
@@ -77,7 +77,7 @@
                     		<li class="page-item disabled"><a class="page-link">Next</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="reviewList.ad?currentPage=${ pageInfo.currentPage + 1 }">Next</a></li>
+                    		<li class="page-item"><a class="page-link" href="reviewList.ad?currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
                     	</c:otherwise>
                     </c:choose>
                   </ul>

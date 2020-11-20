@@ -48,7 +48,7 @@
         <script>
             $(function(){
             	$("#adminUser").click(function(){
-            		location.href="userList.ad"
+            		location.href="memberList.ad"
             	})
             	$("#adminReport").click(function(){
             		location.href="reportList.ad"
