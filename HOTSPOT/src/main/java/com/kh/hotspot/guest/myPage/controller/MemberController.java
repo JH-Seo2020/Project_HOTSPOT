@@ -135,11 +135,11 @@ public class MemberController {
 	}
 
 
-	@RequestMapping("profile.me")
+	@RequestMapping("myProfile.me")
 	public String selectProfileMember() {
 		
-		return "../myPage/myProfile";
-		
+		return "guest/myPage/myProfile";
 		
 	}
+
 }

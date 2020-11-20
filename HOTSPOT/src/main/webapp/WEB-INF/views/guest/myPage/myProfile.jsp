@@ -68,16 +68,18 @@
 
     <div class="content">
         <div id="profile">
-            <h1 align="center">내 프로필 관리</h1> 
+            <h2 align="center">내 프로필 관리</h2> 
 
             <br><hr><br><br>
-            <form action="profile.me" method="POST" id="myProfile" enctype="multipart/form-data">
-                <div id="profileImage"><img src="../../resources/images/profileImage.png"><h2 align="center">USER01</h2></div>
+            <form action="" method="POST" id="myProfile" enctype="multipart/form-data">
+                <div id="profileImage"><img src="resources/images/profileImage.png"><h2 align="center">${ loginUser.userId }</h2>
+                
+                </div>
 
                 <div id="mainProfile">
-                    <div id="nickName">닉네임 : &nbsp;&nbsp;&nbsp;동동이</div>
-                    <div id="profileEmail">이메일 : &nbsp;&nbsp;&nbsp;user01@naver.com</div>
-                    <div id="profilePhone">연락처 : &nbsp;&nbsp;&nbsp;010-1111-2222</div> <br>
+                    <div id="nickName">닉네임 : &nbsp;&nbsp;&nbsp;${ loginUser.userNickname }</div>
+                    <div id="profileEmail">이메일 : &nbsp;&nbsp;&nbsp;${ loginUser.userEmail }</div>
+                    <div id="profilePhone">연락처 : &nbsp;&nbsp;&nbsp;${ loginUser.userPhone }</div> <br>
                     <div id="switch">마케팅 수신동의 : <br><br>
 
                                                      이메일 <input type="checkbox" name="marketingEmail" value="yes" disabled> 예
@@ -123,7 +125,7 @@
     </div>
     -->
 
-    <br><br><br>
+    <br clear="both"><br><br>
     
     <!-- 푸터바 포함 -->
     <jsp:include page="../../common/footer.jsp"/>

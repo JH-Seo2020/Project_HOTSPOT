@@ -11,6 +11,10 @@
     background: rgb(255, 230, 0);
     border: 0;
     font-weight: bold;
+    width: 300px;
+    height: 60px;
+    border-radius: 100px;
+    box-shadow: 3px 3px 3px 3px rgba(39, 39, 39, 0.582);
 }
 </style>
 </head>
@@ -19,14 +23,14 @@
     <jsp:include page="menubar.jsp"/>
 
     <br>
-    <div align="center">	
-        <h1>죄송합니다!</h1><br>
-        <img src="resources/images/errorPage.jpg" width="70%">
+    <div align="center">
+    	<br>
+        <h1 style="color: gray;">&nbsp;${ errorMsg }</h1><br>
+        <img src="resources/images/404error.jpg" width="90%">
         <br><br>
-        <h1 style="font-weight:bold">${ errorMsg }</h1><br>
         <button type="button" id="gotoHomepage" class="btn btn-warning">메인페이지로 이동</button>
     </div>
-    <br>
+    <br><br><br><br>
     
     <jsp:include page="footer.jsp"/>
 </body>
