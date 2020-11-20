@@ -39,7 +39,7 @@
                 <div>
                     <span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
                 </div>
-                <form action="" method="POST">
+                <form action="login.me" method="POST">
                     <br>
                     <img src="resources/images/hospot_logo.png" width="60px" height="60px">
                     <label style="font-size: 25px; font-weight: bold;">로그인</label><br>

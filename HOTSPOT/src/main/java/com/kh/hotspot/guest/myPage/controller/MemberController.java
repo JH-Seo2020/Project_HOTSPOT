@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.hotspot.guest.myPage.model.service.MemberService;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
@@ -22,11 +24,13 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.me")
-	public String loginMember(Member m, HttpSession session) {
+	public String loginMember(@RequestParam("userId") String userId, HttpSession session) {
 		
-		Member loginUser = mService.loginMember(m);
 		
-
+		
+		Member loginUser = mService.loginMember(userId);
+		
+		System.out.print(loginUser);
 		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())*/) { // 로그인 성공
 			
 			session.setAttribute("loginUser", loginUser);
@@ -40,11 +44,14 @@ public class MemberController {
 	
 	}
 	
+	
 	@RequestMapping("insert.me")
-	public String insertMember(Member m, HttpSession session) {
+	public String insertMember(@ModelAttribute Member m, HttpSession session) {
 		
-		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
-		m.setUserPwd(encPwd);
+		
+		System.out.print(m);
+		//String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		//m.setUserPwd(encPwd);
 		
 		int result = mService.insertMember(m);
 		

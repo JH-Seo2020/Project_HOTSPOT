@@ -19,7 +19,7 @@
   		<result column="user_memo" property="userMemo" />
   	</resultMap>
   	
-  	 <select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+  	 <select id="loginMember" parameterType="string" resultMap="memberResultSet">
 		select
 		       user_id
 		     , user_type

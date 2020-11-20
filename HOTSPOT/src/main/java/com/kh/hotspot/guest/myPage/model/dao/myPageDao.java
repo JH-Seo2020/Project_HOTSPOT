@@ -8,9 +8,9 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 @Repository
 public class myPageDao {
 
-	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
+	public Member loginMember(SqlSessionTemplate sqlSession, String userId) {
 
-		return sqlSession.selectOne("memberMapper.loginMember", m);
+		return sqlSession.selectOne("memberMapper.loginMember", userId);
 	}
 
 	public int insertMember(SqlSessionTemplate sqlSession, Member m) {

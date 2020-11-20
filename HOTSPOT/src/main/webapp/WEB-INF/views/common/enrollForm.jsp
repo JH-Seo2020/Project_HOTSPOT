@@ -74,7 +74,7 @@
             <div id="EnrollData2" style="height: 400px; width: 70%;">
                 <ul>
                     <li>이메일 입력</li>
-                    <input type="text" name="userEmail" placeholder="인증절차를 거쳐주세요" readonly required> 
+                    <input type="text" name="userEmail" placeholder="인증절차를 거쳐주세요" required> 
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
     					이메일 인증
   					</button>
