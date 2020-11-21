@@ -11,7 +11,6 @@
         width: 100%;
         height: auto;
         margin: auto;
-        background-color: lavender;
     }
     #noticeWrap div,form{
         margin: auto;
@@ -20,6 +19,7 @@
         text-align: center;
         font-weight: bold;
         font-size: 30px;
+        padding-top:3%;
     }
     /*공지사항 검색*/
     #noticeSearch{
