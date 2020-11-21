@@ -83,7 +83,7 @@
 			        </c:when>
 			            
 		       		<c:otherwise>
-		            <div id="GoToHostPage"><a href="">🏚&nbsp;호스트페이지</a></div>
+		            <div id="GoToHostPage"><a href="hostMain.ho">🏚&nbsp;호스트페이지</a></div>
 		            <div><a id="myPageBtn" style="cursor: pointer;">마이페이지</a></div>
 		                       
 		

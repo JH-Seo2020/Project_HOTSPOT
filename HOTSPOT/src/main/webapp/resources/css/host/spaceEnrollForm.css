@@ -207,3 +207,24 @@
       	height:20px;
       	cursor:pointer;
       }
+       .noteClose{
+          width:25px;
+          height:25px;
+          cursor: pointer;
+      }
+        #img{
+        width: 160px;
+        height:140px;
+        border:none;
+        position: relative;
+        top:10px;
+        left:10px;
+    }
+    #imgs{
+        width: 160px;
+        height:140px;
+        border:none;
+        position: relative;
+        top:10px;
+        left:10px;
+    }

@@ -191,51 +191,36 @@
                     </div> 
                     <div class="notes" style="margin-top: 35px;">
                         <p style="margin-right: 15px;">이용시 유의사항</p>
-                        <input type="text" id="note" class="form-control"> 
+                        <input type="text" id="note_0" class="form-control"> 
                         <button type="button" id="notePlus"class="btn btn-primary">추가</button>
                         <div class="many_notes">
-                        <!--<div class="content">
-                          	  <input type="text" name="" class="form-control"><img src="resources/images/host_images/close.png" id="noteClose">
-                            </div>-->
                         </div>
                     </div>
+                    
                     <script>
+                
                     $(function(){
-                    	$("#notePlus").click(function(){
-                    		
-                    		if($("#note1") != val('')){
-                    		var $note = $("#note").val()
-                    		var contents = '';
-                    	
-                    		contents += '<div class="content">'
-                    		contents += '<input type="text" name=""id="note1"class="form-control"><img src="resources/images/host_images/close.png" id="noteClose">'
-                    		contents += '</div>'
-	                  
-                    		$(".many_notes").append(contents);
-                   			$("#note1").val($note);
-                    		} else{
-                    		
-                    			var $note = $("#note").val()
-                        		var contents = '';
-                        	
-                        		contents += '<div class="content">'
-                        		contents += '<input type="text" name=""id="note2"class="form-control"><img src="resources/images/host_images/close.png" id="noteClose">'
-                        		contents += '</div>'
-    	                  
-                        		$(".many_notes").append(contents);
-                       			$("#note2").val($note);
-                    		}
-                        		
-                    		}
-                    		
-                    		});
+                        $(this).on("click","#notePlus",function(){
+                            var $note = $("#note_0").val();
+                            var html = '<div class="content"> <input type="text" class="form-control" name="noteContent" value="'
+                                html += $note
+                                html +='">'
+                                html += '<img type="button" src="resources/images/host_images/close.png" class="noteClose"></div>'
+                                $(".many_notes").append(html);
+                                $("#note_0").val('');
+                        });
+                        $(this).on("click",".noteClose",function(){
+                            var tar =$(this).parent();
+                            tar.remove();
+                           
+                        });
 
-                   
-                    	
-                    });
-                    
-                    
+                      });
+                  
                     </script>
+                    
+                    
+       
                     
                     <div class="convenience" style="margin-top:35px; margin-bottom:40px";>
                         <p style="margin-right: 65px;">편의사항</p>
@@ -274,9 +259,33 @@
                         </div> 
                         <p >대표 이미지<span style="color:red">*</span></p>
                         <div class="imgbox">
+                        	<img id="img"/>
                         </div>
                         <label for="spc_img">파일첨부</label>
                         <input type="file"  id="spc_img" ></input><br>
+                         <script>
+                            var sel_file;
+                            var sel_files =[];
+                            $(function(){
+                                $("#spc_img").on("change",handleImg)
+                              //  $("#spc_imgs").on("change",handleImgs)
+                            });
+                            function handleImg(e){
+                                var files = e.target.files
+                                var filesArr = Array.prototype.slice.call(files);
+                                filesArr.forEach(function(f){
+                                    sel_file=f;
+                                    var reader = new FileReader();
+                                    reader.onload = function(e){
+                                       
+                                        $("#img").attr("src",e.target.result);
+                                    }
+                                reader.readAsDataURL(f);
+                                });
+                            };
+                        
+                           
+                        </script>
                         <p>상세 이미지<span style="color:red">*</span></p>
                         <div class="many_imgbox">
                             <div class="imgbox">
