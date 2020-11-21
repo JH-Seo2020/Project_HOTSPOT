@@ -35,26 +35,26 @@
                 <table class="hostInsertTable" >
                     <tr>
                         <th colspan="2"> 사업자번호 <p style="color:red">*</p></th>
-                        <td colspan="3"><input type="text" placeholder="-제외하고 입력해주세요" id="bNo"class="form-control" ></td>
+                        <td colspan="3"><input type="text" placeholder="-제외하고 입력해주세요" id="bNo"class="form-control"required ></td>
                     </tr>
                     <tr>
                         <th colspan="2"> 상호명 <p style="color:red">*</p></th>
-                        <td colspan="3"><input type="text" placeholder="상호명을 입력해주세요" id="bName" class="form-control"  ></td>
+                        <td colspan="3"><input type="text" placeholder="상호명을 입력해주세요" id="bName" class="form-control" required ></td>
                     </tr>
                     <tr>
                         <th colspan="2"> 사업자등록증 <p style="color:red">*</p></th>
                         <td colspan="2" ><input type="text" placeholder="jpg, png, pdf, jpeg 파일 업로드해주세요" class="form-control" id="uploadLicense" ></td>
                         <td><label for="license">첨부파일 추가</label></td>
-                        <td><input type="file" id="license" placeholder="" onchange="upload()"class="upload-hidden"></td>
+                        <td><input type="file" id="license" placeholder="" onchange="upload()"class="upload-hidden"required></td>
                     </tr>
                     <tr>
                         <th colspan="2"> 사업장소재지 <p style="color:red">*</p></th>
-                        <td colspan="3"><input type="text" placeholder="사업장소재지를 입력해주세요" id="bLoc"  class="form-control" ></td>
+                        <td colspan="3"><input type="text" placeholder="사업장소재지를 입력해주세요" id="bLoc"  class="form-control"required ></td>
                     </tr>
                     <tr>
                         <th colspan="2"> 계좌정보 <p style="color:red">*</p></th>
                         <td>
-                            <input type="text" name="account" class="form-control"placeholder="은행명" list="account">
+                            <input type="text" name="account" class="form-control"placeholder="은행명" list="account"required>
                             <datalist id="account">
                                 <option >국민은행</option>
                                 <option >신한은행</option>
@@ -63,13 +63,13 @@
                                 <option >카카오뱅크</option>
                             </datalist>
                         </td>
-                        <td><input type="text" id="accountNo"class="form-control" id="" placeholder="- 제외한 계좌번호 입력해주세요"></td>
-                        <td><input type="text" id="accountName"class="form-control" placeholder="예금주명"></td>   
+                        <td><input type="text" id="accountNo"class="form-control" id="accountNo" placeholder="- 제외한 계좌번호 입력해주세요" required></td>
+                        <td><input type="text" id="accountName"class="form-control" id="accountName" placeholder="예금주명"required></td>   
                     </tr>
                 </table>
                 <div class="hostInfoBtn">
                     <button type="button" id="backBtn"class="btn btn-secondary" onClick="location.href='hostMain.ho'">돌아가기</button>
-                    <button type="button" id="subBtn" data-toggle="modal"data-target="#exampleModal" class="btn btn-primary"> 등록 신청하기</button>
+                    <button type="button" id="subBtn" onclick="return validate()" data-toggle="modal"data-target="#exampleModal"  class="btn btn-primary"> 등록 신청하기</button>
                 </div>
                	
 					<!-- Modal -->
@@ -98,9 +98,27 @@
 	        $("#uploadLicense").attr('placeholder', fileName )
 	    }
 	    function validate(){
-	    	
-	    	
-	    }
+            // 변수에 값 담기
+            var bNo = $("#bNo").val();
+            var bName = $("#bName").val();
+            var accountNo = $("#accountNo").val();
+            
+            // 유효성 검사
+            var bNoCheck =  /^\d{10}/;
+            var accountNoCheck = /^\d/;
+            if(!bNoCheck.test(bNo)){
+                alert('사업자번호를 정확하게 입력해주세요');
+                $("#bNo").val('');
+                $("#bNo").focus(); 
+                return false; 
+            }
+            if(!accountNoCheck.test(accountNo)){
+                alert('숫자만 입력 가능합니다!');
+                $("#accountNo").val('');
+                $("#accountNo").focus(); 
+                return false; 
+            }
+        }
     </script>   
 <jsp:include page="../../common/footer.jsp"/>
 </body>
