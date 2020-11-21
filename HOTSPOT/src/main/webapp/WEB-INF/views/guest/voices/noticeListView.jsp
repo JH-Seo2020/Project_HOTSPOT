@@ -98,7 +98,7 @@
 		                  <tr>
 		                  	<th>${v.noticeNo }</th>
 		                    <td scope="row">
-		                        <a href="" class="black">${v.noticeTitle }</a>
+		                        <a href="noticeDetail.guest?nno=${v.noticeNo }" class="black">${v.noticeTitle }</a>
 		                    </td>
 		                    <td>${v.createDate }</td>
 		                  </tr>

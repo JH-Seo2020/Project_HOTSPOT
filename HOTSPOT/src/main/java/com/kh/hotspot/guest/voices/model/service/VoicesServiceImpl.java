@@ -31,15 +31,15 @@ public class VoicesServiceImpl implements VoicesService{
 	}
 
 	@Override
-	public int increaseCount(int noticeNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int increaseCount(int nno) {
+		
+		return vDao.increaseCount(sqlSession,nno);
 	}
 
 	@Override
-	public VoicesNotice selectNotices(int noticeNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public VoicesNotice selectNotices(int nno) {
+		
+		return vDao.selectNotices(sqlSession,nno);
 	}
 
 	@Override

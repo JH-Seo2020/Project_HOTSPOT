@@ -37,5 +37,25 @@ public class VoicesController {
 		
 		return "guest/voices/noticeListView";
 	}
+	
+	@RequestMapping("noticeDetail.guest")
+	public String noticeDetailForGuest(int nno, Model model) {
+		
+		//1.조회수증가
+		int result = vService.increaseCount(nno);
+		
+		if(result>0) {
+			//2.조회성공시
+			VoicesNotice vn = vService.selectNotices(nno);
+			model.addAttribute("vn",vn);
+			
+		}else {
+			//2-2.조회실패시
+			model.addAttribute("errorMsg","공지사항 조회실패");
+		}
+		
+		return "guest/voices/noticeDetailView";
+		
+	}
 
 }

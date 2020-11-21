@@ -27,4 +27,14 @@ public class VoicesDao {
 		return (ArrayList)sqlSession.selectList("customerservicemapper.selectList", null, rowBounds);
 	}
 
+	public int increaseCount(SqlSessionTemplate sqlSession, int nno) {
+		
+		return sqlSession.update("customerservicemapper.increaseCount", nno);
+	}
+
+	public VoicesNotice selectNotices(SqlSessionTemplate sqlSession, int nno) {
+		
+		return sqlSession.selectOne("customerservicemapper.selectNotices", nno);
+	}
+
 }

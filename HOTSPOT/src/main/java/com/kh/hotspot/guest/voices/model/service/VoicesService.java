@@ -12,10 +12,10 @@ public interface VoicesService {
 	//1-2.페이지가져오기
 	ArrayList<VoicesNotice> selectList(PageInfo pi);
 	
-	//2-1.공지사항 상세보기
-	int increaseCount(int noticeNo);
+	//2-1.공지사항 조회수증가
+	int increaseCount(int nno);
 	//2-2.공지사항 상세조회
-	VoicesNotice selectNotices(int noticeNo);
+	VoicesNotice selectNotices(int nno);
 	
 	//3.공지사항 제목검색
 	ArrayList<VoicesNotice> selectSearchNotice(String keyword);

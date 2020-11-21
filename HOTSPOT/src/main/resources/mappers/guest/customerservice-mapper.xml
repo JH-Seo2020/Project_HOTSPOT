@@ -30,6 +30,23 @@
 		    by notice_no desc
   	</select>
   	
+  	<update id="increaseCount" parameterType="_int">
+  		update notice
+		   set count=count+1
+		 where notice_no = #{nno}
+		   and status='Y'
+  	</update>
+  	
+  	<select id="selectNotices" parameterType="_int" resultMap="noticeSet">
+		select notice_title
+		     , notice_content
+		     , count
+		     , create_date
+		     , modify_date
+		  from notice
+		 where status='Y'
+		   and notice_no = #{nno}
+  	</select>
   	
 
 </mapper>

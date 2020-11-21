@@ -47,8 +47,8 @@
     }
     /*기타 css*/
     .purple{
-        background-color: rebeccapurple;
-        color: white;
+        background-color: rebeccapurple !important;
+        color: white !important;
         border: white;
     }
     .black{
@@ -70,22 +70,11 @@
         </div>
         <div id="notice">
             <div id="noticeTitle">
-                <span class="title">코로나 확산으로 인한 공간 대여 이용 안내드립니다.</span>
-                <span class="forRight">작성일 : 2020-10-10, 조회수 : 3</span>
+                <span class="title">${vn.noticeTitle }</span>
+                <span class="forRight">작성일 : ${vn.modifyDate }, 조회수 : ${vn.count }</span>
             </div>
             <div id="noticeContent">
-                코로나 확산으로 인한 공간 대여 이용 안내입니다. <br>
-                시간대가 아래와 같이 바뀔 예정이니 참고바랍니다. <br>
-                또한 방역 수칙을 지켜주시길 바랍니다. <br>
-                본사는 코로나 감염에 대한 일체의 책임을 지지 않습니다. <br>
-                코로나 확산으로 인한 공간 대여 이용 안내입니다. <br>
-                시간대가 아래와 같이 바뀔 예정이니 참고바랍니다. <br>
-                또한 방역 수칙을 지켜주시길 바랍니다. <br>
-                본사는 코로나 감염에 대한 일체의 책임을 지지 않습니다. <br>
-                코로나 확산으로 인한 공간 대여 이용 안내입니다. <br>
-                시간대가 아래와 같이 바뀔 예정이니 참고바랍니다. <br>
-                또한 방역 수칙을 지켜주시길 바랍니다. <br>
-                본사는 코로나 감염에 대한 일체의 책임을 지지 않습니다. <br>
+                ${vn.noticeCon }
             </div>
             <hr>
         </div>
@@ -93,6 +82,14 @@
             <button class="btn purple" type="button">목록으로</button>
         </div>
     </div>
+    
+    <script>
+    	$(function(){
+    		$("#pagination").click(function(){
+    			location.href="notice.guest";
+    		})
+    	})
+    </script>
 
     <!--푸터-->
    <jsp:include page="../../common/footer.jsp"/>
