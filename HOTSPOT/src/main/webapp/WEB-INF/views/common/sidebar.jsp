@@ -84,7 +84,7 @@
                     <ul style="display:none;" id="subAdminCenter">
                         <li><a href="list.no" style="font-size:15px;">공지사항</a></li>
                         <li><a href="list.inq" style="font-size:15px;">1:1문의</a></li>
-                        <li><a href="" style="font-size:15px;">FAQ</a></li>
+                        <li><a href="list.fad" style="font-size:15px;">FAQ</a></li>
                     </ul>
                 </li>
             </ul>
