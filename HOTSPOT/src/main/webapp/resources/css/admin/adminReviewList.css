@@ -24,23 +24,10 @@ body {
 	float: left;
 }
 
-#logo {
-	width: 100%;
-	height: 10%;
-	background: #2c3e50;
-	border-bottom: 2px solid white;
-}
-
 #categoryName {
 	width: 100%;
 	height: 10%;
 	border-bottom: 2px solid gray;
-}
-
-#leftSpace {
-	width: 20%;
-	background: #2c3e50;
-	color: white;
 }
 
 #rightSpace {
@@ -105,24 +92,6 @@ body {
 	margin-left: 20px;
 }
 
-#leftSpace ul {
-	list-style-type: none;
-	padding-left: 0px;
-	padding: 20px;
-	margin-top: 0px;
-}
-
-#leftSpace ul>li {
-	padding: 25px;
-}
-
-#leftSpace ul>li>span {
-	float: right;
-	margin-top: 10px;
-	font-size: large;
-	margin-right: 10px;
-}
-
 #reviewList table {
 	font-size: 11px;
 	text-align: center;
@@ -137,19 +106,7 @@ body {
 	color: black;
 }
 
-#adminSpace>ul>li>a, #adminFaq>ul>li>a {
-	font-size: 14px;
-	color: white;
-	text-decoration: none;
-}
-
 /* 이미지 */
-#img_hotspotLogo {
-	width: 65px;
-	height: 65px;
-	margin-left: 15px;
-}
-
 .img_icon {
 	width: 40px;
 	height: 40px;

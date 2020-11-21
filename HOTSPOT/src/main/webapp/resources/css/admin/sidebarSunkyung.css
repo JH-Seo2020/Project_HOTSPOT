@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* 영역 */
+#leftSpace {
+	width: 20%;
+	background: #2c3e50;
+	color: white;
+}
+
+#logo {
+	width: 100%;
+	height: 10%;
+	background: #2c3e50;
+	border-bottom: 2px solid white;
+}
+
+#leftSpace ul {
+	list-style-type: none;
+	padding-left: 0px;
+	padding: 20px;
+	margin-top: 0px;
+}
+
+#leftSpace ul>li {
+	padding: 25px;
+}
+
+#leftSpace ul>li>span {
+	float: right;
+	margin-top: 10px;
+	font-size: large;
+	margin-right: 10px;
+}
+
+/* 문구 */
+#adminSpace>ul>li>a, #adminFaq>ul>li>a {
+	font-size: 14px;
+	color: white;
+	text-decoration: none;
+}
+
+/* 이미지 */
+#img_hotspotLogo {
+	width: 65px;
+	height: 65px;
+	margin-left: 15px;
+}

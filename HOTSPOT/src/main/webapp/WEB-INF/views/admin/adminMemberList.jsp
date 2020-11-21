@@ -10,7 +10,7 @@
 <link href="resources/css/admin/adminUserList.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="outer">
+<div class="outer">
 	<%@ include file="../common/menubar.jsp"%>
     	<%@ include file="sidebarSunkyung.jsp"%>
         <div id="rightSpace">
@@ -34,7 +34,7 @@
                       <tr>
                         <th width="30px">회원유형</th>
                         <th width="50px">아이디</th>
-                        <th width="50px">이름</th>
+                        <th width="50px">닉네임</th>
                         <th width="20px">이메일</th>
                         <th width="30px">전화번호</th>
                         <th width="45px">가입일</th>

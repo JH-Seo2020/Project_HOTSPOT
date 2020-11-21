@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- CSS -->
+<link href="resources/css/admin/sidebarSunkyung.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="leftSpace">
