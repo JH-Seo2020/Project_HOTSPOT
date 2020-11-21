@@ -35,6 +35,7 @@
         padding: 2% 2%;
         background-color: white;
     }
+    table>thead,tbody>tr>th,td{text-align:center;}
     /*페이지버튼*/
     #pagination{
         text-align: center;
@@ -51,6 +52,9 @@
         color: white;
         border: white;
     }
+    .purple:hover{
+    	color:gray;
+    }
     .black{
         color: black !important;
         text-decoration: none !important;
@@ -58,6 +62,7 @@
     }
     .disabled{
     	disabled:true;
+    	background-color: black;
     }
 </style>
 </head>
@@ -70,7 +75,7 @@
         <div id="noticeTitle">
             <p>공지사항</p>
         </div>
-        <form id="noticeSearch">
+        <form id="noticeSearch" style="border:3px solid lavender; padding:2%;">
             <div class="input-group mb-3">
                 <span style="font-size: 20px;">공지사항 검색 |</span>&nbsp;&nbsp;
                 <input type="text" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -80,20 +85,21 @@
             </div>
         </form>
         <div id="noticeSpace">
-            <table class="table table-hover">
+            <table class="table table-hover table-striped">
                 <thead>
                   <tr>
+                  	<th scope="col" >글번호</th>
                     <th scope="col" >제목</th>
                     <th scope="col">작성일</th>
                   </tr>
                 </thead>
                 <tbody>
-                	<!-- 글번호를 만드는게 낫겠다 -->
                 	<c:forEach var="v" items="${list }">
 		                  <tr>
-		                    <th scope="row">
+		                  	<th>${v.noticeNo }</th>
+		                    <td scope="row">
 		                        <a href="" class="black">${v.noticeTitle }</a>
-		                    </th>
+		                    </td>
 		                    <td>${v.createDate }</td>
 		                  </tr>
                 	</c:forEach>  
@@ -102,26 +108,25 @@
               </table>
         </div>
         <div id="pagination">
-        	<!-- 아직 링크연결 안했음. -->
         	<c:choose>
         		<c:when test="${pi.currentPage eq 1 }">
-		            <button class="badge badge-pill badge-warning disabled">이전</button>
+		            <a class="badge badge-pill purple disabled">이전</a>
 		        </c:when>
 		        <c:otherwise>
-		        	<button class="badge badge-pill badge-warning">이전</button>
+		        	<a href="notice.guest?currentPage=${pi.currentPage-1}" class="badge badge-pill purple">이전</a>
 		        </c:otherwise>
 		    </c:choose>
 		    
 		    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
-		            <button class="badge badge-pill badge-warning">${p }</button>
+		            <a href="notice.guest?currentPage=${p }" class="badge badge-pill purple">${p }</a>
 		    </c:forEach>
 		            
 		    <c:choose>
 		    	<c:when test="${pi.currentPage eq pi.maxPage}" >
-		    		<button class="badge badge-pill badge-warning disabled">다음</button>
+		    		<a class="badge badge-pill purple disabled">다음</a>
 		    	</c:when>
 		    	<c:otherwise>
-		    		<button class="badge badge-pill badge-warning">다음</button>
+		    		<a href="notice.guest?currentPage=${pi.currentPage +1 }" class="badge badge-pill purple">다음</a>
 		    	</c:otherwise>
 		    </c:choose>        
 		            
