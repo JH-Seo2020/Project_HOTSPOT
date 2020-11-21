@@ -58,7 +58,9 @@ ul {
 p {
   display: inline;
 }
-
+#logo2 p{
+	font-size:17px;
+}
 .navbarMenu {
   margin-left: auto;
 }

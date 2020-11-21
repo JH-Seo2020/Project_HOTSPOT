@@ -29,6 +29,9 @@ th{
     .hostInsertTable{
         width:700px;
     }
+     .hostInsertTable td{
+     margin:5px;
+     }
     .form-control{
     height: calc(1.3em + .75rem + 2px);
     font-weight: 300;
@@ -87,6 +90,6 @@ th{
     	margin-left:20px;
     	height:35px;
     }
-    #accout{
-    margin-right:10px
+    #accountNo{
+    width:220px;
     }

@@ -169,23 +169,23 @@
                             <label class="form-check-label" for="inlineCheckbox2">화</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="수">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="수">
                             <label class="form-check-label" for="inlineCheckbox2">수</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="목">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="목">
                             <label class="form-check-label" for="inlineCheckbox2">목</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="금">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="금">
                             <label class="form-check-label" for="inlineCheckbox2">금</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="토">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="토">
                             <label class="form-check-label" for="inlineCheckbox2">토</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="일">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="일">
                             <label class="form-check-label" for="inlineCheckbox2">일</label>
                         </div>
                     </div> 
@@ -218,42 +218,41 @@
                       });
                   
                     </script>
-                    
-                    
+                   
        
                     
                     <div class="convenience" style="margin-top:35px; margin-bottom:40px";>
                         <p style="margin-right: 65px;">편의사항</p>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <input class="form-check-input" type="checkbox" id="Checkbox1" value="option1">
                                 <label class="form-check-label" for="inlineCheckbox1">냉난방</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <input class="form-check-input" type="checkbox" id="Checkbox2" value="option2">
                                 <label class="form-check-label" for="inlineCheckbox2">tv</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option2">
+                                <input class="form-check-input" type="checkbox" id="Checkbox3" value="option2">
                                 <label class="form-check-label" for="inlineCheckbox2">창고</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option2">
+                                <input class="form-check-input" type="checkbox" id="Checkbox4" value="option2">
                                 <label class="form-check-label" for="inlineCheckbox2">컴퓨터</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option2">
+                                <input class="form-check-input" type="checkbox" id="Checkbox5" value="option2">
                                 <label class="form-check-label" for="inlineCheckbox2">카페</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option2">
+                                <input class="form-check-input" type="checkbox" id="Checkbox6" value="option2">
                                 <label class="form-check-label" for="inlineCheckbox2">복사</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option2">
+                                <input class="form-check-input" type="checkbox" id="Checkbox7" value="option2">
                                 <label class="form-check-label" for="inlineCheckbox2">다과</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option2">
+                                <input class="form-check-input" type="checkbox" id="Checkbox8" value="option2">
                                 <label class="form-check-label" for="inlineCheckbox2">와이파이</label>
                             </div>
                         </div> 
