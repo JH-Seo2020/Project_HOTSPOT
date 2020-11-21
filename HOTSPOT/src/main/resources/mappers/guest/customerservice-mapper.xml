@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="customerservicemapper">
+
+	<resultMap id="noticeSet" type="VoicesNotice">
+		<id column="NOTICE_NO" property="noticeNo" />
+		<result column="USER_ID" property="userId" />
+		<result column="NOTICE_TITLE" property="noticeTitle" />
+		<result column="COUNT" property="count" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="MODIFY_DATE" property="modifyDate" />
+		<result column="STATUS" property="status" />
+		<result column="NOTICE_CONTENT" property="noticeCon" jdbcType="CLOB" javaType="java.lang.String"/>
+	</resultMap>
+
+	<select id="selectListCount" resultType="_int">
+		select
+		       count(*)
+		  from notice
+		 where status='Y'
+	</select>
+  	
+  	<select id="selectList" resultMap="noticeSet">
+  		select notice_no
+		     , notice_title
+		     , create_date
+		  from notice
+		 where status='Y'
+		 order
+		    by notice_no desc
+  	</select>
+  	
+  	
+
+</mapper>

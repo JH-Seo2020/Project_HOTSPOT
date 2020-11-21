@@ -56,6 +56,9 @@
         text-decoration: none !important;
         font-weight: lighter;
     }
+    .disabled{
+    	disabled:true;
+    }
 </style>
 </head>
 <body>
@@ -85,42 +88,43 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">
-                        <a href="" class="black">코로나 확산으로 인한 공간대여 안내드립니다</a>
-                    </th>
-                    <td>2020-10-10</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                        <a href="" class="black">코로나 확산으로 인한 공간대여 안내드립니다</a>
-                    </th>
-                    <td>2020-10-10</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                        <a href="" class="black">코로나 확산으로 인한 공간대여 안내드립니다</a>
-                    </th>
-                    <td>2020-10-10</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                        <a href="" class="black">코로나 확산으로 인한 공간대여 안내드립니다</a>
-                    </th>
-                    <td>2020-10-10</td>
-                  </tr>                  <tr>
-                    <th scope="row">
-                        <a href="" class="black">코로나 확산으로 인한 공간대여 안내드립니다</a>
-                    </th>
-                    <td>2020-10-10</td>
-                  </tr>
+                	<!-- 글번호를 만드는게 낫겠다 -->
+                	<c:forEach var="v" items="${list }">
+		                  <tr>
+		                    <th scope="row">
+		                        <a href="" class="black">${v.noticeTitle }</a>
+		                    </th>
+		                    <td>${v.createDate }</td>
+		                  </tr>
+                	</c:forEach>  
+                	
                 </tbody>
               </table>
         </div>
         <div id="pagination">
-            <button class="badge badge-pill badge-warning">이전</button>
-            <button class="badge badge-pill badge-warning">1</button>
-            <button class="badge badge-pill badge-warning">2</button>
+        	<!-- 아직 링크연결 안했음. -->
+        	<c:choose>
+        		<c:when test="${pi.currentPage eq 1 }">
+		            <button class="badge badge-pill badge-warning disabled">이전</button>
+		        </c:when>
+		        <c:otherwise>
+		        	<button class="badge badge-pill badge-warning">이전</button>
+		        </c:otherwise>
+		    </c:choose>
+		    
+		    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
+		            <button class="badge badge-pill badge-warning">${p }</button>
+		    </c:forEach>
+		            
+		    <c:choose>
+		    	<c:when test="${pi.currentPage eq pi.maxPage}" >
+		    		<button class="badge badge-pill badge-warning disabled">다음</button>
+		    	</c:when>
+		    	<c:otherwise>
+		    		<button class="badge badge-pill badge-warning">다음</button>
+		    	</c:otherwise>
+		    </c:choose>        
+		            
         </div>
     </div>
 

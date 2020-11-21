@@ -19,7 +19,7 @@
 		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Member" alias="Member"/>
 		<!-- 메인,게스트공간(지혜) -->
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.SpaceInfo" alias="SpaceInfo" />
-		
+		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesNotice" alias="VoicesNotice" />
 	</typeAliases>
 	
 	
@@ -38,7 +38,7 @@
 		
 		<!-- 메인,게스트공간(지혜) -->
 		<mapper resource="mappers/guest/guestspace-mapper.xml"/>
-		
+		<mapper resource="mappers/guest/customerservice-mapper.xml"/>
 	</mappers>
 	
 
