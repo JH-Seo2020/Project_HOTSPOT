@@ -56,6 +56,9 @@
     box-shadow: 3px 3px 3px 3px rgba(39, 39, 39, 0.582);
     padding-right: 13px;
 }
+.login_popup>form{
+	margin-left:4%;
+}
 #loginInputBtn{
     width: 280px;
     height: 40px;

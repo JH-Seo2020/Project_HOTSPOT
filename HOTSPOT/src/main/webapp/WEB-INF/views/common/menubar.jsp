@@ -30,7 +30,7 @@
 	
 
 	<div id="menubar">
-        <div id="logoSpace"><a href=""><img src="resources/images/logo_letter_1.png" width="100%" height="70%"></a></div>
+        <div id="logoSpace"><a href="/hotspot"><img src="resources/images/logo_letter_1.png" width="100%" height="70%"></a></div>
         <div id="search">
             <form action="" method="">
                 <input type="search" placeholder="검색어를 입력하세요!">
@@ -38,9 +38,9 @@
             </form>
         </div>
         <div id="menuOptions">
-            <div><a></a></div>
             <c:choose>
             	<c:when test="${ empty loginUser }">
+		            <div><a></a></div>
 		            <!-- 로그인 버튼 -->
 		            <div><a id="loginBtn" style="cursor: pointer;">로그인</a></div>
 		
@@ -54,9 +54,9 @@
 			                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
 			                    <label style="font-size: 25px; font-weight: bold;">로그인</label><br>
 			                    <br>
-			                        <input type="text" name="userId" id="userId" placeholder="아이디" style="width: 280px;"><br><br>
-			                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;">
-								<br><br>
+			                        <input type="text" name="userId" id="userId" placeholder="아이디" style="width: 280px;" class="form-control"><br>
+			                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;" class="form-control">
+								<br>
 			                    	<button type="submit" id="loginInputBtn">로그인 하기</button> 
 			                    <br><br>
 			                    <div style="font-size: 12px;">
