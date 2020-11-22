@@ -34,7 +34,7 @@
         <div id="search">
             <form action="" method="">
                 <input type="search" placeholder="검색어를 입력하세요!">
-                <div><a href=""><img src="resources/images/serarch_icon.png" width="80%" height="90%"></a></div>
+                <div><a href="test.search"><img src="resources/images/serarch_icon.png" width="80%" height="90%"></a></div>
             </form>
         </div>
         <div id="menuOptions">
@@ -77,7 +77,7 @@
 			                </a>
 			                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			                  <a class="dropdown-item" href="notice.guest">공지사항조회</a>
-			                  <a class="dropdown-item" href="#">자주묻는질문(챗봇,1:1문의)</a>
+			                  <a class="dropdown-item" href="faq.guest">자주묻는질문(챗봇,1:1문의)</a>
 			                </div>
 		            	</div>
 			        </c:when>

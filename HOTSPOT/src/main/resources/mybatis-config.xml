@@ -22,6 +22,8 @@
 		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesNotice" alias="VoicesNotice" />
 		<!-- 호스트 관련(지은) -->
 		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="HostInfo" />
+		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesFaq" alias="VoicesFaq" />
+		
 	</typeAliases>
 	
 	

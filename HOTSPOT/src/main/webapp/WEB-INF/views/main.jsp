@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>핫스팟(main.hotspot)</title>
 <style>
         /*여기서부터 메인화면 스타일*/
         #spaceIcons{
@@ -125,6 +125,11 @@
         .half_background{background: linear-gradient(to top, #FCE205 50%, transparent 50%);}
         .half_background2{background: linear-gradient(to top, #DCD0FF 50%, transparent 50%);}
         .half_background3{background: linear-gradient(to top, #DCD0FF 50%, transparent 50%); font-size:13px;}
+		.img_hotspotLogo{
+			width: 15px;
+			height: 15px;
+			margin-right: 5px;
+		}
 </style>
 </head>
 <body>
@@ -205,8 +210,8 @@
 		                <div style="color:gray;">${location2} | #${today.spcTag }</div>
 		                <div>
 		                    <span style="color: rebeccapurple; font-weight: bold;">${today.spcPrice }원/시간</span>
-		                    <span class="badge badge-pill badge-warning">후기 ${today.reviews }개</span>
-		                    <span class="badge badge-pill badge-warning">관심 ${today.wishes }개</span>
+		                    <span class="badge badge-pill badge-warning"><img class="img_hotspotLogo" src="resources/images/common/main_reviewIcon.png">후기 ${today.reviews }개</span>
+		                    <span class="badge badge-pill badge-warning"><img class="img_hotspotLogo" src="resources/images/common/main_wishIcon.png">관심 ${today.wishes }개</span>
 		                </div>
 		            </div>
 		            

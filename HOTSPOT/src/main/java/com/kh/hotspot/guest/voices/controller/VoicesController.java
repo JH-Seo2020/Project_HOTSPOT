@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.voices.model.service.VoicesService;
+import com.kh.hotspot.guest.voices.model.vo.VoicesFaq;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 
 
@@ -56,6 +57,24 @@ public class VoicesController {
 		
 		return "guest/voices/noticeDetailView";
 		
+	}
+	
+	@RequestMapping("faq.guest")
+	public String faqForGuest(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
+		
+		//1.게시글개수조회
+		int listCount = vService.selectFaqListCount();
+		
+		//2.페이지네이션처리(5,5)
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		
+		//3.게시글리스트조회
+		ArrayList<VoicesFaq> list = vService.selectFaqList(pi);
+		
+		model.addAttribute("pi",pi);
+		model.addAttribute("list",list);
+		
+		return "guest/voices/faqListView";
 	}
 
 }
