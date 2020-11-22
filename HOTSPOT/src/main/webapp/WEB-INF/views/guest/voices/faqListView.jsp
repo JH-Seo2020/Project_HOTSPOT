@@ -26,7 +26,7 @@
         height: auto;
         margin-top: 4%;
         margin-bottom: 4%;
-        border:3px solid rebeccapurple;
+        border:3px solid lavender;
         padding:2%;
     }
     /*공지사항 테이블*/
@@ -50,9 +50,9 @@
     }
     /*기타 css*/
     .purple{
-        background-color: rebeccapurple;
-        color: white;
-        border: white;
+        background-color: rebeccapurple !important;
+        color: white !important;
+        border: white !important;
     }
     .black{
         color: black !important;
@@ -67,9 +67,18 @@
     .type{width: 20%;}
     .answers{
         display: none;
-        background-color: lavender;
+        border:3px solid rebeccapurple;
     }
     .forRight{float: right;}
+        .black{
+        color: black !important;
+        text-decoration: none !important;
+        font-weight: lighter;
+    }
+    .disabled{
+    	disabled:true;
+    	background-color: black !important;
+    }
 </style>
 </head>
 <body>
@@ -109,9 +118,9 @@
                 </thead>
                 <tbody>
                 
-                	<c:forEach var="f" items="${list }">
+                	<c:forEach var="f" items="${list }" varStatus="index">
                 	
-		                    <tr onclick="fnAnswer(0);" class="off">
+		                    <tr onclick="fnAnswer(${index.count}-1);" class="off">
 		                        <th scope="row">
 		                            <a class="black">${f.faqType}</a>
 		                        </th>
@@ -132,9 +141,29 @@
             <button class="forRight btn purple" type="button">챗봇으로 물어보기</button> 
         </div>
         <div id="pagination">
-            <button class="badge badge-pill badge-warning">이전</button>
-            <button class="badge badge-pill badge-warning">1</button>
-            <button class="badge badge-pill badge-warning">2</button>
+
+        	<c:choose>
+        		<c:when test="${pi.currentPage eq 1 }">
+		            <a class="badge badge-pill purple disabled">이전</a>
+		        </c:when>
+		        <c:otherwise>
+		        	<a href="faq.guest?currentPage=${pi.currentPage-1}" class="badge badge-pill purple">이전</a>
+		        </c:otherwise>
+		    </c:choose>
+		    
+		    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
+		            <a href="faq.guest?currentPage=${p }" class="badge badge-pill purple">${p }</a>
+		    </c:forEach>
+		            
+		    <c:choose>
+		    	<c:when test="${pi.currentPage eq pi.maxPage}" >
+		    		<a class="badge badge-pill purple disabled">다음</a>
+		    	</c:when>
+		    	<c:otherwise>
+		    		<a href="faq.guest?currentPage=${pi.currentPage +1 }" class="badge badge-pill purple">다음</a>
+		    	</c:otherwise>
+		    </c:choose>   
+
         </div>
     </div>
 
