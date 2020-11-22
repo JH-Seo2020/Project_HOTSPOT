@@ -1,10 +1,25 @@
 package com.kh.hotspot.host.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.kh.hotspot.host.model.service.HostService;
+import com.kh.hotspot.host.model.vo.HostInfo;
+
 @Controller
 public class HostController {
+	@Autowired 
+	private HostService hService;
+	
 	/**
 	 * @author jieun
 	 * @return 호스트메인페이지
@@ -13,13 +28,77 @@ public class HostController {
 	public String hostMain() {
 		
 		return "host/common/hostMain";
-		
 	}
-	
+	/**
+	 * @author jieun
+	 * @return 호스트등록페이지
+	 */
 	@RequestMapping("hostEnrollForm.ho")
 	public String hostEnrollForm() {
-		
 		return "host/hostPage/hostEnrollForm";
+	}
+	/**
+	 * @author jieun
+	 * @return 호스트등록
+	 */
+	@RequestMapping("insertHost.ho")
+	public String hostEnroll(HttpSession session,HostInfo hi,MultipartFile upfile) {
+		
+		// 1. 파일 작업 
+		// 전달 된 파일이 있을 경우 => 파일명 수정 작업 후 업로드 
+		if(!upfile.getOriginalFilename().equals("")) {
+			
+			String changeName = saveFile(upfile,session); // 공통으로 쓰이게끔 뺀 메소드 호출만으로 끝
+			
+			if(changeName != null) {
+				hi.setBusinessLicense(upfile.getOriginalFilename());
+				hi.setLicensePath("resources/upFiles/" + changeName);
+			}
+		}
+				System.out.println(hi);
+				
+		//2. 서비스 호출 
+		int result = hService.insertHost(hi);
+		
+		//3. result 
+		if(result > 0) {
+			session.setAttribute("alertMsg", "호스트등록이 완료 되었습니다. 검수 후 승인여부는 이메일 발송으로(1~2일 소요)안내 드리겠습니다.");
+			return "redirect:hostMain.ho";
+			
+		}else { // 실패 할 경우 
+			return "common/errorPage";
+		}
+		
+	}
+	/**
+	 * @author jieun
+	 * @param upfile
+	 * @param session
+	 * @return 파일 수정명
+	 */
+	public String saveFile(MultipartFile upfile, HttpSession session) {
+		
+		String originName = upfile.getOriginalFilename();
+		
+		// 저장시킬 폴더의 물리적인 경로 
+		String savePath = session.getServletContext().getRealPath("/resources/upFiles/");
+		
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		int ranNum = (int)(Math.random() * 90000 + 10000);
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		String changeName = currentTime + ranNum + ext;
+		
+		try {
+			upfile.transferTo(new File(savePath + changeName));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			return changeName;
 	}
 	
 	@RequestMapping("hostInquiry.ho")
