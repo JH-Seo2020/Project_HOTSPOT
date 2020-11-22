@@ -19,7 +19,7 @@
   		<result column="user_memo" property="userMemo" />
   	</resultMap>
   	
-  	 <select id="loginMember" parameterType="string" resultMap="memberResultSet">
+  	 <select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 		select
 		       user_id
 		     , user_type
@@ -74,6 +74,17 @@
   		  from member
   		 where user_nickname = #{userNickname} 
   	</select>
+  	
+  	<update id="updateMember" parameterType="Member">
+	  	update
+		        member
+		    set user_nickname=#{userNickname}
+		      , user_email=#{userEmail}
+		      , user_phone=#{userPhone}
+		      , user_pwd=#{userPwd}
+		      , modify_date=#{modifyDate}
+		  where user_id=#{userId}
+  	</update>
   	
 
 </mapper>

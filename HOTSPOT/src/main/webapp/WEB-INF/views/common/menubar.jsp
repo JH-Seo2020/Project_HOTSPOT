@@ -93,7 +93,7 @@
 		                </div>
 		                <div id="myPage_Content">
 		                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
-		                    <label style="font-size: 25px; font-weight: bold;">${ loginUser.userNickname }</label><br>
+		                    <label style="font-size: 25px; font-weight: bold;">${ loginUser.userNickname } 님</label><br>
 		                    <a href="myProfile.me"><span>프로필 관리</span></a>
 		                    <br><hr>
 		                    <table id="myPageMenu">

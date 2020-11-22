@@ -67,7 +67,7 @@
             <h2 align="center">내 프로필 관리</h2> 
 
             <br><hr><br><br>
-            <form action="" method="POST" id="myProfile" enctype="multipart/form-data">
+            <form action="myProfile.me" method="POST" id="myProfile" enctype="multipart/form-data">
                 <div id="profileImage"><img src="resources/images/profileImage.png"><h2 align="center">${ loginUser.userId }</h2>
                 
                 </div>
@@ -88,7 +88,7 @@
                 </div>
                 <br><br><hr><br>
                 <div id="profileBtn" align="center"> 
-                    <button type="submit" onclick="">내 프로필 수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" onclick="location.href='profileUpdate.me'">내 프로필 수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button">서비스 탈퇴하기</button>
                 </div>
             </form>

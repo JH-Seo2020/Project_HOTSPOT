@@ -25,11 +25,11 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.me")
-	public String loginMember(@RequestParam("userId") String userId, HttpSession session, Model model) {
+	public String loginMember(Member m, HttpSession session, Model model) {
 		
 		
 		
-		Member loginUser = mService.loginMember(userId);
+		Member loginUser = mService.loginMember(m);
 		
 		System.out.print(loginUser);
 		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())*/) { // 로그인 성공
@@ -140,6 +140,36 @@ public class MemberController {
 		
 		return "guest/myPage/myProfile";
 		
+	}
+	
+	
+	@RequestMapping("profileUpdate.me")
+	public String selectUpdateMember() {
+		
+		return "guest/myPage/myProfileUpdate";
+		
+	}
+	
+	@RequestMapping("update.me")
+	public String updateMember(Member m, HttpSession session, Model model) {
+		
+		int result = mService.updateMember(m);
+		
+		
+		if(result > 0) { // 정보수정성공
+			
+			session.setAttribute("loginUser", mService.loginMember(m));
+			System.out.println(m);
+			session.setAttribute("alertMsg", "성공적으로 정보수정되었습니다.");
+			
+			return "redirect:myPage.me";
+			
+		}else{
+			
+			model.addAttribute("errorMsg", "정보수정에 실패하셨습니다.");
+			return "common/errorPage";
+			
+		}
 	}
 
 }

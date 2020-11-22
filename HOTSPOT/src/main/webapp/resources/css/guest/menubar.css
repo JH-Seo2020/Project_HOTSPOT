@@ -54,6 +54,7 @@
     background: white;
     border-radius: 2px;
     box-shadow: 3px 3px 3px 3px rgba(39, 39, 39, 0.582);
+    text-align:center;
     padding-right: 13px;
 }
 .login_popup>form{
