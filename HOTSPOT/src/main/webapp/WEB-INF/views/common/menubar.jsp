@@ -84,7 +84,7 @@
 			            
 		       		<c:otherwise>
 		            <div id="GoToHostPage"><a href="hostMain.ho">🏚&nbsp;호스트페이지</a></div>
-		            <div><a id="myPageBtn" style="cursor: pointer;">마이페이지</a></div>
+		            <div><a id="myPageBtn" style="cursor: pointer;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지</a></div>
 		                       
 		
 		            <div class="myPage_popup" style=" width:300px; padding:50px; border-spacing: 5px 10px;">
@@ -119,7 +119,7 @@
 		                </div>
 		            </div>
 		            
-		            <div><a href="logout.me">로그아웃</a></div>
+		            <div><a href="logout.me">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그아웃</a></div>
 		            <div class="nav-item dropdown">
 		                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		                 	 고객센터
