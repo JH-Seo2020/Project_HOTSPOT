@@ -39,6 +39,21 @@ public class VoicesDao {
 		return sqlSession.selectOne("customerservicemapper.selectNotices", nno);
 	}
 
+	public int selectSearchNoticeCount(SqlSessionTemplate sqlSession, String keyword) {
+		
+		return sqlSession.selectOne("customerservicemapper.selectSearchNoticeCount", keyword);
+	}
+	
+	public ArrayList<VoicesNotice> selectSearchNoticeList(SqlSessionTemplate sqlSession, String keyword, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("customerservicemapper.selectSearchNoticeList", keyword, rowBounds);
+	}
+
 	
 	
 	//여기서부터 자주묻는질문(FAQ)
@@ -57,5 +72,6 @@ public class VoicesDao {
 		
 		return (ArrayList)sqlSession.selectList("customerservicemapper.selectFaqList", null, rowBounds);
 	}
+
 
 }

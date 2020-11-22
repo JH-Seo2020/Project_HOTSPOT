@@ -18,12 +18,13 @@ public interface VoicesService {
 	//2-2.공지사항 상세조회
 	VoicesNotice selectNotices(int nno);
 	
-	//3.공지사항 제목검색
-	ArrayList<VoicesNotice> selectSearchNotice(String keyword, PageInfo pi);
+	//3-1.공지사항 제목검색 시 게시글 개수 조회
+	int selectSearchNoticeCount(String keyword);
+	//3-2.공지사항 제목검색 리스트 가져오기
+	ArrayList<VoicesNotice> selectSearchNoticeList(String keyword, PageInfo pi);
 	
 	//4-1.faq게시글개수조회
 	int selectFaqListCount();
-	
 	//4-2.페이지가져오기(내용까지다)
 	ArrayList<VoicesFaq> selectFaqList(PageInfo pi);
 	

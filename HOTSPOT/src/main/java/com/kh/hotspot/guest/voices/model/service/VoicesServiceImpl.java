@@ -45,9 +45,15 @@ public class VoicesServiceImpl implements VoicesService{
 	}
 
 	@Override
-	public ArrayList<VoicesNotice> selectSearchNotice(String keyword, PageInfo pi) {
-		// TODO Auto-generated method stub
-		return null;
+	public int selectSearchNoticeCount(String keyword) {
+		
+		return vDao.selectSearchNoticeCount(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<VoicesNotice> selectSearchNoticeList(String keyword, PageInfo pi) {
+		
+		return vDao.selectSearchNoticeList(sqlSession, keyword, pi);
 	}
 
 	@Override
@@ -67,7 +73,6 @@ public class VoicesServiceImpl implements VoicesService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 
 }

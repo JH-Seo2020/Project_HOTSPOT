@@ -76,5 +76,25 @@ public class VoicesController {
 		
 		return "guest/voices/faqListView";
 	}
+	
+	@RequestMapping("searchNotice.guest")
+	public String faqSearchForGuest(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String keyword, Model model) {
+		
+		//1.게시글개수조회
+		int searchListCount = vService.selectSearchNoticeCount(keyword);
+		
+		//2.페이지네이션처리(5,5)
+		PageInfo pi = Pagination.getPageInfo(currentPage, searchListCount, 5, 5);
+		
+		//3.게시글리스트조회
+		ArrayList<VoicesNotice> list = vService.selectSearchNoticeList(keyword, pi);
+		
+		model.addAttribute("pi",pi);
+		model.addAttribute("list",list);
+		model.addAttribute("keyword",keyword);
+		
+		return "guest/voices/noticeListView";
+		
+	}
 
 }

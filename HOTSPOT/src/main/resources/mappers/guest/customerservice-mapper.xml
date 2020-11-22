@@ -57,6 +57,25 @@
 		   and notice_no = #{nno}
   	</select>
   	
+  	<select id="selectSearchNoticeCount" resultType="_int" parameterType="string">
+  		select
+		       count(*)
+		  from notice
+		 where status='Y'
+		   and NOTICE_TITLE like '%'||#{keyword}||'%'
+  	</select>
+  	
+  	<select id="selectSearchNoticeList" parameterType="string" resultMap="noticeSet">
+  		select notice_no
+		     , notice_title
+		     , create_date
+		  from notice
+		 where status='Y'
+		   and NOTICE_TITLE like '%'||#{keyword}||'%'
+		 order
+		    by notice_no desc
+  	</select>
+  	
   	<select id="selectFaqListCount" resultType="_int">
   		select count(*)
 		  from FAQ
