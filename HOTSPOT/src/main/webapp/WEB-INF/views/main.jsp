@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>핫스팟(main.hotspot)</title>
 <style>
         /*여기서부터 메인화면 스타일*/
         #spaceIcons{

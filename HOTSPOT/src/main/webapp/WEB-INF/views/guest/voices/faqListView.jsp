@@ -6,6 +6,71 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+    #noticeWrap{
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+    #noticeWrap div,form{
+        margin: auto;
+    }
+    #noticeTitle{
+        text-align: center;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    /*공지사항 검색*/
+    #noticeSearch{
+        width: 1200px;
+        height: auto;
+        margin-top: 4%;
+        margin-bottom: 4%;
+        border:3px solid rebeccapurple;
+        padding:2%;
+    }
+    /*공지사항 테이블*/
+    #noticeSpace{
+        width: 1200px;
+        height: auto;
+        padding: 2% 2%;
+        background-color: white;
+    }
+    .imgTd{width:5%;}
+    #ask{width: 1200px;height: auto;margin: auto;padding-top: 3%;}
+    /*페이지버튼*/
+    #pagination{
+        text-align: center;
+        padding: 4% 0;
+    }
+    #pagination>button{
+        border: none;
+        background-color: rebeccapurple;
+        color: white;
+    }
+    /*기타 css*/
+    .purple{
+        background-color: rebeccapurple;
+        color: white;
+        border: white;
+    }
+    .black{
+        color: black !important;
+        text-decoration: none !important;
+        font-weight: lighter;
+    }
+    .downImg{
+        width: 100%;
+        height: 5%;
+        cursor: pointer;
+    }
+    .type{width: 20%;}
+    .answers{
+        display: none;
+        background-color: lavender;
+    }
+    .forRight{float: right;}
+</style>
 </head>
 <body>
 
@@ -43,66 +108,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr onclick="fnAnswer(0);" class="off">
-                        <th scope="row">
-                            <a class="black">기타</a>
-                        </th>
-                        <td>핫스팟 이용에 문의가 있어요 </td>
-                        <td class="imgTd"><img src="down-arrow.png" class="downImg"></td>
-                    </tr>
-                    <tr class="answers">
-                        <td></td>
-                        <td>여기에다 적어야된다</td>
-                        <td></td>
-                    </tr>
-                    <tr onclick="fnAnswer(1);" class="off">
-                        <th scope="row">
-                            <a href="" class="black">이용후기 및 작성</a>
-                        </th>
-                        <td>이용 후기는 어떻게 작성할 수 있나요?</td>
-                        <td class="imgTd"><img src="down-arrow.png" class="downImg"></td>
-                    </tr>
-                    <tr class="answers">
-                        <td></td>
-                        <td>여기에다 적어야된다</td>
-                        <td></td>
-                    </tr>
-                    <tr onclick="fnAnswer(2);" class="off">
-                        <th scope="row">
-                            <a href="" class="black">예약 및 결제 </a>
-                        </th>
-                        <td>예약을 취소하고 싶어요.</td>
-                        <td class="imgTd"><img src="down-arrow.png" class="downImg"></td>
-                    </tr>
-                    <tr class="answers">
-                        <td></td>
-                        <td>여기에다 적어야된다</td>
-                        <td></td>
-                    </tr>
-                    <tr onclick="fnAnswer(3);" class="off">
-                        <th scope="row">
-                            <a href="" class="black">예약 및 결제 </a>
-                        </th>
-                        <td>현금영수증을 발급받을 수 있나요?</td>
-                        <td class="imgTd"><img src="down-arrow.png" class="downImg"></td>
-                    </tr>
-                    <tr class="answers">
-                        <td></td>
-                        <td>여기에다 적어야된다</td>
-                        <td></td>
-                    </tr>                  
-                    <tr onclick="fnAnswer(4);" class="off">
-                        <th scope="row">
-                            <a href="" class="black">취소 및 환불</a>
-                        </th>
-                        <td>카드 영수증은 어떻게 받나요?</td>
-                        <td class="imgTd"><img src="down-arrow.png" class="downImg"></td>
-                    </tr>
-                    <tr class="answers">
-                        <td></td>
-                        <td>여기에다 적어야된다</td>
-                        <td></td>
-                    </tr>
+                
+                	<c:forEach var="f" items="${list }">
+                	
+		                    <tr onclick="fnAnswer(0);" class="off">
+		                        <th scope="row">
+		                            <a class="black">${f.faqType}</a>
+		                        </th>
+		                        <td>${f.faqTitle } </td>
+		                        <td class="imgTd"><img src="resources/images/down-arrow.png" class="downImg"></td>
+		                    </tr>
+		                    <tr class="answers">
+		                        <td></td>
+		                        <td>${f.faqCon }</td>
+		                        <td></td>
+		                    </tr>
+		                    
+		        	</c:forEach>
                 </tbody>
               </table>
         </div>

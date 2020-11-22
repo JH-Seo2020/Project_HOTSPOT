@@ -77,7 +77,7 @@
 			                </a>
 			                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			                  <a class="dropdown-item" href="notice.guest">공지사항조회</a>
-			                  <a class="dropdown-item" href="#">자주묻는질문(챗봇,1:1문의)</a>
+			                  <a class="dropdown-item" href="faq.guest">자주묻는질문(챗봇,1:1문의)</a>
 			                </div>
 		            	</div>
 			        </c:when>
