@@ -134,7 +134,7 @@
 	            	<c:otherwise>
 	            	<!-- 검색요청 후 url -->
             		    <c:url var="searchURL" value="searchNotice.guest">
-       						<c:param name="currentPage" value="${p }" />
+       						<c:param name="currentPage" value="${pi.currentPage-1 }" />
        						<c:param name="keyword" value="${keyword }" />
        					</c:url>
 	        			<a href="${searchURL}" class="badge badge-pill purple">이전</a>
@@ -171,12 +171,19 @@
 	        			<a href="notice.guest?currentPage=${pi.currentPage +1 }" class="badge badge-pill purple">다음</a>
 	            	</c:when>
 	            	<c:otherwise>
-	            		<!-- 검색요청 후 url -->
-            		    <c:url var="searchURL" value="searchNotice.guest">
-       						<c:param name="currentPage" value="${p }" />
-       						<c:param name="keyword" value="${keyword }" />
-       					</c:url>
-	    				<a href="${searchURL }" class="badge badge-pill purple">다음</a>
+	            		<!-- 검색요청 후 url(검색결과있을때,없을때로 조건처리) -->
+	            		<c:choose>
+	            			<c:when test="${empty list }">
+	            				<a class="badge badge-pill purple disabled">다음</a>
+	            			</c:when>
+	            			<c:otherwise>
+		            		    <c:url var="searchURL" value="searchNotice.guest">
+		       						<c:param name="currentPage" value="${pi.currentPage +1 }" />
+		       						<c:param name="keyword" value="${keyword }" />
+		       					</c:url>
+			    				<a href="${searchURL }" class="badge badge-pill purple">다음</a>
+			    			</c:otherwise>
+			    		</c:choose>
 	            	</c:otherwise>
 	            </c:choose>
 	    	</c:otherwise>
