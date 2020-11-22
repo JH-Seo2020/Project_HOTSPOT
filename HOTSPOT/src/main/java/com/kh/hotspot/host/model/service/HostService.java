@@ -1,9 +1,12 @@
 package com.kh.hotspot.host.model.service;
 
-public class HostService {
+import com.kh.hotspot.host.model.vo.HostInfo;
+
+
+public interface HostService {
 
 	//1.호스트등록 
-	
+	int insertHost(HostInfo hi);
 	//2.호스트정보 조회
 	
 	//3.호스트정보 수정 

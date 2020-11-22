@@ -20,6 +20,8 @@
 		<!-- 메인,게스트공간(지혜) -->
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.SpaceInfo" alias="SpaceInfo" />
 		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesNotice" alias="VoicesNotice" />
+		<!-- 호스트 관련(지은) -->
+		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="HostInfo" />
 	</typeAliases>
 	
 	
@@ -39,6 +41,9 @@
 		<!-- 메인,게스트공간(지혜) -->
 		<mapper resource="mappers/guest/guestspace-mapper.xml"/>
 		<mapper resource="mappers/guest/customerservice-mapper.xml"/>
+		
+		<!-- 호스트 관련(지은) -->
+		<mapper resource="mappers/host/host-mapper.xml"/>
 	</mappers>
 	
 
