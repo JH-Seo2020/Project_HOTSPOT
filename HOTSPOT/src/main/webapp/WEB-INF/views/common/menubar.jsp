@@ -54,8 +54,8 @@
 			                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
 			                    <label style="font-size: 25px; font-weight: bold;">로그인</label><br>
 			                    <br>
-			                        <input type="text" name="userId" id="userId" placeholder="아이디" style="width: 280px;" class="form-control"><br>
-			                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;" class="form-control">
+			                        <input type="text" name="userId" id="userId" placeholder="아이디" style="width: 280px;"><br><br>
+			                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;"><br>
 								<br>
 			                    	<button type="submit" id="loginInputBtn">로그인 하기</button> 
 			                    <br><br>
@@ -94,8 +94,8 @@
 		                <div id="myPage_Content">
 		                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
 		                    <label style="font-size: 25px; font-weight: bold;">${ loginUser.userNickname } 님</label><br>
-		                    <a href="myProfile.me"><span>프로필 관리</span></a>
-		                    <br><hr>
+		                    <a href="myProfile.me"><span><small>내 프로필 관리</small></span></a>
+		                    <br><hr><br>
 		                    <table id="myPageMenu">
 		                    	<tr>
 			                        <td>
@@ -112,7 +112,7 @@
 			                    <tr>
 			                        <td>
 			                            <img src="resources/images/heart.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-			                            <a href=""><span>찜한공간</span></a><br>
+			                            <a href=""><span>찜한공간</span></a>
 			                        </td>
 			                     </tr>
 		                    </table>    
