@@ -34,10 +34,10 @@
 		<result column="map_longitude" property="longitude" />
 		<result column="map_location" property="location" />
 	</resultMap>
-	<!-- 
-	<resultMap id="selectQnaListResultSet" type="Qna">
+	 
+	<resultMap id="selectQnaListResultSet" type="hostQna">
 		<result column="qa_no" property="qaNo" />
-		<result column="qa_content" property="qaContent" />
+		<result column="qa_content"  jdbcType="CLOB" javaType="java.lang.String" property="qaContent" />
 		<result column="qa_writer" property="qaWriter" />
 		<result column="qa_date" property="qaDate" />
 		<result column="qa_answer" property="qaAnswer" />
@@ -45,7 +45,9 @@
 		<result column="qa_secret" property="qaSecret" />
 		<result column="user_id" property="userId" />
 		<result column="spc_no" property="spcNo" />
-	</resultMap> -->
+		<result column="spc_name" property="spcName" />
+		<result column="spc_type" property="spcType" />
+	</resultMap> 
   <insert id="insertHost" parameterType="HostInfo">
 	insert
 	  into host_info
@@ -136,19 +138,22 @@
 	 where spc_no = #{spcNo}
 	   and qa_status = 'Y'
   </select>
- <!--  <select id="selectQnaList" parameterType="_int" resultMap="selectQnaListResultSet">
-  select 
-  		 qa_no
-  		,qa_content
-  		,qa_writer
-  		,qa_date
-  		,qa_answer
-  		,qa_status
-  		,qa_secret
-  		,user_id
-  		,spc_no    
-  from question_answer
- where spc_no = #{spcNo}
-   and qa_status = 'Y'
-  </select> -->
+ <select id="selectQnaList" parameterType="_int" resultMap="selectQnaListResultSet">
+	select 
+	     qa_no
+	    ,qa_content
+	    ,qa_writer
+	    ,qa_date
+	    ,qa_answer
+	    ,qa_status
+	    ,qa_secret
+	    ,q.user_id
+	    ,q.spc_no
+	    ,s.spc_name
+	    ,s.spc_type
+	  from question_answer q
+	  join space_info s on(q.spc_no=s.spc_no)
+	  where q.spc_no = #{spcNo}
+	    and qa_status = 'Y'
+  </select>
 </mapper>

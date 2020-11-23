@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
-import com.kh.hotspot.guest.space.model.vo.Qna;
+import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.space.model.vo.Space;
 
@@ -38,8 +38,7 @@ public class HostDao {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,limit);
-		
-		ArrayList<Qna> list = (ArrayList)sqlSession.selectList("hostMapper.selectQnaList", spcNo, rowBounds);
+		ArrayList<Qna> list = (ArrayList)sqlSession.selectList("hostMapper.selectQnaList", spcNo);
 		System.out.println(list);
 		
 		return list;

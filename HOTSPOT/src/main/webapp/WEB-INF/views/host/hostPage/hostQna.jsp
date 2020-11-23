@@ -25,25 +25,32 @@
                 <form action="" method="post" id="selectQnaListForm">
                 	
                     <input type="text" name="spcNo" list="space" class="searchSpace"placeholder="공간을 선택해주세요">
-                    <c:forEach var="sp" items="${ space }">
+                  
                    <!--	<input type="hidden" name="spcNo" value="${ sp.spcNo }">  --> 
 	                    <datalist id="space">
+	                      <c:forEach var="sp" items="${ space }">
 	                        <option class="hiddenSpcNo"value="${sp.spcNo }">${sp.spcName}</option>
+	                       </c:forEach>
 	                    </datalist>
-           		    </c:forEach>
+           		  
                     <input type="image" img src="resources/images/host_images/search.png" onclick="searchSubmit();" class="searchIcon"style="width: 25px;height:25px; border:0px;"></input>
                 </form>
             </div>
          </div>
         <div class="qnaSpace" style="background-color: rgb(250, 248, 249); margin-top: 20px;">
             <div></div>
+            <c:if test="${ list == null}">
+            	<div><h5>작성 된 Q&A가 없습니다 !</h5></div>
+            </c:if>
             <c:forEach var="li" items="${list}">
             <div class="qna_1">
                 <div class="question">
-                    <h5>공간명 :[카페]그리다움
-                    <span style="color:red; margin-right:30px;">[비밀글]</span>
+                    <h5>공간명 :[${li.spcType }]${li.spcName }
+                    <c:if test="${li.qaSecret eq 'Y' }">
+                   		 <span style="color:red; margin-right:30px;">[비밀글]</span>
+                    </c:if>
                     </h5><br>
-                    <p>질문</p><Br><br>
+                    <p>${li.qaContent}</p><Br><br>
                     <span>${li.qaDate }</span>
                 </div><hr>
                 <div class="answer">
