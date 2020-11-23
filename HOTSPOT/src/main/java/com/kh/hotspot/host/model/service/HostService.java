@@ -7,8 +7,8 @@ public interface HostService {
 
 	//1.호스트등록 
 	int insertHost(HostInfo hi);
-	//2.호스트정보 조회
-	
+	//2.호스트 조회
+	HostInfo selectHost(String userId);
 	//3.호스트정보 수정 
 	int updateHost(HostInfo hi);
 	//4.1:1문의 내역 조회 

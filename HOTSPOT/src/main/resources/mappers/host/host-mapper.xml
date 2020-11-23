@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="hostMapper">
+	<resultMap id="hostInfoResultSet" type="HostInfo">
+		<result column="user_id" property="userId" />
+		<result column="business_no" property="businessNo" />
+		<result column="business_name" property="businessName" />
+		<result column="business_license" property="businessLicense" />
+		<result column="license_path" property="licensePath" />
+		<result column="business_loc" property="businessLoc" />
+		<result column="business_acc" property="businessAcc" />
+		<result column="business_phone" property="businessPhone" />
+		<result column="business_email" property="businessEmail" />
+		<result column="host_status" property="hostStatus" />
+	</resultMap>
   <insert id="insertHost" parameterType="HostInfo">
 	insert
 	  into host_info
@@ -44,4 +56,21 @@
 		 where user_id = #{userId};
   
   </update>
+  <select id="selectHost" parameterType="string" resultMap="hostInfoResultSet" >
+  	select  
+  			user_id 
+  		   ,business_no
+  		   ,business_name
+  		   ,business_license
+  		   ,license_path
+  		   ,business_loc
+  		   ,business_acc
+  		   ,business_phone
+  		   ,business_email
+  		   ,host_status
+	      
+	  from  host_info
+	 where  user_id =  #{userId}
+  
+  </select>
 </mapper>

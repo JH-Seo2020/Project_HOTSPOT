@@ -26,6 +26,9 @@ public class HostServiceImpl implements HostService {
 	public int updateHost(HostInfo hi) {
 		int result = hDao.updateHost(sqlSession, hi);
 		return result;
+	public HostInfo selectHost(String userId) {
+		HostInfo hi = hDao.selectHost(sqlSession, userId);
+		return hi;
 	}
 
 	
