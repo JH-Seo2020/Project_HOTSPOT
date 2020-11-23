@@ -30,6 +30,13 @@
   		
   	</resultMap>
   	
+  	<resultMap id="spaceImageSet" type="SpaceImages">
+  		<id column="IMG_NO" property="imgNo" />
+  		<result column="IMG_OGIMG" property="imgOgimg" />
+  		<result column="IMG_CHIMG" property="imgChimg" />
+  		<result column="SPC_NO" property="spcNo" />
+  	</resultMap>
+  	
   	<!-- 투데이베스트 -->
   	 <select id="selectTodaySpace" resultMap="spaceInfoResultSet"> 
   	 	select *
@@ -91,5 +98,22 @@
 		WHERE ROWNUM &lt; 10
   	 </select>
   	
+  	<select id="selectSpaceDetail" parameterType="_int" resultMap="spaceInfoResultSet">
+  		select *
+		  from space_info
+		 where spc_no = #{spcNo}
+		   and spc_status = 'Y'
+  	</select>
+  	
+  	<select id="selectSpaceImages" parameterType="_int" resultMap="spaceImageSet">
+  		select spc_no
+		     , img_no
+		     , img_ogimg
+		     , img_chimg
+		from spc_images
+		join space_info using(spc_no)
+		where spc_no = #{spcNo}
+		and spc_status = 'Y'
+  	</select>
 
 </mapper>
