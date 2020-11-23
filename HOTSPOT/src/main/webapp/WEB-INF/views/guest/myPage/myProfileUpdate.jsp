@@ -68,7 +68,7 @@
                  <div id="mainProfile">
                     <div>
                         <label for="userNickName">닉네임</label> &nbsp;&nbsp;&nbsp;
-                        <input type="text" name ="userNickname" id="userNickname" value="${ loginUser.userNickname }">
+                        <input type="text" name ="userNickname" id="userNickname" value="${ loginUser.userNickname }"><br>
                         <span id="checkNickname" style="font-size:0.8em"></span><br><br>
                         
                         <label for="userEmail">이메일</label> &nbsp;&nbsp;&nbsp;
@@ -76,7 +76,7 @@
                         <button type="button" id="emailCode">이메일 인증</button><br><br>
                         
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" name="emailConfirmCode" placeholder="인증코드를 입력하세요."><br><br>
+                        <input type="text" name="emailConfirmCode" placeholder="인증코드를 입력하세요."><br><br><br>
 
                         <label for="userPhone">연락처</label>&nbsp;&nbsp;&nbsp;
                         <input type="text" name ="userPhone" id="profilePhone" value="${ loginUser.userPhone }"><br>
@@ -90,7 +90,7 @@
                         <label for="userPwd_Update">새 비밀번호<br>
                         	<input type="password" name="userPwd_Update" id="userPwd_Update" style="width: 250px"><br>
                         </label><br>
-                        <span id="checkUpdatePwd" style="font-size:0.8em">숫자,특문 각 1회 이상,영문은 2개 이상 사용하여<br> 8자리 이상 입력해주세요.</span><br><br>
+                        <span id="checkUpdatePwd" style="font-size:0.8em">숫자, 특문 각 1회 이상,영문은 2개 이상 사용하여<br> 8자리 이상 입력해주세요.</span><br><br>
 
                         <label for="userPwd_Check">새 비밀번호 확인 <br>
                         	<input type="password" name="userPwd_Check" id="userPwd_Check" style="width: 250px">
@@ -155,11 +155,12 @@
 	    						
 	    						if(result == 'success'){
 	    							$("#checkNickname").show();
-	    							$("#checkNickname").css("color", "green").text("사용가능한 닉네임입니다.");
+	    							$("#checkNickname").css("color", "rgb(145, 37, 247)").text("사용가능한 닉네임입니다.");
 	    						
 	    						}else{
 	    							$("#checkNickname").show();
-	    							$("#checkNickname").css("color", "red").text("중복된 닉네임이 존재합니다 다시입력해주세요.");
+	    							$("#checkNickname").css("color", "red").text("중복된 닉네임이 존재합니다.");
+	    							
 	    						}
 	    					},error:function(){
 	    						console.log("닉네임 중복체크용 ajax 통신실패")
@@ -167,7 +168,7 @@
 	    					}
 	    				})
 	    			}else{
-	    				$("#checkNickanme").hide();
+	    				$("#checkNickname").hide();
 	    			}
 	    		})
 	    	})
