@@ -144,4 +144,34 @@ public class HostController {
 	public String hostCalculateForm() {
 		return "host/hostPage/hostCalculateForm";
 	}
+	
+	@RequestMapping("hostMyPage.ho")
+	public String hostMyPage() {
+		
+		
+		return "host/hostPage/hostMyPage.jsp";
+	}
+	
+	@RequestMapping("modify.ho")
+	public String modifyHost() {
+		
+		return "host/hostPage/hostMyPageModify.jsp";
+	}
+	
+	@RequestMapping("updateHost.ho")
+	public String updateHost(HttpSession session,HostInfo hi,MultipartFile upfile) {
+		
+		if(!upfile.getOriginalFilename().equals("")) {
+			
+			String changeName = saveFile(upfile,session); // 공통으로 쓰이게끔 뺀 메소드 호출만으로 끝
+			
+			if(changeName != null) {
+				hi.setBusinessLicense(upfile.getOriginalFilename());
+				hi.setLicensePath("resources/upFiles/" + changeName);
+			}
+		}
+		int result =hService.updateHost(hi);
+		
+		return "";
+	}
 }

@@ -43,10 +43,11 @@
     }
 </style>
 <body>
-	<jsp:include page="../common/hostmenubar.jsp"/>
+	<jsp:include page="../common/hostMenubar.jsp"/>
+	<jsp:include page="../common/subMenubar.jsp"/>
 
     <div align="left" id="noticebar">
-        <img src="">
+        <img src="resources/images/logo_letter_1.png">
         <label style="color: yellowgreen; font-size: large ;">MYPAGE</label><hr>
     </div>
     <div id="MyPageForm">
@@ -54,7 +55,7 @@
             <div id="ConfirmStatus"class="btn btn-primary">호스트 승인</div>
             <br>
 
-            <img src="">
+            <img src="resources/images/host_images/person.png">
 
             <br><br>
             <span style="font-size: larger; font-weight: bolder;">user01</span>
@@ -71,40 +72,40 @@
             <table style="border-collapse: separate; border-spacing: 30px;">
                 <tr>
                    <td>사업자 번호</td> 
-                   <td>12312312</td>
+                   <td>${ businessNo }</td>
                 </tr>
                 <tr>
                     <td>상호명</td> 
-                    <td>예시 상호</td>
+                    <td>${businessName }</td>
                  </tr>
                  <tr>
                     <td>사업자 등록증</td> 
-                    <td>사업자 등록증</td>
+                    <td>${bisinessLicense }</td>
                  </tr>
                  <tr>
                     <td>사업장 소재지</td> 
-                    <td>주소 예시</td>
+                    <td>#{bisinessLoc }</td>
                  </tr>
                  <tr>
                     <td>계좌 정보</td> 
-                    <td>계좌 정보</td>
+                    <td>${businessAcc }</td>
                  </tr>
                  <tr>
                     <td>사업장 연락처</td> 
-                    <td>010-1111-2222</td>
+                    <td>${bisinessPhone }</td>
                  </tr>
                  <tr>
                     <td>담장자 이메일</td> 
-                    <td>이메일@이메일</td>
+                    <td>${bisinessEmail }</td>
                  </tr>
             </table>
 
         </div>
-        <button class="btn btn-primary" id="Modify" style="margin-left: 700px;">정보 변경</button>
+        <button class="btn btn-primary" id="Modify" style="margin-left: 700px;" onclick="location.href='modify.ho'">정보 변경</button>
 
 
     </div>
     
-<jsp:include page="../common/footer.jsp"/>
+<jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>

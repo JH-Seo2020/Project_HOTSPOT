@@ -63,6 +63,21 @@
 	  )
   
   </insert>
+  
+  <update id="updateHost" parameterType="HostInfo">
+  update 
+		       host_info
+		   set business_no = #{businessNo}
+		     , business_name = #{businessName}
+		     , business_license = #{businessLicense}
+		     , license_path = #{licensePath}
+		     , business_loc = #{businessLoc}
+		     , business_acc = #{businessAcc}
+             , business_phone = #{businessPhone}
+             , "BUSINESS_EMAIL" = #{businessEmail}
+		 where user_id = #{userId};
+  
+  </update>
   <select id="selectHost" parameterType="string" resultMap="hostInfoResultSet" >
   	select  
   			user_id 
