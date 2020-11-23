@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.hotspot.guest.space.model.service.SpaceService;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
@@ -33,6 +34,17 @@ public class SpaceController {
 	@RequestMapping("test.search")
 	public String searchTest() {
 		return "common/spaceSearchresultList";
+	}
+	
+	@RequestMapping("spaceDetail.guest")
+	public String spaceDetailView(int spcNo, Model model) {
+		
+		return "guest/space/spaceDetailView";
+	}
+	
+	@RequestMapping("hostHpg.guest")
+	public String hostHomepageDetail() {
+		return "guest/space/hostHmpView";
 	}
 
 }

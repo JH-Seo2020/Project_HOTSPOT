@@ -84,23 +84,23 @@
         #whoishost{
             width: 1200px;
             margin: auto;
-            height: 300px;
+            height: 330px;
             padding: 3% 1% 1% 1%;
         }
         #hostIntroducingSpace{
             width: 100%;
-            height: 270px;
+            height: 170px;
         }
         #hostIntroducingSpace>div{float: left;}
         #hostPhotoForIntro{width: 25%; height: 100%;}
-        #hostPhotoForIntro>img{height: 80%; width: 80%; border-radius: 100%;}
+        #hostPhotoForIntro>img{height: 170px; width: 170px; border-radius: 100%;}
 	
 </style>
 </head>
 <body>
 
 	<!-- 메뉴바 -->
-    <jsp:include page="../common/menubar.jsp"/>
+    <jsp:include page="../../common/menubar.jsp"/>
 
     <!--여기서부터 상세정보 페이지-->
     <div id="infoWrapper">
@@ -305,9 +305,9 @@
             </div>
             <div id="goToHostPage">
                 <span style="color: indigo; font-weight: bold;">HOST</span>
-                <span><h4>호스트A</h4></span> <br>
-                <span><h4>"경복궁 옆에서 카페를 운영중인 호스트입니다"</h4></span> <br>
-                <h4><a href="#" class="badge badge-pill badge-warning">호스트의 홈피로 이동</a></h4>
+                <span><h5>호스트A</h5></span> <br>
+                <span><h5>"경복궁 옆에서 카페를 운영중인 호스트입니다"</h5></span> <br>
+                <h4><a href="hostHpg.guest" class="badge badge-pill badge-warning">호스트의 홈피로 이동</a></h4>
         	</div>
     	</div>
     </div>
@@ -398,6 +398,6 @@
 
 
     <!-- 푸터 -->
-    <jsp:include page="../common/footer.jsp"/>
+    <jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>
