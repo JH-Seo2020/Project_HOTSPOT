@@ -3,12 +3,14 @@ package com.kh.hotspot.host.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.host.model.service.HostService;
 import com.kh.hotspot.host.model.vo.HostInfo;
+import com.kh.hotspot.space.model.vo.Space;
 
 @Controller
 public class HostController {
@@ -33,7 +36,6 @@ public class HostController {
 		
 		String userId = loginUser.getUserId();
 		HostInfo hi =  hService.selectHost(userId);
-	
 		if(hi != null) {
 			session.setAttribute("hostInfo", hi );
 			return "host/common/hostMain";
@@ -66,8 +68,7 @@ public class HostController {
 				hi.setLicensePath("resources/upFiles/" + changeName);
 			}
 		}
-				System.out.println(hi);
-				
+					
 		//2. 서비스 호출 
 		int result = hService.insertHost(hi);
 		
@@ -85,7 +86,7 @@ public class HostController {
 	 * @author jieun
 	 * @param upfile
 	 * @param session
-	 * @return 파일 저장 및 이름 변경
+	 * @return 파일 저장 및 이름 변경 메소드
 	 */
 	public String saveFile(MultipartFile upfile, HttpSession session) {
 		
@@ -111,28 +112,61 @@ public class HostController {
 		}
 			return changeName;
 	}
+	/**
+	 * @author jieun
+	 * @param session
+	 * @param h
+	 * @return 호스트 qna 페이지
+	 */
+	@RequestMapping("hostQnaForm.ho")
+	public String hostQnaForm(HttpSession session, Model model) {
+		//1. userId 뽑기 
+		HostInfo hi = (HostInfo) session.getAttribute("hostInfo");
+		String userId = hi.getUserId();
+		//2.  hService 전달 
+		ArrayList<Space> space = hService.selectSpaceList(userId);
+		//3. 결과의 따른 화면 
+		if(space != null) {
+			model.addAttribute("space",space);
+			return "host/hostPage/hostQna";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
 	
 	@RequestMapping("hostInquiry.ho")
 	public String hostInquiryForm() {
 		
 		return "host/hostPage/hostInquiry";
 	}
+	
 	@RequestMapping("hostCalculateForm.ho")
 	public String hostCalculateForm() {
 		return "host/hostPage/hostCalculateForm";
 	}
 	
+	
+	
+	/**
+	 * @author jisu
+	 * @return
+	 */
 	@RequestMapping("hostMyPage.ho")
 	public String hostMyPage() {
 		
 		
-		return "host/hostPage/hostMyPage.jsp";
+			return "host/hostPage/hostMyPage";
+		
 	}
-	
+	/**
+	 * @author jius
+	 * @return
+	 */
 	@RequestMapping("modify.ho")
 	public String modifyHost() {
 		
-		return "host/hostPage/hostMyPageModify.jsp";
+		return "host/hostPage/hostMyPageModify";
 	}
 	
 	@RequestMapping("updateHost.ho")
@@ -149,6 +183,6 @@ public class HostController {
 		}
 		int result =hService.updateHost(hi);
 		
-		return "";
+		return "host/hostPage/hostMyPage";
 	}
 }

@@ -24,10 +24,11 @@
                 <p style="display: block; font-size: 17px;">공간선택</p>
                 <form>
                     <input type="text" name="" list="space" class="searchSpace"placeholder="공간을 선택해주세요">
-                    <datalist id="space">
-                        <option>따뜻한 한옥 카페</option>
-                        <option>테라스가 있는 카페</option>
-                    </datalist>
+                    <c:forEach var="sp" items="${ space }">
+	                    <datalist id="space">
+	                        <option>${sp.spcName}</option>
+	                    </datalist>
+           		    </c:forEach>
                     <input type="image" img src="resources/images/host_images/search.png" class="searchIcon"style="width: 25px;height:25px; border:0px;"></input>
                 </form>
             </div>
