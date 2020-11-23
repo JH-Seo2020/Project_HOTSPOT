@@ -18,8 +18,8 @@
 	    background: rgb(243, 243, 243);
 	}
 	#profileImage{
-	    float: left;
-	    margin-left: 100px;
+        float: left;
+        margin-left: 70px;
 	}
 	#mainProfile{
 	    font-weight: bold;
@@ -73,7 +73,8 @@
             <form action="myProfile.me" method="POST" id="myProfile" enctype="multipart/form-data">
                 <div id="profileImage">
                 
-                <img src="resources/images/profileImage.png" id="target_img"><h2 align="center">${ loginUser.userId }</h2>
+                <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px">
+                <h2 align="center">${ loginUser.userId }</h2>
 
                 </div>
 

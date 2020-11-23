@@ -19,7 +19,7 @@
     }
     #profileImage{
         float: left;
-        margin-left: 100px;
+        margin-left: 70px;
     }
     #mainProfile{
         font-weight: bold;
@@ -35,7 +35,7 @@
         border: none;
         border-radius: 3px;
     }
-    #profilePassword label{
+    #userPwdArea label{
         font-size: small;
         color: rgb(145, 37, 247);
     }
@@ -59,20 +59,21 @@
              <form action="update.me" method="POST" id="myProfile" enctype="multipart/form-data">
                  <div id="profileImage">
                     
-                    <img src="resources/images/profileImage.png" id="target_img"><h2 align="center">${ loginUser.userId }</h2>
-	                <input type="file" name="userProfile" id="userProfile" style="display:none;" onchange="changeValue(this)">
-	                <input type="hidden" name="target_url">
+                    <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px">
+                    <h2 align="center">${ loginUser.userId }</h2>
+	                <input type="file" name="userProfile" id="userProfile" style="display:none;">
 	                
                  </div>
  
                  <div id="mainProfile">
                     <div>
-                        <label for="usernickName">닉네임</label> &nbsp;&nbsp;&nbsp;
-                        <input type="text" name ="usernickName" id="nickName" value="${ loginUser.userNickname }"><br><br>
+                        <label for="userNickName">닉네임</label> &nbsp;&nbsp;&nbsp;
+                        <input type="text" name ="userNickName" id="userNickname" value="${ loginUser.userNickname }"><br><br>
                         
                         <label for="userEmail">이메일</label> &nbsp;&nbsp;&nbsp;
                         <input type="text" name="userEmail" id="userEmail" value="${ loginUser.userEmail }">
                         <button type="button" id="emailCode">이메일 인증</button><br><br>
+                        
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="text" name="emailConfirmCode" placeholder="인증코드를 입력하세요."><br><br>
 
@@ -80,16 +81,16 @@
                         <input type="text" name ="userPhone" id="profilePhone" value="${ loginUser.userPhone }">
                     </div>
 					<br>
-                    <div id="userPwd">
+                    <div id="userPwdArea">
                         <span>비밀번호 변경</span><br><br>
                         <label for="password_1">현재 비밀번호 <br>
-                            <input type="password" name="userPwd" id="password_1" style="width: 250px"><br><br>
+                            <input type="password" name="userPwd" id="userPwd" style="width: 250px"><br><br>
                         </label>
                         <label for="password_2">새 비밀번호<br>
-                            <input type="password" name="userPwd_Update" id="password_2" style="width: 250px"><br><br>
+                            <input type="password" name="userPwd_Update" id="userPwd_Update" style="width: 250px"><br><br>
                         </label>
                         <label for="password_3">새 비밀번호 확인 <br>
-                            <input type="password" name="userPwd_Check" id="password_3" style="width: 250px">
+                            <input type="password" name="userPwd_Check" id="userPwd_Check" style="width: 250px">
                         </label>
                     </div>
                     <br>
@@ -112,16 +113,28 @@
      </div>
      
      
-    <script>
-		$('#target_img').click(function(){
-			$("input[name='userProfile']").click();
-		})
-		
-		// 업로드된 파일체인지가 됐을경우 실행될 이벤트(userProfile은 hidden으로 넣어줌)
-		$("input[name='userProfile']").change(function(e){
+	 <script>
+			$('#target_img').click(function(){
+				$("input[name='userProfile']").click();
+			})
 			
-		})
-    </script>
+			$(function(){
+				$("#userProfile").on('change', function(){
+					readURL(this);
+				});
+			});
+			function readURL(img){
+				if(img.files && img.files[0]){
+					var reader = new FileReader();
+					
+					reader.onload = function(e){
+						$('#target_img').attr('src', e.target.result);
+					}
+					
+					reader.readAsDataURL(img.files[0]);
+				}
+			}
+	    </script>
      
      <br clear="both"><br><br>
  
