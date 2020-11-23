@@ -3,7 +3,7 @@ package com.kh.hotspot.host.model.service;
 import java.util.ArrayList;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
-import com.kh.hotspot.guest.space.model.vo.Qna;
+import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.space.model.vo.Space;
 

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
-import com.kh.hotspot.guest.space.model.vo.Qna;
+import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.service.HostService;
 import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.space.model.vo.Space;
@@ -131,7 +131,7 @@ public class HostController {
 		ArrayList<Space> space = hService.selectSpaceList(userId);
 		//3. 결과의 따른 화면 
 		if(space != null) {
-			model.addAttribute("space",space);
+			session.setAttribute("space",space);
 			return "host/hostPage/hostQna";
 		}else {
 			return "common/errorPage";
@@ -149,9 +149,14 @@ public class HostController {
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage,4,2);
 		ArrayList<Qna> list = hService.selectQnaList(pi,spcNo);
 		
-		model.addAttribute("pi",pi);
-		model.addAttribute("list",list);
-		return "host/hostPage/hostQna";
+		if(list !=null) {
+			//model.addAttribute("pi",pi);
+			model.addAttribute("list",list);
+			return "host/hostPage/hostQna";
+		}else {
+			return "common/errorPage";
+		}
+		
 	}
 	
 	@RequestMapping("hostInquiry.ho")
