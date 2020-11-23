@@ -71,8 +71,10 @@
 
             <br><hr><br><br>
             <form action="myProfile.me" method="POST" id="myProfile" enctype="multipart/form-data">
-                <div id="profileImage"><img src="resources/images/profileImage.png"><h2 align="center">${ loginUser.userId }</h2>
+                <div id="profileImage">
                 
+                <img src="resources/images/profileImage.png" id="target_img"><h2 align="center">${ loginUser.userId }</h2>
+
                 </div>
 
                 <div id="mainProfile">
@@ -124,6 +126,10 @@
         <br>
     </div>
     -->
+    
+
+
+
 
     <br clear="both"><br><br>
     
