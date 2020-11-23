@@ -225,10 +225,21 @@ public class MemberController {
 		return changeName;
 		
 		
-		
-		
-		
-		
 	}
+	
+	@ResponseBody
+	@RequestMapping("updateCheckNickname.me")
+	public String updateCheckNickname(String userNickname) {
+		
+		int count = mService.updateCheckNickname(userNickname);
+		
+		if(count > 0) {
+			return "fail";
+			
+		}else {
+			return "success";
+		}
+	}
+	
 
 }

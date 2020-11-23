@@ -73,7 +73,7 @@
             <form action="myProfile.me" method="POST" id="myProfile" enctype="multipart/form-data">
                 <div id="profileImage">
                 
-                <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px">
+                <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px" onerror="">
                 <h2 align="center">${ loginUser.userId }</h2>
 
                 </div>

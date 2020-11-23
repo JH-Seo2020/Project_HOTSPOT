@@ -86,5 +86,12 @@
 		  where user_id=#{userId}
   	</update>
   	
+  	<select id="updateCheckNickname" resultType="_int">
+  		select
+  			   count(*)
+  		  from member
+  		  where user_nickname=#{userNickname}
+  	</select>
+  	
 
 </mapper>
