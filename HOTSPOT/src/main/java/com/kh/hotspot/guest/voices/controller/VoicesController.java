@@ -13,6 +13,7 @@ import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.voices.model.service.VoicesService;
 import com.kh.hotspot.guest.voices.model.vo.VoicesFaq;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
+import com.kh.hotspot.guest.voices.model.vo.VoicesSearch;
 
 
 @Controller
@@ -78,7 +79,7 @@ public class VoicesController {
 	}
 	
 	@RequestMapping("searchNotice.guest")
-	public String faqSearchForGuest(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String keyword, Model model) {
+	public String noticeSearchForGuest(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String keyword, Model model) {
 		
 		//1.게시글개수조회
 		int searchListCount = vService.selectSearchNoticeCount(keyword);
@@ -95,6 +96,29 @@ public class VoicesController {
 		
 		return "guest/voices/noticeListView";
 		
+	}
+	
+	@RequestMapping("searchFaq.guest")
+	public String faqSearchForGuest(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String questionType, String keyword, Model model) {
+		
+		VoicesSearch vs = new VoicesSearch();
+		vs.setQuestionType(questionType);
+		vs.setKeyword(keyword);
+		
+		//1.게시글개수조회
+		int searchListCount = vService.selectSearchFaqCount(vs);
+		
+		//2.페이지네이션처리(5,5)
+		PageInfo pi = Pagination.getPageInfo(currentPage, searchListCount, 5, 5);
+		
+		//3.게시글리스트조회
+		ArrayList<VoicesFaq> list = vService.selectSearchFaq(vs, pi);
+		
+		model.addAttribute("pi",pi);
+		model.addAttribute("list",list);
+		model.addAttribute("vs",vs);
+		
+		return "guest/voices/faqSearchListView";
 	}
 
 }

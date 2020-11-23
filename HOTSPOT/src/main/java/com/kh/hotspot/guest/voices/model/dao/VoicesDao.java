@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesFaq;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
+import com.kh.hotspot.guest.voices.model.vo.VoicesSearch;
 
 @Repository
 public class VoicesDao {
@@ -71,6 +72,21 @@ public class VoicesDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return (ArrayList)sqlSession.selectList("customerservicemapper.selectFaqList", null, rowBounds);
+	}
+
+	public int selectSearchFaqCount(SqlSessionTemplate sqlSession, VoicesSearch vs) {
+		
+		return sqlSession.selectOne("customerservicemapper.selectSearchFaqCount", vs);
+	}
+
+	public ArrayList<VoicesFaq> selectSearchFaq(SqlSessionTemplate sqlSession, VoicesSearch vs, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("customerservicemapper.selectSearchFaq", vs, rowBounds);
 	}
 
 
