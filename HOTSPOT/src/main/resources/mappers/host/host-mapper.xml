@@ -33,8 +33,19 @@
 		<result column="map_latitude" property="latitude" />
 		<result column="map_longitude" property="longitude" />
 		<result column="map_location" property="location" />
-
 	</resultMap>
+	<!-- 
+	<resultMap id="selectQnaListResultSet" type="Qna">
+		<result column="qa_no" property="qaNo" />
+		<result column="qa_content" property="qaContent" />
+		<result column="qa_writer" property="qaWriter" />
+		<result column="qa_date" property="qaDate" />
+		<result column="qa_answer" property="qaAnswer" />
+		<result column="qa_status" property="qaStatus" />
+		<result column="qa_secret" property="qaSecret" />
+		<result column="user_id" property="userId" />
+		<result column="spc_no" property="spcNo" />
+	</resultMap> -->
   <insert id="insertHost" parameterType="HostInfo">
 	insert
 	  into host_info
@@ -118,6 +129,26 @@
 	from   space_info
    where  user_id = #{userId}
      and  spc_status = 'Y'
-
   </select>
+ <select id="selectQnaListCount" parameterType="_int" resultType="_int">
+  	select count(*)
+	 from question_answer
+	 where spc_no = #{spcNo}
+	   and qa_status = 'Y'
+  </select>
+ <!--  <select id="selectQnaList" parameterType="_int" resultMap="selectQnaListResultSet">
+  select 
+  		 qa_no
+  		,qa_content
+  		,qa_writer
+  		,qa_date
+  		,qa_answer
+  		,qa_status
+  		,qa_secret
+  		,user_id
+  		,spc_no    
+  from question_answer
+ where spc_no = #{spcNo}
+   and qa_status = 'Y'
+  </select> -->
 </mapper>
