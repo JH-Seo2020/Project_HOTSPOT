@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/host/hostmenubar.css" type="text/css"/>
+<!-- jQuery 라이브러리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <style> 
        #floatMenu{
             position: absolute;
@@ -32,6 +36,7 @@
             border-radius: 20px;
             cursor: pointer;
             margin:0px;
+            font-size:17px;
         }
         #floatMenu ul:hover{
             background-color: rgb(243, 243, 243);
@@ -91,6 +96,6 @@
             	 $(".f_question_").hide();
             });
     </script>
-        <!-- <div id="brr" style="height:1000px;"></div> <!--스크롤 테스트--> 
+       <div id="brr" style="height:1000px;"></div>
 </body>
 </html>

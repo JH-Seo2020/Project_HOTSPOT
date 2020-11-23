@@ -110,9 +110,6 @@
 			alert('이미 호스트 등록 하셨습니다!')
 		}
    </script>
-   
-   
- 
 
 
 <jsp:include page="../../common/footer.jsp"/>

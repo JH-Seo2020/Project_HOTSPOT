@@ -119,8 +119,8 @@ p {
         
         <div class="navbarMenu">
             <ul class="navbarMenu">
-                <li class="navItem"><a href="">Home</a></li>
                 <li class="navItem"><a href="hostMyPage.ho">Mypage</a></li>
+                <li class="navItem"><a href="hostQnaForm.ho">Home</a></li>
             </ul>
         </div>
     </nav>
