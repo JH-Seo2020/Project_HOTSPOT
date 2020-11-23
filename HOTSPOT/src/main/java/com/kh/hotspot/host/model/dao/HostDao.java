@@ -17,6 +17,7 @@ public class HostDao {
 	public int updateHost(SqlSessionTemplate sqlSession, HostInfo hi) {
 		
 		return sqlSession.update("hostMapper.updateHost",hi);
+	}
 	public HostInfo selectHost(SqlSessionTemplate sqlSession, String userId) {
 		return sqlSession.selectOne("hostMapper.selectHost", userId);
 	}
