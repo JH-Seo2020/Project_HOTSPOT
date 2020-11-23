@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<!-- css외부 파일 연결 -->
-<link rel="stylesheet" href="resources/css/hostmenubar.css" type="text/css"/>
 <!-- 구글폰트  -->
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&amp;display=swap" rel="stylesheet">
  <!-- 부트스트랩에서 제공하고 있는 스타일 -->
@@ -16,6 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <!-- jQuery 라이브러리 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <style>
@@ -31,63 +30,57 @@
         box-sizing: border-box;
         
     }
-    ul li{
-        font-size: large;
-        font-weight: bolder;
-        margin: 10px;
-    }
+
     input[type=text], input[type=password]{
         width: 230px;
         height: 35px;
     }
 </style>
 <body>
-
-<jsp:include page="menubar.jsp"/>
-
 	
     <div align="left" id="noticebar">
         <img src="resources/images/logo_letter_1.png" width="100px" height="25px" >
         <label style="color: yellowgreen; font-size: large ;">회원가입을 환영합니다</label><hr>
     </div>
     <div id="EnrollForm"> 
-        <form method="POST" action="">
-            <div id="EnrollData1" style="height: 400px; width: 30%;">
-                <ul>
-                    <li>아이디 입력</li>
+        <form method="POST" action="insert.me">
+            <div id="EnrollData1" style="height: 400px; width: 30%;'">
+                
+                    <label for="userId"> 아이디 입력</label><br>
                     <input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요" required>
                     <div id="idCheckResult" style="font-size:0.8em"></div>
                     <br><br>
-                    <li>비밀번호 입력</li>
+                    <label for="userPwd">비밀번호 입력</label><br>
                     <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호를 입력해주세요" required>
                     <div id="pwdCheckResult" style="font-size:0.8em"></div>
                     
                     <br><br>
-                    <li>비밀번호 확인</li>
+                   <label for="userPwdCheck">비밀번호 확인</label><br>
                     <input type="password" id="userPwdCheck" placeholder="비밀번호를 확인해주세요" required>
                     <br>
                     <br><br>
-                    <li>전화번호(선택)</li>
+                    <label for="userPhone">전화번호(선택)</label><br>
                     <input type="text" name="userPhone" placeholder="전화번호를 입력해주세요">
-                </ul>
+                
             </div>
             <div id="EnrollData2" style="height: 400px; width: 70%;">
-                <ul>
-                    <li>이메일 입력</li>
+                
+                    <label for="userEmail">이메일 입력</label><br>
                     <input type="text" name="userEmail" placeholder="인증절차를 거쳐주세요" required> 
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
     					이메일 인증
   					</button>
                     <br><br>
-                    <li>닉네임 입력</li>
+                    <label for="userNickname">닉네임 입력</label><br>
                     <input type="text" name="userNickname" id="userNickname" placeholder="사용할 닉네임을 입력해주세요" required>
                     <div id="nickCheckResult" style="font-size:0.8em"></div>
-                </ul>
+                
             </div>
             <div align="right">
                 <a id="cancle" class="btn btn-danger" style=" width: 100px; height: 40px; margin-right: 50px;">취소</a>
                 <a id="confirm" class="btn btn-primary" style=" width: 100px; height: 40px; margin-right: 50px;" href="insert.me">회원가입</a>
             </div>
+        </form>
             
             <!-- The Modal -->
   <div class="modal" id="myModal">
@@ -122,22 +115,25 @@
   <script>
   	$(function(){
   	
-  	let $idInput = $("#EnrollData1 input[name=userId]");
+  	var $idInput = $("#EnrollData1 input[name=userId]");
   	
   	$idInput.keyup(function(){
   	
-  	if($idInput.val().length >=5){
+  		console.log($idInput.val());
+  	if($idInput.val().length >= 5){
+  		console.log($idInput.val());
       	$.ajax({
           	url :"checkId.me",
-          	type:"POST",
-          	dataType: "json",
-          	data: {"userId": $("#userId").val()},
-          	success:function(data){
-              if(date == 1){
+          	data: {userId : $idInput.val()},
+          	dataType: "text",
+          	success:function(result){
+              if(result != ""){
+            	  	console.log(result);
+            	  
 					$("#idCheckResult").show();
 					$("#idCheckResult").css("color", "green").text("사용가능한 아이디입니다.");
 					$("#confirm").removeAttr("disabled");
-              }else if(data == 0){
+              }else if(result == 0){
 					$("#idCheckResult").show();
 					$("#idCheckResult").css("color", "red").text("중복된 아이디가 존재합니다. 다시입력해주세요.");
 					$("#confirm").prop("disabled", true);
@@ -151,9 +147,11 @@
 				$("#idCheckResult").hide();
   		}
       
-  	});
-  	
-  	
+  	})
+  	})
+  	</script>
+  	<script>
+  	/*
   	let $pwdInput =$("#EnrollData1 input[name=userPwd]");
   	
   	$pwdInput.keyup(function(){
@@ -207,8 +205,8 @@
   	
   	
   	
+  	*/
   	
-  	})
   
   
       function emailSend(){
@@ -263,14 +261,13 @@
                   alert('다시 한번 시도해주시기 바랍니다.')
                 }
               }
-          });
+          })
       }
       
   </script>
 
 
 
-        </form>
     </div>
     <br><br><br><br><br><br><br><br>
     

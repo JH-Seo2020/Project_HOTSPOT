@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.hotspot.guest.myPage.model.service.MemberService;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
@@ -95,7 +96,7 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	
+	@ResponseBody
 	@RequestMapping("email.certify")
 	public void sendEmail(HttpServletRequest request, String userEmailCheck){
 		HttpSession session = request.getSession();
@@ -109,6 +110,7 @@ public class MemberController {
 		
 	}
 	
+	@ResponseBody
 	@RequestMapping("certificationNumber.check")
 	public boolean emailCertification(HttpServletRequest request, String userEmailCheck, String inputCode) {
 		HttpSession session = request.getSession();
@@ -118,10 +120,13 @@ public class MemberController {
 		return result;
 	}
 	
-	@RequestMapping("checkId.me")
-	public int idCheck(String userId) {
+	@ResponseBody
+	@RequestMapping(value="checkId.me", produces="text/html; charset=utf-8")
+	public String idCheck(String userId) {
 		
-		int result = mService.idCheck(userId);
+		System.out.print(userId);
+		
+		String result = "succece";//mService.idCheck(userId);
 		
 		return result;
 	}

@@ -33,8 +33,8 @@
 	<!-- 이메일 관련 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	<property name="host" value="smtp.gmail.com" />
-	<property name="username" value="y3ystation@gamil.com" />
-	<property name="password" value="durtkadur3cnf" />
+	<property name="username" value="y3ystation" />
+	<property name="password" value="durtkadur3cnf!" />
 	<property name="javaMailProperties">
 		<props>
 			<prop key="mail.transport.protocol">smtp</prop>
