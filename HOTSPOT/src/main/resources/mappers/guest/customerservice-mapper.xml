@@ -91,5 +91,30 @@
 		 order
 		    by faq_no desc
   	</select>
+  	
+  	<select id="selectSearchFaqCount" parameterType="VoicesSearch" resultType="_int">
+  		select
+		       count(*)
+		  from FAQ
+		 where faq_title like '%'||#{keyword}||'%'
+		 <if test="questionType != '전체'">
+		   and faq_type = #{questionType}
+		 </if>
+		 order by faq_no desc
+  	</select>
+  	
+  	<select id="selectSearchFaq" parameterType="VoicesSearch" resultMap="faqSet">
+  		select faq_no
+		     , faq_title
+		     , faq_content
+		     , faq_type
+		     , enroll_date
+		  from faq
+		 where faq_title like '%'||#{keyword}||'%'
+		 <if test="questionType != '전체'">
+		   and faq_type = #{questionType}
+		 </if>
+		 order by faq_no desc
+  	</select>
 
 </mapper>

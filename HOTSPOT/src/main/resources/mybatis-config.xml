@@ -20,6 +20,7 @@
 		<!-- 메인,게스트공간(지혜) -->
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.SpaceInfo" alias="SpaceInfo" />
 		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesNotice" alias="VoicesNotice" />
+		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesSearch" alias="VoicesSearch" />
 		<!-- 호스트 관련(지은) -->
 		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="HostInfo" />
 		<typeAlias type="com.kh.hotspot.space.model.vo.Space" alias="Space" />
