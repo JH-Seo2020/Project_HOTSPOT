@@ -153,11 +153,15 @@ public class HostController {
 	 * @return
 	 */
 	@RequestMapping("hostMyPage.ho")
-	public String hostMyPage() {
-		
-		
+	public String hostMyPage(HttpSession session) {
+		HostInfo hi = (HostInfo) session.getAttribute("hostInfo");
+			if(hi == null) {
+				
+				session.setAttribute("alertMsg", "호스트 등록이 필요한 페이지입니다. ");
+				return "host/common/hostMain";
+			}else {
 			return "host/hostPage/hostMyPage";
-		
+			}
 	}
 	/**
 	 * @author jius

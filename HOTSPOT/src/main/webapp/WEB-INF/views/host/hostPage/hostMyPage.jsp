@@ -15,15 +15,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
  <!-- 부트스트랩에서 제공하고 있는 스타일 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<style>
-
-
+</head>
 <style>
 
     #MyPageForm{
         width: 100%;
-        height: 500px;
         
     }
     #ConfirmStatus{
@@ -46,7 +42,7 @@
 </style>
 <body>
 	<jsp:include page="../common/hostMenubar.jsp"/>
-	<jsp:include page="../common/subMenubar.jsp"/>
+
 
     <div align="left" id="noticebar" style="margin-left: 300px;">
         <img src="resources/images/logo_letter_1.png">
@@ -86,7 +82,7 @@
                  </tr>
                  <tr>
                     <td>사업장 소재지</td> 
-                    <td>${hostInfo.bisinessLoc }</td>
+                    <td>${hostInfo.businessLoc }</td>
                  </tr>
                  <tr>
                     <td>계좌 정보</td> 
@@ -94,11 +90,11 @@
                  </tr>
                  <tr>
                     <td>사업장 연락처</td> 
-                    <td>${hostInfo.bisinessPhone }</td>
+                    <td>${hostInfo.businessPhone }</td>
                  </tr>
                  <tr>
                     <td>담장자 이메일</td> 
-                    <td>${hostInfo.bisinessEmail }</td>
+                    <td>${hostInfo.businessEmail }</td>
                  </tr>
             </table>
 
