@@ -74,8 +74,8 @@
 		     , business_loc = #{businessLoc}
 		     , business_acc = #{businessAcc}
              , business_phone = #{businessPhone}
-             , "BUSINESS_EMAIL" = #{businessEmail}
-		 where user_id = #{userId};
+             , business_email = #{businessEmail}
+		 where user_id = #{userId}
   
   </update>
   <select id="selectHost" parameterType="string" resultMap="hostInfoResultSet" >

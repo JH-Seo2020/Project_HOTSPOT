@@ -19,8 +19,10 @@
 <style>
 
     #MyPageForm{
+        position: absolute;
+        margin-top: 50px;
+        margin-bottom: 50px;
         width: 100%;
-        
     }
     #ConfirmStatus{
         margin-top: 30px;
@@ -42,8 +44,9 @@
 </style>
 <body>
 	<jsp:include page="../common/hostMenubar.jsp"/>
-
-
+	<jsp:include page="../common/subMenubar.jsp"/>
+	
+	<div style="position: absolute; top:50px; left:50px">
     <div align="left" id="noticebar" style="margin-left: 300px;">
         <img src="resources/images/logo_letter_1.png">
         <label style="color: yellowgreen; font-size: large ;">MYPAGE</label><hr>
@@ -103,7 +106,8 @@
 
 
     </div>
-    <br><br><br><br><br><br><br>
+    </div>
+    <br><br>
     
 <jsp:include page="../../common/footer.jsp"/>
 </body>

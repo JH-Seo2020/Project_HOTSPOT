@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../common/hostMenubar.jsp"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +21,10 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../common/hostMenubar.jsp"/>
+	<jsp:include page="../common/subMenubar.jsp"/>
 
-
-<div id="hostInsertContainer">
+<div id="hostInsertContainer" style="position: absolute; top:50px; left:50px; margin-left: 300px;">
         <hr>
         <div id="container1">
             <span class="comment1">*호스트 정보 수정
@@ -132,6 +133,7 @@
             }
         }
     </script>   
+    
 <jsp:include page="../../common/footer.jsp"/>
 
 

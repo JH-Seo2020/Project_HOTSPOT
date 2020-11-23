@@ -173,6 +173,14 @@ public class HostController {
 		return "host/hostPage/hostMyPageModify";
 	}
 	
+	
+	/**
+	 * @author jisu
+	 * @param session
+	 * @param hi
+	 * @param upfile
+	 * @return
+	 */
 	@RequestMapping("updateHost.ho")
 	public String updateHost(HttpSession session,HostInfo hi,MultipartFile upfile) {
 		
@@ -185,7 +193,9 @@ public class HostController {
 				hi.setLicensePath("resources/upFiles/" + changeName);
 			}
 		}
-		int result =hService.updateHost(hi);
+		
+		
+		int result = hService.updateHost(hi);
 		
 		return "host/hostPage/hostMyPage";
 	}
