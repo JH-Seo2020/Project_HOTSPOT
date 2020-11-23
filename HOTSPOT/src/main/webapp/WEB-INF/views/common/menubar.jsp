@@ -34,7 +34,7 @@
         <div id="search">
             <form action="" method="">
                 <input type="search" placeholder="검색어를 입력하세요!">
-                <div><a href=""><img src="resources/images/serarch_icon.png" width="80%" height="90%"></a></div>
+                <div><a href="test.search"><img src="resources/images/serarch_icon.png" width="80%" height="90%"></a></div>
             </form>
         </div>
         <div id="menuOptions">
@@ -54,8 +54,8 @@
 			                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
 			                    <label style="font-size: 25px; font-weight: bold;">로그인</label><br>
 			                    <br>
-			                        <input type="text" name="userId" id="userId" placeholder="아이디" style="width: 280px;" class="form-control"><br>
-			                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;" class="form-control">
+			                        <input type="text" name="userId" id="userId" placeholder="아이디" style="width: 280px;"><br><br>
+			                        <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호" style="width: 280px;"><br>
 								<br>
 			                    	<button type="submit" id="loginInputBtn">로그인 하기</button> 
 			                    <br><br>
@@ -77,14 +77,14 @@
 			                </a>
 			                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			                  <a class="dropdown-item" href="notice.guest">공지사항조회</a>
-			                  <a class="dropdown-item" href="#">자주묻는질문(챗봇,1:1문의)</a>
+			                  <a class="dropdown-item" href="faq.guest">자주묻는질문(챗봇,1:1문의)</a>
 			                </div>
 		            	</div>
 			        </c:when>
 			            
 		       		<c:otherwise>
 		            <div id="GoToHostPage"><a href="hostMain.ho">🏚&nbsp;호스트페이지</a></div>
-		            <div><a id="myPageBtn" style="cursor: pointer;">마이페이지</a></div>
+		            <div><a id="myPageBtn" style="cursor: pointer;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지</a></div>
 		                       
 		
 		            <div class="myPage_popup" style=" width:300px; padding:50px; border-spacing: 5px 10px;">
@@ -93,9 +93,9 @@
 		                </div>
 		                <div id="myPage_Content">
 		                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
-		                    <label style="font-size: 25px; font-weight: bold;">${ loginUser.userNickname }</label><br>
-		                    <a href="myProfile.me"><span>프로필 관리</span></a>
-		                    <br><hr>
+		                    <label style="font-size: 25px; font-weight: bold;">${ loginUser.userNickname } 님</label><br>
+		                    <a href="myProfile.me"><span><small>내 프로필 관리</small></span></a>
+		                    <br><hr><br>
 		                    <table id="myPageMenu">
 		                    	<tr>
 			                        <td>
@@ -112,14 +112,14 @@
 			                    <tr>
 			                        <td>
 			                            <img src="resources/images/heart.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-			                            <a href=""><span>찜한공간</span></a><br>
+			                            <a href=""><span>찜한공간</span></a>
 			                        </td>
 			                     </tr>
 		                    </table>    
 		                </div>
 		            </div>
 		            
-		            <div><a href="logout.me">로그아웃</a></div>
+		            <div><a href="logout.me">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그아웃</a></div>
 		            <div class="nav-item dropdown">
 		                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		                 	 고객센터

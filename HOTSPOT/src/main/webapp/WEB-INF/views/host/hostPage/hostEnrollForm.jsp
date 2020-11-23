@@ -31,30 +31,31 @@
                   * 사업자등록증은 필수제출 항목입니다.<br>
                   * 공간등록은 관리자가 등록신청 검수 및 승인 후 이용이 가능합니다.
             </span>
-            <form action="" id="hostInsertForm" method="POST"enctype="multipart/form-data">
+            <form action="insertHost.ho" id="hostInsertForm" method="POST"enctype="multipart/form-data">
+            	<input type="hidden" name="userId" value="${ loginUser.userId }"/>
                 <table class="hostInsertTable" >
                     <tr>
                         <th colspan="2"> 사업자번호 <p style="color:red">*</p></th>
-                        <td colspan="3"><input type="text" placeholder="-제외하고 입력해주세요" id="bNo"class="form-control"required ></td>
+                        <td colspan="3"><input type="text" placeholder="-제외하고 입력해주세요" name="businessNo"id="bNo"class="form-control"required ></td>
                     </tr>
                     <tr>
                         <th colspan="2"> 상호명 <p style="color:red">*</p></th>
-                        <td colspan="3"><input type="text" placeholder="상호명을 입력해주세요" id="bName" class="form-control" required ></td>
+                        <td colspan="3"><input type="text" placeholder="상호명을 입력해주세요" id="bName" name="businessName"class="form-control" required ></td>
                     </tr>
                     <tr>
                         <th colspan="2"> 사업자등록증 <p style="color:red">*</p></th>
                         <td colspan="2" ><input type="text" placeholder="jpg, png, pdf, jpeg 파일 업로드해주세요" class="form-control" id="uploadLicense" ></td>
                         <td><label for="license">첨부파일 추가</label></td>
-                        <td><input type="file" id="license" placeholder="" onchange="upload()"class="upload-hidden"required></td>
+                        <td><input type="file" id="license" name="upfile"onchange="upload()"class="upload-hidden"required></td>
                     </tr>
                     <tr>
                         <th colspan="2"> 사업장소재지 <p style="color:red">*</p></th>
-                        <td colspan="3"><input type="text" placeholder="사업장소재지를 입력해주세요" id="bLoc"  class="form-control"required ></td>
+                        <td colspan="3"><input type="text" placeholder="사업장소재지를 입력해주세요" name="businessLoc" id="bLoc"  class="form-control"required ></td>
                     </tr>
                     <tr>
                         <th colspan="2"> 계좌정보 <p style="color:red">*</p></th>
                         <td>
-                            <input type="text" name="account" class="form-control"placeholder="은행명" list="account"required>
+                            <input type="text" name="businessAcc" class="form-control"placeholder="은행명" list="account"required>
                             <datalist id="account">
                                 <option >국민은행</option>
                                 <option >신한은행</option>
@@ -63,8 +64,16 @@
                                 <option >카카오뱅크</option>
                             </datalist>
                         </td>
-                        <td><input type="text" id="accountNo"class="form-control" id="accountNo" placeholder="- 제외한 계좌번호 입력해주세요" required></td>
-                        <td><input type="text" id="accountName"class="form-control" id="accountName" placeholder="예금주명"required></td>   
+                        <td><input type="text"  name="businessAcc" class="form-control" id="accountNo" placeholder="- 제외한 계좌번호 입력해주세요" required></td>
+                        <td><input type="text"  name="businessAcc" class="form-control" id="accountName" placeholder="예금주명"required></td>   
+                    </tr>
+                     <tr>
+                        <th colspan="2"> 사업장 연락처 <p style="color:red">*</p></th>
+                        <td colspan="3"><input type="text" placeholder="사업장연락처를 입력해주세요" name="businessPhone" id="bPhone"class="form-control"required ></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"> 담당자 이메일 <p style="color:red">*</p></th>
+                        <td colspan="3"><input type="email" placeholder="담당자 이메일 입력해주세요" name="businessEmail" id="bEmail"class="form-control"required ></td>
                     </tr>
                 </table>
                 <div class="hostInfoBtn">
@@ -80,7 +89,7 @@
 					        등록하시겠습니까?
 					      </div>
 					      <div class="modal-footer">
-					        <button type="button" type="submit"class="btn btn-primary">등록하기</button>
+					        <button type="submit"class="btn btn-primary">등록하기</button>
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 					      </div>
 					    </div>
@@ -110,13 +119,19 @@
                 alert('사업자번호를 정확하게 입력해주세요');
                 $("#bNo").val('');
                 $("#bNo").focus(); 
+                $("#subBtn").removeAttr('data-target');
                 return false; 
+            }else{
+            	$("#subBtn").attr('data-target','#exampleModal')
             }
             if(!accountNoCheck.test(accountNo)){
                 alert('숫자만 입력 가능합니다!');
                 $("#accountNo").val('');
                 $("#accountNo").focus(); 
+                $("#subBtn").removeAttr('data-target');
                 return false; 
+            }else{
+            	$("#subBtn").attr('data-target','#exampleModal')
             }
         }
     </script>   

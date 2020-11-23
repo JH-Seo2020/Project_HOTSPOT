@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+* {
+	font-family: "Nanum Gothic", sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.custom-select {
+	width: 120px;
+	margin-top: 10px;
+}
+
+/* 검색필터 */
+#searchFilter {
+	width: 1200px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+#searchFilter span {
+	font-size: 22px;
+}
+
+#table_select {
+	margin-top: 30px;
+}
+
+#table_check tbody {
+	font-size: 15px;
+}
+
+.input_spcConvn {
+	margin-right: 25px;
+	margin-left: 5px;
+}
+
+/* 검색결과 목록 */
+#searchresultList {
+	width: 1200px;
+	margin: auto;
+}
+
+#searchresultList table>thead>tr>td>select {
+	float: right;
+	margin-right: 50px;
+}
+
+#searchresultList table {
+	margin-top: 40px;
+}
+
+.spcImage {
+	width: 350px;
+	height: 250px;
+	margin-top: 10px;
+	border: 3px solid lightgray;
+}
+
+.spcName {
+	margin-top: 10px;
+	font-size: 23px;
+}
+
+.spcLocationTag {
+	margin-top: 5px;
+	font-size: 15px;
+	color: gray;
+}
+
+.spcPriceHours {
+	margin-top: 5px;
+	font-size: 17px;
+	color: rebeccapurple;
+	width: 250px;
+}
+
+.spcReview {
+	float: left;
+	font-size: 17px;
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+
+.spcWish {
+	float: left;
+	font-size: 17px;
+	margin-bottom: 30px;
+}
+
+.spcReview img, .spcWish img {
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+}

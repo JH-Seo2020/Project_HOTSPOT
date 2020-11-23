@@ -29,5 +29,10 @@ public class SpaceController {
 		
 		return "main";
 	}
+	
+	@RequestMapping("test.search")
+	public String searchTest() {
+		return "common/spaceSearchresultList";
+	}
 
 }

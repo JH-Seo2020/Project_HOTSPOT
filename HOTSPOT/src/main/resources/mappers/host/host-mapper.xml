@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hostMapper">
+  <insert id="insertHost" parameterType="HostInfo">
+	insert
+	  into host_info
+	  (
+	     user_id
+	    ,business_no
+	    ,business_name
+	    ,business_license
+	    ,license_path
+	    ,business_loc
+	    ,business_acc
+	    ,business_phone
+	    ,business_email
+	  )
+	 values
+	 (
+	    #{userId}
+	    ,#{businessNo}
+	    ,#{businessName}
+	    ,#{businessLicense}
+	    ,#{licensePath}
+	    ,#{businessLoc}
+	    ,#{businessAcc}
+	    ,#{businessPhone}
+	    ,#{businessEmail}
+	  )
+  
+  </insert>
+</mapper>

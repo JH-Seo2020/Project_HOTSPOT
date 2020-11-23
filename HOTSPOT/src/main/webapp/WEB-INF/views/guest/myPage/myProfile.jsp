@@ -10,9 +10,12 @@
 	#profile{
 	    top: 25%;
 	    left: 50%;
-	    margin: 50px;
+	    margin: auto;
+	    margin-right: 23%;
+	    margin-top: 50px;
 	    padding: 50px;
-	    width: 700px;
+	    width: 750px;
+	    background: rgb(243, 243, 243);
 	}
 	#profileImage{
 	    float: left;
@@ -24,7 +27,7 @@
 	    color:rgb(80, 80, 80)
 	}
 	#mainProfile div{
-	    padding: 20px;
+	    padding: 15px;
 	    margin-left: 300px;
 	}
 	#profileBtn button{
@@ -64,10 +67,10 @@
 
     <div class="content">
         <div id="profile">
-            <h2 align="center">내 프로필 관리</h2> 
+            <h2 align="center">내 프로필</h2> 
 
             <br><hr><br><br>
-            <form action="" method="POST" id="myProfile" enctype="multipart/form-data">
+            <form action="myProfile.me" method="POST" id="myProfile" enctype="multipart/form-data">
                 <div id="profileImage"><img src="resources/images/profileImage.png"><h2 align="center">${ loginUser.userId }</h2>
                 
                 </div>
@@ -88,12 +91,13 @@
                 </div>
                 <br><br><hr><br>
                 <div id="profileBtn" align="center"> 
-                    <button type="submit" onclick="">내 프로필 수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" onclick="location.href='profileUpdate.me'">내 프로필 변경하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button">서비스 탈퇴하기</button>
                 </div>
             </form>
         </div>
     </div>
+    <br><br>
 
     <!-- 서비스 탈퇴버튼 클릭시 탈퇴폼
     <div id="serviceWithdrawal">

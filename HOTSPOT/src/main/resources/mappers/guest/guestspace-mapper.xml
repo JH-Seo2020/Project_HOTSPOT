@@ -79,7 +79,7 @@
 	   FULL outer
 		     join 
 		        (
-		        SELECT SUBSTR(REVIEW_CONTENT, 0, 41)AS REVIEW_CONTENT
+		        SELECT SUBSTR(REVIEW_CONTENT, 0, 31)AS REVIEW_CONTENT
 		             , REVIEW_SCORE
 		             , REVIEW_DATE
 		             , SPC_NO

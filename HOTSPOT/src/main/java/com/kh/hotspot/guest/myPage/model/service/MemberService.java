@@ -7,7 +7,7 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 
 public interface MemberService {
 	
-	 Member loginMember(String userId);
+	 Member loginMember(Member m);
 	 
 	 int insertMember(Member m);
 
@@ -23,7 +23,4 @@ public interface MemberService {
 
 	 int nickCheck(String userNickname);
 	 
-	 int loginUpdate(String userId);
-	 
-	 int deleteloginMember(String userId);
 }

@@ -12,6 +12,15 @@
 		<result column="STATUS" property="status" />
 		<result column="NOTICE_CONTENT" property="noticeCon" jdbcType="CLOB" javaType="java.lang.String"/>
 	</resultMap>
+	
+	<resultMap id="faqSet" type="VoicesFaq">
+		<id column="FAQ_NO" property="faqNo" />
+		<result column="USER_ID" property="userId" />
+		<result column="FAQ_TITLE" property="faqTitle" />
+		<result column="FAQ_TYPE" property="faqType" />
+		<result column="ENROLL_DATE" property="faqEnrollDate" />		
+		<result column="FAQ_CONTENT" property="faqCon" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
 
 	<select id="selectListCount" resultType="_int">
 		select
@@ -48,5 +57,39 @@
 		   and notice_no = #{nno}
   	</select>
   	
+  	<select id="selectSearchNoticeCount" resultType="_int" parameterType="string">
+  		select
+		       count(*)
+		  from notice
+		 where status='Y'
+		   and NOTICE_TITLE like '%'||#{keyword}||'%'
+  	</select>
+  	
+  	<select id="selectSearchNoticeList" parameterType="string" resultMap="noticeSet">
+  		select notice_no
+		     , notice_title
+		     , create_date
+		  from notice
+		 where status='Y'
+		   and NOTICE_TITLE like '%'||#{keyword}||'%'
+		 order
+		    by notice_no desc
+  	</select>
+  	
+  	<select id="selectFaqListCount" resultType="_int">
+  		select count(*)
+		  from FAQ
+  	</select>
+  	
+  	<select id="selectFaqList" resultMap="faqSet">
+  		select faq_no
+		     , faq_title
+		     , faq_content
+		     , faq_type
+		     , enroll_date
+		  from faq
+		 order
+		    by faq_no desc
+  	</select>
 
 </mapper>
