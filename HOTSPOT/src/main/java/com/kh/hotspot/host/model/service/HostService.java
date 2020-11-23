@@ -10,7 +10,7 @@ public interface HostService {
 	//2.호스트정보 조회
 	
 	//3.호스트정보 수정 
-	
+	int updateHost(HostInfo hi);
 	//4.1:1문의 내역 조회 
 	
 	//5.1:1문의 작성

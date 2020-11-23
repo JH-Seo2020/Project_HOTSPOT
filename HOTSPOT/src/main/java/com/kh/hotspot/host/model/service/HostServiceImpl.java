@@ -22,5 +22,11 @@ public class HostServiceImpl implements HostService {
 		return result;
 	}
 
+	@Override
+	public int updateHost(HostInfo hi) {
+		int result = hDao.updateHost(sqlSession, hi);
+		return result;
+	}
+
 	
 }

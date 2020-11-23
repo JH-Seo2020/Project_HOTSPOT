@@ -67,7 +67,7 @@
 <body>
 	<div id="floatMenu">
     
-          <ul class="f_profile"><img src="resources/images/host_images/reservation.png"><a href=""> 프로필 관리</a></ul>
+          <ul class="f_profile"><img src="resources/images/host_images/reservation.png"><a href="hostMyPage.ho"> 프로필 관리</a></ul>
           <ul class="f_space"><img src="resources/images/host_images/hosthome.png"><a href=""> 공간정보관리 </a></ul>
           <ul class="f_reservation"><img src="resources/images/host_images/clipboard-regular.png"><a href=""> 예약리스트 </a></ul>
           <ul class="f_qna"><img src="resources/images/host_images/comment.png"><a href=""> Q&A </a></ul>
