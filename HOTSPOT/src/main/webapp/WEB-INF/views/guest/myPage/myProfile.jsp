@@ -14,12 +14,12 @@
 	    margin-right: 23%;
 	    margin-top: 50px;
 	    padding: 50px;
-	    width: 750px;
+	    width: 770px;
 	    background: rgb(243, 243, 243);
 	}
 	#profileImage{
-	    float: left;
-	    margin-left: 100px;
+        float: left;
+        margin-left: 80px;
 	}
 	#mainProfile{
 	    font-weight: bold;
@@ -28,7 +28,7 @@
 	}
 	#mainProfile div{
 	    padding: 15px;
-	    margin-left: 300px;
+	    margin-left: 330px;
 	}
 	#profileBtn button{
 	    width: 150px;
@@ -71,21 +71,24 @@
 
             <br><hr><br><br>
             <form action="myProfile.me" method="POST" id="myProfile" enctype="multipart/form-data">
-                <div id="profileImage"><img src="resources/images/profileImage.png"><h2 align="center">${ loginUser.userId }</h2>
+                <div id="profileImage">
                 
+                <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px" onerror="">
+                <h2 align="center">${ loginUser.userId }</h2>
+
                 </div>
 
                 <div id="mainProfile">
                     <div id="nickName">닉네임 : &nbsp;&nbsp;&nbsp;${ loginUser.userNickname }</div>
                     <div id="profileEmail">이메일 : &nbsp;&nbsp;&nbsp;${ loginUser.userEmail }</div>
                     <div id="profilePhone">연락처 : &nbsp;&nbsp;&nbsp;${ loginUser.userPhone }</div> <br>
-                    <div id="switch">마케팅 수신동의 : <br><br>
+                    <div>마케팅 수신동의 : <br><br>
 
-                                                     이메일 <input type="checkbox" name="marketingEmail" value="yes" disabled> 예
-                            <input type="checkbox" name="marketingEmail" value="no" checked> 아니오
-                            <br>&nbsp;&nbsp;
-                        SMS <input type="checkbox" name="marketingSms" value="yes" disabled> 예
-                              <input type="checkbox" name="marketingSms" value="no" checked > 아니오
+                                                    이메일   &nbsp;&nbsp;&nbsp;<input type="radio" name="updateEmail" value="yes" disabled> 예
+                             &nbsp;&nbsp;&nbsp;<input type="radio" name="updateEmail" value="no" checked> 아니오
+                             <br>&nbsp;&nbsp;
+                        SMS &nbsp;&nbsp;&nbsp;<input type="radio" name="updateSms" value="yes" disabled> 예
+                            &nbsp;&nbsp;&nbsp;<input type="radio" name="updateSms" value="no" checked > 아니오
 
                     </div>
                 </div>
@@ -124,6 +127,10 @@
         <br>
     </div>
     -->
+    
+
+
+
 
     <br clear="both"><br><br>
     

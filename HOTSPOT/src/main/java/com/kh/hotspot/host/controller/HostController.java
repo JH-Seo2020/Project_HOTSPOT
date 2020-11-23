@@ -12,10 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.service.HostService;
 import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.space.model.vo.Space;
@@ -127,7 +131,27 @@ public class HostController {
 		ArrayList<Space> space = hService.selectSpaceList(userId);
 		//3. 결과의 따른 화면 
 		if(space != null) {
-			model.addAttribute("space",space);
+			session.setAttribute("space",space);
+			return "host/hostPage/hostQna";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	/**
+	 * @author jieun
+	 * @param spcNo
+	 * @return qna 리스트 조회
+	 */
+	@RequestMapping("selectQnaList.ho")
+	public String hostQnaList(@RequestParam(value="currentPage", defaultValue="1")int currentPage,int spcNo,Model model) {
+		int listCount = hService.selectQnaListCount(spcNo);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage,4,2);
+		ArrayList<Qna> list = hService.selectQnaList(pi,spcNo);
+		
+		if(list !=null) {
+			//model.addAttribute("pi",pi);
+			model.addAttribute("list",list);
 			return "host/hostPage/hostQna";
 		}else {
 			return "common/errorPage";

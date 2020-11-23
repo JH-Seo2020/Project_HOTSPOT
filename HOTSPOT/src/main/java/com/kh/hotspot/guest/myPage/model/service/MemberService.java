@@ -23,4 +23,6 @@ public interface MemberService {
 
 	 int nickCheck(String userNickname);
 	 
+	 int updateCheckNickname(String userNickname);
+	 
 }

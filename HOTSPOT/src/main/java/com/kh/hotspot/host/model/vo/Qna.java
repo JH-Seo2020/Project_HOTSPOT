@@ -1,6 +1,6 @@
-package com.kh.hotspot.guest.space.model.vo;
+package com.kh.hotspot.host.model.vo;
 
-import java.sql.Clob;
+
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ import lombok.ToString;
 public class Qna {
 	
 	private int qaNo;
-	private Clob qaContent; 
+	private String qaContent; 
 	private String qaWriter;	//닉네임
 	private Date qaDate;
 	private String qaAnswer;
@@ -25,5 +25,7 @@ public class Qna {
 	private String qaSecret;
 	private String userId;
 	private int spcNo;
+	private String spcName;
+	private String spcType;
 
 }

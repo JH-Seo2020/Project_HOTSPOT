@@ -120,6 +120,12 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.nickCheck(sqlSession, userNickname);
 	}
 
+	@Override
+	public int updateCheckNickname(String userNickname) {
+		
+		return mDao.updateCheckNickname(sqlSession, userNickname);
+	}
+
 
 
 
