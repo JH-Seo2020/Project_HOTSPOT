@@ -13,6 +13,28 @@
 		<result column="business_email" property="businessEmail" />
 		<result column="host_status" property="hostStatus" />
 	</resultMap>
+	<resultMap id="spaceResultSet" type="Space">
+		<result column="spc_no" property="spcNo" />
+		<result column="spc_name" property="spcName" />
+		<result column="spc_int" property="spcInt" />
+		<result column="spc_long" property="spcLong" />
+		<result column="spc_tag" property="spcTag" />
+		<result column="spc_type" property="spcType" />
+		<result column="spc_min" property="spcMin" />
+		<result column="spc_max" property="spcMax" />
+		<result column="spc_img" property="spcImg" />
+		<result column="spc_chimg" property="spcChimg" />
+		<result column="spc_price" property="spcPrice" />
+		<result column="spc_hours" property="spcHours" />
+		<result column="spc_holiday" property="spcHoliday" />
+		<result column="spc_status" property="spcStatus" />
+		<result column="spc_convn" property="spcConvn" />
+		<result column="user_id" property="userId" />
+		<result column="map_latitude" property="latitude" />
+		<result column="map_longitude" property="longitude" />
+		<result column="map_location" property="location" />
+
+	</resultMap>
   <insert id="insertHost" parameterType="HostInfo">
 	insert
 	  into host_info
@@ -56,6 +78,31 @@
 	      
 	  from  host_info
 	 where  user_id =  #{userId}
-  
+  </select>
+  <select id="selectSpaceList" parameterType="string" resultMap="spaceResultSet">
+  	select
+  		    spc_no
+  		  , spc_name 
+  		  , spc_int
+  		  , spc_long
+  		  , spc_tag
+  		  , spc_type
+  		  , spc_min
+  		  , spc_max
+  		  , spc_img
+  		  , spc_chimg
+  		  , spc_price
+  		  , spc_hours
+  		  , spc_holiday
+  		  , spc_status
+  		  , spc_convn
+  		  , user_id
+  		  , map_latitude
+  		  , map_longitude
+  		  , map_location
+	from   space_info
+   where  user_id = #{userId}
+     and  spc_status = 'Y'
+
   </select>
 </mapper>
