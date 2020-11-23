@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesFaq;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
+import com.kh.hotspot.guest.voices.model.vo.VoicesSearch;
 
 public interface VoicesService {
 	
@@ -23,13 +24,17 @@ public interface VoicesService {
 	//3-2.공지사항 제목검색 리스트 가져오기
 	ArrayList<VoicesNotice> selectSearchNoticeList(String keyword, PageInfo pi);
 	
+	//-----------------------------------------------------------------------------
+	
 	//4-1.faq게시글개수조회
 	int selectFaqListCount();
 	//4-2.페이지가져오기(내용까지다)
 	ArrayList<VoicesFaq> selectFaqList(PageInfo pi);
 	
-	//5.faq 검색
-	ArrayList<VoicesFaq> selectSearchFaq(String keyword, PageInfo pi);
+	//5-1.faq 검색 시 게시글 개수 조회
+	int selectSearchFaqCount(VoicesSearch vs);
+	//5-2.faq 검색 리스트 가져오기
+	ArrayList<VoicesFaq> selectSearchFaq(VoicesSearch vs, PageInfo pi);
 
 	
 }

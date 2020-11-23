@@ -159,22 +159,37 @@ public class HostController {
 		
 		return "host/hostPage/hostInquiry";
 	}
+	
 	@RequestMapping("hostCalculateForm.ho")
 	public String hostCalculateForm() {
 		return "host/hostPage/hostCalculateForm";
 	}
 	
-	@RequestMapping("hostMyPage.ho")
-	public String hostMyPage() {
-		
-		
-		return "host/hostPage/hostMyPage.jsp";
-	}
 	
+	
+	/**
+	 * @author jisu
+	 * @return
+	 */
+	@RequestMapping("hostMyPage.ho")
+	public String hostMyPage(HttpSession session) {
+		HostInfo hi = (HostInfo) session.getAttribute("hostInfo");
+			if(hi == null) {
+				
+				session.setAttribute("alertMsg", "호스트 등록이 필요한 페이지입니다. ");
+				return "host/common/hostMain";
+			}else {
+			return "host/hostPage/hostMyPage";
+			}
+	}
+	/**
+	 * @author jius
+	 * @return
+	 */
 	@RequestMapping("modify.ho")
 	public String modifyHost() {
 		
-		return "host/hostPage/hostMyPageModify.jsp";
+		return "host/hostPage/hostMyPageModify";
 	}
 	
 	@RequestMapping("updateHost.ho")
@@ -191,6 +206,6 @@ public class HostController {
 		}
 		int result =hService.updateHost(hi);
 		
-		return "";
+		return "host/hostPage/hostMyPage";
 	}
 }

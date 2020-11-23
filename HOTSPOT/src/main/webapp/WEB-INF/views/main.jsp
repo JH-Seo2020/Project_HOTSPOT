@@ -204,8 +204,8 @@
         		<c:set var="location" value="${today.location}" />
         		<c:set var="location2" value="${fn:substring(location,0,2)}" />
         		
-		            <div class="todaySpace">
-		                <img src="${today.spcChimg }">	
+		            <div class="todaySpace">        	
+		                <img src="${today.spcChimg }" onclick="move(${today.spcNo})">	
 		                <div style="font-weight: bold; font-size: 20px;">[${today.spcName }]</div>
 		                <div style="color:gray;">${location2} | #${today.spcTag }</div>
 		                <div>
@@ -226,13 +226,13 @@
         </div>
         <div id="userReviewGroup">
         	<c:forEach var="review" items="${reviewList }">
-        	
+       
         		<!-- 위치 자르기 (앞에서 두글자) -->
         		<c:set var="where" value="${review.location}" />
         		<c:set var="where2" value="${fn:substring(where,0,2)}" />
         	
 		            <div class="spaceReview">
-		                <img src="${review.spcChimg }">
+		                <img src="${review.spcChimg }" onclick="move(${review.spcNo})">
 		                <div style="font-weight: bold; font-size: 20px;">[${review.spcName }]</div>
 		                <div style="color:gray;">${where2} | #${review.spcTag }</div>
 		                <div>
@@ -258,6 +258,17 @@
         </div>
     </div>
     
+    <script>
+    	function move(spcNo){
+    		location.href="spaceDetail.guest?spcNo="+spcNo;
+    	}
+    	$(function(){
+    		$(".todaySpace img, .spaceReview img").hover(function(){
+    			$(this).css("cursor","pointer");
+    		})
+    	})
+    	
+    </script>
     
     
     <!-- 푸터 -->

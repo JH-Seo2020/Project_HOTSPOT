@@ -95,18 +95,25 @@
             <div class="input-group mb-3">
                 <span style="font-size: 20px;">검색 </span>&nbsp;&nbsp;
                 <select class="custom-select" id="inputGroupSelect01" name="questionType">
-                    <option selected>전체</option>
+                    <option selected value="전체">전체</option>
                     <option value="이용후기 및 작성">이용후기 및 작성</option>
                     <option value="예약 및 결제">예약 및 결제</option>
                     <option value="취소 및 환불">취소 및 환불</option>
                     <option value="기타">기타</option>
                 </select>
-                <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" name="keyword" value="${vs.keyword }" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button type="submit" class="input-group-text purple" id="basic-addon2">검색</button>
                 </div>
             </div>
         </form>
+        
+        	<script>
+	        	$(function(){
+	        		$("#noticeSearch option[value='${vs.questionType}']").attr("selected", true);
+	        	});
+	        </script>
+        
         <div id="noticeSpace">
             <table class="table table-hover" id="faq">
                 <thead>
@@ -117,23 +124,35 @@
                   </tr>
                 </thead>
                 <tbody>
-                
-                	<c:forEach var="f" items="${list }" varStatus="index">
-                	
-		                    <tr onclick="fnAnswer(${index.count}-1);" class="off">
-		                        <th scope="row">
-		                            <a class="black">${f.faqType}</a>
-		                        </th>
-		                        <td>${f.faqTitle } </td>
-		                        <td class="imgTd"><img src="resources/images/down-arrow.png" class="downImg"></td>
-		                    </tr>
-		                    <tr class="answers">
-		                        <td></td>
-		                        <td>${f.faqCon }</td>
-		                        <td></td>
-		                    </tr>
-		                    
-		        	</c:forEach>
+                	<c:choose>
+                		<c:when test="${!empty list }">
+		                	<c:forEach var="f" items="${list }" varStatus="index">
+		                	
+				                    <tr onclick="fnAnswer(${index.count}-1);" class="off">
+				                        <th scope="row">
+				                            <a class="black">${f.faqType}</a>
+				                        </th>
+				                        <td>${f.faqTitle } </td>
+				                        <td class="imgTd"><img src="resources/images/down-arrow.png" class="downImg"></td>
+				                    </tr>
+				                    <tr class="answers">
+				                        <td></td>
+				                        <td>${f.faqCon }</td>
+				                        <td></td>
+				                    </tr>
+				                    
+				        	</c:forEach>
+				        </c:when>
+				        <c:otherwise>
+		                	<tr>
+			                  	<th></th>
+			                    <td scope="row">
+			                        <p style="font-size:20px;">"보여드릴 결과가 없습니다. 다시 검색해보세요."</p>
+			                    </td>
+			                    <td></td>
+			                 </tr>
+		                </c:otherwise>
+				    </c:choose>
                 </tbody>
               </table>
         </div>
@@ -147,12 +166,22 @@
 		            <a class="badge badge-pill purple disabled">이전</a>
 		        </c:when>
 		        <c:otherwise>
-		        	<a href="faq.guest?currentPage=${pi.currentPage-1}" class="badge badge-pill purple">이전</a>
+	                <c:url var="searchURL" value="searchFaq.guest">
+      					<c:param name="currentPage" value="${pi.currentPage-1 }" />
+      					<c:param name="questionType" value="${vs.questionType }" />
+      					<c:param name="keyword" value="${vs.keyword }" />
+      				</c:url>
+		        	<a href="${searchURL}" class="badge badge-pill purple">이전</a>
 		        </c:otherwise>
 		    </c:choose>
 		    
 		    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
-		            <a href="faq.guest?currentPage=${p }" class="badge badge-pill purple">${p }</a>
+		    	    <c:url var="searchURL" value="searchFaq.guest">
+      					<c:param name="currentPage" value="${p}" />
+      					<c:param name="questionType" value="${vs.questionType }" />
+      					<c:param name="keyword" value="${vs.keyword }" />
+      				</c:url>
+		            <a href="${searchURL}" class="badge badge-pill purple">${p }</a>
 		    </c:forEach>
 		            
 		    <c:choose>
@@ -160,7 +189,19 @@
 		    		<a class="badge badge-pill purple disabled">다음</a>
 		    	</c:when>
 		    	<c:otherwise>
-		    		<a href="faq.guest?currentPage=${pi.currentPage +1 }" class="badge badge-pill purple">다음</a>
+		    		<c:choose>
+			    		<c:when test="${!empty list }">
+				    		<c:url var="searchURL" value="searchFaq.guest">
+		      					<c:param name="currentPage" value="${pi.currentPage+1}" />
+		      					<c:param name="questionType" value="${vs.questionType }" />
+		      					<c:param name="keyword" value="${vs.keyword }" />
+		      				</c:url>
+				    		<a href="${searchURL}" class="badge badge-pill purple">다음</a>
+				    	</c:when>
+				    	<c:otherwise>
+				    		<a class="badge badge-pill purple disabled">다음</a>
+				    	</c:otherwise>
+				    </c:choose>
 		    	</c:otherwise>
 		    </c:choose>   
 

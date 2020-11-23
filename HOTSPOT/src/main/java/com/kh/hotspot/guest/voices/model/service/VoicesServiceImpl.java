@@ -11,6 +11,7 @@ import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.voices.model.dao.VoicesDao;
 import com.kh.hotspot.guest.voices.model.vo.VoicesFaq;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
+import com.kh.hotspot.guest.voices.model.vo.VoicesSearch;
 
 @Service
 public class VoicesServiceImpl implements VoicesService{
@@ -22,56 +23,54 @@ public class VoicesServiceImpl implements VoicesService{
 
 	@Override
 	public int selectListCount() {
-		
 		return vDao.selectListCount(sqlSession);
 	}
 
 	@Override
 	public ArrayList<VoicesNotice> selectList(PageInfo pi) {
-		
 		return vDao.selectList(sqlSession,pi);
 	}
 
 	@Override
 	public int increaseCount(int nno) {
-		
 		return vDao.increaseCount(sqlSession,nno);
 	}
 
 	@Override
 	public VoicesNotice selectNotices(int nno) {
-		
 		return vDao.selectNotices(sqlSession,nno);
 	}
 
 	@Override
 	public int selectSearchNoticeCount(String keyword) {
-		
 		return vDao.selectSearchNoticeCount(sqlSession, keyword);
 	}
 
 	@Override
 	public ArrayList<VoicesNotice> selectSearchNoticeList(String keyword, PageInfo pi) {
-		
 		return vDao.selectSearchNoticeList(sqlSession, keyword, pi);
 	}
 
 	@Override
 	public int selectFaqListCount() {
-		
 		return vDao.selectFaqListCount(sqlSession);
 	}
 
 	@Override
 	public ArrayList<VoicesFaq> selectFaqList(PageInfo pi) {
-		
 		return vDao.selectFaqList(sqlSession,pi);
 	}
 
 	@Override
-	public ArrayList<VoicesFaq> selectSearchFaq(String keyword, PageInfo pi) {
-		// TODO Auto-generated method stub
-		return null;
+	public int selectSearchFaqCount(VoicesSearch vs) {
+		
+		return vDao.selectSearchFaqCount(sqlSession, vs);
+	}
+
+	@Override
+	public ArrayList<VoicesFaq> selectSearchFaq(VoicesSearch vs, PageInfo pi) {
+		
+		return vDao.selectSearchFaq(sqlSession,vs,pi);
 	}
 
 

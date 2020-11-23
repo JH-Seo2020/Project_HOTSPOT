@@ -1,8 +1,19 @@
 package com.kh.hotspot.guest.space.model.vo;
 
+import java.sql.Clob;
 import java.sql.Date;
 
-//어노테이션붙이기
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Reservation {
 	
 	private int reservNo;
