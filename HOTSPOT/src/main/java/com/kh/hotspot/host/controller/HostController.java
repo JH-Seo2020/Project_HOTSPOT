@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.host.model.service.HostService;
 import com.kh.hotspot.host.model.vo.HostInfo;
 
@@ -25,8 +27,17 @@ public class HostController {
 	 * @return 호스트메인페이지
 	 */
 	@RequestMapping("hostMain.ho")
-	public String hostMain() {
+	public String hostMain(Member m,HttpSession session) {
 		
+		Member loginUser =(Member) session.getAttribute("loginUser");
+		
+		String userId = loginUser.getUserId();
+		HostInfo hi =  hService.selectHost(userId);
+	
+		if(hi != null) {
+			session.setAttribute("hostInfo", hi );
+			return "host/common/hostMain";
+		}
 		return "host/common/hostMain";
 	}
 	/**
@@ -42,13 +53,13 @@ public class HostController {
 	 * @return 호스트등록
 	 */
 	@RequestMapping("insertHost.ho")
-	public String hostEnroll(HttpSession session,HostInfo hi,MultipartFile upfile) {
+	public String hostEnroll(HttpSession session,HostInfo hi,MultipartFile upfile, ModelAndView mv) {
 		
 		// 1. 파일 작업 
 		// 전달 된 파일이 있을 경우 => 파일명 수정 작업 후 업로드 
 		if(!upfile.getOriginalFilename().equals("")) {
 			
-			String changeName = saveFile(upfile,session); // 공통으로 쓰이게끔 뺀 메소드 호출만으로 끝
+			String changeName = saveFile(upfile,session); 
 			
 			if(changeName != null) {
 				hi.setBusinessLicense(upfile.getOriginalFilename());
@@ -60,9 +71,9 @@ public class HostController {
 		//2. 서비스 호출 
 		int result = hService.insertHost(hi);
 		
-		//3. result 
+		//3. 결과
 		if(result > 0) {
-			session.setAttribute("alertMsg", "호스트등록이 완료 되었습니다. 검수 후 승인여부는 이메일 발송으로(1~2일 소요)안내 드리겠습니다.");
+			session.setAttribute("alertMsg", "호스트등록이 완료 되었습니다. 승인여부는(1~2일 소요) 이메일로 안내드리겠습니다 ");
 			return "redirect:hostMain.ho";
 			
 		}else { // 실패 할 경우 
@@ -74,7 +85,7 @@ public class HostController {
 	 * @author jieun
 	 * @param upfile
 	 * @param session
-	 * @return 파일 수정명
+	 * @return 파일 저장 및 이름 변경
 	 */
 	public String saveFile(MultipartFile upfile, HttpSession session) {
 		

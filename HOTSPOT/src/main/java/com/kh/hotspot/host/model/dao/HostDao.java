@@ -13,4 +13,7 @@ public class HostDao {
 		return sqlSession.insert("hostMapper.insertHost",hi);
 		
 	}
+	public HostInfo selectHost(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("hostMapper.selectHost", userId);
+	}
 }
