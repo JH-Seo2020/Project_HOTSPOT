@@ -26,13 +26,13 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.me")
-	public String loginMember(Member m, HttpSession session, Model model) {
+	public String loginMember(@RequestParam("userId")String userId, 
+							   HttpSession session, Model model) {
+				
+		Member loginUser = mService.loginMember(userId);
 		
 		
 		
-		Member loginUser = mService.loginMember(m);
-		
-		System.out.print(loginUser);
 		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())*/) { // 로그인 성공
 			
 			session.setAttribute("loginUser", loginUser);
@@ -163,7 +163,7 @@ public class MemberController {
 		
 		if(result > 0) { // 정보수정성공
 			
-			session.setAttribute("loginUser", mService.loginMember(m));
+			session.setAttribute("loginUser", m);
 			System.out.println(m);
 			session.setAttribute("alertMsg", "성공적으로 정보수정되었습니다.");
 			

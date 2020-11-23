@@ -27,6 +27,8 @@ public class HostServiceImpl implements HostService {
 		int result = hDao.updateHost(sqlSession, hi);
 		return result;
 	}
+	
+	@Override
 	public HostInfo selectHost(String userId) {
 		HostInfo hi = hDao.selectHost(sqlSession, userId);
 		return hi;
