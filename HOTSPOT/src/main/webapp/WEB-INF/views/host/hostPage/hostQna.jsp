@@ -22,11 +22,10 @@
             </div>
             <div class="searchContainer">
                 <p style="display: block; font-size: 17px;">공간선택</p>
-                <form action="" method="post" id="selectQnaListForm">
+                <form action="" method="get" id="selectQnaListForm">
                 	
                     <input type="text" name="spcNo" list="space" class="searchSpace"placeholder="공간을 선택해주세요">
                   
-                   <!--	<input type="hidden" name="spcNo" value="${ sp.spcNo }">  --> 
 	                    <datalist id="space">
 	                      <c:forEach var="sp" items="${ space }">
 	                        <option class="hiddenSpcNo"value="${sp.spcNo }">${sp.spcName}</option>
@@ -37,50 +36,73 @@
                 </form>
             </div>
          </div>
-        <div class="qnaSpace" style="background-color: rgb(250, 248, 249); margin-top: 20px;">
+        <div class="qnaSpace" style="background-color:rgb(247, 246, 248); margin-top: 20px;">
             <div></div>
-            <c:if test="${ list == null}">
-            	<div><h5>작성 된 Q&A가 없습니다 !</h5></div>
-            </c:if>
-            <c:forEach var="li" items="${list}">
-            <div class="qna_1">
-                <div class="question">
-                    <h5>공간명 :[${li.spcType }]${li.spcName }
-                    <c:if test="${li.qaSecret eq 'Y' }">
-                   		 <span style="color:red; margin-right:30px;">[비밀글]</span>
-                    </c:if>
-                    </h5><br>
-                    <p>${li.qaContent}</p><Br><br>
-                    <span>${li.qaDate }</span>
-                </div><hr>
-                <div class="answer">
-                    <h5>호스트 답글</h5>
-                    <textarea rows="3"class="form-control" >A. 09:00~18:00입니다.</textarea>
-                    <span>2020.10.22</span>
-                    <button class="btn btn-warning">수정</button><button class="btn btn-primary">삭제</button>
-                </div>
-            </div>
-        </c:forEach>
+           <c:choose>
+	           <c:when test="${list != null }">
+	            <c:forEach var="li" items="${list}">
+	            <div class="qna_1">
+	                <div class="question">
+	                    <h5>공간명 :[${li.spcType }]${li.spcName }
+	                    <c:if test="${li.qaSecret eq 'Y' }">
+	                   		 <span style="color:red; margin-right:30px;">[비밀글]</span>
+	                    </c:if>
+	                    </h5><br>
+	                    <p>${li.qaContent}</p><Br><br>
+	                    <span>${li.qaDate }</span>
+	                </div><hr>
+	                <div class="answer">
+	                    <h5>호스트 답글</h5>
+	                    <c:choose>
+		                    <c:when test="${  li.qaAnswer != null}">
+			                    <textarea rows="3"class="form-control" >${ li.qaAnswer }</textarea>
+			                    <span>${  li.qaAnswerDate}</span>
+			                    <button class="btn btn-warning">수정</button><button class="btn btn-primary">삭제</button>
+			                </c:when>
+			                <c:otherwise>
+			               	    <textarea rows="3"class="form-control" placeholder="답변을 입력해주세요" ></textarea>
+			                    <span></span>
+			                    <button class="btn btn-warning">등록</button>
+			                 </c:otherwise>
+		                 </c:choose>
+	                </div>
+	            </div>
+	        </c:forEach>
+	        </c:when>
+	        <c:otherwise>
+	      		  <div><h5>공간을 선택 해주세요.</h5></div>
+	        </c:otherwise>
+        </c:choose>
           
         </div>
     </div>
-    <nav aria-label="Page navigation example">
-	  <ul class="pagination">
-	    <li class="page-item">
-	      <a class="page-link" href="#" aria-label="Previous">
-	        <span aria-hidden="true">&laquo;</span>
-	      </a>
-	    </li>
-	    <li class="page-item"><a class="page-link" href="#">1</a></li>
-	    <li class="page-item"><a class="page-link" href="#">2</a></li>
-	    <li class="page-item"><a class="page-link" href="#">3</a></li>
-	    <li class="page-item">
-	      <a class="page-link" href="#" aria-label="Next">
-	        <span aria-hidden="true">&raquo;</span>
-	      </a>
-	    </li>
-	  </ul>
-	</nav>
+    <!-- 페이징 처리  -->
+        <div id="pagingArea">
+          <ul class="pagination" style="margin-top:100px;margin-left:700px;">
+          	<c:choose>
+          		<c:when test="${ pi.currentPage eq 1 }">
+               	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+               </c:when>
+               <c:otherwise>
+               	<li class="page-item"><a class="page-link" href="selectQnaList.ho?currentPage=${ pi.currentPage-1 }">Previous</a></li>
+               </c:otherwise>
+              </c:choose>
+              
+              <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+              	<li class="page-item"><a class="page-link" href="selectQnaList.ho?currentPage=${ p }">${ p }</a></li>
+              </c:forEach>
+              
+              <c:choose>
+              	<c:when test="${ pi.currentPage eq pi.maxPage }">
+               	<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+               </c:when>
+               <c:otherwise>
+               	<li class="page-item"><a class="page-link" href="selectQnaList.ho??currentPage=${ pi.currentPage+1 }">Next</a></li>
+               </c:otherwise>
+              </c:choose>
+              
+          </ul>
+      </div>
     <script>
     
     	function searchSubmit(){

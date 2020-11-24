@@ -146,17 +146,12 @@ public class HostController {
 	@RequestMapping("selectQnaList.ho")
 	public String hostQnaList(@RequestParam(value="currentPage", defaultValue="1")int currentPage,int spcNo,Model model) {
 		int listCount = hService.selectQnaListCount(spcNo);
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage,4,2);
+		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
 		ArrayList<Qna> list = hService.selectQnaList(pi,spcNo);
 		
-		if(list !=null) {
-			//model.addAttribute("pi",pi);
-			model.addAttribute("list",list);
-			return "host/hostPage/hostQna";
-		}else {
-			return "common/errorPage";
-		}
-		
+		model.addAttribute("pi",pi);
+		model.addAttribute("list",list);
+		return "host/hostPage/hostQna";
 	}
 	
 	@RequestMapping("hostInquiry.ho")

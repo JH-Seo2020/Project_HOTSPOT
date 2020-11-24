@@ -41,6 +41,7 @@
 		<result column="qa_writer" property="qaWriter" />
 		<result column="qa_date" property="qaDate" />
 		<result column="qa_answer" property="qaAnswer" />
+		<result column="qa_answerdate" property="qaAnswerDate" />
 		<result column="qa_status" property="qaStatus" />
 		<result column="qa_secret" property="qaSecret" />
 		<result column="user_id" property="userId" />
@@ -145,6 +146,7 @@
 	    ,qa_writer
 	    ,qa_date
 	    ,qa_answer
+	    ,qa_answerdate
 	    ,qa_status
 	    ,qa_secret
 	    ,q.user_id
@@ -155,5 +157,7 @@
 	  join space_info s on(q.spc_no=s.spc_no)
 	  where q.spc_no = #{spcNo}
 	    and qa_status = 'Y'
+	  order
+	     by qa_no desc
   </select>
 </mapper>
