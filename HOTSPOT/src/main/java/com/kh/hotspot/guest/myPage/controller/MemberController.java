@@ -146,6 +146,8 @@ public class MemberController {
 	}
 
 
+	
+	// 성희 myPage Controller 시작
 	@RequestMapping("myProfile.me")
 	public String selectProfileMember() {
 		
@@ -183,7 +185,7 @@ public class MemberController {
 		
 		if(result > 0) { // 정보수정성공
 			
-			session.setAttribute("loginUser", m);
+			session.setAttribute("loginUser", mService.loginMember(m));
 			session.setAttribute("alertMsg", "성공적으로 정보수정되었습니다.");
 			
 			return "redirect:myPage.me";
@@ -195,6 +197,46 @@ public class MemberController {
 			
 		}
 	}
+	
+		
+	@ResponseBody
+	@RequestMapping("updateCheckNickname.me")
+	public String updateCheckNickname(String userNickname) {
+		
+		int count = mService.updateCheckNickname(userNickname);
+		
+		if(count > 0) {
+			return "fail";
+			
+		}else {
+			return "success";
+		}
+	
+		
+	}	
+	
+		
+	@RequestMapping("delete.me")
+	public String deleteMember(String userId, HttpSession session, Model model) {
+		
+		int result = mService.deleteMember(userId);
+		
+		if(result > 0) {
+			
+			session.removeAttribute("loginUser");
+			session.setAttribute("alertMsg", "성공적으로 탈퇴되었습니다.");
+			
+			return "redirect:/";
+			
+		}else {
+			
+			model.addAttribute("errorMsg", "탈퇴에 실패하셨습니다.");
+			return "common/errorPage";
+		}
+		
+		}
+		
+	
 	
 	// 파일업로드용 공통메소드
 	public String saveFile(HttpSession session, MultipartFile upfile) {
@@ -223,22 +265,6 @@ public class MemberController {
 		}
 		
 		return changeName;
-		
-		
-	}
-	
-	@ResponseBody
-	@RequestMapping("updateCheckNickname.me")
-	public String updateCheckNickname(String userNickname) {
-		
-		int count = mService.updateCheckNickname(userNickname);
-		
-		if(count > 0) {
-			return "fail";
-			
-		}else {
-			return "success";
-		}
 	}
 	
 

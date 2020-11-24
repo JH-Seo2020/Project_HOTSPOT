@@ -48,8 +48,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int deleteMember(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return mDao.deleteMember(sqlSession, userId);
 	}
 
 	@Override

@@ -79,9 +79,11 @@
 	  	update
 		        member
 		    set user_nickname=#{userNickname}
+		      , user_pwd=#{userPwd}
 		      , user_email=#{userEmail}
 		      , user_phone=#{userPhone}
-		      , user_pwd=#{userPwd}
+		      , user_profile=#{userProfile}
+      		  , user_profile_c=#{userProfileC}
 		      , modify_date=#{modifyDate}
 		  where user_id=#{userId}
   	</update>
