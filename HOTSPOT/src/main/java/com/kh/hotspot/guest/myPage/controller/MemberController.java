@@ -32,10 +32,11 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.me")
-	public String loginMember(@RequestParam("userId")String userId, 
+	public String loginMember(Member m, 
 							   HttpSession session, Model model) {
-				
-		Member loginUser = mService.loginMember(userId);
+		
+		
+		Member loginUser = mService.loginMember(m);
 		
 		
 		

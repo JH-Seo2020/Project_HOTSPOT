@@ -29,9 +29,9 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-	public Member loginMember(String userId) {
+	public Member loginMember(Member m) {
 		
-		return mDao.loginMember(sqlSession, userId);
+		return mDao.loginMember(sqlSession, m);
 	}
 
 	@Override

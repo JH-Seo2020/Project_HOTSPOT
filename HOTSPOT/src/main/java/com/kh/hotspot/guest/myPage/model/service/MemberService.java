@@ -7,7 +7,7 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 
 public interface MemberService {
 	
-	 Member loginMember(String userId);
+	 Member loginMember(Member m);
 	 
 	 int insertMember(Member m);
 
