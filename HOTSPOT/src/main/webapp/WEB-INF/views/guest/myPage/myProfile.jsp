@@ -38,6 +38,7 @@
 	    border: none;
 	    border-radius: 3px;
 	}
+	#profileBtn button:hover{background: rgb(184, 108, 255);}
 	#serviceWithdrawal{
 	    background: rgb(243, 243, 243);
 	    padding: 15px;
@@ -58,6 +59,7 @@
 	    border: none;
 	    border-radius: 3px;
 	}
+	.serviceBtn:hover{background: rgb(184, 108, 255);}
 </style>
 </head>
 <body>
@@ -94,49 +96,47 @@
                 <br><br><hr><br>
                 <div id="profileBtn" align="center"> 
                     <button type="button" onclick="location.href='profileUpdate.me'">내 프로필 변경하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="submit" class="serviceBtn" data-toggle="modal" data-target="#deleteForm">서비스 탈퇴</button>
+                    <button type="button" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">서비스 탈퇴</button>
+
                 </div>
             </form>
         </div>
     </div>
     <br><br>
     
- 
-     <!-- 회원탈퇴 버튼 클릭시 보여질 Modal -->
-    <div class="modal" id="deleteForm">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                   	<br>
-		            <h3><b>서비스 탈퇴하기 전에 꼭 확인하세요!</b></h3>
-		            <br>
-		            <p id="serviceInfo">
-		            	서비스 탈퇴시 내 프로필, 예약내역의<br>
-		              	 모든 정보가 삭제되며 이후 복구가 불가능합니다.
-		            </p>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body" align="center">
-	            	<form action="" method="POST">
-		                <div>
-		                    <label for="agreePwd">비밀번호 : </label>
-		                    <input type="password" name="userPwd" id="agreePwd" required>
-		                    <br><br>
-		                    <input type="checkbox" name="agreeChecked" id="agreeChecked" required>
-		                    <label for="agreeChecked">위의 내용을 숙지했으며 탈퇴에 동의합니다.</label><br>
-		                    <span style="color: red;"><small>! 서비스 탈퇴동의는 필수항목입니다</small></span>
-		                </div>
-		                <br>
-		               <button type="submit" class="btn btn-danger">탈퇴하기</button>
-	            	</form>
-                </div>
-            </div>
+    
+    <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header" style="color: red">
+          <h4 align="center">서비스 탈퇴 전 꼭 확인하세요!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+        <br>
+        <!-- Modal body -->
+        <div class="modal-body" align="center">
+	          <form action="delete.me" method="POST">
+	             <p>
+	                                  서비스 탈퇴시 내 프로필, 예약내역의<br>
+	                                  모든 정보가 삭제되며 이후 복구가 불가능합니다.
+	           	 </p><br>
+                 <label for="agreePwd">비밀번호 : </label>
+                 <input type="password" name="userPwd" id="agreePwd" required>
+                 <br><br>
+                 <input type="checkbox" name="agreeChecked" id="agreeChecked" required>
+                 <label for="agreeChecked">위의 내용을 숙지했으며 탈퇴에 동의합니다.</label><br>
+                 <span style="color: red;"><small>! 서비스 탈퇴동의는 필수항목입니다</small></span><br><br>
+              <button type="submit" class="serviceBtn">탈퇴하기</button><br><br>
+          	</form>
+        </div>
+      </div>
     </div>
+  </div>
+    
+    
     
     <!-- 
    	<div id="serviceWithdrawal">
