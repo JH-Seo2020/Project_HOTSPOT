@@ -29,9 +29,9 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-	public Member loginMember(Member m) {
+	public Member loginMember(String userId) {
 		
-		return mDao.loginMember(sqlSession, m);
+		return mDao.loginMember(sqlSession, userId);
 	}
 
 	@Override
@@ -118,6 +118,12 @@ public class MemberServiceImpl implements MemberService {
 	public int nickCheck(String userNickname) {
 		
 		return mDao.nickCheck(sqlSession, userNickname);
+	}
+
+	@Override
+	public int updateCheckNickname(String userNickname) {
+		
+		return mDao.updateCheckNickname(sqlSession, userNickname);
 	}
 
 

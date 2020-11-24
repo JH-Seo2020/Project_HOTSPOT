@@ -11,7 +11,12 @@
 <body>
 
 <jsp:include page="hostMenubar.jsp"/>
-
+	<c:if test="${ !empty alertMsg }">
+		<script>
+		alert("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+	</c:if>
    <!--호스트 메인화면 -->
    <section id="hostMain">
        <div id="host_container">
@@ -23,10 +28,17 @@
            <h6 class="clickChat">궁금한 점이 있으신가요? 1:1 문의하기</h6>
        </div>
        <div id="hostMainBtn">
-           <button id="hostBtn" class="btn btn-warning btn-lg" onClick="location.href='hostEnrollForm.ho'">호스트등록</button>
-           <button id="spaceBtn" class="btn btn-primary btn-lg" onClick="location.href='spaceEnrollForm.ho'">공간등록</button>
+       <c:choose>
+	       	<c:when test="${ loginUser.userType eq 'Host' or hostInfo.hostStatus eq 'W'}">	
+	           <button id="hostBtn" class="btn btn-warning btn-lg" onClick="enrollFail()">호스트등록</button>
+	            <button id="spaceBtn" class="btn btn-primary btn-lg" onClick="location.href='spaceEnrollForm.ho'">공간등록</button>
+	     	 </c:when>
+	     	 <c:otherwise>
+	   		   <button id="hostBtn" class="btn btn-warning btn-lg" onClick="location.href='hostEnrollForm.ho'">호스트등록</button>
+	           <button id="spaceBtn" class="btn btn-primary btn-lg" onClick="location.href='spaceEnrollForm.ho'">공간등록</button>
+             </c:otherwise>
+       </c:choose>
        </div>
-     
    </section>
    <section id="calculator">
            <div class="calitem" id="calculator_1">
@@ -94,9 +106,10 @@
                 $(".total").text($space*$price*$totalHours*$dayHours)
                 $(".commission").text($space*$price*$totalHours*$dayHours/10)
             }
-
+		function enrollFail(){
+			alert('이미 호스트 등록 하셨습니다!')
+		}
    </script>
- 
 
 
 <jsp:include page="../../common/footer.jsp"/>

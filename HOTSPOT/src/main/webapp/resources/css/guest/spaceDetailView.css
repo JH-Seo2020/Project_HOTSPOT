@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+/*여기서부터 상세정보 - css파일로 따로 뺄 예정..*/
+#infoWrapper{
+    background-color: lavender;
+    width: 100%;
+    height: auto;
+}
+#infoTitle{
+    margin: auto;
+    text-align: left;
+    padding: 5% 0 1% 0;
+    width: 1200px;
+    height: 11%;
+}
+#wishandlike{
+    width: 680px; 
+    height: 30px; 
+    text-align: right;
+}
+
+#wishandlike>a>img{
+    width: 6%;
+    height: 90%;
+    padding: 1px;
+}
+.infoClass{
+    margin: 0 auto;
+    width: 1200px;
+    overflow: hidden;
+}
+#informations, #selections {
+    float: left;
+    margin: 0 1% 2% 0;
+    padding:2% 2% 2% 2%;
+    border: 2px indigo dashed ;
+}
+
+#informations{
+    background-color: white;
+    width: 690px;
+}
+#selections{
+    background-color: white;
+    width: 480px;
+}
+
+#titleImgOne>img{
+    width: 100%;
+    height: 80%;
+}
+#infoDetails{
+    width: 1200px;
+    height: 30%;
+   padding: 3% 1% 1% 1%;
+   margin: auto;
+   text-align: left;
+}
+#infoDetails>h3>a{
+    color: black;
+    text-decoration: none;
+}
+/*detail display처리*/
+#refundNotice, #way, #detailQnA, #detailReviews{
+	display:none;
+}
+
+/*QnA부분*/
+#detailQnA{ width: 1200px;}
+#detailQnA>h5{text-align: right;}
+
+.qnaContent{width: 1200px; }
+.qnaContent>div{display: inline-block; margin-left: 2%;}
+.personImgs{width: 150px; height: 150px;  vertical-align: top !important;}
+.personImgs>img{height: 100%; width: 100%; border-radius: 100%;}
+.qna{height: 100%;}
+
+#pagination{text-align: center !important; font-size: 20px;}
+#pagination>button{border: none;}
+
+/*호스트홈피소개부분*/
+#whoishost{
+    width: 1200px;
+    margin: auto;
+    height: 330px;
+    padding: 3% 1% 1% 1%;
+}
+#hostIntroducingSpace{
+    width: 100%;
+    height: 170px;
+}
+#hostIntroducingSpace>div{float: left;}
+#hostPhotoForIntro{width: 25%; height: 100%;}
+#hostPhotoForIntro>img{height: 170px; width: 170px; border-radius: 100%;}
+	

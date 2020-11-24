@@ -8,9 +8,9 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 @Repository
 public class MemberDao {
 
-	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
+	public Member loginMember(SqlSessionTemplate sqlSession, String userId) {
 
-		return sqlSession.selectOne("memberMapper.loginMember", m);
+		return sqlSession.selectOne("memberMapper.loginMember", userId);
 	}
 
 	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
@@ -24,12 +24,16 @@ public class MemberDao {
 	}
 
 	public int nickCheck(SqlSessionTemplate sqlSession, String userNickname) {
-		// TODO Auto-generated method stub
+
 		return sqlSession.selectOne("memberMapper.nickCheck", userNickname);
 	}
 	
 	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updateMember", m);
+	}
+	
+	public int updateCheckNickname(SqlSessionTemplate sqlSession, String userNickname) {
+		return sqlSession.selectOne("memberMapper.updateCheckNickname", userNickname);
 	}
 
 }

@@ -1,8 +1,5 @@
 package com.kh.hotspot.guest.space.model.vo;
 
-import java.sql.Clob;
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,16 +11,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Qna {
+public class SpaceNotes {
 	
-	private int qaNo;
-	private Clob qaContent; 
-	private String qaWriter;	//닉네임
-	private Date qaDate;
-	private String qaAnswer;
-	private String qaStatus;
-	private String qaSecret;
-	private String userId;
+	private int notesNo;
+	private String notesContent;
 	private int spcNo;
 
 }

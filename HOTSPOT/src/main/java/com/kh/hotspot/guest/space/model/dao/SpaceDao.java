@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 
 @Repository
@@ -19,5 +20,6 @@ public class SpaceDao {
 		
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectUserReview");
 	}
+
 
 }

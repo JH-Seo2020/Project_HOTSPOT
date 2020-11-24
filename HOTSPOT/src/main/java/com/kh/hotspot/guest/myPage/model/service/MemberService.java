@@ -7,7 +7,7 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 
 public interface MemberService {
 	
-	 Member loginMember(Member m);
+	 Member loginMember(String userId);
 	 
 	 int insertMember(Member m);
 
@@ -22,5 +22,7 @@ public interface MemberService {
 	 boolean emailCertification(HttpSession session, String userEmailCheck, int parseInt);
 
 	 int nickCheck(String userNickname);
+	 
+	 int updateCheckNickname(String userNickname);
 	 
 }
