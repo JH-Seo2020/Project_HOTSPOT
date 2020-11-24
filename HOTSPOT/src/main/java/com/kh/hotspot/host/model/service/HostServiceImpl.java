@@ -51,4 +51,8 @@ public class HostServiceImpl implements HostService {
 		return hDao.selectQnaList(sqlSession,pi,spcNo);
 		
 	}
+	@Override
+	public int insertQna(Qna q) {
+		return hDao.insertQna(sqlSession,q);
+	}
 }

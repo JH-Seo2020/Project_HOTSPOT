@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -144,14 +145,27 @@ public class HostController {
 	 * @return qna 리스트 조회
 	 */
 	@RequestMapping("selectQnaList.ho")
-	public String hostQnaList(@RequestParam(value="currentPage", defaultValue="1")int currentPage,int spcNo,Model model) {
+	public String hostQnaList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, int spcNo, Model model) {
 		int listCount = hService.selectQnaListCount(spcNo);
 		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
 		ArrayList<Qna> list = hService.selectQnaList(pi,spcNo);
-		
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
+	
 		return "host/hostPage/hostQna";
+	}
+	
+	@ResponseBody
+	@RequestMapping("insertQnaAnswer.ho")
+	public String insertQna(Qna q) {
+		// ajax요청 
+		int result=hService.insertQna(q); 
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
 	}
 	
 	@RequestMapping("hostInquiry.ho")

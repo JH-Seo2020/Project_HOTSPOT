@@ -40,8 +40,9 @@ public class HostDao {
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
 		ArrayList<Qna> list = (ArrayList)sqlSession.selectList("hostMapper.selectQnaList", spcNo, rowBounds);
-		System.out.println(list);
 		return list;
-		
+	}
+	public int insertQna(SqlSessionTemplate sqlSession, Qna q) {
+		return sqlSession.update("hostMapper.insertQna",q);
 	}
 }

@@ -25,7 +25,7 @@
                 <form action="" method="get" id="selectQnaListForm">
                 	
                     <input type="text" name="spcNo" list="space" class="searchSpace"placeholder="공간을 선택해주세요">
-                  
+                  		
 	                    <datalist id="space">
 	                      <c:forEach var="sp" items="${ space }">
 	                        <option class="hiddenSpcNo"value="${sp.spcNo }">${sp.spcName}</option>
@@ -33,14 +33,22 @@
 	                    </datalist>
            		  
                     <input type="image" img src="resources/images/host_images/search.png" onclick="searchSubmit();" class="searchIcon"style="width: 25px;height:25px; border:0px;"></input>
+                    <ul class="answerBox">
+                  		<li>답변 유무<img src="resources/images/host_images/down.png" class="answerBtn"style="width:12px;heigt:6px;margin-left:10px;"></li>
+	               		<ul class="answer_whether">	
+	               			<li style="margin-top:6px;" onClick="complete">답변 완료</li>
+	               			<li style="margin-top:0.2px;"onClick="incomplete">답변 미완료</li>
+	               		</ul>
+              		</ul>
                 </form>
+                
             </div>
          </div>
         <div class="qnaSpace" style="background-color:rgb(247, 246, 248); margin-top: 20px;">
             <div></div>
            <c:choose>
-	           <c:when test="${list != null }">
-	            <c:forEach var="li" items="${list}">
+	           <c:when test="${list != null}">
+	            <c:forEach var="li" items="${list}" varStatus="status">
 	            <div class="qna_1">
 	                <div class="question">
 	                    <h5>공간명 :[${li.spcType }]${li.spcName }
@@ -60,9 +68,9 @@
 			                    <button class="btn btn-warning">수정</button><button class="btn btn-primary">삭제</button>
 			                </c:when>
 			                <c:otherwise>
-			               	    <textarea rows="3"class="form-control" placeholder="답변을 입력해주세요" ></textarea>
-			                    <span></span>
-			                    <button class="btn btn-warning">등록</button>
+			               	    <textarea rows="3"class="form-control" name="contentBox" placeholder="답변을 입력해주세요" ></textarea>
+			                    <span>${li.qaNo}</span>
+			                    <button class="btn btn-warning" onclick="insertAnswer(${li.qaNo})">등록</button>
 			                 </c:otherwise>
 		                 </c:choose>
 	                </div>
@@ -70,7 +78,7 @@
 	        </c:forEach>
 	        </c:when>
 	        <c:otherwise>
-	      		  <div><h5>공간을 선택 해주세요.</h5></div>
+	      		  <div><h5>Q&A가 존재하지 않습니다.</h5></div>
 	        </c:otherwise>
         </c:choose>
           
@@ -104,11 +112,40 @@
           </ul>
       </div>
     <script>
-    
+    	$(function(){
+    		$(".answer_whether").hide();
+    		$(".answerBtn").click(function(){
+        		$(".answer_whether").toggle();
+        	});
+    	});
+    	
+    	function insertAnswer(qaNo){
+    		var contentBox = $('textarea[name=contentBox]').val();
+    		if(contentBox != null){
+    			console.log(qaNo)
+    			console.log(contentBox);
+    			// 답글 등록 ajax 
+    			$.ajax({
+    				url:"insertQnaAnswer.ho",
+    				data:{ qaNo:qaNo,
+    					   qaAnswer:contentBox
+    				},
+    				success:function(result){	
+    					if(result == 'success'){
+    						$("#contentBox").val('')
+    						alert("성공!");
+    					}
+    				}
+    			});
+        	}
+    	};
+    	
+    	
     	function searchSubmit(){
     		$('#selectQnaListForm').attr("action","selectQnaList.ho").submit();
-    	}
-    
+    	};
+    	
+    	
     </script>
 </body>
 </html>

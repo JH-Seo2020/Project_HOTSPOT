@@ -22,4 +22,6 @@ public interface HostService {
 	int selectQnaListCount(int spcNo);
 	//4_1. qna리스트 전체조회
 	ArrayList<Qna> selectQnaList(PageInfo pi, int spcNo);
+	//4_2. qna 답글 등록
+	int insertQna(Qna q);
 }

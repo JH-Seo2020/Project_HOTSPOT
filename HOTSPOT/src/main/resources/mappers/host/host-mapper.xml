@@ -160,4 +160,12 @@
 	  order
 	     by qa_no desc
   </select>
+  <update id="insertQna" parameterType="hostQna">
+  	update
+	  	   question_answer
+	   set qa_answer = #{qaAnswer}
+	      ,qa_answerdate = sysdate
+	 where qa_no = #{qaNo}
+  
+  </update>
 </mapper>

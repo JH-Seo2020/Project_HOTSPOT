@@ -23,18 +23,19 @@
         .searchContainer {
             text-align: center;
             padding: 30px;
+            
         }
         .searchContainer p{
             margin-top: 10px;
         }
         .searchContainer{
-            border:1px solid var(--color-purple);
+            border:2px solid var(--color-purple);
             margin-top:25px;
-            height:170px;
+            height:190px;
         }
         .searchContainer input[type=text]{
             width:400px;
-            margin-top: 30px;
+            margin-top: 15px;
             display: inline;
         }
         .searchIcon{
@@ -45,11 +46,11 @@
             transition: all var(--animation-duration) ease;
         }
         .searchIcon:hover{
-            transform: rotate(30deg) scale(1.1);
+            transform: rotate(30deg) scale(1.2);
         }
         .qna_1{
             width:410px;
-            border: solid 2px var(--color-purple);
+            border: solid 2px #d1c4e9;
             padding:15px;
             margin:15px;
             display: inline-block;
@@ -71,9 +72,10 @@
             margin-top: 10px;
         }
         .searchSpace{
-            border: 2px solid var(--color-purple);
+            border: 2px solid #d1c4e9;
             border-radius: 10px;
             height:37px;
+           
         }
         .pagination{
         	width:250px;
@@ -81,5 +83,33 @@
 	         margin-top: 100px;
 	 	     margin-left: 700px;
         }
+     	.answerBox{
+     	width: 100px;
+     	height:35px;
+     	margin-left:30px;
+     	display:inline-block; 
+     	border:2px solid #d1c4e9;
+     	border-radius:10px;
+     	padding-top:5px;
+     	margin-bottm:20px;
+     	position:absolute;
+     	top:157px;
+     	}
+     	.answer_whether li{
+     	 border:2px solid #d1c4e9;
+     	border-radius:10px;
+     	padding-top:5px;
+     	cursor:pointer;
+     	padding:3px;
+     	}
+     	.answer_whether li:hover{
+     	font-weight:900px;
+     	color:var(--color-purple);
+     	background-color:#fff7ff;
+     	 border:2px solid var(--color-purple);
+     	}
+     	.answerBtn{
+     	cursor:pointer;
      
+     	}
      
