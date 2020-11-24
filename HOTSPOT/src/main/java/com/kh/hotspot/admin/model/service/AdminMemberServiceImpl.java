@@ -29,4 +29,21 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return memberDao.selectList(sqlSession, pageInfo);
 	}
 
+	@Override	// 검색결과 조회
+	public ArrayList<Member> selectMemberSearchresult(String searchType, String searchText, PageInfo pageInfo) {
+		if(searchType.equals("userType")) {
+			// 회원유형인경우
+			return memberDao.selectSearchUserType(searchText, sqlSession, pageInfo);
+		}else {
+			// 회원아이디인경우
+			return memberDao.selectSearchUserId(searchText, sqlSession, pageInfo);
+		}
+	}
+	
+	@Override	// 선택한 회원상태('N'인경우)로 우선정렬조회
+	public ArrayList<Member> selectStatusSearchList(String userStatus, PageInfo pageInfo) {
+		return memberDao.selectStatusSearchList(userStatus, sqlSession, pageInfo);
+	}
+
+
 }

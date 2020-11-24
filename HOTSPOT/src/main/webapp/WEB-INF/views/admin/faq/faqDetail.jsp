@@ -17,19 +17,29 @@
 
         <div style="margin:auto; width:1000px;">
             <fieldset style="width:1000px; height:300px; border:1px solid">
-                <div style="font-size:22px; margin:10px; font-weight:bold;">환불은 언제쯤 되나요?</div>
-                <div style="float:right; margin-right:20px;">2020-11-10</div>
+                <div style="font-size:22px; margin:10px; font-weight:bold;">${ f.faqTitle }</div>
+                <div style="float:right; margin-right:20px;">${ f.enrollDate }</div>
                 <div>&nbsp;</div>
                 <hr>
                 <div style="font-size:15px; margin:10px;">
-                    따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며 얼마나 아름다우냐? 이것을 얼음 속에서 불러 내는 것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 것은 청춘의
+					${ f.faqContent }
                 </div>
             </fieldset>
             
             <hr style="width:1000px;">
-            <button style="float:right;" class="btn btn-secondary">목록으로</button><br>
-            <button style="margin-left:450px;" class="btn btn-danger">삭제</button>
+            <button style="float:right;" class="btn btn-secondary" onclick="history.back()">목록으로</button><br>
+            <button style="margin-left:450px;" class="btn btn-danger" onclick="location.href='delete.fad?fno=${f.faqNo}'">삭제</button>
+            <button style="" class="btn btn-primary" onclick="updateForm();">수정</button>
         </div>
     </div>
+    <form action="" method="post" id="update">
+    	<input type="hidden" name="fno" value="${ f.faqNo }">
+    </form>
+    <script>
+    function updateForm(){
+    	$("#update").attr("action", "updateForm.fad").submit();
+    }
+    
+    </script>
 </body>
 </html>

@@ -66,7 +66,73 @@
  		 	</when>
  		 </choose>  
  		 order
- 		    by faq_no desc
- 		         
+ 		    by faq_no desc		         
  	</select>
+ 	<select id="selectFaq"
+ 			resultMap="faqResultSet">
+ 		select
+ 		       faq_no
+ 		     , user_nickname
+ 		     , faq_title
+ 		     , faq_content
+ 		     , faq_type
+ 		     , to_char(f.enroll_date, 'YYYY-MM-DD') enroll_date
+ 		  from faq f
+ 		  join member using(user_id)
+ 		 where faq_no = #{fno}      		       	
+ 	</select>
+ 	<delete id="deleteFaq">
+ 		
+ 		delete
+ 		  from faq
+ 		 where faq_no in
+ 		 <foreach index="index" item="fno" collection="array" 
+ 		 open="(" separator="," close=")">
+ 		 	#{fno}
+ 		 </foreach>       	
+ 	</delete>
+ 	
+ 	<insert id="insertFaq">
+ 	
+ 		insert
+ 		  into faq
+ 		  (
+ 		  	 faq_no
+ 		   , faq_title
+ 		   , faq_content
+ 		   , user_id
+ 		   , faq_type 
+ 		  )
+ 		  values
+ 		  (
+ 		  	 seq_faq.nextval
+ 		   , #{faqTitle}
+ 		   , #{faqContent}
+ 		   , #{faqWriter}
+ 		   , #{faqType}	
+ 		  )
+ 	
+ 	
+ 	</insert>
+ 	<update id="updateFaq">
+ 	
+ 		update 
+ 		       faq
+ 		   set faq_title = #{faqTitle}
+ 		     , faq_content = #{faqContent}
+ 		     , faq_type = #{faqType}
+ 		 where faq_no = #{faqNo}        	
+ 	</update>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
 </mapper>

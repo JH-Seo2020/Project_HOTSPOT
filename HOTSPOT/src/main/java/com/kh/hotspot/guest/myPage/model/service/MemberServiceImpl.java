@@ -29,9 +29,9 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-	public Member loginMember(String userId) {
+	public Member loginMember(Member m) {
 		
-		return mDao.loginMember(sqlSession, userId);
+		return mDao.loginMember(sqlSession, m);
 	}
 
 	@Override
@@ -48,8 +48,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int deleteMember(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return mDao.deleteMember(sqlSession, userId);
 	}
 
 	@Override

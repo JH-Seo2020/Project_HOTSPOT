@@ -1,6 +1,7 @@
 package com.kh.hotspot.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,14 +19,15 @@ public class AdminReportDao {
 	}
 	
 	// 총 신고내역 조회
-	public ArrayList<Report> selectList(SqlSessionTemplate sqlSession, PageInfo pageInfo) {
+	public ArrayList<Report> selectList(String reportStatus, SqlSessionTemplate sqlSession, PageInfo pageInfo) {
 		
+		System.out.println("reportStatus : " + reportStatus);
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
 		int limit = pageInfo.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("reportMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("reportMapper.selectList", reportStatus, rowBounds);
 		
 	}
 

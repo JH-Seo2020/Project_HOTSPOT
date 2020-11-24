@@ -22,18 +22,23 @@ public class AdminReportController {
 	
 	// 신고관리 리스트 조회 요청
 	@RequestMapping("reportList.ad")
-	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+	public String selectList(@RequestParam(value="reportStatus", defaultValue="접수완료") String reportStatus,
+							 @RequestParam(value="currentPage", defaultValue="1") int currentPage,
 							 Model model) {
-		
 		// 총 신고내역 수 조회
 		int listCount = reportService.selectListCount();
 		// 페이지 정보 조회
 		PageInfo pageInfo = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		// 총 신고내역 조회
-		ArrayList<Report> list = reportService.selectList(pageInfo);
+		ArrayList<Report> list = reportService.selectList(reportStatus, pageInfo);
 		
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("list", list);
+		model.addAttribute("reportStatus", reportStatus);
+		
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 		
 		return "admin/adminReportList";
 	}

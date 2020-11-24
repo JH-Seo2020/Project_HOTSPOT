@@ -18,6 +18,12 @@
         #adminFooter form{
             display:inline;
         }
+        #adminNotice tbody td:nth-child(3){
+        	cursor:pointer;
+        }
+        #adminNotice tbody tr:hover{
+        	background:mintcream;
+        }
     </style>
 </head>
 <body>
@@ -30,24 +36,44 @@
             <br><br>
             
             <table class="table" id="adminNotice" style="text-align:center; margin:auto;">
-                <tr>
+            	<thead>
+                	<tr>
                     <th><input type="checkbox"></th>
                     <th>번호</th>
                     <th>제목</th>
                     <th>분류</th>
                     <th>작성일</th>
-                </tr>
-                <c:forEach var="f" items="${ list }">
-	                <tr>
-	                    <td><input type="checkbox"></td>
-	                    <td>${ f.faqNo }</td>
-	                    <td>${ f.faqTitle }</td>
-	                    <td>${ f.faqType }</td>
-	                    <td>${ f.enrollDate }</td>
-	                </tr>
-                </c:forEach>
-                
+                	</tr>
+                </thead>
+                <tbody>
+	                <c:forEach var="f" items="${ list }">
+		                <tr>
+		                    <td><input id="check" type="checkbox" value="${f.faqNo}"></td>
+		                    <td>${ f.faqNo }</td>
+		                    <td>${ f.faqTitle }</td>
+		                    <td>${ f.faqType }</td>
+		                    <td>${ f.enrollDate }</td>
+		                </tr>
+	                </c:forEach>    
+                </tbody>
             </table>
+            <script>
+            	$(function(){
+            		
+            		$("#adminNotice tbody tr").find("td:eq(2)").click(function(){
+            			location.href="detail.fad?fno="+$(this).prev().text();
+            		});
+            		
+            		$("#adminNotice thead input[type=checkbox]").change(function(){
+            			if($("#adminNotice tbody input[type=checkbox]").prop("checked")){
+            				$("#adminNotice tbody input[type=checkbox]").prop("checked", false);
+            			}else{
+            				$("#adminNotice tbody input[type=checkbox]").prop("checked", true);
+            			}
+            		})
+            	});           	
+            </script>
+            
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
                 <form action="list.fad">
@@ -60,27 +86,58 @@
                 </form>
                 <c:choose>
                 	<c:when test="${ pi.currentPage ne pi.startPage }">
-                		<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${ pi.currentPage -1}'"><</button>
+                		<c:choose>
+                			<c:when test="${ empty sc }">
+                				<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${ pi.currentPage -1}'"><</button>
+                			</c:when>
+                			<c:otherwise>
+                				<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${ pi.currentPage -1}&search=${search }&keyword=${keyword }'"><</button>
+                			</c:otherwise>
+                		</c:choose>
                 	</c:when>
                 	<c:otherwise>
                 		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
                 	</c:otherwise>
                 </c:choose>
                 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                	<button class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${p}'" >${ p }</button>
+                	<c:choose>
+                		<c:when test="${ empty sc }">
+                			<button class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${p}'" >${ p }</button>
+                		</c:when>
+                		<c:otherwise>
+                			<button class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${p}&search=${search }&keyword=${keyword }'" >${ p }</button>
+                		</c:otherwise>
+                	</c:choose>	
                 </c:forEach>
                 <c:choose>
                 	<c:when test="${ pi.currentPage ne pi.maxPage }">
-                		<button class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${ pi.currentPage +1}'">></button>
+                		<c:choose>
+                			<c:when test="${ empty sc }">
+                				<button class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${ pi.currentPage +1}'">></button>
+                			</c:when>
+                			<c:otherwise>
+                				<button class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${ pi.currentPage +1}&search=${search }&keyword=${keyword }'">></button>
+                			</c:otherwise>
+                		</c:choose>
                 	</c:when>
                 	<c:otherwise>
                 		<button class="btn btn-secondary" disabled>></button>
                 	</c:otherwise>
 				</c:choose>
-                <button style="margin-left:180px" class="btn btn-secondary">글작성</button>
-                <button class="btn btn-secondary">삭제</button>       
+                <button style="margin-left:180px" class="btn btn-secondary" onclick="location.href='enrollForm.fad'">글작성</button>
+                <button class="btn btn-secondary" onclick="deleteFaq();">삭제</button>       
             </div>
         </div>
     </div>
+    <script>
+    	function deleteFaq(){
+    		var selected = new Array();
+    		$("#check:checked").each(function(){
+    			selected.push($(this).val());
+    		})
+    		
+    		location.href="delete.fad?fno=" + selected;
+    	}
+    </script>
 </body>
 </html>

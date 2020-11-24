@@ -23,8 +23,7 @@
 		  from report
 	</select>
 	
-	<!-- 총 신고내역 조회 -->
-	<select id="selectList" resultMap="reportResultSet">
+	<select id="selectList" parameterType="String" resultMap="reportResultSet">
 		select
 		       report_no
 		     , spc_no
@@ -37,8 +36,7 @@
 		     , report_date
 		     , report_status
 		  from report
-		 order
-		    by report_status desc
+		 order by decode(report_status, #{reportStatus}, 1), report_date desc
 	</select>
 
 </mapper>

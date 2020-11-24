@@ -27,5 +27,38 @@ public class AdminMemberDao {
 		
 		return (ArrayList)sqlSession.selectList("memberMapper.selectList", null, rowBounds);
 	}
+	
+	// 회원유형 검색결과조회
+	public ArrayList<Member> selectSearchUserType(String searchText, SqlSessionTemplate sqlSession, PageInfo pageInfo) {
+		
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
+		int limit = pageInfo.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("memberMapper.selectSearchUserType", searchText, rowBounds);
+	}
+	
+	// 회원아이디 검색결과조회
+	public ArrayList<Member> selectSearchUserId(String searchText, SqlSessionTemplate sqlSession, PageInfo pageInfo) {
+		
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
+		int limit = pageInfo.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("memberMapper.selectSearchUserId", searchText, rowBounds);
+	}
+	
+	// 선택한 회원상태('N'인경우)로 우선정렬조회
+	public ArrayList<Member> selectStatusSearchList(String userStatus, SqlSessionTemplate sqlSession, PageInfo pageInfo) {
+		
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
+		int limit = pageInfo.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return (ArrayList)sqlSession.selectList("memberMapper.selectStatusSearchList", userStatus, rowBounds);
+	}
 
 }

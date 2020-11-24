@@ -41,4 +41,23 @@ public class FaqDao {
 		RowBounds rowbounds = new RowBounds(offset, limit);
 		return (ArrayList)sqlSession.selectList("adminFaqMapper.searchList", sc, rowbounds);
 	}
+	
+	public Faq selectFaq(SqlSessionTemplate sqlSession, int fno) {
+	
+		return sqlSession.selectOne("adminFaqMapper.selectFaq", fno); 
+	}
+	
+	public int deleteFaq(SqlSessionTemplate sqlSession, String[] fno) {
+		
+		return (int)sqlSession.delete("adminFaqMapper.deleteFaq", fno);
+	}
+	
+	public int insertFaq(SqlSessionTemplate sqlSession, Faq f) {
+		return sqlSession.insert("adminFaqMapper.insertFaq", f);
+	}
+	
+	public int updateFaq(SqlSessionTemplate sqlSession, Faq f) {
+		
+		return sqlSession.update("adminFaqMapper.updateFaq", f);
+	}
 }

@@ -3,7 +3,7 @@
 
 <mapper namespace="memberMapper">
 
-	<resultMap id="memberResultSet1" type="adminMember">
+	<resultMap id="adminMemberResultSet" type="adminMember">
 		<id column="user_id" property="userId"></id>
 		<result column="user_type" property="userType" />
 		<result column="user_pwd" property="userPwd" />
@@ -28,7 +28,7 @@
 	</select>
 	
 	<!-- 모든 회원리스트 조회 -->
-	<select id="selectList" resultMap="memberResultSet1">
+	<select id="selectList" resultMap="adminMemberResultSet">
 		select
 		       user_type
 		     , user_id
@@ -43,4 +43,50 @@
 		    by user_status desc
 	</select>
 	
+	<!-- 회원유형 검색결과조회 -->
+	<select id="selectSearchUserType" parameterType="String" resultMap="adminMemberResultSet">
+		select
+		       user_type
+		     , user_id
+		     , user_nickname
+		     , user_email
+		     , user_phone
+		     , enroll_date
+		     , modify_date
+		     , user_status
+		  from member
+		 where user_type like #{searchText}||'%'
+		 order by decode(user_status, 'Y', 1), enroll_date desc
+	</select>
+	
+	<!-- 회원아이디 검색결과조회 -->
+	<select id="selectSearchUserId" parameterType="String" resultMap="adminMemberResultSet">
+		select
+		       user_type
+		     , user_id
+		     , user_nickname
+		     , user_email
+		     , user_phone
+		     , enroll_date
+		     , modify_date
+		     , user_status
+		  from member
+		 where user_type like #{searchText}||'%'
+		 order by decode(user_status, 'Y', 1), enroll_date desc
+	</select>
+	
+	<!-- 선택한 회원상태('N'인경우)로 우선정렬조회 -->
+	<select id="selectStatusSearchList" parameterType="String" resultMap="adminMemberResultSet">
+		select
+		       user_type
+		     , user_id
+		     , user_nickname
+		     , user_email
+		     , user_phone
+		     , enroll_date
+		     , modify_date
+		     , user_status
+		  from member
+		 order by decode(user_status, #{userStatus}, 1), enroll_date desc
+	</select>
 </mapper>
