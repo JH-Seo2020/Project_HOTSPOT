@@ -47,11 +47,72 @@ public class FaqController {
 			
 			model.addAttribute("list", list);
 			model.addAttribute("pi", pi);
+			model.addAttribute("sc", sc);
+			model.addAttribute("search", search);
+			model.addAttribute("keyword", keyword);
 			
 			return"admin/faq/faqList";
 		}
-		
-			
+	
 	}
+	
+	@RequestMapping("detail.fad")
+	public String detailFaq(int fno, Model model) {
+		
+		Faq f = fService.selectFaq(fno);
+		
+		model.addAttribute("f", f);
+		return "admin/faq/faqDetail";
+	}
+	@RequestMapping("delete.fad")
+	public String deleteFaq(String[] fno) {
+		
+		int result = fService.deleteFaq(fno);
+		
+		return "redirect:list.fad";
+	}
+	@RequestMapping("enrollForm.fad")
+	public String faqEnrollForm() {
+		
+		return "admin/faq/faqEnrollForm";
+	}
+	
+	@RequestMapping("insert.fad")
+	public String insertFaq(Faq f) {
+		
+		int result = fService.insertFaq(f);
+		
+		return "redirect:detail.fad=" + f.getFaqNo();
+	}
+	
+	@RequestMapping("updateForm.fad")
+	public String updateForm(int fno, Model model) {
+		
+		Faq f = fService.selectFaq(fno);
+		
+		model.addAttribute("f", f);
+		
+		return "admin/faq/faqUpdateForm";
+	}
+	@RequestMapping("update.fad")
+	public String update(Faq f) {
+		
+		int result = fService.updateFaq(f);
+		
+		return "redirect:detail.fad?fno=" + f.getFaqNo();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

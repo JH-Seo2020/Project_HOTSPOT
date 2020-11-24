@@ -41,22 +41,22 @@ public class FaqServiceImpl implements FaqService {
 
 	@Override
 	public int insertFaq(Faq f) {
-		return 0;
+		return fDao.insertFaq(sqlSession, f);
 	}
 
 	@Override
 	public Faq selectFaq(int fno) {
-		return null;
+		return fDao.selectFaq(sqlSession, fno);
 	}
 
 	@Override
 	public int updateFaq(Faq f) {
-		return 0;
+		return fDao.updateFaq(sqlSession, f);
 	}
 
 	@Override
 	public int deleteFaq(String[] fno) {
-		return 0;
+		return fDao.deleteFaq(sqlSession, fno);
 	}
 
 }

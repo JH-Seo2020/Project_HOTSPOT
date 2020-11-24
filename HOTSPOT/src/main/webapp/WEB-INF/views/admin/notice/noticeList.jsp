@@ -18,7 +18,7 @@
         #adminFooter form{
             display:inline;
         }
-        #adminNotice tbody tr{
+        #adminNotice tbody td:nth-child(3){
         	cursor:pointer;
         }
         #adminNotice tbody tr:hover{
