@@ -17,21 +17,29 @@
 </style>
 <body>
 
-    <div align="left" id="noticebar">
-        <img src="">
-        <label style="color: yellowgreen; font-size: large ;">내 대여공간</label><hr>
-    </div>
-
-    <div class="MySpaceInfo"> 
-        <img>
-        <label for="">[경복궁역] 한옥카페 '그리다 꿈'</label>
-        <p>종로구|#한옥카페 #그리다꿈 #궁궐뷰카페</p>
-        <span>10,000원/시간</span> <img><label>10</label> <img><label>7</label>
-        <br>
-        <button>공간 정보 수정</button>
-        <button>공간 삭제</button>
-    </div>
-
+	<jsp:include page="../common/hostMenubar.jsp"/>
+	<jsp:include page="../common/subMenubar.jsp"/>
+	
+	<div style="position: absolute; top:50px; left:50px">
+    	<div align="left" id="noticebar" style="margin-left: 300px;">
+        	<img src="resources/images/logo_letter_1.png">
+        	<label style="color: yellowgreen; font-size: large ;">내 공간 정보</label><hr>
+    	</div>
+		
+		<c:forEach var="b" items="test">
+    	<div class="MySpaceInfo"> 
+        	<img>
+        	<label for="">[경복궁역] 한옥카페 '그리다 꿈'</label>
+        	<p>종로구|#한옥카페 #그리다꿈 #궁궐뷰카페</p>
+        	<span>10,000원/시간</span> 
+        	<img src="resources/images/common/main_reviewicon.png" id="reviewIcon"><label for="reviewIcon">10</label> 
+        	<img src="resources/images/common/main_wishicon.png" id="wishIcon"><label for="wishIcon">7</label>
+        	<br>
+        	<button>공간 정보 수정</button>
+        	<button>공간 삭제</button>
+    	</div>
+		</c:forEach>
+	</div>
 
 
 <body>

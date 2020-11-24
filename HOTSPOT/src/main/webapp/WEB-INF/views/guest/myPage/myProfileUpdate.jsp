@@ -27,6 +27,7 @@
         color:rgb(80, 80, 80)
     }
     #mainProfile div{margin-left: 300px;}
+    #emailCode:hover{background: rgb(184, 108, 255);}
     #profileBtn button{
         width: 150px;
         height: 30px;
@@ -35,6 +36,7 @@
         border: none;
         border-radius: 3px;
     }
+     #profileBtn button:hover{background: rgb(184, 108, 255);}
     #userPwdArea label{
         font-size: small;
         color: rgb(145, 37, 247);
@@ -87,17 +89,19 @@
                         <label for="userPwd">현재 비밀번호 <br>
                         	<input type="password" name="userPwd" id="userPwd" style="width: 250px"><br><br>
                         </label>
-                        <label for="userPwd_Update">새 비밀번호<br>
-                        	<input type="password" name="userPwd_Update" id="userPwd_Update" style="width: 250px"><br>
+                        <label for="newUserPwd">새 비밀번호<br>
+                        	<!-- <span id="checkUpdatePwd" style="font-size:0.8em; color:rgb(145, 37, 247)">
+                        	(숫자, 특문 각 1회 이상,영문은 2개 이상 사용하여<br> 8자리 이상 입력해주세요.)</span><br> -->
+                        	<input type="password" name="newUserPwd" id="newUserPwd" style="width: 250px"><br>
                         </label><br>
-                        <span id="checkUpdatePwd" style="font-size:0.8em">숫자, 특문 각 1회 이상,영문은 2개 이상 사용하여<br> 8자리 이상 입력해주세요.</span><br><br>
+                        <br>
 
-                        <label for="userPwd_Check">새 비밀번호 확인 <br>
-                        	<input type="password" name="userPwd_Check" id="userPwd_Check" style="width: 250px">
+                        <label for="newUserPwdCheck">새 비밀번호 확인 <br>
+                        	<input type="password" name="newUserPwdCheck" id="newUserPwdCheck" style="width: 250px"><br>
+                        	<span id="checkResult" style="font-size:0.8em"></span><br><br>
                         </label>
                                                
                     </div>
-                    <br><br>
                     <div>마케팅 수신동의 : <br><br>
 
                                                     이메일   &nbsp;&nbsp;&nbsp;<input type="radio" name="updateEmail" value="yes"> 예
@@ -116,7 +120,7 @@
          </div>
      </div>
      
-     
+     <!-- 프로필 첨부파일 클릭이벤트 -->
 	 <script>
 			$('#target_img').click(function(){
 				$("input[name='userProfile']").click();
@@ -140,6 +144,7 @@
 			}
 	    </script>
 	    
+	    <!-- 동기식 닉네임 중복체크 -->
 	    <script>
 	    	$(function(){
 	    		var $idInput = $("#myProfile input[name=userNickname]");
@@ -173,6 +178,32 @@
 	    		})
 	    	})
 	    </script>
+	    
+	    
+	    <!-- 새 비밀번호 확인체크 -->
+	    <script>
+	    	$(function(){
+	    		$("#checkResult").hide();
+		    		
+	    			$("input").keyup(function(){
+	    				
+		    			var pwd1=$("#newUserPwd").val();
+		    			var pwd2=$("#newUserPwdCheck").val();
+		    			
+	    			if(pwd1 == "" || pwd2 != ""){
+	    				if(pwd1 == pwd2){
+	    					$("#checkResult").show();
+	    					$("#checkResult").css("color", "green").text("새 비밀번호와 일치합니다.");
+	    				}else{
+	    					$("#checkResult").show();
+	    					$("#checkResult").css("color", "red").text("새 비밀번호와 일치하지 않습니다.");
+	    				}
+	    			}
+		    	})
+	    	})
+	    </script>
+	    
+
      
      <br clear="both"><br><br>
  

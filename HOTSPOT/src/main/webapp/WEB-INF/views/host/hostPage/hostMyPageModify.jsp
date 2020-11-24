@@ -24,7 +24,14 @@
 	<jsp:include page="../common/hostMenubar.jsp"/>
 	<jsp:include page="../common/subMenubar.jsp"/>
 
+	
+	
+
 <div id="hostInsertContainer" style="position: absolute; top:50px; left:50px; margin-left: 300px;">
+    <div align="left" id="noticebar" style="margin-left: 300px;">
+        <img src="resources/images/logo_letter_1.png">
+        <label style="color: yellowgreen; font-size: large ;">MYPAGE정보 수정</label><hr>
+    </div>
         <hr>
         <div id="container1">
             <span class="comment1">*호스트 정보 수정
