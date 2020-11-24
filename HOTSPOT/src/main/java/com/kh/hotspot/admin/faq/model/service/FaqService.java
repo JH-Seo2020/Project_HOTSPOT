@@ -9,7 +9,7 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 public interface FaqService {
 
 	int selectListCount();
-	ArrayList<Faq> selctList(PageInfo pi);
+	ArrayList<Faq> selectList(PageInfo pi);
 	
 	int searchListCount(SearchCondition sc);
 	ArrayList<Faq> searchList(SearchCondition sc, PageInfo pi);

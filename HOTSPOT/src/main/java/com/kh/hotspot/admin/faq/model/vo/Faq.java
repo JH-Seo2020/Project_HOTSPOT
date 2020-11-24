@@ -17,7 +17,7 @@ public class Faq {
 	private String faqWriter;
 	private String faqTitle;
 	private String faqContent;
-	private String faq_type;
+	private String faqType;
 	private String enrollDate;
 	
 	

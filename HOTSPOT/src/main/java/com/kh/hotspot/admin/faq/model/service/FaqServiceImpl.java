@@ -21,22 +21,22 @@ public class FaqServiceImpl implements FaqService {
 	
 	@Override
 	public int selectListCount() {
-		return 0;
+		return fDao.selectListCount(sqlSession);
 	}
 
 	@Override
-	public ArrayList<Faq> selctList(PageInfo pi) {
-		return null;
+	public ArrayList<Faq> selectList(PageInfo pi) {
+		return fDao.selectList(sqlSession, pi);
 	}
 
 	@Override
 	public int searchListCount(SearchCondition sc) {
-		return 0;
+		return fDao.searchListCount(sqlSession, sc);
 	}
 
 	@Override
 	public ArrayList<Faq> searchList(SearchCondition sc, PageInfo pi) {
-		return null;
+		return fDao.searchList(sqlSession, pi, sc);
 	}
 
 	@Override

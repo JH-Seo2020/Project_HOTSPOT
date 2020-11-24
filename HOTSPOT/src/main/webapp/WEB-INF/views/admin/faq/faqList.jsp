@@ -37,96 +37,46 @@
                     <th>분류</th>
                     <th>작성일</th>
                 </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>이용후기는 어떻게 작성할 수 있나요?</td>
-                    <td>이용후기 및 작성</td>
-                    <td>2020-11-10</td>
-                </tr>
+                <c:forEach var="f" items="${ list }">
+	                <tr>
+	                    <td><input type="checkbox"></td>
+	                    <td>${ f.faqNo }</td>
+	                    <td>${ f.faqTitle }</td>
+	                    <td>${ f.faqType }</td>
+	                    <td>${ f.enrollDate }</td>
+	                </tr>
+                </c:forEach>
                 
             </table>
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
-                <form action="">
-                    <select name="" id="" style="height:34px;">
-                    <option value="">글번호</option>
-                    <option value="">제목</option>
+                <form action="list.fad">
+                    <select name="search" id="" style="height:34px;">
+                    <option value="no">글번호</option>
+                    <option value="title">제목</option>
                     </select>
-                    <input type="text" style="line-height:29px; width:150px;">
+                    <input type="text" name="keyword" style="line-height:29px; width:150px;">
                    <button class="btn btn-primary" style="margin-bottom:4px;">검색</button>
                 </form>
-                <button style="margin-left:90px;" class="btn btn-secondary"><</button>
-                <button class="btn btn-secondary">1</button>
-                <button class="btn btn-secondary">2</button>
-                <button class="btn btn-secondary">3</button>
-                <button class="btn btn-secondary">4</button>
-                <button class="btn btn-secondary">5</button>
-                <button class="btn btn-secondary">></button>
-
+                <c:choose>
+                	<c:when test="${ pi.currentPage ne pi.startPage }">
+                		<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${ pi.currentPage -1}'"><</button>
+                	</c:when>
+                	<c:otherwise>
+                		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
+                	</c:otherwise>
+                </c:choose>
+                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                	<button class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${p}'" >${ p }</button>
+                </c:forEach>
+                <c:choose>
+                	<c:when test="${ pi.currentPage ne pi.maxPage }">
+                		<button class="btn btn-secondary" onclick="location.href='list.fad?currentPage=${ pi.currentPage +1}'">></button>
+                	</c:when>
+                	<c:otherwise>
+                		<button class="btn btn-secondary" disabled>></button>
+                	</c:otherwise>
+				</c:choose>
                 <button style="margin-left:180px" class="btn btn-secondary">글작성</button>
                 <button class="btn btn-secondary">삭제</button>       
             </div>
