@@ -1,101 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	    /*여기서부터 상세정보 - css파일로 따로 뺄 예정..*/
-        #infoWrapper{
-            background-color: lavender;
-            width: 100%;
-            height: auto;
-        }
-        #infoTitle{
-            margin: auto;
-            text-align: left;
-            padding: 5% 0 1% 0;
-            width: 1200px;
-            height: 11%;
-        }
-        #wishandlike{
-            width: 680px; 
-            height: 30px; 
-            text-align: right;
-        }
-
-        #wishandlike>a>img{
-            width: 6%;
-            height: 90%;
-            padding: 1px;
-        }
-        .infoClass{
-            margin: 0 auto;
-            width: 1200px;
-            overflow: hidden;
-        }
-        #informations, #selections {
-            float: left;
-            margin: 0 1% 2% 0;
-            padding:2% 2% 2% 2%;
-            border: 2px indigo dashed ;
-        }
-        
-        #informations{
-            background-color: white;
-            width: 690px;
-        }
-        #selections{
-            background-color: white;
-            width: 480px;
-        }
-        
-        #titleImgOne>img{
-            width: 100%;
-            height: 80%;
-        }
-        #infoDetails{
-            width: 1200px;
-            height: 30%;
-           padding: 3% 1% 1% 1%;
-           margin: auto;
-           text-align: left;
-        }
-        #infoDetails>h3>a{
-            color: black;
-            text-decoration: none;
-        }
-        /*QnA부분*/
-        #detailQnA{ width: 1200px;}
-        #detailQnA>h5{text-align: right;}
-
-        .qnaContent{width: 1200px; }
-        .qnaContent>div{display: inline-block; margin-left: 2%;}
-        .personImgs{width: 150px; height: 150px;  vertical-align: top !important;}
-        .personImgs>img{height: 100%; width: 100%; border-radius: 100%;}
-        .qna{height: 100%;}
-
-        #pagination{text-align: center !important; font-size: 20px;}
-        #pagination>button{border: none;}
-        
-        /*호스트홈피소개부분*/
-        #whoishost{
-            width: 1200px;
-            margin: auto;
-            height: 330px;
-            padding: 3% 1% 1% 1%;
-        }
-        #hostIntroducingSpace{
-            width: 100%;
-            height: 170px;
-        }
-        #hostIntroducingSpace>div{float: left;}
-        #hostPhotoForIntro{width: 25%; height: 100%;}
-        #hostPhotoForIntro>img{height: 170px; width: 170px; border-radius: 100%;}
-	
-</style>
+<!-- 디테일페이지 css -->
+<link rel="stylesheet" href="resources/css/guest/spaceDetailView.css" type="text/css"/>
 </head>
 <body>
 
@@ -103,11 +16,16 @@
     <jsp:include page="../../common/menubar.jsp"/>
 
     <!--여기서부터 상세정보 페이지-->
+    
+    <!-- 위치 자르기 (앞에서 두글자) -->
+    <c:set var="location" value="${si.location}" />
+    <c:set var="location2" value="${fn:substring(location,0,8)}" />
+    
     <div id="infoWrapper">
         <div id="infoTitle">
-            <div><h2>[경복궁역] 한옥카페 '그리다꿈'</h2></div>
-            <h4><div  class="badge badge-light">종로구</div></h4>
-            <h5><div  class="badge badge-light">#한옥카페 #그리다꿈#CSS노가다#부트스트랩그만쓰고싶다</div></h5>
+            <div><h2>${si.spcName }</h2></div>
+            <h4><div  class="badge badge-light">${location2 }</div></h4>
+            <h5><div  class="badge badge-light">#${si.spcTag }</div></h5>
             <div id="wishandlike">
                 <a data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
                     <img src="resources/images/report.png">
@@ -118,11 +36,11 @@
         <div class="infoClass">
             <div id="informations">
                 <div id="titleImgOne">
-                    <span><h4>그리다꿈(최대 8명)</h4></span>
-                    <span style="color: indigo; font-weight: bold;">￦20,000원 / 시간(인)</span>
+                    <span><h4>${si.spcName }(최대 ${si.spcMax}명)</h4></span>
+                    <span style="color: indigo; font-weight: bold;">￦${si.spcPrice }원 / 시간(인)</span>
                     <hr>
                     <h4><span class="badge badge-warning">대표 이미지</span></h4>
-                    <img src="resources/images/space1.jpg">
+                    <img src="${si.spcChimg }">
                 </div>
                 <hr>
                 <div>
@@ -130,12 +48,14 @@
                     <h4><span class="badge badge-warning">상세 이미지</span></h4>
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="resources/images/space1.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="resources/images/space1.jpg" class="d-block w-100" alt="...">
-                        </div>
+                        	<div class="carousel-item active">
+		                        	<img src="${si.spcChimg }" class="d-block w-100" alt="...">
+	                        </div>
+	                        <c:forEach var="imgs" items="${simg }">
+		                        <div class="carousel-item">
+		                        	<img src="${imgs.imgChimg }" class="d-block w-100" alt="...">
+	                        	</div>
+	                        </c:forEach>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -148,15 +68,19 @@
                     </div>
                     <hr>
                     <div>
-                        <span class="badge badge-pill badge-dark">공간 유형</span> : 파티룸<br><hr>
-                        <span class="badge badge-pill badge-dark">예약 시간</span> : 최소 1시간부터<br><hr>
-                        <span class="badge badge-pill badge-dark">수용 인원</span> : 최대 8명<br><hr>
-                        <span class="badge badge-pill badge-dark">장비 및 주의사항</span> : <br>
-                        #의자 #테이블 #인쇄기 #노트북 #와이파이 <br><hr>
-                        <span class="badge badge-pill badge-dark">제발 부탁드립니다!</span> <br>
-                        1. 새벽에 노래하지 마세요 <br>
-                        2. 새벽에 요리하지 마세요 <br>
-                        3. 퇴실 시간 지켜주세요 <br>
+                        <span class="badge badge-pill badge-dark">공간 유형</span>  ${si.spcType }<br><hr>
+                        <span class="badge badge-pill badge-dark">예약 시간</span>  최소 1시간부터<br><hr>
+                        <span class="badge badge-pill badge-dark">수용 인원</span>  최대 ${si.spcMax }명<br><hr>
+                        <span class="badge badge-pill badge-dark">장비 및 주의사항</span>  <br>
+                        <!-- 키워드 잘라서 넣기 -->
+                        <c:set var="equip" value="${fn:split(si.spcConvn,',') }" />
+                        <c:forEach var="e" items="${equip }">
+                        	#${e }
+                        </c:forEach>
+                        
+                        <br><hr>
+                        <span class="badge badge-pill badge-dark">공간소개</span> <br>
+                        ${si.spcLong }<br>
                     </div>
                 </div>
             </div>
@@ -187,9 +111,9 @@
                 <div class="input-group mb-3">
                     <select class="custom-select" id="inputGroupSelect01">
                         <option selected>인원수</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <c:forEach var="max" begin='1' end="${si.spcMax }">
+                        	<option value="${max }">${max }</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <button type="button" class="btn btn-warning btn-lg btn-block" style="background-color: lavender; border: none;">예상금액 확인</button>
@@ -231,16 +155,54 @@
               });
             } );
         </script>
+        
+        <script> <!-- Details 관련 -->
+        	$(function(){
+        		$("#infoDetails>h3").hover(function(){
+        			$(this).css("cursor","pointer");
+        		})
+        		$("#d1").on("click",function(){$("#notices").css("display","block"); $("#notices").siblings("div").css("display","none");});
+        		$("#d2").on("click",function(){$("#refundNotice").css("display","block"); $("#refundNotice").siblings("div").css("display","none");});
+        		$("#d3").on("click",function(){$("#way").css("display","block"); $("#way").siblings("div").css("display","none");});
+        		$("#d4").on("click",function(){$("#detailQnA").css("display","block"); $("#detailQnA").siblings("div").css("display","none");});
+        		$("#d5").on("click",function(){$("#detailReviews").css("display","block"); $("#detailReviews").siblings("div").css("display","none");});
+        	})
+        </script>
 
         <div id="infoDetails">
             <h1><span class="badge badge-pill badge-dark">Details</span></h1><br>
-            <h3><a href="">유의사항</a>&nbsp;|&nbsp;
-                <a href="">환불정책</a>&nbsp;|&nbsp;
-                <a href="">오시는길</a>&nbsp;|&nbsp;
-                <a href="">Q&A</a>&nbsp;|&nbsp;
-                <a href="">이용후기</a>&nbsp;
+            <h3><a id="d1">유의사항</a>&nbsp;|&nbsp;
+                <a id="d2">환불정책</a>&nbsp;|&nbsp;
+                <a id="d3">오시는길</a>&nbsp;|&nbsp;
+                <a id="d4">Q&A</a>&nbsp;|&nbsp;
+                <a id="d5">이용후기</a>&nbsp;
             </h3>
             <hr>
+            <div id="notices">
+            	<br>
+                <h4><span class="badge badge-pill badge-dark">#유의사항</span></h4>
+                <div style="font-size:20px; padding:1%;">
+                	1. 어쩌구저쩌구<br>
+                	2. 그래그래<br>
+                	3. 그냥그냥 <br>
+                	<br>
+                </div>
+            </div>
+            <div id="refundNotice">
+                <br>
+                <h4><span class="badge badge-pill badge-dark">#환불정책</span></h4>
+                <div style="font-size:20px; padding:1%;">
+                	1. 돈 절대 안돌려드립니다<br>
+                	2. 은행가서 말씀하세요<br>
+                	3. 핫스팟은 거래에 일체 책임을 지지 않습니다 <br>
+                	<br>
+                </div>
+            </div>
+            <div id="way">
+                <br>
+                <h4><span class="badge badge-pill badge-dark">#오시는길</span></h4>
+            	<!-- 카카오지도 추가할거야! -->
+            </div>
             <div id="detailQnA">
                 <br>
                 <h4><span class="badge badge-pill badge-dark">#QnA 5개</span></h4>
@@ -287,12 +249,16 @@
                         <span style="color: gray;"><h6>00월00일00시00초</h6></span>
                     </div>
                 </div>
+	            <div id="pagination">
+	                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">이전</button>
+	                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">1</button>
+	                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">2</button>
+	            </div>
             </div>
-            <div id="pagination">
-                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">이전</button>
-                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">1</button>
-                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">2</button>
+            <div id="detailReviews">
+            <!-- 리뷰 추가할거야 -->
             </div>
+            
         </div>
     </div>
 
@@ -307,7 +273,7 @@
                 <span style="color: indigo; font-weight: bold;">HOST</span>
                 <span><h5>호스트A</h5></span> <br>
                 <span><h5>"경복궁 옆에서 카페를 운영중인 호스트입니다"</h5></span> <br>
-                <h4><a href="hostHpg.guest" class="badge badge-pill badge-warning">호스트의 홈피로 이동</a></h4>
+                <h4><a href="hostHpg.guest?spcNo=${si.spcNo }" class="badge badge-pill badge-warning">호스트의 홈피로 이동</a></h4>
         	</div>
     	</div>
     </div>

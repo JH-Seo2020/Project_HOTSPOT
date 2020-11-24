@@ -47,13 +47,16 @@ public class SpaceController {
 		SpaceInfo si = spaceDetailService.selectSpaceDetail(spcNo);
 		
 		//2.공간이미지들
-		ArrayList<SpaceImages> sim = spaceDetailService.selectSpaceImages(spcNo);
+		ArrayList<SpaceImages> simg = spaceDetailService.selectSpaceImages(spcNo);
 		
 		//3.공간유의사항들
 		
 		//4.공간리뷰들
 		
 		//5.공간faq들
+		
+		model.addAttribute("si",si);
+		model.addAttribute("simg",simg);
 		
 		return "guest/space/spaceDetailView";
 	}

@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.hotspot.guest.space.model.dao.SpaceDao;
+import com.kh.hotspot.guest.space.model.dao.SpaceDetailDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.space.model.vo.SpaceNotes;
@@ -17,20 +17,20 @@ import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 public class SpaceDetailServiceImpl implements SpaceDetailService {
 	
 	@Autowired
-	private SpaceDao spaceDao;
+	private SpaceDetailDao spaceDetailDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	@Override
 	public SpaceInfo selectSpaceDetail(int spcNo) {
 		
-		return spaceDao.selectSpaceDetail(sqlSession, spcNo);
+		return spaceDetailDao.selectSpaceDetail(sqlSession, spcNo);
 	}
 
 	@Override
 	public ArrayList<SpaceImages> selectSpaceImages(int spcNo) {
 		
-		return spaceDao.selectSpaceImages(sqlSession,spcNo);
+		return spaceDetailDao.selectSpaceImages(sqlSession,spcNo);
 	}
 
 	@Override

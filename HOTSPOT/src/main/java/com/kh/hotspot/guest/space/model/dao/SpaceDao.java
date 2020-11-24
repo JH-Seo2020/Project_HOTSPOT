@@ -21,14 +21,5 @@ public class SpaceDao {
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectUserReview");
 	}
 
-	public SpaceInfo selectSpaceDetail(SqlSessionTemplate sqlSession, int spcNo) {
-		
-		return sqlSession.selectOne("guestspaceMapper.selectSpaceDetail",spcNo);
-	}
-
-	public ArrayList<SpaceImages> selectSpaceImages(SqlSessionTemplate sqlSession, int spcNo) {
-		
-		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectSpaceImages",spcNo);
-	}
 
 }
