@@ -28,5 +28,13 @@ public class Qna {
 	private int spcNo;
 	private String spcName;
 	private String spcType;
+	public Qna(int qaNo, String qaAnswer) {
+		super();
+		this.qaNo = qaNo;
+		this.qaAnswer = qaAnswer;
+	}
+	
 
+
+	
 }

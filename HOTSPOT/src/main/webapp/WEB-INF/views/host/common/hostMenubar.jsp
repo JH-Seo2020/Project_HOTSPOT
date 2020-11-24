@@ -111,7 +111,7 @@ p {
 <body>
 <nav id="hostMenubar">
         <div id="logo1">
-            <img src="resources/images/host_images/logo1.png" class="logo1">
+            <a href="/hotspot"><img src="resources/images/host_images/logo1.png" class="logo1"></a>
         </div>  
         <div id="logo2">
             <p href="#" class="logo2">호스트센터</p>
