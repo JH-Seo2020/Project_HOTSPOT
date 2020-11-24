@@ -19,18 +19,23 @@
             </div>
 
             <div id="reportList">
-                <select id="select_reportSearchSelect" name="reportSearchSelect" class="custom-select custom-select-sm mb-3">
+                <!-- <select id="select_reportSearchSelect" name="searchType" class="custom-select custom-select-sm mb-3">
                     <option selected disabled>선택</option>
                     <option value="reportWriter">신고자</option>
                     <option value="reportTarget">신고대상</option>
                 </select>
                 <input type="text" id="input_reportSearch" class="form-control" name="reportSearch">
-                <button class="btn" id="btn_reportSearch">검색</button>
-                <select id="select_reportStatus" name="reportStatus" class="custom-select custom-select-sm mb-3">
-                    <option value="reportWriter">접수완료</option>
-                    <option  value="reportTarget">처리중</option>
-                    <option  value="reportTarget">처리완료</option>
-                </select>
+                <button class="btn" id="btn_reportSearch">검색</button> -->
+				<form action="" method="post" id="form_reportStatus">
+					<select id="select_reportStatus" name="reportStatus" class="custom-select custom-select-sm mb-3">
+						<option value="접수완료">접수완료</option>
+						<option value="처리중">처리중</option>
+						<option value="처리완료">처리완료</option>
+					</select>
+				</form>
+				<!-- 리턴된 신고상태값(접수완료/처리중/처리완료) 담기 -->
+				<input id="hidden_reportStatus" type="hidden" name="reportStatus" value="${reportStatus}">
+				
                 <table class="table table-hover">
                     <thead>
                       <tr>
@@ -65,13 +70,13 @@
                   			<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                   		</c:when>
                   		<c:otherwise>
-                  			<li class="page-item"><a class="page-link" href="reportList.ad?currentPage=${ pageInfo.currentPage-1 }">Previous</a></li>
+                  			<li class="page-item"><a class="page-link" href="reportList.ad?currentPage=${ pageInfo.currentPage-1 }&reportStatus=${reportStatus}">Previous</a></li>
                   		</c:otherwise>
                   	</c:choose>
                   	
                   	<c:forEach var="page" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
 	                    <li class="page-item">
-	                    <a class="page-link" href="reportList.ad?currentPage=${ page }">${ page }</a>
+	                    <a class="page-link" href="reportList.ad?currentPage=${ page }&reportStatus=${reportStatus}">${ page }</a>
 	                    </li>
                     </c:forEach>
                     
@@ -80,13 +85,22 @@
                     		<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="reportList.ad?currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
+                    		<li class="page-item"><a class="page-link" href="reportList.ad?currentPage=${ pageInfo.currentPage+1 }&reportStatus=${reportStatus}">Next</a></li>
                     	</c:otherwise>
                     </c:choose>
-                    
                   </ul>
             </div>
         </div>
     </div>
+    <script>
+    	$(function(){
+    		$("#select_reportStatus").change(function(){
+    			// 선택한 신고상태기준으로 정렬요청
+    			$("#form_reportStatus").attr("action", "reportList.ad").submit();
+    		});
+    		// 선택한 신고상태로 고정
+    		$("#select_reportStatus").val($("#hidden_reportStatus").val()).attr("selected", "selected");
+    	});
+    </script>
 </body>
 </html>

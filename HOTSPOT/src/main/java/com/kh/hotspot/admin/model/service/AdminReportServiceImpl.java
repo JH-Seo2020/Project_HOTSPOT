@@ -25,8 +25,8 @@ public class AdminReportServiceImpl implements AdminReportService {
 	}
 	
 	@Override	// 총 신고내역 조회
-	public ArrayList<Report> selectList(PageInfo pageInfo) {
-		return reportDao.selectList(sqlSession, pageInfo);
+	public ArrayList<Report> selectList(String reportStatus, PageInfo pageInfo) {
+		return reportDao.selectList(reportStatus, sqlSession, pageInfo);
 	}
 	
 

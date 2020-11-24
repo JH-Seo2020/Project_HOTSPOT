@@ -12,5 +12,12 @@ public interface AdminMemberService {
 	
 	// 모든 회원리스트 조회
 	ArrayList<Member> selectList(PageInfo pageInfo);
+	
+	// 검색결과 조회
+	ArrayList<Member> selectMemberSearchresult(String searchType, String searchText, PageInfo pageInfo);
+	
+	
+	// 선택한 회원상태('N'인경우)로 우선정렬조회
+	ArrayList<Member> selectStatusSearchList(String userStatus, PageInfo pageInfo);
 
 }

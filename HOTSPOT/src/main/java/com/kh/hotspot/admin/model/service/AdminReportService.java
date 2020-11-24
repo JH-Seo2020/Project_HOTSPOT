@@ -11,6 +11,6 @@ public interface AdminReportService {
 	int selectListCount();
 	
 	// 총 신고내역 조회
-	ArrayList<Report> selectList(PageInfo pageInfo);
+	ArrayList<Report> selectList(String reportStatus, PageInfo pageInfo);
 
 }

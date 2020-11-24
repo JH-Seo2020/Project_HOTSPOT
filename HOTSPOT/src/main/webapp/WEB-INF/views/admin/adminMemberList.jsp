@@ -10,7 +10,7 @@
 <link href="resources/css/admin/adminUserList.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="outer">
+	<div class="outer">
 	<%@ include file="../common/menubar.jsp"%>
     	<%@ include file="sidebarSunkyung.jsp"%>
         <div id="rightSpace">
@@ -18,16 +18,16 @@
                 <span>회원관리</span>
             </div>
             <div id="userList">
-                <select id="select_userSearchSelect" name="userSearchSelect" class="custom-select custom-select-sm mb-3">
+                <select id="select_userSearchSelect" name="searchType" class="custom-select custom-select-sm mb-3">
                     <option value="" selected disabled>선택</option>
                     <option value="userType">회원유형</option>
                     <option value="userId">아이디</option>
                 </select>
-                <input type="text" id="input_userSearch" class="form-control" name="userSearch">
+                <input type="text" id="input_userSearch" class="form-control" name="searchText">
                 <button class="btn" id="btn_userSearch">검색</button>
                 <select id="select_userStatus" name="userStatus" class="custom-select custom-select-sm mb-3">
-                    <option value="userStatus">Y</option>
-                    <option  value="userStatus">N</option>
+                    <option id="userStatusY" value="Y">Y</option>
+                    <option id="userStatusN" value="N">N</option>
                 </select>
                 <table class="table table-hover">
                     <thead>
@@ -81,12 +81,18 @@
                     		<li class="page-item"><a class="page-link" href="memberList.ad?currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
                     	</c:otherwise>
                     </c:choose>
-                    
-                    
-                    
                   </ul>
             </div>
         </div>
     </div>
+    <script>
+		$(function(){
+			$("#btn_userSearch").click(function(){
+				var searchType = $("#select_userSearchSelect").val();				// '회원유형'/'아이디'
+				var searchText = $("#input_userSearch").val();						// '검색어'
+				location.href="memberSearchresult.ad?searchType=" + searchType + "&searchText=" + searchText;
+			});
+		});
+    </script>
 </body>
 </html>
