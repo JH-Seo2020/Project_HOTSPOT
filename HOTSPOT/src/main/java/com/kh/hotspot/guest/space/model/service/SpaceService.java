@@ -22,6 +22,11 @@ public interface SpaceService {
 	
 	//6.결제하기 기능
 	int updatePaymentInfo(int reservNo);
+
+	
+
+
+
 	
 
 }

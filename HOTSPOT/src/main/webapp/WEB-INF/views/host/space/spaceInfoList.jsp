@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../common/hostMenubar.jsp"/>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,54 @@
 <style>
    label{
        font-weight: bolder;
-   } 
+   }
+        #hostSpaceList{
+            width: 100%;
+            height: 100%;
+            
+        }
+        #hostSpaceGroup{
+            width: 1200px;
+            height: 90%;
+            padding-top: 6%;
+            text-align: center;
+            margin: auto;
+        }
+        .todaySpace{
+            display: inline-block;
+            padding: 0 0 4% 4%;
+            width: 30%; 
+            height: 80%;
+        }
+        .todaySpace>img{
+            width: 100%;
+            height: 90%;
+            border: 5px solid lightgray;
+           -webkit-transition: all 1s ease;
+		   -moz-transition: all 1s ease;
+		   -o-transition: all 1s ease;
+		   -ms-transition: all 1s ease;
+		   transition: all 1s ease;
+		   margin-bottom:5%;
+        }
+        .todaySpace>img:hover{
+		   -webkit-filter: brightness(50%);
+		   filter: brightness(50%);
+		    transform: scale(1.03);
+        } 
+        .img_hotspotLogo{
+			width: 15px;
+			height: 15px;
+			margin-right: 5px;
+		}
+		#spaceInsert{
+			position: absolute;
+			right:100px;
+            width: 200px;
+            height: 40px;
+			
+		}
+		
 </style>
 <body>
 
@@ -26,19 +74,33 @@
         	<label style="color: yellowgreen; font-size: large ;">내 공간 정보</label><hr>
     	</div>
 		
-		<c:forEach var="b" items="test">
-    	<div class="MySpaceInfo"> 
-        	<img>
-        	<label for="">[경복궁역] 한옥카페 '그리다 꿈'</label>
-        	<p>종로구|#한옥카페 #그리다꿈 #궁궐뷰카페</p>
-        	<span>10,000원/시간</span> 
-        	<img src="resources/images/common/main_reviewicon.png" id="reviewIcon"><label for="reviewIcon">10</label> 
-        	<img src="resources/images/common/main_wishicon.png" id="wishIcon"><label for="wishIcon">7</label>
-        	<br>
-        	<button>공간 정보 수정</button>
-        	<button>공간 삭제</button>
+    	<div id="hostSpaceList">
+        	<div id="hostSpaceGroup">
+        		<c:forEach var="b" items="${spaceList }">
+        		
+        			<!-- 위치 자르기 (앞에서 두글자) -->
+        		<c:set var="location" value="${b.location}" />
+        		<c:set var="location2" value="${fn:substring(location,0,2)}" />
+        		
+		           <div class="todaySpace">        	
+		            	<img src="${b.spcChimg }" onclick="move(${b.spcNo})">	
+		               	<div style="font-weight: bold; font-size: 20px;">[${b.spcName }]</div>
+		               	<div style="color:gray;">${location2} | #${b.spcTag }</div>
+		            	<div>
+		                	<span style="color: rebeccapurple; font-weight: bold;">${b.spcPrice }원/시간</span>
+		                	<span class="badge badge-pill badge-warning"><img class="img_hotspotLogo" src="resources/images/common/main_reviewIcon.png">후기 ${b.reviews }개</span>
+		                	<span class="badge badge-pill badge-warning"><img class="img_hotspotLogo" src="resources/images/common/main_wishIcon.png">관심 ${b.wishes }개</span>
+		            	</div>
+		            	<br>
+		            	<button class="btn btn-primary" id="spaceModify"  onclick="location.href='ㅁㄴㅇ'">공간 정보 변경</button>
+		            	<button class="btn btn-danger" id="spaceDelete" style="margin-left: 30px;" onclick="location.href='ㅁㄴㅇ'">공간 정보 삭제</button>
+		            </div>
+		            
+        		</c:forEach>
+        	</div>
+        	
+        	<button class="btn btn-primary" id="spaceInsert"  onclick="location.href='ㅁㄴㅇ'">공간 정보 등록</button>
     	</div>
-		</c:forEach>
 	</div>
 
 
