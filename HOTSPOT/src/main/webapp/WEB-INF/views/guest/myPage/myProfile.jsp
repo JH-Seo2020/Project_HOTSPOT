@@ -73,10 +73,10 @@
             <br><hr><br><br>
             <form action="myProfile.me" method="POST" id="myProfile" enctype="multipart/form-data">
                 <div id="profileImage">
-                
-                <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px" onerror="">
-                <h2 align="center">${ loginUser.userId }</h2>
-
+                <c:if test="${ !empty loginUser.userProfile }">  
+	                <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px" onerror="">
+				</c:if>
+	                <h2 align="center">${ loginUser.userId }</h2>
                 </div>
 
                 <div id="mainProfile">
