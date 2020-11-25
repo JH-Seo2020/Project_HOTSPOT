@@ -38,8 +38,6 @@ public class MemberController {
 		
 		Member loginUser = mService.loginMember(m);
 		
-		
-		
 		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())*/) { // 로그인 성공
 			
 			session.setAttribute("loginUser", loginUser);
@@ -48,8 +46,8 @@ public class MemberController {
 			
 		}else { // 실패
 			
-			model.addAttribute("errorMsg", "로그인에 실패하셨습니다!");
-			return "common/errorPage";
+			session.setAttribute("alertMsg", "로그인에 실패하셨습니다! 다시 시도해주세요.");
+			return "redirect:/";
 		}
 	
 	}
@@ -58,14 +56,10 @@ public class MemberController {
 	@RequestMapping("insert.me")
 	public String insertMember(@ModelAttribute Member m, HttpSession session) {
 		
-		
-		System.out.print(m);
-		//String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
-		//m.setUserPwd(encPwd);
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPwd);
 		
 		int result = mService.insertMember(m);
-		
-		
 		
 		if(result > 0) {
 			session.setAttribute("alertMsg", "HOTSPOT에 오신걸 환영합니다!");
@@ -165,20 +159,19 @@ public class MemberController {
 	}
 	
 	@RequestMapping("update.me")
-	public String updateMember(Member m, MultipartFile reupfile, HttpSession session, Model model) {
+	public String updateMember(Member m, MultipartFile upfile, HttpSession session, Model model) {
 		
-		if(!reupfile.getOriginalFilename().equals("")) {
+		
+		if(!upfile.getOriginalFilename().equals("")) { // 원본명 파일이 ""빈문자열일 경우
 			
-			if(m.getUserProfile() != null) {
-				String removeFilePath = session.getServletContext().getRealPath(m.getUserProfileC());
-				new File(removeFilePath).delete();
+			String changeName = saveFile(session, upfile); // 수정명으로 바꿈
+			
+			if(changeName != null) {
+				m.setUserProfile(upfile.getOriginalFilename());
+				m.setUserProfileC("resources/uploadFiles/" + changeName);
 				
 			}
 			
-			// 새로 넘어온 파일업로드 시키기
-			String userProfileC = saveFile(session, reupfile);
-			m.setUserProfile(reupfile.getOriginalFilename());
-			m.setUserProfileC("resources/uploadFiles/" + userProfileC);
 		}
 		
 		int result = mService.updateMember(m);
@@ -199,7 +192,11 @@ public class MemberController {
 		}
 	}
 	
-		
+	/***
+	 * 닉네임 중복체크 ajax
+	 * @param userNickname
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("updateCheckNickname.me")
 	public String updateCheckNickname(String userNickname) {
@@ -220,19 +217,21 @@ public class MemberController {
 	@RequestMapping("delete.me")
 	public String deleteMember(String userId, HttpSession session, Model model) {
 		
-		int result = mService.deleteMember(userId);
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int result = mService.deleteMember(loginUser.getUserId());
 		
 		if(result > 0) {
 			
 			session.removeAttribute("loginUser");
-			session.setAttribute("alertMsg", "성공적으로 탈퇴되었습니다.");
+			session.setAttribute("alertMsg", "성공적으로 탈퇴되었습니다. 그동안 이용해주셔서 감사합니다.");
 			
 			return "redirect:/";
 			
 		}else {
 			
-			model.addAttribute("errorMsg", "탈퇴에 실패하셨습니다.");
-			return "common/errorPage";
+			model.addAttribute("alertMsg", "탈퇴에 실패하셨습니다.");
+			return "redirect:/myProfile.me";
 		}
 		
 		}

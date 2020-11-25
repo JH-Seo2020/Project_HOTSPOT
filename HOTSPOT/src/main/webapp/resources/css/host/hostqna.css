@@ -4,6 +4,9 @@
             font-size: 17px!important;
             color : var(--color-purple);
         }
+        hr {
+            border-top: 3px solid #eee !important;
+		}
         #qnaContainer{
         width:900px;
         position: absolute;
@@ -29,7 +32,7 @@
             margin-top: 10px;
         }
         .searchContainer{
-            border:2px solid var(--color-purple);
+            border:2.5px solid var(--color-purple);
             margin-top:25px;
             height:190px;
         }
@@ -50,7 +53,7 @@
         }
         .qna_1{
             width:410px;
-            border: solid 2px #d1c4e9;
+            border: solid 2px var(--color-purple);
             padding:15px;
             margin:15px;
             display: inline-block;
@@ -72,7 +75,7 @@
             margin-top: 10px;
         }
         .searchSpace{
-            border: 2px solid #d1c4e9;
+            border: 3px solid #d1c4e9;
             border-radius: 10px;
             height:37px;
            
@@ -81,14 +84,17 @@
         	width:250px;
         	height:35px;
 	         margin-top: 100px;
-	 	     margin-left: 700px;
+	 	     margin-left: 720px;
+        }
+        #pagingArea{
+         margin-top: 50px;
         }
      	.answerBox{
      	width: 100px;
      	height:35px;
      	margin-left:30px;
      	display:inline-block; 
-     	border:2px solid #d1c4e9;
+     	border:3px solid #d1c4e9;
      	border-radius:10px;
      	padding-top:5px;
      	margin-bottm:20px;
@@ -96,17 +102,19 @@
      	top:157px;
      	}
      	.answer_whether li{
-     	 border:2px solid #d1c4e9;
+     	border:3px solid #d1c4e9;
      	border-radius:10px;
      	padding-top:5px;
      	cursor:pointer;
      	padding:3px;
      	}
+      
      	.answer_whether li:hover{
      	font-weight:900px;
      	color:var(--color-purple);
-     	background-color:#fff7ff;
-     	 border:2px solid var(--color-purple);
+     	transform: scale(1.08);
+     	background-color: #efebe9;
+     	 border:3px solid var(--color-purple);
      	}
      	.answerBtn{
      	cursor:pointer;

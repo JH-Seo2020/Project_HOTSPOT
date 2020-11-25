@@ -95,5 +95,12 @@
   		  where user_nickname=#{userNickname}
   	</select>
   	
+  	<update id="deleteMember" parameterType="string">
+		update
+		        member
+		    set user_status='N'
+		      , withdrawal_date=sysdate
+		  where user_id=#{userId}
+  	</update>
 
 </mapper>

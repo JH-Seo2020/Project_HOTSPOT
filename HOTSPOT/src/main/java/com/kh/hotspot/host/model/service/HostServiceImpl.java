@@ -55,4 +55,16 @@ public class HostServiceImpl implements HostService {
 	public int insertQna(Qna q) {
 		return hDao.insertQna(sqlSession,q);
 	}
+	@Override
+	public ArrayList<Qna> selectAnswerComplete(PageInfo pi, int spcNo) {
+		return hDao.selectAnswerComplete(sqlSession,pi,spcNo);
+	}
+	@Override
+	public ArrayList<Qna> selectAnswerInComplete(PageInfo pi, int spcNo) {
+		return hDao.selectAnswerIncomplete(sqlSession,pi,spcNo);
+	}
+	@Override
+	public int deleteQna(Qna q) {
+		return hDao.deleteQna(sqlSession, q);
+	}
 }

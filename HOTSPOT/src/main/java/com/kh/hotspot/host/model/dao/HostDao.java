@@ -45,4 +45,25 @@ public class HostDao {
 	public int insertQna(SqlSessionTemplate sqlSession, Qna q) {
 		return sqlSession.update("hostMapper.insertQna",q);
 	}
+
+	public ArrayList<Qna> selectAnswerComplete(SqlSessionTemplate sqlSession, PageInfo pi, int spcNo) {
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		return (ArrayList)sqlSession.selectList("hostMapper.selectAnswerComplete", spcNo, rowBounds);
+	}
+
+	public ArrayList<Qna> selectAnswerIncomplete(SqlSessionTemplate sqlSession, PageInfo pi, int spcNo) {
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		return (ArrayList)sqlSession.selectList("hostMapper.selectAnswerIncomplete", spcNo, rowBounds);
+	}
+
+	public int deleteQna(SqlSessionTemplate sqlSession, Qna q) {
+		return sqlSession.update("hostMapper.deleteQna",q);
+	}
 }

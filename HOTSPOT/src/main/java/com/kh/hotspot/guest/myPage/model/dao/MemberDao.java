@@ -8,7 +8,7 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 @Repository
 public class MemberDao {
 
-	public Member loginMember(SqlSessionTemplate sqlSession, Member m ) {
+	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
 
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
@@ -34,6 +34,10 @@ public class MemberDao {
 	
 	public int updateCheckNickname(SqlSessionTemplate sqlSession, String userNickname) {
 		return sqlSession.selectOne("memberMapper.updateCheckNickname", userNickname);
+	}
+	
+	public int deleteMember(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.delete("memberMapper.deleteMember", userId);
 	}
 
 }

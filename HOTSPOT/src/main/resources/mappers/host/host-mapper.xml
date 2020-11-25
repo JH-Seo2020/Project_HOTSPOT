@@ -33,6 +33,8 @@
 		<result column="map_latitude" property="latitude" />
 		<result column="map_longitude" property="longitude" />
 		<result column="map_location" property="location" />
+		<result column="reviews" property="reviews" />
+  		<result column="wishes" property="wishes" />
 	</resultMap>
 	 
 	<resultMap id="selectQnaListResultSet" type="hostQna">
@@ -92,6 +94,8 @@
 		 where user_id = #{userId}
   
   </update>
+  
+  
   <select id="selectHost" parameterType="string" resultMap="hostInfoResultSet" >
   	select  
   			user_id 
@@ -108,37 +112,73 @@
 	  from  host_info
 	 where  user_id =  #{userId}
   </select>
+  
+  
   <select id="selectSpaceList" parameterType="string" resultMap="spaceResultSet">
-  	select
-  		    spc_no
-  		  , spc_name 
-  		  , spc_int
-  		  , spc_long
-  		  , spc_tag
-  		  , spc_type
-  		  , spc_min
-  		  , spc_max
-  		  , spc_img
-  		  , spc_chimg
-  		  , spc_price
-  		  , spc_hours
-  		  , spc_holiday
-  		  , spc_status
-  		  , spc_convn
-  		  , user_id
-  		  , map_latitude
-  		  , map_longitude
-  		  , map_location
-	from   space_info
-   where  user_id = #{userId}
-     and  spc_status = 'Y'
+  	select *
+  	  from (	
+             select
+  		    		spc_no
+  		  		  , spc_name 
+  		  		  , spc_int
+  		  	      , spc_long
+  		  	      , spc_tag
+  		  	      , spc_type
+  		  	      , spc_min
+  		  	      , spc_max
+  		  	      , spc_img
+  		  	      , spc_chimg
+  		  	      , spc_price
+  		  	      , spc_hours
+  		  	      , spc_holiday
+  		  	      , spc_status
+  		  	      , spc_convn
+  		  	      , user_id
+  		  	      , map_latitude
+  		  	      , map_longitude
+  		  	      , map_location
+                  , COUNT(REVIEW_NO) REVIEWS
+               FROM SPACE_INFO
+               JOIN REVIEW USING (SPC_NO)
+		      WHERE SPC_STATUS = 'Y'
+                and user_id = #{userId}
+              group by spc_no
+  		  		  , spc_name 
+  		  		  , spc_int
+  		  	      , spc_long
+  		  	      , spc_tag
+  		  	      , spc_type
+  		  	      , spc_min
+  		  	      , spc_max
+  		  	      , spc_img
+  		  	      , spc_chimg
+  		  	      , spc_price
+  		  	      , spc_hours
+  		  	      , spc_holiday
+  		  	      , spc_status
+  		  	      , spc_convn
+  		  	      , user_id
+  		  	      , map_latitude
+  		  	      , map_longitude
+  		  	      , map_location
+                  )
+     join (
+     		SELECT SPC_NO, COUNT (*) WISHES
+		                FROM WISH 
+		                GROUP BY SPC_NO
+          )
+    using (spc_no) 
   </select>
+  
+  
  <select id="selectQnaListCount" parameterType="_int" resultType="_int">
   	select count(*)
 	 from question_answer
 	 where spc_no = #{spcNo}
 	   and qa_status = 'Y'
   </select>
+  
+  
  <select id="selectQnaList" parameterType="_int" resultMap="selectQnaListResultSet">
 	select 
 	     qa_no
@@ -167,5 +207,63 @@
 	      ,qa_answerdate = sysdate
 	 where qa_no = #{qaNo}
   
+  </update>
+  
+  <update id="deleteSpace" parameterType="string">
+  	update
+           space_info
+       set spc_status = 'N'
+     where spc_no = #{spcNo}
+  </update>
+   <select id="selectAnswerComplete" parameterType="_int" resultMap="selectQnaListResultSet">
+	select 
+	     qa_no
+	    ,qa_content
+	    ,qa_writer
+	    ,qa_date
+	    ,qa_answer
+	    ,qa_answerdate
+	    ,qa_status
+	    ,qa_secret
+	    ,q.user_id
+	    ,q.spc_no
+	    ,s.spc_name
+	    ,s.spc_type
+	  from question_answer q
+	  join space_info s on(q.spc_no=s.spc_no)
+	  where q.spc_no = #{spcNo}
+	    and qa_status = 'Y'
+	    and qa_answer is not null
+	  order
+	     by qa_no desc
+  </select>
+   <select id="selectAnswerIncomplete" parameterType="_int" resultMap="selectQnaListResultSet">
+	select 
+	     qa_no
+	    ,qa_content
+	    ,qa_writer
+	    ,qa_date
+	    ,qa_answer
+	    ,qa_answerdate
+	    ,qa_status
+	    ,qa_secret
+	    ,q.user_id
+	    ,q.spc_no
+	    ,s.spc_name
+	    ,s.spc_type
+	  from question_answer q
+	  join space_info s on(q.spc_no=s.spc_no)
+	  where q.spc_no = #{spcNo}
+	    and qa_status = 'Y'
+	    and qa_answer is null
+	  order
+	     by qa_no desc
+  </select>
+  <update id="deleteQna" parameterType="hostQna">
+  	 update
+	        question_answer
+	   set  qa_answer = null
+	       ,qa_answerdate = null
+	 where qa_no = #{qaNo}
   </update>
 </mapper>

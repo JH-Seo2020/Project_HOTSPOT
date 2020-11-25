@@ -185,7 +185,7 @@
 	    	$(function(){
 	    		$("#checkResult").hide();
 		    		
-	    			$("input").keyup(function(){
+	    			$("#newUserPwdCheck").keyup(function(){
 	    				
 		    			var pwd1=$("#newUserPwd").val();
 		    			var pwd2=$("#newUserPwdCheck").val();

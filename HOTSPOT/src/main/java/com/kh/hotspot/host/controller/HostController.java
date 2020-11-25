@@ -154,7 +154,11 @@ public class HostController {
 	
 		return "host/hostPage/hostQna";
 	}
-	
+	/**
+	 * @author jieun
+	 * @param q
+	 * @return QnA 답글 저장
+	 */
 	@ResponseBody
 	@RequestMapping("insertQnaAnswer.ho")
 	public String insertQna(Qna q) {
@@ -165,6 +169,59 @@ public class HostController {
 		}else {
 			return "fail";
 		}
+		
+	}
+	/**
+	 * @author jieun
+	 * @param q
+	 * @return QnA 답글 삭제
+	 */
+	@ResponseBody
+	@RequestMapping("deleteQnaAnswer.ho")
+	public String deleteQna(Qna q) {
+		// ajax요청 
+		int result=hService.deleteQna(q); 
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	/**
+	 * @author jieun
+	 * @param currentPage
+	 * @param spcNo
+	 * @param model
+	 * @return QnA 답변여부 정렬
+	 */
+	@RequestMapping("qnaAnswerComplete.ho")
+	public String selectAnswerComplete(@RequestParam(value="currentPage", defaultValue="1")int currentPage, int spcNo, Model model) {
+		int listCount = hService.selectQnaListCount(spcNo);
+		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
+		ArrayList<Qna> list = hService.selectAnswerComplete(pi,spcNo);
+		model.addAttribute("pi",pi);
+		model.addAttribute("list",list);
+	
+		return "host/hostPage/hostQna";
+		
+	}
+	/**
+	 * @author jieun
+	 * @param currentPage
+	 * @param spcNo
+	 * @param model
+	 * @return QnA 답변여부 정렬
+	 */
+	@RequestMapping("qnaAnswerIncomplete.ho")
+	public String selectAnswerWhether(@RequestParam(value="currentPage", defaultValue="1")int currentPage, int spcNo, Model model) {
+		int listCount = hService.selectQnaListCount(spcNo);
+		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
+		ArrayList<Qna> list = hService.selectAnswerInComplete(pi,spcNo);
+		model.addAttribute("pi",pi);
+		model.addAttribute("list",list);
+	
+		return "host/hostPage/hostQna";
 		
 	}
 	
