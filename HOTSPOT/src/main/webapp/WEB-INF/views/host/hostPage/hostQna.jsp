@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="resources/css/host/hostmenubar.css" type="text/css"/>
 <link rel="stylesheet" href="resources/css/host/hostqna.css" type="text/css"/>
 
-
 </head>
 <body>
 <jsp:include page="../common/hostMenubar.jsp" />
@@ -29,14 +28,15 @@
                   		
 	                    <datalist id="space">
 	                      <c:forEach var="sp" items="${ space }">
-	                        <option class="hiddenSpcNo" value="${sp.spcNo}" label="${sp.spcName}"></option>
+	                        <option class="hiddenSpcNo"value="${sp.spcNo }">${sp.spcName}</option>
 	                       </c:forEach>
 	                    </datalist>
+           		  
                     <input type="image" img src="resources/images/host_images/search.png" onclick="searchSubmit();" class="searchIcon"style="width: 25px;height:25px; border:0px;"></input>
                     <ul class="answerBox">
                   		<li>답변 유무<img src="resources/images/host_images/down.png" class="answerBtn"style="width:12px;heigt:6px;margin-left:10px;"></li>
 	               		<ul class="answer_whether">	
-	               			<li style="margin-top:6px;" onClick="complete()">답변 완료</li>
+	               			<li style="margin-top:6px;" onClick="complete">답변 완료</li>
 	               			<li style="margin-top:0.2px;"onClick="incomplete">답변 미완료</li>
 	               		</ul>
               		</ul>
@@ -45,7 +45,7 @@
             </div>
          </div>
         <div class="qnaSpace" style="background-color:rgb(247, 246, 248); margin-top: 20px;">
-    
+            <div></div>
            <c:choose>
 	           <c:when test="${list != null}">
 	            <c:forEach var="li" items="${list}" varStatus="status">
@@ -63,17 +63,14 @@
 	                    <h5>호스트 답글</h5>
 	                    <c:choose>
 		                    <c:when test="${  li.qaAnswer != null}">
-		                    	<div class="1">
 			                    <textarea rows="3"class="form-control" >${ li.qaAnswer }</textarea>
 			                    <span>${  li.qaAnswerDate}</span>
-			                    <button type="button" class="btn btn-warning" onclick="updateAnswer(${li.qaNo})">수정</button><button class="btn btn-primary">삭제</button>
-			                    </div>
+			                    <button class="btn btn-warning">수정</button><button class="btn btn-primary">삭제</button>
 			                </c:when>
 			                <c:otherwise>
-			              	  <div class="2">
 			               	    <textarea rows="3"class="form-control" name="contentBox" placeholder="답변을 입력해주세요" ></textarea>
+			                    <span>${li.qaNo}</span>
 			                    <button class="btn btn-warning" onclick="insertAnswer(${li.qaNo})">등록</button>
-			                  </div>
 			                 </c:otherwise>
 		                 </c:choose>
 	                </div>
@@ -84,9 +81,9 @@
 	      		  <div><h5>Q&A가 존재하지 않습니다.</h5></div>
 	        </c:otherwise>
         </c:choose>
+          
         </div>
     </div>
-
     <!-- 페이징 처리  -->
         <div id="pagingArea">
           <ul class="pagination" style="margin-top:100px;margin-left:700px;">
@@ -120,14 +117,13 @@
     		$(".answerBtn").click(function(){
         		$(".answer_whether").toggle();
         	});
-    		
     	});
     	
     	function insertAnswer(qaNo){
-    		
-    		var contentBox = $(event.target).prev().val();
-    		console.log(contentBox)
+    		var contentBox = $('textarea[name=contentBox]').val();
     		if(contentBox != null){
+    			console.log(qaNo)
+    			console.log(contentBox);
     			// 답글 등록 ajax 
     			$.ajax({
     				url:"insertQnaAnswer.ho",
@@ -136,43 +132,15 @@
     				},
     				success:function(result){	
     					if(result == 'success'){
-    						alert('답글작성이 성공했습니다.')
-    						location.reload();
-    						
-    					}else{
-    						alert("답글작성을 실패했습니다.");
+    						$("#contentBox").val('')
+    						alert("성공!");
     					}
     				}
     			});
-    		}	
+        	}
     	};
-
-    	function updateAnswer(qaNo){
-    		
-    		var contentBox = $(event.target).siblings("textarea").val();
-    		console.log(contentBox)
-    		if(contentBox != null){
-    			// 답글 수정 ajax 
-    			$.ajax({
-    				url:"insertQnaAnswer.ho",
-    				data:{ qaNo:qaNo,
-    					   qaAnswer:contentBox
-    				},
-    				success:function(result){	
-    					if(result == 'success'){
-    						alert('답글수정이 성공했습니다.')
-    						location.reload();
-    						
-    					}else{
-    						alert("답글작성을 실패했습니다.");
-    					}
-    				}
-    			});
-    		}	
-    	};
-    	function complete(spcNo){
-    		
-    	}
+    	
+    	
     	function searchSubmit(){
     		$('#selectQnaListForm').attr("action","selectQnaList.ho").submit();
     	};
