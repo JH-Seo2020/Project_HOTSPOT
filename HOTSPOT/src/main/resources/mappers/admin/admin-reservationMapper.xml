@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reservationMapper">
+  <resultMap id="reservationResultSet" type="Reservationad">
+  	<id column="reservation_no" property="reNo"/>
+  	<result column="user_id" property="reGuest"/>
+  	<result column="user_id_h" property="reHost"/>
+  	<result column="spc_no" property="spcNo"/>
+  	<result column="reservation_date" property="reDate"/>
+  	<result column="reservation_name" property="reName"/>
+  	<result column="total_time" property="tTime"/>
+  	<result column="reservation_total" property="reTotal"/>
+  	<result column="purpose_type" property="pType"/>
+  	<result column="amount_time" property="aTime"/>
+  	<result column="use_date" property="startDate"/>
+  	<result column="use_time" property="startTime"/>
+  	<result column="end_date" property="endDate"/>
+  	<result column="end_time" property="endTime"/>
+  	<result column="pay_date" property="payDate"/>
+  	<result column="pay_sum" property="pSum"/>
+  	<result column="refund" property="refund"/>
+  	<result column="pay_method" property="payMethod"/>
+  </resultMap>
+  <select id="selectListCount"
+          resultType="_int">
+  		select
+  		       count(*)
+  		  from reservation
+  		 where reservation_status = '예약확정'      
+  </select>
+  <select id="selectList"
+          resultMap="reservationResultSet">
+  	select
+  	       reservation_no
+  	     , user_id
+  	     , spc_no
+  	     , user_id_h
+  	     , to_char(r.reservation_date, 'YYYY/MM/DD') reservation_date
+  	     , reservation_name
+  	     , reservation_total
+  	     , purpose_type
+  	     , amount_time
+  	     , use_date
+  	     , use_time
+  	     , end_date
+  	     , end_time
+  	     , to_char(r.pay_date, 'YYYY/MM/DD') pay_date
+  	     , pay_sum
+  	     , refund
+  	     , pay_method
+  	  from reservation r         
+  	 where reservation_status = '예약확정'
+  	 order
+  	    by reservation_no desc 
+  </select>
+  
+  <select id="searchListCount"
+          resultType="_int">
+  
+  	select
+  	       count(*)
+  	  from reservation
+  	 where reservation_status = '예약확정'
+  	 <choose>
+  	 	<when test="guest != null">
+  	 		and user_id = #{guest}
+  	 	</when>
+  	 	<when test="host != null">
+  	 		and user_id_h = #{host}
+  	 	</when>
+  	 	<when test="reNo != null">
+  	 		and reservation_no = #{reNo}
+  	 	</when>
+  	 </choose> 	       
+  </select>
+  <select id="searchList"
+          resultMap="reservationResultSet">
+  	
+  	select
+  	       reservation_no
+  	     , user_id
+  	     , spc_no
+  	     , user_id_h
+  	     , to_char(r.reservation_date, 'YYYY/MM/DD') reservation_date
+  	     , reservation_name
+  	     , reservation_total
+  	     , purpose_type
+  	     , amount_time
+  	     , use_date
+  	     , use_time
+  	     , end_date
+  	     , end_time
+  	     , to_char(pay_date, 'YYYY/MM/DD') pay_date
+  	     , pay_sum
+  	     , refund
+  	     , pay_method
+  	  from reservation r         
+  	 where reservation_status = '예약확정'
+  	 <choose>
+  	 	<when test="guest != null">
+  	 		and user_id = #{guest}
+  	 	</when>
+  	 	<when test="host != null">
+  	 		and user_id_h = #{host}
+  	 	</when>
+  	 	<when test="reNo != null">
+  	 		and reservation_no = #{reNo}
+  	 	</when>
+  	 </choose> 
+  	 order
+  	    by reservation_no desc  
+  	               
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+          
+</mapper>

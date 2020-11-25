@@ -15,7 +15,7 @@ public class Pagination {
 		if(endPage> maxPage) {
 			endPage = maxPage;
 		}
-		System.out.println(currentPage);
+		
 		return new PageInfo(currentPage, listCount, startPage, endPage, maxPage, pageLimit, boardLimit);
 	}
 }

@@ -75,7 +75,7 @@
                     <div href="" id="adminSpace"><img src="resources/images/admin/공간.png">&nbsp;공간</div>
                     <ul style="display:none;" id="subAdminSpace">
                         <li><a href="" style="font-size:15px;">공간관리</a></li>
-                        <li><a href="" style="font-size:15px;">예약관리</a></li>
+                        <li><a href="list.rad" style="font-size:15px;">예약관리</a></li>
                     </ul>
                 </li>
                 <br><br>
