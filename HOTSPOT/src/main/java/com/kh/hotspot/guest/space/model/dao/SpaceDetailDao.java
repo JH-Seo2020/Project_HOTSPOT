@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
+import com.kh.hotspot.guest.space.model.vo.SpaceNotes;
 
 @Repository
 public class SpaceDetailDao {
@@ -20,6 +21,11 @@ public class SpaceDetailDao {
 	public ArrayList<SpaceImages> selectSpaceImages(SqlSessionTemplate sqlSession, int spcNo) {
 		
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectSpaceImages",spcNo);
+	}
+
+	public ArrayList<SpaceNotes> selectSpaceNotes(SqlSessionTemplate sqlSession, int spcNo) {
+		
+		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectSpaceNotes",spcNo);
 	}
 
 }

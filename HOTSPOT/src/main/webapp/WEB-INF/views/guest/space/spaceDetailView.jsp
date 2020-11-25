@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <!-- 디테일페이지 css -->
 <link rel="stylesheet" href="resources/css/guest/spaceDetailView.css" type="text/css"/>
+<!-- 카카오지도 API -->
 </head>
 <body>
 
@@ -183,9 +184,9 @@
                 <h4><span class="badge badge-pill badge-dark">#유의사항</span></h4>
                 <br>
                 <div style="font-size:18px; padding:2%;">
-                	1. 어쩌구저쩌구<hr>
-                	2. 그래그래<hr>
-                	3. 그냥그냥 <hr>
+                	<c:forEach var="n" items="${snotes }" varStatus="count">
+                		${count.count} | ${n.notesContent }<hr>
+                	</c:forEach>
                 	<br>
                 </div>
             </div>
@@ -194,17 +195,37 @@
                 <h4><span class="badge badge-pill badge-dark">#환불정책</span></h4>
                 <br>
                 <div style="font-size:18px; padding:2%;">
-                	1. 돈 절대 안돌려드립니다<hr>
-                	2. 은행가서 말씀하세요<hr>
-                	3. 핫스팟은 거래에 일체 책임을 지지 않습니다 <hr>
+						1. 주문 취소 및 반품<br>
+						일반적으로 소비자는 자신이 체결한 전자상거래 계약에 대해 그 계약의 내용을 불문하고 
+						그 청약철회 및 계약해제의 기간(통상 7일) 내에는 청약철회 등을 자유롭게 할 수 있습니다
+						(「전자상거래 등에서의 소비자보호에 관한 법률」 제17조제1항). <hr>
+						2. 주문 취소 및 반품 가능 기간<br>
+						인터넷에서 물품을 주문한 후 7일 이내에는 주문을 취소하거나 반품을 할 수 있습니다
+						(「전자상거래 등에서의 소비자보호에 관한 법률」 제17조제1항). <hr>
                 	<br>
                 </div>
             </div>
             <div id="way">
                 <br>
                 <h4><span class="badge badge-pill badge-dark">#오시는길</span></h4>
-            	<!-- 카카오지도 추가할거야! -->
+                <br>
+            	<p style="font-size:20px;"> 위치 : ${si.location }
+            	<br>
+            	<div id="map" style="width:1100px;height:400px;"></div>
+            	<br>
+            	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=590a097d538fbc24341f63791cee314f"></script>
             </div>
+            
+            <script>
+	            var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	            var options = { //지도를 생성할 때 필요한 기본 옵션
+	            	center: new kakao.maps.LatLng('${si.latitude}', '${si.longitude}'), //지도의 중심좌표.
+	            	level: 3 //지도의 레벨(확대, 축소 정도)
+	            };
+	
+	            var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+            </script>
+            
             <div id="detailQnA">
                 <br>
                 <h4><span class="badge badge-pill badge-dark">#QnA 5개</span></h4>
@@ -362,7 +383,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                <button type="submit" class="btn btn-primary" style="background-color: slateblue; border: none;">신고하기</button>
+                <button type="submit" class="btn btn-primary" style="background-color: slateblue; border: none;">질문하기</button>
                 </div>
             </div>
             </div>

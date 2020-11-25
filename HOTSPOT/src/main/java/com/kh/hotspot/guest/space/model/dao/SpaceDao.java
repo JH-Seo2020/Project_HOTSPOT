@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 
@@ -30,6 +31,16 @@ public class SpaceDao {
 	public ArrayList<SpaceInfo> selectHostSpacesForHomep(SqlSessionTemplate sqlSession, String userId) {
 		
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectHostSpacesForHomep",userId);
+	}
+
+	public int selectCountReviewForHomep(SqlSessionTemplate sqlSession, String userId) {
+		
+		return sqlSession.selectOne("guestspaceMapper.selectCountReviewForHomep", userId);
+	}
+
+	public ArrayList<Review> selectReviewsForHomep(SqlSessionTemplate sqlSession, String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

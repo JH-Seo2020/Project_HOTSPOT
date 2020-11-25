@@ -54,6 +54,13 @@
   		<result column="SPC_NO" property="spcNo" />
   	</resultMap>
   	
+	<resultMap id="spaceNoteSet" type="SpaceNotes">
+  		<id column="NOTES_NO" property="notesNo" />
+  		<result column="NOTES_CONTENT" property="notesContent" />
+  		<result column="SPC_NO" property="spcNo" />
+  	</resultMap>
+  	
+  	
   	<!-- 투데이베스트 -->
   	 <select id="selectTodaySpace" resultMap="spaceInfoResultSet"> 
   	 	select *
@@ -168,6 +175,37 @@
 		  using(spc_no)
   	</select>
   	
+  	<select id="selectCountReviewForHomep" parameterType="string" resultType="_int" >
+  		select count(*)
+		  from (
+		        select *
+		          from (
+		                select review_writer
+		                     , USER_NICKNAME
+		                     , USER_PROFILE_C
+		                     , PROFILE_PATH
+		                     , spc_no
+		                     , review_content
+		                     , review_score
+		                     , review_date
+		                     , review_reply
+		                  from review
+		                  join member on (review_writer = user_id)
+		                 where review_status = 'Y'
+		             )
+		         right
+		          join 
+		              (
+		                select spc_no
+		                  from space_info
+		                 where user_id = #{userId}
+		              )
+		          using (spc_no)
+		          order
+		             by review_date desc
+		    )
+  	</select>
+  	
   	
   	<!-- 세부공간보기 -->
   	<select id="selectSpaceDetail" parameterType="_int" resultMap="spaceInfoResultSet">
@@ -186,6 +224,12 @@
 		join space_info using(spc_no)
 		where spc_no = #{spcNo}
 		and spc_status = 'Y'
+  	</select>
+  	
+  	<select id="selectSpaceNotes" parameterType="_int" resultMap="spaceNoteSet">
+  		select *
+		  from spc_notes
+		 where spc_no = #{spcNo}
   	</select>
 
 </mapper>

@@ -9,11 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.service.SpaceDetailService;
 import com.kh.hotspot.guest.space.model.service.SpaceService;
+import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
+import com.kh.hotspot.guest.space.model.vo.SpaceNotes;
 
 @Controller
 public class SpaceController {
@@ -53,6 +57,7 @@ public class SpaceController {
 		ArrayList<SpaceImages> simg = spaceDetailService.selectSpaceImages(spcNo);
 		
 		//3.공간유의사항들
+		ArrayList<SpaceNotes> snotes = spaceDetailService.selectSpaceNotes(spcNo);
 		
 		//4.공간리뷰들
 		
@@ -60,6 +65,7 @@ public class SpaceController {
 		
 		model.addAttribute("si",si);
 		model.addAttribute("simg",simg);
+		model.addAttribute("snotes",snotes);
 		
 		return "guest/space/spaceDetailView";
 	}
@@ -72,9 +78,13 @@ public class SpaceController {
 
 		//2.호스트의공간
 		ArrayList<SpaceInfo> hs = spaceService.selectHostSpacesForHomep(userId);
-		System.out.println(hs);
-		//3.이용후기
-		
+
+		//3.이용후기전체개수.. 이건 ajax 처리해야될거같은데..?
+		int listCount = spaceService.selectCountReviewForHomep(userId);
+		//페이지네이션처리
+//		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		//3-2.이용후기조회
+		ArrayList<Review> rv = spaceService.selectReviewsForHomep(userId);
 		
 		model.addAttribute("mm",mm);
 		model.addAttribute("hs",hs);

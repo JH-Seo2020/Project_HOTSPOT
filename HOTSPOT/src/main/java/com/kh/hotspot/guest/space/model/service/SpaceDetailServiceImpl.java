@@ -35,8 +35,8 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 
 	@Override
 	public ArrayList<SpaceNotes> selectSpaceNotes(int spcNo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return spaceDetailDao.selectSpaceNotes(sqlSession,spcNo);
 	}
 
 	@Override
