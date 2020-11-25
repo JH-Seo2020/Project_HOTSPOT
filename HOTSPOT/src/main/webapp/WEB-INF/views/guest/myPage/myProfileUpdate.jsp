@@ -36,7 +36,7 @@
         border: none;
         border-radius: 3px;
     }
-     #profileBtn button:hover{background: rgb(184, 108, 255);}
+    #profileBtn button:hover{background: rgb(184, 108, 255);}
     #userPwdArea label{
         font-size: small;
         color: rgb(145, 37, 247);
@@ -46,8 +46,17 @@
         color:white;
         border: none;
         border-radius: 3px;
-        width: 90px;
+        width: 130px;
     }
+   	.serviceBtn{
+    width: 120px;
+    height: 30px;
+    background:  rgb(145, 37, 247);
+    color:white;
+    border: none;
+    border-radius: 3px;
+	}
+	.serviceBtn:hover{background: rgb(184, 108, 255);}
 </style>
 </head>
 <body>
@@ -60,11 +69,16 @@
              <br><hr><br><br>
              <form action="update.me" method="POST" id="myProfile" enctype="multipart/form-data">
                  <div id="profileImage">
-                    
-                    <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px">
+	                <c:choose>
+		                <c:when test="${ loginUser.userProfile != null}">
+		                	<img class="target_img" width="150px" height="150px" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>">
+						</c:when>
+						<c:otherwise>
+							<img class="target_img" width="150px" height="150px" src="resources/images/profileImage.png" >
+						</c:otherwise>
+		            </c:choose>  
                     <h2 align="center">${ loginUser.userId }</h2>
 	                <input type="file" name="userProfile" id="userProfile" style="display:none;">
-	                
                  </div>
  
                  <div id="mainProfile">
@@ -74,12 +88,8 @@
                         <span id="checkNickname" style="font-size:0.8em"></span><br><br>
                         
                         <label for="userEmail">이메일</label> &nbsp;&nbsp;&nbsp;
-                        <input type="email" name="userEmail" id="userEmail" value="${ loginUser.userEmail }">
-                        <button type="button" id="emailCode">이메일 인증</button><br><br>
+                        <button type="button" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">이메일 인증하기</button><br><br>
                         
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" name="emailConfirmCode" placeholder="인증코드를 입력하세요."><br><br><br>
-
                         <label for="userPhone">연락처</label>&nbsp;&nbsp;&nbsp;
                         <input type="text" name ="userPhone" id="profilePhone" value="${ loginUser.userPhone }"><br>
                     </div>
@@ -114,7 +124,8 @@
                  </div>
                  <br><hr><br>
                  <div id="profileBtn" align="center"> 
-                     <button type="button" onclick="location.href='update.me'">변경하기</button>
+                     <button type="button" onclick="location.href='update.me'">수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <button type="button" onclick="location.href='myProfile.me'">취소하기</button>
                  </div>
              </form>
          </div>
@@ -122,7 +133,7 @@
      
      <!-- 프로필 첨부파일 클릭이벤트 -->
 	 <script>
-			$('#target_img').click(function(){
+			$('.target_img').click(function(){
 				$("input[name='userProfile']").click();
 			})
 			
@@ -136,7 +147,7 @@
 					var reader = new FileReader();
 					
 					reader.onload = function(e){
-						$('#target_img').attr('src', e.target.result);
+						$('.target_img').attr('src', e.target.result);
 					}
 					
 					reader.readAsDataURL(img.files[0]);
@@ -193,7 +204,7 @@
 	    			if(pwd1 == "" || pwd2 != ""){
 	    				if(pwd1 == pwd2){
 	    					$("#checkResult").show();
-	    					$("#checkResult").css("color", "green").text("새 비밀번호와 일치합니다.");
+	    					$("#checkResult").css("color", "rgb(145, 37, 247)").text("새 비밀번호와 일치합니다.");
 	    				}else{
 	    					$("#checkResult").show();
 	    					$("#checkResult").css("color", "red").text("새 비밀번호와 일치하지 않습니다.");
@@ -202,6 +213,38 @@
 		    	})
 	    	})
 	    </script>
+	    
+	    
+	    
+      <!-- 이메일 인증모달 -->
+	  <div class="modal" id="emailModal">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	      
+	        <!-- Modal Header -->
+	        <div class="modal-header" style="color: rgb(145, 37, 247)">
+	          <h4 align="center">이메일 인증하기</h4>
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        </div>
+	        <br>
+	        <!-- Modal body -->
+	        <div class="modal-body" align="center">
+		          <form action="emailCheck.me" method="POST">
+		             <p>
+		                                  서비스 탈퇴시 내 프로필, 예약내역의<br>
+		                                  모든 정보가 삭제되며 이후 복구가 불가능합니다.
+		           	 </p><br>
+                 					
+                     <input type="email" name="userEmail" id="userEmail" value="${ loginUser.userEmail }">
+                     <button type="button" id="emailCode">이메일 인증받기</button><br><br><br>
+                     
+                     <input type="text" name="emailConfirmCode" placeholder="인증코드를 입력하세요.">
+             		 <button type="submit" class="serviceBtn">인증하기</button><br><br>
+	          	</form>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 	    
 
      

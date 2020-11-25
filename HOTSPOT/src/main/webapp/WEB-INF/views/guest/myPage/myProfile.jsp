@@ -73,10 +73,15 @@
             <br><hr><br><br>
             <form action="myProfile.me" method="POST" id="myProfile" enctype="multipart/form-data">
                 <div id="profileImage">
-                <c:if test="${ !empty loginUser.userProfile }">  
-	                <img src="resources/images/profileImage.png" id="target_img" width="150px" height="150px" onerror="">
-				</c:if>
-	                <h2 align="center">${ loginUser.userId }</h2>
+                <c:choose>
+	                <c:when test="${ loginUser.userProfile != null}">
+	                	<img class="target_img" width="150px" height="150px" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>">
+					</c:when>
+					<c:otherwise>
+						<img class="target_img" width="150px" height="150px" src="resources/images/profileImage.png" >
+					</c:otherwise>
+	            </c:choose>
+		             <h2 align="center">${ loginUser.userId }</h2>
                 </div>
 
                 <div id="mainProfile">
@@ -95,7 +100,7 @@
                 </div>
                 <br><br><hr><br>
                 <div id="profileBtn" align="center"> 
-                    <button type="button" onclick="location.href='profileUpdate.me'">내 프로필 변경하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" onclick="location.href='profileUpdate.me'">내 프로필 수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">서비스 탈퇴</button>
 
                 </div>
