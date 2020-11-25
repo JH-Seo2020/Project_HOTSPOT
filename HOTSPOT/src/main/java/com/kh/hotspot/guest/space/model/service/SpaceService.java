@@ -36,6 +36,8 @@ public interface SpaceService {
 	ArrayList<SpaceInfo> selectHostSpacesForHomep(String userId);
 	
 	//7-3.호스트의 후기들
+	int selectCountReviewForHomep(String userId);
+	
 	ArrayList<Review> selectReviewsForHomep(String userId);
 	
 

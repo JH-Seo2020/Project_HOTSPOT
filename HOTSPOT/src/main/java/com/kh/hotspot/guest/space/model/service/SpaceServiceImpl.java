@@ -65,9 +65,16 @@ public class SpaceServiceImpl implements SpaceService {
 	}
 
 	@Override
-	public ArrayList<Review> selectReviewsForHomep(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public int selectCountReviewForHomep(String userId) {
+
+		return spaceDao.selectCountReviewForHomep(sqlSession, userId);
 	}
+	
+	@Override
+	public ArrayList<Review> selectReviewsForHomep(String userId) {
+		
+		return spaceDao.selectReviewsForHomep(sqlSession,userId);
+	}
+
 
 }
