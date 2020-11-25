@@ -26,34 +26,45 @@
     #hostIntroducingSpace>div{float: left;}
     #hostPhotoForIntro{width: 20%; height: 80%;}
     #hostPhotoForIntro>img{height: 70%; width: 70%; border-radius: 100%;}
-    /*호스트의공간*/
-    #todayBest{
-        width: 100%;
-        height: auto;
-    }
-    #todayBestTitle{
-        padding: 1% 0 0 1%;
-        width: 100%;
-        height: 20%;
-    }
-    #todaySpaceGroup{
-        width: 1200px;
-        height: 90%;
-        padding-top: 6%;
-        text-align: left;
-        margin: auto;
-    }
-    .todaySpace{
-        display: inline-block;
-        padding: 0 0 4% 4%;
-        width: 30%; 
-        height: 80%;
-    }
-    .todaySpace>img{
-        width: 100%;
-        height: 100%;
-        border: 5px solid tan;
-    }
+        /*오늘의공간(투데이베스트)*/
+        #todayBest{
+            width: 100%;
+            height: 550px;
+        }
+        #todayBestTitle{
+            padding-top: 3%;
+            width: 100%;
+            height: 12%;
+        }
+        #todaySpaceGroup{
+            width: 1200px;
+            height: 90%;
+            padding-top: 6%;
+            text-align: left;
+            margin: auto;
+        }
+        .todaySpace{
+            display: inline-block;
+            padding: 0 0 4% 4%;
+            width: 30%; 
+            height: 80%;
+        }
+        .todaySpace>img{
+            width: 100%;
+            height: 90%;
+            border: 5px solid lightgray;
+           -webkit-transition: all 1s ease;
+		   -moz-transition: all 1s ease;
+		   -o-transition: all 1s ease;
+		   -ms-transition: all 1s ease;
+		   transition: all 1s ease;
+		   margin-bottom:5%;
+        }
+        .todaySpace>img:hover{
+		   -webkit-filter: brightness(50%);
+		   filter: brightness(50%);
+		    transform: scale(1.03);
+        }
 
     #infoDetails>h3>a{
         color: black;
@@ -84,52 +95,33 @@
             <br>
             <div id="hostIntroducingSpace">
                 <div id="hostPhotoForIntro">
-                    <img src="bannerSample_1.jpg" >
+                    <img src="${mm.profilePath}${mm.userProfileC }">
                 </div>
                 <div id="goToHostPage">
                     <span style="color: indigo; font-weight: bold;">HOST</span>
-                    <span><h4>호스트A</h4></span> <br>
-                    <span><h4>"경복궁 옆에서 카페를 운영중인 호스트입니다"</h4></span> <br>
-                    <h4><a href="#" class="badge badge-pill badge-warning">호스트의 홈피로 이동</a></h4>
+                    <span><h4>${mm.userNickname }</h4></span> <br>
+                    <span><h4>"안녕하세요, 호스트 ${mm.userNickname }입니다."</h4></span> <br>
                 </div>
             </div>
         </div>
         <hr>
         <div id="todayBest">
             <div id="todayBestTitle">
-                <h2>호스트의 공간 2개</h2>
+                <h2>호스트의 공간 ${hs.size() }개</h2>
             </div>
             <div id="todaySpaceGroup">
+            <c:forEach var="hs" items="${hs }">
                 <div class="todaySpace">
-                    <img src="space1.jpg">
-                    <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
+                    <img src="${hs.spcChimg }">
+                    <div style="font-weight: bold; font-size: 20px;">${hs.spcName }</div>
                     <div>종로구 | #한옥카페 #그리다꿈</div>
                     <div>
-                        <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                        <span class="badge badge-pill badge-warning">후기 10개</span>
-                        <span class="badge badge-pill badge-warning">관심 7개</span>
+                        <span style="color: rebeccapurple; font-weight: bold;">${hs.spcPrice }원/시간</span>
+                        <span class="badge badge-pill badge-warning">후기 ${hs.reviews }개</span>
+                        <span class="badge badge-pill badge-warning">관심 ${hs.wishes }개</span>
                     </div>
                 </div>
-                <div class="todaySpace">
-                    <img src="space1.jpg">
-                    <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                    <div>종로구 | #한옥카페 #그리다꿈</div>
-                    <div>
-                        <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                        <span class="badge badge-pill badge-warning">후기 10개</span>
-                        <span class="badge badge-pill badge-warning">관심 7개</span>
-                    </div>
-                </div>
-                <div class="todaySpace">
-                    <img src="space1.jpg">
-                    <div style="font-weight: bold; font-size: 20px;">[경복궁역] 한옥카페 '그리다꿈'</div>
-                    <div>종로구 | #한옥카페 #그리다꿈</div>
-                    <div>
-                        <span style="color: rebeccapurple; font-weight: bold;">10,000원/시간</span>
-                        <span class="badge badge-pill badge-warning">후기 10개</span>
-                        <span class="badge badge-pill badge-warning">관심 7개</span>
-                    </div>
-                </div>
+			</c:forEach>
             </div>
         </div>
         <hr>

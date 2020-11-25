@@ -65,7 +65,20 @@ public class SpaceController {
 	}
 	
 	@RequestMapping("hostHpg.guest")
-	public String hostHomepageDetail() {
+	public String hostHomepageDetail(String userId, Model model) {
+		
+		//1.호스트정보(프로필사진,닉네임,한줄소개?)
+		Member mm = spaceService.selectHostInfoForHomep(userId);
+
+		//2.호스트의공간
+		ArrayList<SpaceInfo> hs = spaceService.selectHostSpacesForHomep(userId);
+		System.out.println(hs);
+		//3.이용후기
+		
+		
+		model.addAttribute("mm",mm);
+		model.addAttribute("hs",hs);
+		
 		return "guest/space/hostHmpView";
 	}
 	

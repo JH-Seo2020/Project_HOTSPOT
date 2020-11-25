@@ -23,8 +23,8 @@
     
     <div id="infoWrapper">
         <div id="infoTitle">
-            <div><h2>${si.spcName }</h2></div>
-            <h4><div  class="badge badge-light">${location2 }</div></h4>
+            <div><h2>[${location2 }] &nbsp; ${si.spcName }</h2></div>
+            <h4><div  class="badge badge-light">${si.spcInt }</div></h4>
             <h5><div  class="badge badge-light">#${si.spcTag }</div></h5>
             <div id="wishandlike">
                 <a data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
@@ -181,20 +181,22 @@
             <div id="notices">
             	<br>
                 <h4><span class="badge badge-pill badge-dark">#유의사항</span></h4>
-                <div style="font-size:20px; padding:1%;">
-                	1. 어쩌구저쩌구<br>
-                	2. 그래그래<br>
-                	3. 그냥그냥 <br>
+                <br>
+                <div style="font-size:18px; padding:2%;">
+                	1. 어쩌구저쩌구<hr>
+                	2. 그래그래<hr>
+                	3. 그냥그냥 <hr>
                 	<br>
                 </div>
             </div>
             <div id="refundNotice">
                 <br>
                 <h4><span class="badge badge-pill badge-dark">#환불정책</span></h4>
-                <div style="font-size:20px; padding:1%;">
-                	1. 돈 절대 안돌려드립니다<br>
-                	2. 은행가서 말씀하세요<br>
-                	3. 핫스팟은 거래에 일체 책임을 지지 않습니다 <br>
+                <br>
+                <div style="font-size:18px; padding:2%;">
+                	1. 돈 절대 안돌려드립니다<hr>
+                	2. 은행가서 말씀하세요<hr>
+                	3. 핫스팟은 거래에 일체 책임을 지지 않습니다 <hr>
                 	<br>
                 </div>
             </div>
@@ -256,6 +258,8 @@
 	            </div>
             </div>
             <div id="detailReviews">
+                <br>
+                <h4><span class="badge badge-pill badge-dark">#이용후기</span></h4>
             <!-- 리뷰 추가할거야 -->
             </div>
             
@@ -273,7 +277,11 @@
                 <span style="color: indigo; font-weight: bold;">HOST</span>
                 <span><h5>호스트A</h5></span> <br>
                 <span><h5>"경복궁 옆에서 카페를 운영중인 호스트입니다"</h5></span> <br>
-                <h4><a href="hostHpg.guest?spcNo=${si.spcNo }" class="badge badge-pill badge-warning">호스트의 홈피로 이동</a></h4>
+                <form action="hostHpg.guest" method="post" >
+                	<input type="hidden" value="${si.userId }" name="userId" />
+                	<input type="hidden" value="${si.spcNo }" name="spcNo" />
+                	<h4><button class="badge badge-pill badge-warning">호스트의 홈피로 이동</button></h4>
+        		</form>
         	</div>
     	</div>
     </div>

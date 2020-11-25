@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.dao.SpaceDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
@@ -47,6 +48,26 @@ public class SpaceServiceImpl implements SpaceService {
 	public int updatePaymentInfo(int reservNo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	
+	//호스트홈피관련
+	@Override
+	public Member selectHostInfoForHomep(String userId) {
+
+		return spaceDao.selectHostInfoForHomep(sqlSession, userId);
+	}
+
+	@Override
+	public ArrayList<SpaceInfo> selectHostSpacesForHomep(String userId) {
+		
+		return spaceDao.selectHostSpacesForHomep(sqlSession,userId);
+	}
+
+	@Override
+	public ArrayList<Review> selectReviewsForHomep(String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

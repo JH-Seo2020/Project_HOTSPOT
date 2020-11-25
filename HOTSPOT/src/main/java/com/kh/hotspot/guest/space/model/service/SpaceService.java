@@ -2,6 +2,7 @@ package com.kh.hotspot.guest.space.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.space.model.vo.Review;
@@ -27,6 +28,15 @@ public interface SpaceService {
 
 
 
+	
+	//7-1.호스트공간-호스트정보(프사,닉네임)
+	Member selectHostInfoForHomep(String userId);
+	
+	//7-2.호스트의 공간들
+	ArrayList<SpaceInfo> selectHostSpacesForHomep(String userId);
+	
+	//7-3.호스트의 후기들
+	ArrayList<Review> selectReviewsForHomep(String userId);
 	
 
 }

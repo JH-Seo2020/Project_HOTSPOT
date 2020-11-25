@@ -30,6 +30,23 @@
   		
   	</resultMap>
   	
+  	<resultMap id="memberInfo" type="Member">
+  		<id column="user_id" property="userId" />
+  		<result column="user_type" property="userType" />
+  		<result column="user_pwd" property="userPwd" />
+  		<result column="user_nickname" property="userNickname" />
+  		<result column="user_email" property="userEmail" />
+  		<result column="user_phone" property="userPhone" />
+  		<result column="user_profile" property="userProfile" />
+  		<result column="user_profile_c" property="userProfileC" />
+  		<result column="profile_path" property="profilePath" />
+  		<result column="user_status" property="userStatus" />
+  		<result column="enroll_date" property="enrollDate" />
+  		<result column="modify_date" property="modifyDate" />
+  		<result column="withdrawal_date" property="withdrawalDate" />
+  		<result column="user_memo" property="userMemo" />
+  	</resultMap>
+  	
   	<resultMap id="spaceImageSet" type="SpaceImages">
   		<id column="IMG_NO" property="imgNo" />
   		<result column="IMG_OGIMG" property="imgOgimg" />
@@ -98,6 +115,61 @@
 		WHERE ROWNUM &lt; 10
   	 </select>
   	
+  	<!-- 호스트의 홈피 -->
+  	<select id="selectHostInfoForHomep" parameterType="string" resultMap="memberInfo">
+  		select user_nickname
+		     , USER_PROFILE_C
+		     , PROFILE_PATH
+		  from member
+		 where user_status = 'Y'
+		   and user_id = #{userId}
+  	</select>
+  	
+  	<select id="selectHostSpacesForHomep" parameterType="string" resultMap="spaceInfoResultSet" >
+  		select *
+		  from
+		        (
+		         select spc_no 
+		             , spc_name
+		             , spc_tag
+		             , spc_type
+		             , spc_chimg
+		             , spc_price
+		             , COUNT(REVIEW_NO) REVIEWS
+		          from space_info
+		          full
+		         outer 
+		          join review using(spc_no)
+		         where user_id = #{userId}
+		           and spc_status = 'Y' 
+		         group 
+		            by spc_name, spc_tag, spc_type, spc_chimg, spc_price, spc_no
+		        )
+		  join (
+		        select * 
+		          from
+		                (
+		                 select spc_no
+		                   from space_info
+		                  where user_id = #{userId}
+		                 )
+		            left 
+		            outer 
+		            join
+		                (
+		                 select spc_no, 
+		                        count(spc_no) as wishes
+		                    from wish
+		                   group 
+		                      by spc_no
+		            ) 
+		            using (spc_no)
+		        )
+		  using(spc_no)
+  	</select>
+  	
+  	
+  	<!-- 세부공간보기 -->
   	<select id="selectSpaceDetail" parameterType="_int" resultMap="spaceInfoResultSet">
   		select *
 		  from space_info
