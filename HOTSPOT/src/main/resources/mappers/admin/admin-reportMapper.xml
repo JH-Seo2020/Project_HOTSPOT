@@ -23,6 +23,7 @@
 		  from report
 	</select>
 	
+	<!-- 신고리스트 조회 -->
 	<select id="selectList" parameterType="String" resultMap="reportResultSet">
 		select
 		       report_no
@@ -38,5 +39,29 @@
 		  from report
 		 order by decode(report_status, #{reportStatus}, 1), report_date desc
 	</select>
-
+	
+	<!-- 신고내역 상세조회 -->
+	<select id="selectReportDetail" parameterType="_int" resultMap="reportResultSet">
+		select
+		       report_no
+		     , spc_no
+		     , review_no
+		     , report_type1
+		     , report_type2
+		     , report_writer
+		     , report_target
+		     , report_content
+		     , report_date
+		     , report_status
+		  from report
+		 where report_no = #{reportNo}
+	</select>
+	
+	<!-- 신고상태 변경 -->
+	<select id="updateReportStatus" parameterType="Report" resultMap="reportResultSet">
+		update
+		       report
+		   set report_status = #{reportStatus}
+		 where report_no = #{reportNo}
+	</select>
 </mapper>

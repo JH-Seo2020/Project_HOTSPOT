@@ -10,7 +10,13 @@ public interface AdminReportService {
 	// 총 신고갯수 조회
 	int selectListCount();
 	
-	// 총 신고내역 조회
+	// 신고리스트 조회
 	ArrayList<Report> selectList(String reportStatus, PageInfo pageInfo);
+	
+	// 신고내역 상세조회
+	Report selectReportDetail(int reportNo);
+	
+	// 신고상태 변경 요청
+	int updateReportStatus(Report report);
 
 }

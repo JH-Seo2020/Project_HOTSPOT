@@ -78,13 +78,6 @@ body {
 }
 
 /* 문구 */
-#span_name {
-	font-size: 20px;
-	float: right;
-	margin-top: 20px;
-	margin-right: 35px;
-}
-
 #categoryName span {
 	float: left;
 	font-size: 20px;
@@ -104,12 +97,6 @@ body {
 
 .page-link:hover {
 	color: black;
-}
-
-/* 이미지 */
-.img_icon {
-	width: 40px;
-	height: 40px;
 }
 
 /* 긴 글 생략 */
