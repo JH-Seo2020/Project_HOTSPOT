@@ -18,10 +18,9 @@ public class AdminReportDao {
 		return sqlSession.selectOne("reportMapper.selectListCount");
 	}
 	
-	// 총 신고내역 조회
+	// 신고리스트 조회
 	public ArrayList<Report> selectList(String reportStatus, SqlSessionTemplate sqlSession, PageInfo pageInfo) {
 		
-		System.out.println("reportStatus : " + reportStatus);
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
 		int limit = pageInfo.getBoardLimit();
 		
@@ -29,6 +28,16 @@ public class AdminReportDao {
 		
 		return (ArrayList)sqlSession.selectList("reportMapper.selectList", reportStatus, rowBounds);
 		
+	}
+	
+	// 신고내역 상세조회
+	public Report selectReportDetail(int reportNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("reportMapper.selectReportDetail", reportNo);
+	}
+	
+	// 신고상태 변경 요청
+	public int updateReportStatus(Report report, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("reportMapper.updateReportStatus", report);
 	}
 
 }

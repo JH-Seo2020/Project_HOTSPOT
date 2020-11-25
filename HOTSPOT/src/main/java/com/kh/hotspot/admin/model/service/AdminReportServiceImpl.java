@@ -24,9 +24,19 @@ public class AdminReportServiceImpl implements AdminReportService {
 		return reportDao.selectListCount(sqlSession);
 	}
 	
-	@Override	// 총 신고내역 조회
+	@Override	// 신고리스트 조회
 	public ArrayList<Report> selectList(String reportStatus, PageInfo pageInfo) {
 		return reportDao.selectList(reportStatus, sqlSession, pageInfo);
+	}
+
+	@Override	// 신고내역 상세조회
+	public Report selectReportDetail(int reportNo) {
+		return reportDao.selectReportDetail(reportNo, sqlSession);
+	}
+	
+	@Override	// 신고상태 변경 요청
+	public int updateReportStatus(Report report) {
+		return reportDao.updateReportStatus(report, sqlSession);
 	}
 	
 
