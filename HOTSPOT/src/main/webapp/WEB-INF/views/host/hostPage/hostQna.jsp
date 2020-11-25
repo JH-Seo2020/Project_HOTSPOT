@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- include libraries(jQuery, bootstrap) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="resources/css/host/hostmenubar.css" type="text/css"/>
 <link rel="stylesheet" href="resources/css/host/hostqna.css" type="text/css"/>
 
@@ -29,24 +27,24 @@
                 	
                     <input type="text" name="spcNo" list="space" class="searchSpace"placeholder="공간을 선택해주세요">
                   		
-	                    <datalist id="space">
+	                    <datalist id="space"  >
 	                      <c:forEach var="sp" items="${ space }">
 	                        <option class="hiddenSpcNo" value="${sp.spcNo}" label="${sp.spcName}"></option>
 	                       </c:forEach>
 	                    </datalist>
-                    <input type="image" img src="resources/images/host_images/search.png" onclick="searchSubmit();" class="searchIcon"style="width: 25px;height:25px; border:0px;"></input>
+                    <input type="image" img src="resources/images/host_images/search.png" onclick="searchSubmit(1);" class="searchIcon"style="width: 25px;height:25px; border:0px;"></input>
                     <ul class="answerBox">
-                  		<li>답변 유무<img src="resources/images/host_images/down.png" class="answerBtn"style="width:12px;heigt:6px;margin-left:10px;"></li>
+                  		<li class="whether">답변 유무<img src="resources/images/host_images/down.png" class="answerBtn"style="width:12px;heigt:6px;margin-left:10px;"></li>
 	               		<ul class="answer_whether">	
-	               			<li style="margin-top:6px;" onClick="complete()">답변 완료</li>
-	               			<li style="margin-top:0.2px;"onClick="incomplete">답변 미완료</li>
+	               			<li style="margin-top:6px;" id="complete" onClick="searchSubmit(2)">답변 완료</li>
+	               			<li style="margin-top:0.2px;"onClick="searchSubmit(3)">답변 미완료</li>
 	               		</ul>
               		</ul>
                 </form>
                 
             </div>
          </div>
-        <div class="qnaSpace" style="background-color:rgb(247, 246, 248); margin-top: 20px;">
+        <div class="qnaSpace" style="background-color:#f5f5f5; margin-top: 40px; border-radius:10px; padding:4px">
     
            <c:choose>
 	           <c:when test="${list != null}">
@@ -68,7 +66,7 @@
 		                    	<div class="1">
 			                    <textarea rows="3"class="form-control" >${ li.qaAnswer }</textarea>
 			                    <span>${  li.qaAnswerDate}</span>
-			                    <button class="btn btn-warning" onclick="updateAnswer(${li.qaNo})">수정</button><button class="btn btn-primary">삭제</button>
+			                    <button class="btn btn-warning" onclick="updateAnswer(${li.qaNo})">수정</button><button class="btn btn-primary" onclick="deleteAnswer(${li.qaNo})">삭제</button>
 			                    </div>
 			                </c:when>
 			                <c:otherwise>
@@ -83,7 +81,7 @@
 	        </c:forEach>
 	        </c:when>
 	        <c:otherwise>
-	      		  <div><h5>Q&A가 존재하지 않습니다.</h5></div>
+	      		  <div><h5></h5></div>
 	        </c:otherwise>
         </c:choose>
         </div>
@@ -150,9 +148,9 @@
     	};
 
     	function updateAnswer(qaNo){
-    		
+    		// 클릭 이벤트 발생한 요소 에서부터 원하는 요소 선택해서 값 가져오기
     		var contentBox = $(event.target).siblings("textarea").val();
-    		console.log(contentBox)
+    		
     		if(contentBox != null){
     			// 답글 수정 ajax 
     			$.ajax({
@@ -166,17 +164,61 @@
     						location.reload();
     						
     					}else{
-    						alert("답글작성을 실패했습니다.");
+    						alert("답글수정을 실패했습니다.");
     					}
     				}
     			});
     		}	
     	};
-    	function complete(spcNo){
+    	function deleteAnswer(qaNo){
+    	
+   			$.ajax({
+   				url:"deleteQnaAnswer.ho",
+   				data:{ qaNo:qaNo,
+   				},
+   				success:function(result){	
+   					if(result == 'success'){
+   						alert('답글 삭제가 완료 되었습니다.')
+   						location.reload();
+   						
+   					}else{
+   						alert("답글 삭제가실패했습니다.");
+   					}
+   				}
+   			});
     		
-    	}
-    	function searchSubmit(){
-    		$('#selectQnaListForm').attr("action","selectQnaList.ho").submit();
+    	};
+    	
+    	// 정렬, 조회 
+    	function searchSubmit(num){
+    		if(num == 1){
+    			if($(".searchSpace").val() == ''){
+    				alert('공간을 선택해주세요 !')
+    				return false;
+    			}else{
+    				$('#selectQnaListForm').attr("action","selectQnaList.ho").submit();
+    			}
+    		}
+    		if(num == 2){
+    			if($(".searchSpace").val() == ''){
+    				alert('공간을 선택해주세요 !')
+    				return false;
+    				
+    			}else{
+    				$('#selectQnaListForm').attr("action","qnaAnswerComplete.ho").submit();
+    			}
+    			
+    		}if(num == 3){
+    			
+    			if($(".searchSpace").val() == ''){
+    				alert('공간을 선택해주세요 !')
+    				return false;
+    				
+    			}else{
+    				$('#selectQnaListForm').attr("action","qnaAnswerIncomplete.ho").submit();
+    			}
+    			
+    		}	
     	};
     	
     	

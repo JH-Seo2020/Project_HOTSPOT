@@ -200,4 +200,55 @@
 	 where qa_no = #{qaNo}
   
   </update>
+   <select id="selectAnswerComplete" parameterType="_int" resultMap="selectQnaListResultSet">
+	select 
+	     qa_no
+	    ,qa_content
+	    ,qa_writer
+	    ,qa_date
+	    ,qa_answer
+	    ,qa_answerdate
+	    ,qa_status
+	    ,qa_secret
+	    ,q.user_id
+	    ,q.spc_no
+	    ,s.spc_name
+	    ,s.spc_type
+	  from question_answer q
+	  join space_info s on(q.spc_no=s.spc_no)
+	  where q.spc_no = #{spcNo}
+	    and qa_status = 'Y'
+	    and qa_answer is not null
+	  order
+	     by qa_no desc
+  </select>
+   <select id="selectAnswerIncomplete" parameterType="_int" resultMap="selectQnaListResultSet">
+	select 
+	     qa_no
+	    ,qa_content
+	    ,qa_writer
+	    ,qa_date
+	    ,qa_answer
+	    ,qa_answerdate
+	    ,qa_status
+	    ,qa_secret
+	    ,q.user_id
+	    ,q.spc_no
+	    ,s.spc_name
+	    ,s.spc_type
+	  from question_answer q
+	  join space_info s on(q.spc_no=s.spc_no)
+	  where q.spc_no = #{spcNo}
+	    and qa_status = 'Y'
+	    and qa_answer is null
+	  order
+	     by qa_no desc
+  </select>
+  <update id="deleteQna" parameterType="hostQna">
+  	 update
+	        question_answer
+	   set  qa_answer = null
+	       ,qa_answerdate = null
+	 where qa_no = #{qaNo}
+  </update>
 </mapper>
