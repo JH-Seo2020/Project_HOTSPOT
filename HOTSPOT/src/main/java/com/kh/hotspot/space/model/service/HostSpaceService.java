@@ -9,6 +9,9 @@ public interface HostSpaceService {
 
 	//1. 공간등록
 	ArrayList<Space> selectSpaceList(String userId);
+	
+	//2. 공간 삭제
+	int deleteSpace(String spcNo);
 
 	
 	

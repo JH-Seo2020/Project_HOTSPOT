@@ -14,20 +14,28 @@ import com.kh.hotspot.space.model.dao.HostSpaceDao;
 public class HostSpaceServiceImpl implements HostSpaceService{
 
 	@Autowired
-	private HostSpaceDao spaceDao;
+	private HostSpaceDao HostspaceDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	
 	/**@author jisu
-	 * 
+	 * @return userId 기반 등록된 모든 공간정보를 받아옴
 	 */
 	@Override
 	public ArrayList<Space> selectSpaceList(String userId) {
 		
 		
-		
-		return spaceDao.selectSpaceList(sqlSession, userId);
+		return HostspaceDao.selectSpaceList(sqlSession, userId);
 	}
+
+
+	@Override
+	public int deleteSpace(String spcNo) {
+		
+		return HostspaceDao.deleteSpace(sqlSession, spcNo);
+	}
+	
+	
 
 }

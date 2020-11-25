@@ -15,11 +15,17 @@ public class HostSpaceDao {
 	 * @author jisu
 	 * @param sqlSession
 	 * @param userId
-	 * @return
+	 * @return userId 기반 등록된 모든 공간정보를 받아옴
+	 * 
 	 */
 	public ArrayList<Space> selectSpaceList(SqlSessionTemplate sqlSession, String userId) {
 		
 		return (ArrayList)sqlSession.selectList("hostMapper.selectSpaceList",userId);
+	}
+
+	public int deleteSpace(SqlSessionTemplate sqlSession, String spcNo) {
+		
+		return sqlSession.update("hostMapper.deleteSpace", spcNo);
 	}
 
 }

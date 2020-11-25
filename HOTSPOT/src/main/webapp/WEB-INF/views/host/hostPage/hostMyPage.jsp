@@ -56,14 +56,14 @@
             <div id="ConfirmStatus"class="btn btn-primary">호스트 승인</div>
             <br>
 
-            <img src="resources/images/host_images/person.png" style="width: 35px; height: 30px;">
+            <img src="${loginUser.userProfileC}" style="width: 35px; height: 30px;"onErro="javascript:this.src='resources/images/profileImage.png'">
 
             <br><br>
             <span style="font-size: larger; font-weight: bolder;">${loginUser.userId }</span>
 
             <br><br>
 
-            <button type="button" class="btn btn-secondary">프로필 사진 수정</button>
+            
 
 
 
@@ -81,7 +81,7 @@
                  </tr>
                  <tr>
                     <td>사업자 등록증</td> 
-                    <td>${hostInfo.businessLicense }</td>
+                    <td><a>${hostInfo.businessLicense}</a></td> <!-- 클릭하면 이미지 보이도록 수정예정 -->
                  </tr>
                  <tr>
                     <td>사업장 소재지</td> 

@@ -94,6 +94,8 @@
 		 where user_id = #{userId}
   
   </update>
+  
+  
   <select id="selectHost" parameterType="string" resultMap="hostInfoResultSet" >
   	select  
   			user_id 
@@ -110,6 +112,8 @@
 	  from  host_info
 	 where  user_id =  #{userId}
   </select>
+  
+  
   <select id="selectSpaceList" parameterType="string" resultMap="spaceResultSet">
   	select *
   	  from (	
@@ -165,12 +169,16 @@
           )
     using (spc_no) 
   </select>
+  
+  
  <select id="selectQnaListCount" parameterType="_int" resultType="_int">
   	select count(*)
 	 from question_answer
 	 where spc_no = #{spcNo}
 	   and qa_status = 'Y'
   </select>
+  
+  
  <select id="selectQnaList" parameterType="_int" resultMap="selectQnaListResultSet">
 	select 
 	     qa_no
@@ -199,5 +207,12 @@
 	      ,qa_answerdate = sysdate
 	 where qa_no = #{qaNo}
   
+  </update>
+  
+  <update id="deleteSpace" parameterType="string">
+  	update
+           space_info
+       set spc_status = 'N'
+     where spc_no = #{spcNo}
   </update>
 </mapper>
