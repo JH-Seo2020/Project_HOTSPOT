@@ -296,13 +296,13 @@
 	       , USER_ID
 	       , SPC_NO
 	       )
-	       VALUES
+	       values
 	       ( SEQ_QA.nextval
 	       , #{qaContent}
 	       , #{qaWriter}
 	       , #{qaSecret}
 	       , #{userId}
-	       , #{spcNo}
+	       , #{spaceNo}
 	       )
   	</insert>
 

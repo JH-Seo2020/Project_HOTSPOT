@@ -110,14 +110,18 @@ public class SpaceController {
 	@RequestMapping("ask.guest")
 	public String askToHost(Qna qna, HttpSession session, Model model ) {
 		
-		System.out.println(qna);
+//		System.out.println(qna);
+		
+		if(qna.getQaSecret() == null) {
+			qna.setQaSecret("Y");
+		}
 		int result = spaceDetailService.insertQuestion(qna);
 		
 		if(result>0) {
-			session.setAttribute("alertMsg","성공적으로 신고완료");
-			return "redirect:spaceDetail.guest";
+			session.setAttribute("alertMsg","성공적으로 질문을 등록하였습니다.");
+			return "redirect:spaceDetail.guest?spcNo="+qna.getSpaceNo();
 		}else {
-			model.addAttribute("errorMsg","게시글 등록실패");
+			model.addAttribute("errorMsg","질문 등록실패");
 			return "common/errorPage";
 		}
 		

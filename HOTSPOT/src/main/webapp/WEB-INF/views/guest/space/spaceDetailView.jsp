@@ -391,7 +391,7 @@
                     <input type="checkbox" name="qaSecret" value="N"> &nbsp;&nbsp;비공개	<!-- 공개여부 -->
                     <input type="hidden" name="qaWriter" value="${loginUser.userNickname }" />	<!-- 닉네임 -->
                     <input type="hidden" name="userId" value="${loginUser.userId }" />	<!-- 아이디 -->
-                    <input type="hidden" name="spcNo" value="${si.spcNo }" />	<!-- 공간번호 -->
+                    <input type="hidden" name="spaceNo" value="${si.spcNo }" />	<!-- 공간번호 -->
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>

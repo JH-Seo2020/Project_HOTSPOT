@@ -35,10 +35,10 @@ public class SpaceDetailDao {
 		return sqlSession.selectOne("guestspaceMapper.selectWhoIsHost",spcNo);
 	}
 
-	//신고
+	//질문등록
 	public int insertQuestion(SqlSessionTemplate sqlSession, Qna qna) {
-		
-		return sqlSession.selectOne("guestspaceMapper.insertQuestion",qna);
+
+		return sqlSession.insert("guestspaceMapper.insertQuestion",qna);
 	}
 
 }

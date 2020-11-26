@@ -24,6 +24,6 @@ public class Qna {
 	private String qaStatus;
 	private String qaSecret;
 	private String userId;
-	private int spcNo;
+	private int spaceNo;
 
 }
