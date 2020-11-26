@@ -351,17 +351,17 @@ public class MemberController {
 		String ext = originName.substring(originName.lastIndexOf("."));
 		
 		// 수정프로필명
-		String userProfileC = currentTime + ranNum + ext;
+		String changeName = currentTime + ranNum + ext;
 		
 		try {
-			userProfile.transferTo(new File(profilePath + userProfileC));
+			userProfile.transferTo(new File(profilePath + changeName));
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return userProfileC;
+		return changeName;
 	}
 	
 
