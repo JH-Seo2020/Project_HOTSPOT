@@ -77,23 +77,27 @@
     display: none;
     z-index: 2;
     magin: auto;
-   	margin-top: -20px;
+    padding: 30px;
+   	margin-top: 20px;
     background: white;
     border-radius: 2px;
     box-shadow: 3px 3px 3px 3px rgba(39, 39, 39, 0.582);
     padding-right: 10px;
 }
 #myPage_Content table{
-    magin: auto;
+    magin: 100px;
    	margin-top: -20px;
-    margin-bottom: -20px;
+    padding: 40px;
 }
 #myPageMenu td{
     border-spacing: length;
-    line-height: 8%;
-    padding: 8px;
+    line-height: 10%;
+    padding: 13px;
     color: black;
 }
-#myPageMenu td a{
-    color: black;
+#myPageMenu td a{color: black;}
+#myPage_Content #nickName{
+	font-size: 25px; 
+	font-weight: bold;
+	color:rgb(145, 37, 247);
 }

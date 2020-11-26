@@ -8,10 +8,11 @@ import com.kh.hotspot.guest.space.model.vo.Reservation;
 public interface MyPageService {
 	
 	// 예약리스트 조회용 서비스
+	int selectReservListCount();
 	ArrayList<Reservation> selectReservList(PageInfo pi);
 	
 	// 예약상세조회용 서비스
-	Reservation selectReserv(int reservNo);
+	Reservation selectDetailReserv(int reservNo);
 		
 	// 예약취소하기 서비스
 	int updateReserv(int reservNo); // Reservation객체를 넘겨줘야되나?

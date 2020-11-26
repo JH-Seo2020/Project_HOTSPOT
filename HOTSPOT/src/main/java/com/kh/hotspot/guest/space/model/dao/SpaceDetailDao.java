@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.space.model.vo.SpaceNotes;
@@ -26,6 +27,11 @@ public class SpaceDetailDao {
 	public ArrayList<SpaceNotes> selectSpaceNotes(SqlSessionTemplate sqlSession, int spcNo) {
 		
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectSpaceNotes",spcNo);
+	}
+
+	public Member selectWhoIsHost(SqlSessionTemplate sqlSession, int spcNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("guestspaceMapper.selectWhoIsHost",spcNo);
 	}
 
 }

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.dao.SpaceDetailDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
@@ -37,6 +38,12 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 	public ArrayList<SpaceNotes> selectSpaceNotes(int spcNo) {
 		
 		return spaceDetailDao.selectSpaceNotes(sqlSession,spcNo);
+	}
+	
+	@Override
+	public Member selectWhoIsHost(int spcNo) {
+		
+		return spaceDetailDao.selectWhoIsHost(sqlSession, spcNo);
 	}
 
 	@Override

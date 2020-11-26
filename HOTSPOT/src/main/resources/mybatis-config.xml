@@ -24,6 +24,7 @@
 		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesSearch" alias="VoicesSearch" />
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.SpaceImages" alias="SpaceImages" />
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.SpaceNotes" alias="SpaceNotes" />
+		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Review" alias="Reviews" />
 		<!-- 호스트 관련(지은) -->
 		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="HostInfo" />
 		<typeAlias type="com.kh.hotspot.space.model.vo.Space" alias="Space" />

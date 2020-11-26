@@ -292,15 +292,15 @@
         <br>
         <div id="hostIntroducingSpace">
             <div id="hostPhotoForIntro">
-                <img src="resources/images/bannerSample_1.jpg" >
+                <img src="${host.profilePath }${host.userProfileC}" >
             </div>
             <div id="goToHostPage">
                 <span style="color: indigo; font-weight: bold;">HOST</span>
-                <span><h5>호스트A</h5></span> <br>
-                <span><h5>"경복궁 옆에서 카페를 운영중인 호스트입니다"</h5></span> <br>
+                <span><h5>${host.userNickname }</h5></span> <br>
+                <span><h5>"안녕하세요, 호스트 ${host.userNickname } 입니다."</h5></span> <br>
                 <form action="hostHpg.guest" method="post" >
                 	<input type="hidden" value="${si.userId }" name="userId" />
-                	<input type="hidden" value="${si.spcNo }" name="spcNo" />
+                	<!-- <input type="hidden" value="${si.spcNo }" name="spcNo" /> -->
                 	<h4><button class="badge badge-pill badge-warning">호스트의 홈피로 이동</button></h4>
         		</form>
         	</div>

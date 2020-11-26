@@ -47,6 +47,21 @@
   		<result column="user_memo" property="userMemo" />
   	</resultMap>
   	
+  	<resultMap id="reviewsSet" type="Reviews">
+  		<id column="REVIEW_NO" property="reviewNo" />
+  		<result column="SPC_NO" property="spcNo" />
+  		<result column="REVIEW_WRITER" property="reviewWriter" />
+  		<result column="REVIEW_TITLE" property="reviewTitle" />
+  		<result column="REVIEW_CONTENT" property="reviewCon" jdbcType="CLOB" javaType="java.lang.String"  />
+  		<result column="REVIEW_SCORE" property="reviewScore" />
+  		<result column="REVIEW_DATE" property="reviewDate" />
+  		<result column="REVIEW_STATUS" property="reviewStatus" />
+  		<result column="REVIEW_REPLY" property="reviewReply" />
+  		<result column="USER_NICKNAME" property="userNickname" />
+  		<result column="USER_PROFILE_C" property="userProfileCh" />
+  		<result column="PROFILE_PATH" property="profilePath" />
+  	</resultMap>
+  	
   	<resultMap id="spaceImageSet" type="SpaceImages">
   		<id column="IMG_NO" property="imgNo" />
   		<result column="IMG_OGIMG" property="imgOgimg" />
@@ -206,6 +221,34 @@
 		    )
   	</select>
   	
+  	<select id="selectReviewsForHomep" parameterType="string" resultMap="reviewsSet" >
+  		   select *
+		          from (
+		                select review_writer
+		                     , USER_NICKNAME
+		                     , USER_PROFILE_C
+		                     , PROFILE_PATH
+		                     , spc_no
+		                     , review_content
+		                     , review_score
+		                     , review_date
+		                     , review_reply
+		                  from review
+		                  join member on (review_writer = user_id)
+		                 where review_status = 'Y'
+		             )
+		         right
+		          join 
+		              (
+		                select spc_no
+		                  from space_info
+		                 where user_id = #{userId}
+		              )
+		          using (spc_no)
+		          order
+		             by review_date desc
+  	</select>
+  	
   	
   	<!-- 세부공간보기 -->
   	<select id="selectSpaceDetail" parameterType="_int" resultMap="spaceInfoResultSet">
@@ -230,6 +273,17 @@
   		select *
 		  from spc_notes
 		 where spc_no = #{spcNo}
+  	</select>
+  	
+  	<select id="selectWhoIsHost" parameterType="_int" resultMap="memberInfo">
+  		select distinct user_nickname
+		     , user_profile_c
+		     , profile_path
+		  from member
+		  join space_info using (user_id)
+		 where user_id = (select user_id
+		                    from space_info
+		                   where spc_no = #{spcNo})
   	</select>
 
 </mapper>

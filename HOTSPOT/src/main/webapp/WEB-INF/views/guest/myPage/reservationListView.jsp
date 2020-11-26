@@ -9,14 +9,14 @@
 <style>
    #content{
         background: rgb(243, 243, 243);
-        margin-top: 10%;
+	    margin-top: 50px;
     }
     .reservation_thumbnail{
-        width:130px;
         height:120px; 
         float: left;
+    	margin:auto;
         padding: 10px;
-        padding-right: 20px;
+        padding-right: 30px;
     }
     .listInfo1 a{
         color: rgb(145, 37, 247);
@@ -50,6 +50,17 @@
         margin-right: 22%;
         box-sizing: border-box;
     }
+	#reservation_listArea .statusRable{
+		background: #ffe714;
+		text-align: center;
+		width: 90px; 
+		height: 30px; 
+		font-size: 15px; 
+		float: right;
+		margin-top: -38px;
+		margin-right: 65px;
+		border-radius: 30px;
+	}
 </style>
 </head>
 <body>
@@ -60,30 +71,28 @@
             <br><br><br>
             <h2 align="center"><b>예약 내역 리스트</b></h2>
             <br><br>
-            <form action="" class="selectArray">
+            <form action="reservList.re" class="selectArray">
                 <select name="reservationAlign">
-                    <option value="" selected>예약번호순 정렬</option>
-                    <option value="">이용날짜순 정렬</option>
+                    <option value="useDate" selected>이용날짜순 정렬</option>
+                    <option value="reservNo" >예약번호순 정렬</option>
                 </select>
                 <select name="reservationStatus">
-                    <option value="" selected>전체</option>
-                    <option value="">예약확정</option>
-                    <option value="">결제대기</option>
-                    <option value="">취소환불</option>
-                    <option value="">이용완료</option>
+                    <option value="total" selected>전체</option>
+                    <option value="reservfix">예약확정</option>
+                    <option value="paywait">결제대기</option>
+                    <option value="cancel">취소환불</option>
+                    <option value="usecomplete">이용완료</option>
                 </select>
             </form>
             <div id="reservation_listArea">
-                <div class="reserveInfo" onclick="location.href">
+                <div class="reserveInfo" onclick="location.href='reservDetail.re'">
                     <input type="hidden" value="">
-                    <img src="../../resources/images/cafe_1.jpg" class="reservation_thumbnail">
+                    <img src="resources/images/space1.jpg" class="reservation_thumbnail">
                     <div>
                         <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
                         <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
                         <span class="listInfo2">20,000원</span>
-                        <span class="badge badge-pill badge-warning" class="statusRable"  style="background: #ffe714; width: 80px; height: 30px; float: right;">
-                            	예약확정
-                        </span>
+                        <span class="statusRable">예약확정</span>
                     </div>
                 </div>
                 <br>
@@ -136,8 +145,7 @@
                 <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
                 <li class="page-item"><a class="page-link" href="javascript:void(0);">&gt</a></li>
             </ul>
-        </div>
-        <br><br>
+        </div><br><br><br>
     </div>
 
     <jsp:include page="../../common/footer.jsp"/>

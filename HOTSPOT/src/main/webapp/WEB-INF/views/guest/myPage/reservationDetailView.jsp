@@ -8,12 +8,9 @@
 <title>Insert title here</title>
 <style>
 	#content{
-	    position: absolute;
-	    top: 30%;
 	    left: 20%;
-	    margin: 100px;
-	    margin-left: -110px;
-	    margin-top: -80px;
+	    margin: auto;
+	    margin-bottom: 120px;
 	    padding: 50px;
 	    width: 80%;
 	}
@@ -37,7 +34,6 @@
 	    margin: 30%;
 	    margin-left: 40%;
 	    width: 400px;
-	    box-shadow: 3px 3px 3px 3px rgb(207, 207, 207);
 	}
 	.submitBtn{
 	    width: 90px;
@@ -51,6 +47,17 @@
 	    border-collapse: separate;
 	    border-spacing: 0 10px;
 	}
+	#statusRable{
+	background: #ffe714;
+	text-align: center;
+	width: 90px; 
+	height: 25px; 
+	font-size: 15px; 
+	border-radius: 30px;
+	}
+	#guestTable tr th{color: rgb(122, 27, 216)}
+	#hostTable tr th{color: rgb(122, 27, 216)}
+	#cancelModal #reserveAlert{margin-left: 10%}
  </style>
 </head>
 <body>
@@ -63,8 +70,8 @@
             <h2 align="center"><b>예약 상세내역</b></h2>
             <br><br>
             <div>
-                <span class="reservTitle">공간 예약정보</span> &nbsp;&nbsp;
-                <span class="badge badge-pill badge-warning" style="background: #ffe714; width: 70px;">예약확정</span>
+                <label class="reservTitle">공간 예약정보</label> &nbsp;&nbsp;
+                <label id="statusRable">예약확정</label>
             </div>
             <hr>
             <div id="reserveTable">
@@ -96,17 +103,18 @@
                             <td>7,000원</td>
                         </tr>
                         <tr>
-                            <th>결제방법</th>
+                        	<th>결제방법</th>
                             <td>무통장입금</td>
-                        </tr>
                         <tr>
-                            <th style="color: rgb(122, 27, 216)">총 결제금액</th>
-                            <td >총시간 X 인원수 X 시간당 금액 = 1000000원</td>
+                            <th>총 결제금액</th>
+                            <td>총시간 X 인원수 X 시간당 금액 = 1000000원</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <br><br>
+                
+                
                 <div>
                     <span class="reservTitle">호스트 정보</span> &nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
@@ -135,28 +143,33 @@
                 </div>
             </div>
             <br>
-            <button type="button" class="reserveBtn" onclick="">예약 취소하기</button>
+            <button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#cancelModal">예약 취소하기</button>
             <!-- 이용완료시에 보이는 신고하기버튼 
             <button type="button" class="reserveBtn" onclick="">신고하기</button>
             -->
         </div>
     </div>
+    
+    
+	  <!-- 예약취소 모달 -->
+	  <div class="modal" id="cancelModal">
+	    <div class="modal-dialog">
+          <div id="reserveAlert" class="modal-content">
+	        <div align="center">
+	            <br>
+	            <h6><b>예약을 정말로 취소하시겠습니까?</b></h6>
+	            <div>
+	                <span><b> 예약을 취소하시면 입력한 정보가 모두 소멸됩니다.</b></span><br><br>
+	                <button type="submit" class="submitBtn">확인</button> &nbsp;
+	                <button type="button" class="submitBtn" class="close" data-dismiss="modal">취소</button>
+	            </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 
-
-    <!-- 예약취소 버튼 클릭시 뜨는 alert
-    <div id="reserveAlert">
-        <div align="center">
-            <br>
-            <h6><b>예약을 정말로 취소하시겠습니까?</b></h6>
-            <div>
-                <span><b> 예약을 취소하시면 입력한 정보가 모두 소멸됩니다.</b></span><br><br>
-                <button type="submit" class="submitBtn">확인</button> &nbsp;
-                <button type="button" class="submitBtn">취소</button>
-            </div>
-        </div>
-        <br>
-    </div>
-    -->
+    
+    
 
     <!-- 신고하기 버튼 클릭시 뜨는 alert
     <div id="reserveAlert">
@@ -170,7 +183,6 @@
                         <td>
                             <select name="reportType"> 
                                 <option value="hostReport">호스트신고</option>
-                                <option value="spaceReport">공간신고</option>
                             </select>
                         </td>
                     </tr>

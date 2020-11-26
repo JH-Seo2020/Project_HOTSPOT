@@ -18,6 +18,12 @@ public class MyPageServiceImpl implements MyPageService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	
+	@Override
+	public int selectReservListCount() {
+		return mpDao.selectReservListCount(sqlSession);
+	}
+	
 
 	@Override
 	public ArrayList<Reservation> selectReservList(PageInfo pi) {
@@ -26,7 +32,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Reservation selectReserv(int reservNo) {
+	public Reservation selectDetailReserv(int reservNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,6 +48,8 @@ public class MyPageServiceImpl implements MyPageService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 	
 	
 

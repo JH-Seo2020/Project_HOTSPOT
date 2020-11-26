@@ -78,15 +78,17 @@
   	<update id="updateMember" parameterType="Member">
 	  	update
 		        member
-		    set user_nickname=#{userNickname}
-		      , user_pwd=#{userPwd}
-		      , user_email=#{userEmail}
-		      , user_phone=#{userPhone}
-		      , user_profile=#{userProfile}
-      		  , user_profile_c=#{userProfileC}
-		      , modify_date=#{modifyDate}
+		    <set> 
+		    	<if test="userNickname != null">user_nickname=#{userNickname},</if>
+		      	<if test="userProfile != null">user_profile=#{userProfile},</if>
+      		    <if test="userProfileC != null">user_profile_c=#{userProfileC},</if>
+		        <if test="userEmail != null">user_email=#{userEmail},</if>
+		        <if test="userPhone != null">user_phone=#{userPhone},</if>
+		        <if test="userPwd != null">user_pwd=#{userPwd},</if>
+	     	    modify_date=#{modifyDate}
+	     	</set>
 		  where user_id=#{userId}
-  	</update>
+  		</update>
   	
   	<select id="updateCheckNickname" resultType="_int">
   		select

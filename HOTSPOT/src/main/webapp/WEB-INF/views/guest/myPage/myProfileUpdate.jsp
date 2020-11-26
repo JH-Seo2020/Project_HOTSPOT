@@ -69,6 +69,7 @@
              <br><hr><br><br>
              <form action="update.me" method="POST" id="myProfile" enctype="multipart/form-data">
                  <div id="profileImage">
+                 	<input type="hidden" name="userId" value=${ loginUser.userId }>
 	                <c:choose>
 		                <c:when test="${ loginUser.userProfile != null}">
 		                	<img class="target_img" width="150px" height="150px" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>">
@@ -79,6 +80,7 @@
 		            </c:choose>  
                     <h2 align="center">${ loginUser.userId }</h2>
 	                <input type="file" name="userProfile" id="userProfile" style="display:none;">
+	                <input type="hidden" name="userProfileC" id="userProfileC" value="${ loginUser.userProfileC }">
                  </div>
  
                  <div id="mainProfile">
@@ -86,10 +88,11 @@
                         <label for="userNickName">닉네임</label> &nbsp;&nbsp;&nbsp;
                         <input type="text" name ="userNickname" id="userNickname" value="${ loginUser.userNickname }"><br>
                         <span id="checkNickname" style="font-size:0.8em"></span><br><br>
-                        
+
                         <label for="userEmail">이메일</label> &nbsp;&nbsp;&nbsp;
-                        <button type="button" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">이메일 인증하기</button><br><br>
-                        
+                        <input type="email" name="userEmail" id="userEmail" value="${ loginUser.userEmail }">
+                        <button type="button" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">이메일 인증받기</button><br><br>
+
                         <label for="userPhone">연락처</label>&nbsp;&nbsp;&nbsp;
                         <input type="text" name ="userPhone" id="profilePhone" value="${ loginUser.userPhone }"><br>
                     </div>
@@ -229,16 +232,8 @@
 	        <br>
 	        <!-- Modal body -->
 	        <div class="modal-body" align="center">
-		          <form action="emailCheck.me" method="POST">
-		             <p>
-		                                  서비스 탈퇴시 내 프로필, 예약내역의<br>
-		                                  모든 정보가 삭제되며 이후 복구가 불가능합니다.
-		           	 </p><br>
-                 					
-                     <input type="email" name="userEmail" id="userEmail" value="${ loginUser.userEmail }">
-                     <button type="button" id="emailCode">이메일 인증받기</button><br><br><br>
-                     
-                     <input type="text" name="emailConfirmCode" placeholder="인증코드를 입력하세요.">
+		          <form action="emailCode.me${ code }" method="POST">
+                     <input type="text" name="emailCheck" placeholder="인증코드를 입력하세요.">
              		 <button type="submit" class="serviceBtn">인증하기</button><br><br>
 	          	</form>
 	        </div>

@@ -2,6 +2,7 @@ package com.kh.hotspot.guest.space.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.space.model.vo.SpaceNotes;
@@ -18,6 +19,8 @@ public interface SpaceDetailService {
 	
 	//4-2.유의사항들 조회
 	ArrayList<SpaceNotes> selectSpaceNotes(int spcNo);
+	//호스트프로필조회용
+	Member selectWhoIsHost(int spcNo);
 	
 	//4-3.세부공간 후기조회
 	ArrayList<Review> selectUserReviewDetail(int spcNo);

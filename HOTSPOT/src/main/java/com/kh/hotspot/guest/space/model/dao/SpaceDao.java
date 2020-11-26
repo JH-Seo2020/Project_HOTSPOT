@@ -2,9 +2,11 @@ package com.kh.hotspot.guest.space.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
@@ -23,6 +25,7 @@ public class SpaceDao {
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectUserReview");
 	}
 
+	//호스트홈피관련
 	public Member selectHostInfoForHomep(SqlSessionTemplate sqlSession, String userId) {
 		
 		return sqlSession.selectOne("guestspaceMapper.selectHostInfoForHomep", userId);
@@ -38,9 +41,14 @@ public class SpaceDao {
 		return sqlSession.selectOne("guestspaceMapper.selectCountReviewForHomep", userId);
 	}
 
-	public ArrayList<Review> selectReviewsForHomep(SqlSessionTemplate sqlSession, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Review> selectReviewsForHomep(SqlSessionTemplate sqlSession, String userId, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectReviewsForHomep", userId, rowBounds);
 	}
 
 
