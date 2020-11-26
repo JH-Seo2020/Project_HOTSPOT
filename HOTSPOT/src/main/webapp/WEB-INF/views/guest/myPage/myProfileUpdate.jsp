@@ -64,9 +64,7 @@
 
      <div class="content">
          <div id="profile">
-             <h2 align="center">내 프로필 관리</h2> 
- 
-             <br><hr><br><br>
+             <h2 align="center">내 프로필 관리</h2><br><hr><br><br>
              <form action="update.me" method="POST" id="myProfile" enctype="multipart/form-data">
                  <div id="profileImage">
                  	<input type="hidden" name="userId" value=${ loginUser.userId }>
@@ -79,10 +77,8 @@
 						</c:otherwise>
 		            </c:choose>  
                     <h2 align="center">${ loginUser.userId }</h2>
-	                <input type="file" name="userProfile" id="userProfile" style="display:none;">
-	                <input type="hidden" name="userProfileC" id="userProfileC" value="${ loginUser.userProfileC }">
+	                <input type="file" name="upfile" id="upfile" style="display:none;">
                  </div>
- 
                  <div id="mainProfile">
                     <div>
                         <label for="userNickName">닉네임</label> &nbsp;&nbsp;&nbsp;
@@ -110,10 +106,9 @@
                         <br>
 
                         <label for="newUserPwdCheck">새 비밀번호 확인 <br>
-                        	<input type="password" name="newUserPwdCheck" id="newUserPwdCheck" style="width: 250px"><br>
+                        	<input type="password" id="newUserPwdCheck" style="width: 250px"><br>
                         	<span id="checkResult" style="font-size:0.8em"></span><br><br>
-                        </label>
-                                               
+                        </label>             
                     </div>
                     <div>마케팅 수신동의 : <br><br>
 
@@ -123,13 +118,12 @@
                         SMS &nbsp;&nbsp;&nbsp;<input type="radio" name="updateSms" value="yes"> 예
                             &nbsp;&nbsp;&nbsp;<input type="radio" name="updateSms" value="no" checked > 아니오
 
-                    </div>
-                 </div>
-                 <br><hr><br>
+                  </div><br><hr><br>
                  <div id="profileBtn" align="center"> 
-                     <button type="button" onclick="location.href='update.me'">수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <button type="submit">수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      <button type="button" onclick="location.href='myProfile.me'">취소하기</button>
                  </div>
+             	</div>	
              </form>
          </div>
      </div>
@@ -226,7 +220,7 @@
 	      
 	        <!-- Modal Header -->
 	        <div class="modal-header" style="color: rgb(145, 37, 247)">
-	          <h4 align="center">이메일 인증하기</h4>
+	          <h4 align="center">이메일 인증받기</h4>
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        </div>
 	        <br>

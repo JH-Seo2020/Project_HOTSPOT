@@ -2,7 +2,6 @@ package com.kh.hotspot.guest.myPage.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -22,8 +21,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -156,7 +155,6 @@ public class MemberController {
 	/**
 	 * 성희 myPage Controller 시작 !
 	 * 
-	 * 
 	 */
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
@@ -182,11 +180,11 @@ public class MemberController {
 	
 	
 	@RequestMapping("update.me")
-	public String updateMember(Member m, MultipartFile userProfileC, HttpSession session, Model model) {
+	public String updateMember(Member m, MultipartFile upfile, HttpSession session, Model model) {
 		System.out.println(m);
 		
 		// 새로 넘어온 첨부파일이 있을경우
-		if(!userProfileC.getOriginalFilename().equals("")) {
+		if(!upfile.getOriginalFilename().equals("")) {
 			
 			// 기존의 첨부파일이 있었을 경우 => 서버에 업로드 된 기존 첨부파일을 지우기위해
 			if(m.getUserProfile() != null) {
@@ -195,8 +193,8 @@ public class MemberController {
 				new File(removeFilePath).delete();
 			}
 			
-			String changeName = saveFile(userProfileC, session);
-			m.setUserProfile(userProfileC.getOriginalFilename());
+			String changeName = saveFile(upfile, session);
+			m.setUserProfile(upfile.getOriginalFilename());
 			m.setUserProfileC("resources/uploadFiles/" + changeName);
 			
 		}

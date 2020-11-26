@@ -12,7 +12,7 @@ import com.kh.hotspot.admin.reservation.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
 @Repository
-public class ReservationDao {
+public class AdminReservationDao {
 
 	public int selectListCount(SqlSessionTemplate sqlSession, String head) {
 		

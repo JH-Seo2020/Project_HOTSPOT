@@ -86,13 +86,13 @@
             </form>
             <div id="reservation_listArea">
                 <div class="reserveInfo" onclick="location.href='reservDetail.re'">
-                    <input type="hidden" value="">
+                    <input type="hidden" name="reservNo" value="${ list.reservNo }">
                     <img src="resources/images/space1.jpg" class="reservation_thumbnail">
                     <div>
-                        <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
-                        <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
-                        <span class="listInfo2">20,000원</span>
-                        <span class="statusRable">예약확정</span>
+                        <span class="listInfo1"><a href="">[${ list.spcType }][${ list.location }] 그리다</a></span><br>
+                        <span class="listInfo2">${ list. reservDate } ${ list.useTime }시 ~ ${ list.endTime }시 ${ list.totalTime }시간 ${ list.reservTotal }명</span><br><br>
+                        <span class="listInfo2">${ list.amountTime }원</span>
+                        <span class="statusRable">${ list.reservStatus }</span>
                     </div>
                 </div>
                 <br>
@@ -139,11 +139,27 @@
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&lt</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&gt</a></li>
+                <c:choose>
+                   	<c:when test="${ pi.currentPage eq 1}">
+                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="list.bo?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
+                    </c:otherwise>
+                   </c:choose>
+                   
+                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                   	<li class="page-item"><a class="page-link" href="list.bo?currentPage=${ p }">${ p }</a></li>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="list.bo?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
+                    </c:otherwise>
+               	</c:choose>
             </ul>
         </div><br><br><br>
     </div>

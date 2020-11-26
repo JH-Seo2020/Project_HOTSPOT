@@ -27,8 +27,7 @@ public class MyPageServiceImpl implements MyPageService{
 
 	@Override
 	public ArrayList<Reservation> selectReservList(PageInfo pi) {
-		// TODO Auto-generated method stub
-		return null;
+		return mpDao.selectReservList(sqlSession, pi);
 	}
 
 	@Override

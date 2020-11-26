@@ -2,6 +2,7 @@ package com.kh.hotspot.guest.space.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
@@ -29,7 +30,7 @@ public interface SpaceDetailService {
 	ArrayList<Qna> selectQnaDetail(int spcNo);
 	
 	//4-5.신고등록
-	int insertReport();
+	int insertReport(Report report);
 	
 	//4-6.찜하기등록
 	int insertLike(String userId);
@@ -45,5 +46,8 @@ public interface SpaceDetailService {
 	
 	//4-10.찜하기 해제
 	int deleteLike();
+	
+	//4-11.질문하기 기능!!
+	int insertQuestion(Qna qna);
 
 }
