@@ -7,16 +7,15 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.hotspot.admin.reservation.model.dao.ReservationDao;
+import com.kh.hotspot.admin.reservation.model.dao.AdminReservationDao;
 import com.kh.hotspot.admin.reservation.model.vo.Reservation;
-import com.kh.hotspot.admin.reservation.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
 @Service
 public class AdminReservationServiceImpl implements AdminReservationService {
 
 	@Autowired
-	private ReservationDao rDao;
+	private AdminReservationDao rDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	

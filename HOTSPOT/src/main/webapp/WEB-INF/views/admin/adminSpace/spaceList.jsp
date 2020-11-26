@@ -27,6 +27,12 @@
             <div style="font-size:20px; margin-left:20px;">공간관리</div>
             <hr style="background:ligthgrey;">
             <br><br>
+            <div id="answerArray" style="width:1000px; margin:auto"> 
+                <select name="arr" id="arr" style="height:30px;">
+                	<option value="최신순">최신순</option>
+                    <option value="신고순">신고순</option>                   
+                </select>
+            </div>
             <table class="table" id="adminNotice" style="text-align:center; margin:auto;">
                 <tr>
                     <th><input type="checkbox"></th>

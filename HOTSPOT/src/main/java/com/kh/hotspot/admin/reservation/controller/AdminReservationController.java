@@ -10,17 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kh.hotspot.admin.reservation.model.service.ReservationService;
+import com.kh.hotspot.admin.reservation.model.service.AdminReservationService;
 import com.kh.hotspot.admin.reservation.model.vo.Reservation;
 import com.kh.hotspot.admin.reservation.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 
 @Controller
-public class ReservationController {
+public class AdminReservationController {
 
 	@Autowired
-	private ReservationService rService;
+	private AdminReservationService rService;
 	
 	@RequestMapping("list.rad")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model, String search ,String keyword,@RequestParam(value="head", defaultValue="전체" )String head) {
