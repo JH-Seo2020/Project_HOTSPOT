@@ -8,6 +8,7 @@ import com.kh.hotspot.guest.space.model.vo.Reservation;
 public interface MyPageService {
 	
 	// 예약리스트 조회용 서비스
+	int selectReservListCount();
 	ArrayList<Reservation> selectReservList(PageInfo pi);
 	
 	// 예약상세조회용 서비스

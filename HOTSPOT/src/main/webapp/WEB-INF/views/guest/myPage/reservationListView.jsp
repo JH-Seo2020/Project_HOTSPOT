@@ -62,8 +62,8 @@
             <br><br>
             <form action="" class="selectArray">
                 <select name="reservationAlign">
-                    <option value="" selected>예약번호순 정렬</option>
-                    <option value="">이용날짜순 정렬</option>
+                    <option value="" selected>이용날짜순 정렬</option>
+                    <option value="" >예약번호순 정렬</option>
                 </select>
                 <select name="reservationStatus">
                     <option value="" selected>전체</option>
