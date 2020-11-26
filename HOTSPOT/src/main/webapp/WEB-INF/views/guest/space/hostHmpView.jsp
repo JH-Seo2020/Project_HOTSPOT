@@ -55,8 +55,8 @@
                     </div>
                     <div>
                         <span style="color: rebeccapurple; font-weight: bold;">${hs.spcPrice }원/시간</span>
-                        <span class="badge badge-pill badge-warning">후기 ${hs.reviews }개</span>
-                        <span class="badge badge-pill badge-warning">관심 ${hs.wishes }개</span>
+                        <span class="badge badge-pill badge-warning"><img class="img_hotspotLogo" src="resources/images/common/main_reviewIcon.png">후기 ${hs.reviews }개</span>
+                        <span class="badge badge-pill badge-warning"><img class="img_hotspotLogo" src="resources/images/common/main_wishIcon.png">관심 ${hs.wishes }개</span>
                     </div>
                 </div>
 			</c:forEach>
@@ -108,7 +108,7 @@
 
         	<c:choose>
         		<c:when test="${pi.currentPage eq 1 }">
-		            <a class="badge badge-pill purple disabled">이전</a>
+		            <a class="badge badge-pill purple disabled ">이전</a>
 		        </c:when>
 		        <c:otherwise>
 		        	<a href="hostHpg.guest?currentPage=${pi.currentPage-1}&userId=${hostUserId}" class="badge badge-pill purple">이전</a>
@@ -121,7 +121,7 @@
 		            
 		    <c:choose>
 		    	<c:when test="${pi.currentPage eq pi.maxPage}" >
-		    		<a class="badge badge-pill purple disabled">다음</a>
+		    		<a class="badge badge-pill purple disabled ">다음</a>
 		    	</c:when>
 		    	<c:otherwise>
 		    		<a href="hostHpg.guest?currentPage=${pi.currentPage +1 }&userId=${hostUserId}" class="badge badge-pill purple">다음</a>
@@ -136,6 +136,12 @@
     <!-- 푸터 -->
     <jsp:include page="../../common/footer.jsp"/>
     
+	<script>
+		/*주소창 파라미터 없애기*/
+		/*history.replaceState({}, null, location.pathname);*/
+		
+		
+	</script>
 
 	
 </body>

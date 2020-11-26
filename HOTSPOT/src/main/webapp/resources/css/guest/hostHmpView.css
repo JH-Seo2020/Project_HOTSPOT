@@ -82,3 +82,17 @@
     color: white !important;
     border: white !important;
 }
+.black{
+color: black !important;
+text-decoration: none !important;
+font-weight: lighter;
+}
+.disabled{
+	disabled:true;
+	background-color: black !important;
+}
+.img_hotspotLogo{
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
+}

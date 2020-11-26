@@ -274,5 +274,16 @@
 		  from spc_notes
 		 where spc_no = #{spcNo}
   	</select>
+  	
+  	<select id="selectWhoIsHost" parameterType="_int" resultMap="memberInfo">
+  		select distinct user_nickname
+		     , user_profile_c
+		     , profile_path
+		  from member
+		  join space_info using (user_id)
+		 where user_id = (select user_id
+		                    from space_info
+		                   where spc_no = #{spcNo})
+  	</select>
 
 </mapper>

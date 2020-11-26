@@ -63,10 +63,10 @@
         border:3px solid rebeccapurple;
     }
     .forRight{float: right;}
-        .black{
-        color: black !important;
-        text-decoration: none !important;
-        font-weight: lighter;
+    .black{
+    color: black !important;
+    text-decoration: none !important;
+    font-weight: lighter;
     }
     .disabled{
     	disabled:true;

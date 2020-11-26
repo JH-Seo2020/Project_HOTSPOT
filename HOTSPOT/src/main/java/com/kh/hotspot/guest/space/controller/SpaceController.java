@@ -64,6 +64,7 @@ public class SpaceController {
 		ArrayList<SpaceNotes> snotes = spaceDetailService.selectSpaceNotes(spcNo);
 		
 		//4.호스트프로필사진, 호스트닉네임.
+		Member host = spaceDetailService.selectWhoIsHost(spcNo);
 		
 		//4.공간리뷰들
 		
@@ -72,6 +73,7 @@ public class SpaceController {
 		model.addAttribute("si",si);
 		model.addAttribute("simg",simg);
 		model.addAttribute("snotes",snotes);
+		model.addAttribute("host",host);
 		
 		return "guest/space/spaceDetailView";
 	}
