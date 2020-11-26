@@ -79,6 +79,7 @@ public class ReservationController {
 	public String deleteReservation(int rno) {
 		
 			int result = rService.deleteReservation(rno);
+			
 		return "redirect:list.rad";
 	}
 	

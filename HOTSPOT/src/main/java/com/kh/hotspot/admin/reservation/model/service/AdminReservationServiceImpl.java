@@ -13,7 +13,7 @@ import com.kh.hotspot.admin.reservation.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
 @Service
-public class ReservationServiceImpl implements ReservationService {
+public class AdminReservationServiceImpl implements AdminReservationService {
 
 	@Autowired
 	private ReservationDao rDao;

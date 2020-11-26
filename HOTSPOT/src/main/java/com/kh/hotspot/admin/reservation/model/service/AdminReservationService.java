@@ -7,7 +7,7 @@ import com.kh.hotspot.admin.reservation.model.vo.Reservation;
 import com.kh.hotspot.admin.reservation.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
-public interface ReservationService {
+public interface AdminReservationService {
 	
 	int selectListCount(String head);
 	ArrayList<Reservation> selectList(PageInfo pi, String head);
