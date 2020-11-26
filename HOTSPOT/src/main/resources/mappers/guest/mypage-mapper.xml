@@ -2,10 +2,84 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mypageMapper">
 	
+	<resultMap id="reservationSet" type="Reservation">
+		<id column="reservation_no" property="reservNo"/>
+		<result column="user_id" property="userId"/>
+		<result column="spc_no" property="spcNo"/>
+		<result column="user_id_h" property="userIdHost"/>
+		<result column="reservation_date" property="reservDate"/>
+		<result column="reservation_name" property="reservName"/>
+		<result column="total_time" property="totalTime"/>
+		<result column="reserv_total" property="reservTotal"/>
+		<result column="perpose_type" property="perpose"/>
+		<result column="amount_time" property="amountTime"/>
+		<result column="use_date" property="useDate"/>
+		<result column="use_time" property="useTime"/>
+		<result column="end_date" property="endDate"/>
+		<result column="end_time" property="endTime"/>
+		<result column="pay_date" property="payDate"/>
+		<result column="pay_sum" property="paySum"/>
+		<result column="refund" property="refound"/>
+		<result column="pay_method" property="payMethod"/>
+		<result column="reservation_status" property="reservStatus"/>
+	</resultMap>
+	
+	<resultMap id="spaceInfoResultSet" type="SpaceInfo">
+  		<id column="SPC_NO" property="spcNo" />
+  		<result column="SPC_NAME" property="spcName" />
+  		<result column="SPC_INT" property="spcInt" />
+  		<result column="SPC_LONG" property="spcLong" />
+  		<result column="SPC_TAG" property="spcTag" />
+  		<result column="SPC_TYPE" property="spcType" />
+  		<result column="SPC_MIN" property="spcMin" />
+  		<result column="SPC_MAX" property="spcMax" />
+  		<result column="SPC_IMG" property="spcImg" />
+  		<result column="SPC_CHIMG" property="spcChimg" />
+  		<result column="SPC_PRICE" property="spcPrice" />
+  		<result column="SPC_HOURS" property="spcHours" />
+  		<result column="SPC_HOLIDAY" property="spcHoliday" />
+  		<result column="SPC_STATUS" property="spcStatus" />
+  		<result column="SPC_CONVN" property="spcConvn" />
+  		<result column="USER_ID" property="userId" />
+  		<result column="MAP_LATITUDE" property="latitude" />
+  		<result column="MAP_LONGITUDE" property="longitude" />
+  		<result column="MAP_LOCATION" property="location" />
+  		<result column="REVIEWS" property="reviews" />
+  		<result column="WISHES" property="wishes" />
+  		<result column="REVIEW_CONTENT" property="reviewCon" jdbcType="CLOB" javaType="java.lang.String" />
+  		<result column="REVIEW_SCORE" property="reviewScore" />
+  		<result column="REVIEW_DATE" property="reviewDate" />
+  	</resultMap>
+	
 	<select id="selectReservListCount" resultType="_int">
 		select
 		       count(*)
 		  from reservation
+	</select>
+	
+	<select id="selectReservList" resultMap="reservationSet">
+		select
+		        r.reservation_no
+		      , r.user_id
+		      , to_char(r.reservation_date, 'YYYY-MM-DD') reservation_date
+		      , r.total_time
+		      , r.reservation_total
+		      , r.reservation_status
+		      , r.use_time
+		      , r.end_time
+		      , spc_no
+		      , spc_name
+		      , spc_type
+		      , spc_img
+		      , spc_chimg
+		      , spc_price
+		      , map_location
+		  from reservation r
+		  join space_info using(spc_no)
+		 where r.user_id=#{userId}
+		   and r.reservation_no=#{ reservNo }
+		 order
+		    by r.use_date desc;
 	</select>
 
 </mapper>

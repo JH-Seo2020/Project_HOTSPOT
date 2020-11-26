@@ -226,7 +226,7 @@
 	      
 	        <!-- Modal Header -->
 	        <div class="modal-header" style="color: rgb(145, 37, 247)">
-	          <h4 align="center">이메일 인증하기</h4>
+	          <h4 align="center">이메일 인증받기</h4>
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        </div>
 	        <br>
