@@ -20,13 +20,28 @@
   	<result column="pay_sum" property="pSum"/>
   	<result column="refund" property="refund"/>
   	<result column="pay_method" property="payMethod"/>
+  	<result column="reservation_status" property="reStatus"/>
   </resultMap>
   <select id="selectListCount"
           resultType="_int">
   		select
   		       count(*)
-  		  from reservation
-  		 where reservation_status = '예약확정'      
+  		  from reservation 
+  		 <choose>
+  		 	
+  		 	<when test="head == '예약확정'">
+		  		 where reservation_status= '예약확정'  
+  		 	</when>
+  		 	<when test="head == '결제대기'">
+		  		 where reservation_status= '결제대기'  
+  		 	</when>
+  		 	<when test="head == '취소환불'">
+		  		 where reservation_status= '취소환불'  
+  		 	</when>
+  		 	<when test="head == '이용완료'">
+		  		 where reservation_status= '이용완료'  
+  		 	</when>
+  		 </choose>
   </select>
   <select id="selectList"
           resultMap="reservationResultSet">
@@ -48,8 +63,22 @@
   	     , pay_sum
   	     , refund
   	     , pay_method
-  	  from reservation r         
-  	 where reservation_status = '예약확정'
+  	     , reservation_status
+  	  from reservation r
+  	  <choose>
+  		 	<when test="head == '예약확정'">
+		  		 where reservation_status= '예약확정'  
+  		 	</when>
+  		 	<when test="head == '결제대기'">
+		  		 where reservation_status= '결제대기'  
+  		 	</when>
+  		 	<when test="head == '취소환불'">
+		  		 where reservation_status= '취소환불'  
+  		 	</when>
+  		 	<when test="head == '이용완료'">
+		  		 where reservation_status= '이용완료'  
+  		 	</when>
+  		 </choose>         
   	 order
   	    by reservation_no desc 
   </select>
@@ -60,16 +89,16 @@
   	select
   	       count(*)
   	  from reservation
-  	 where reservation_status = '예약확정'
+  	
   	 <choose>
   	 	<when test="guest != null">
-  	 		and user_id = #{guest}
+  	 		where user_id = #{guest}
   	 	</when>
   	 	<when test="host != null">
-  	 		and user_id_h = #{host}
+  	 		where user_id_h = #{host}
   	 	</when>
   	 	<when test="reNo != null">
-  	 		and reservation_no = #{reNo}
+  	 		where reservation_no = #{reNo}
   	 	</when>
   	 </choose> 	       
   </select>
@@ -94,17 +123,60 @@
   	     , pay_sum
   	     , refund
   	     , pay_method
+  	     , reservation_status 
   	  from reservation r         
-  	 where reservation_status = '예약확정'
+  	
   	 <choose>
-  	 	<when test="guest != null">
-  	 		and user_id = #{guest}
+  	 	<when test="sc.guest != null">
+  	 		where user_id = #{sc.guest}
+  	 		<choose>  		 	
+	  		 	<when test="head == '예약확정'">
+			  		 and reservation_status= '예약확정'  
+	  		 	</when>
+	  		 	<when test="head == '결제대기'">
+			  		 and reservation_status= '결제대기'  
+	  		 	</when>
+	  		 	<when test="head == '취소환불'">
+			  		 and reservation_status= '취소환불'  
+	  		 	</when>
+	  		 	<when test="head == '이용완료'">
+			  		 and reservation_status= '이용완료'  
+	  		 	</when>
+  		 	</choose>
   	 	</when>
-  	 	<when test="host != null">
-  	 		and user_id_h = #{host}
+  	 	<when test="sc.host != null">
+  	 		where user_id_h = #{sc.host}
+  	 		<choose>  		 	
+	  		 	<when test="head == '예약확정'">
+			  		 and reservation_status= '예약확정'  
+	  		 	</when>
+	  		 	<when test="head == '결제대기'">
+			  		 and reservation_status= '결제대기'  
+	  		 	</when>
+	  		 	<when test="head == '취소환불'">
+			  		 and reservation_status= '취소환불'  
+	  		 	</when>
+	  		 	<when test="head == '이용완료'">
+			  		 and reservation_status= '이용완료'  
+	  		 	</when>
+  		 	</choose>
   	 	</when>
-  	 	<when test="reNo != null">
-  	 		and reservation_no = #{reNo}
+  	 	<when test="sc.reNo != null">
+  	 		where reservation_no = #{sc.reNo}
+  	 		<choose>  		 	
+	  		 	<when test="head == '예약확정'">
+			  		 and reservation_status= '예약확정'  
+	  		 	</when>
+	  		 	<when test="head == '결제대기'">
+			  		 and reservation_status= '결제대기'  
+	  		 	</when>
+	  		 	<when test="head == '취소환불'">
+			  		 and reservation_status= '취소환불'  
+	  		 	</when>
+	  		 	<when test="head == '이용완료'">
+			  		 and reservation_status= '이용완료'  
+	  		 	</when>
+  		 	</choose>
   	 	</when>
   	 </choose> 
   	 order

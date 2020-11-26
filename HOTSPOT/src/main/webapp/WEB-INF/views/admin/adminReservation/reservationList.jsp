@@ -27,29 +27,50 @@
             <div style="font-size:20px; margin-left:20px;">예약관리</div>
             <hr style="background:ligthgrey;">
             <br><br>
+            <div id="answerArray" style="width:1000px; margin:auto"> 
+                <select name="head" id="head" style="height:30px;">
+                	<option value="전체">전체</option>
+                    <option value="예약확정">예약확정</option>
+                    <option value="결제대기">결제대기</option>
+                    <option value="취소환불">취소환불</option>
+                    <option value="이용완료">이용완료</option>
+                </select>
+            </div>
+            <script>
+				$(function(){
+					$("#head").change(function(){
+						location.href="list.rad?head="+$("#head").val()
+					})
+					 $("#head option[value=${ head }]").attr("selected", true); 
+				})
+            </script>
             <table class="table" id="adminNotice" style="text-align:center; margin:auto;">
-            	
-                <tr>
-                    <th><input type="checkbox"></th>
-                    <th>예약번호</th>
-                    <th>공간번호</th>
-                    <th>결제방법</th>
-                    <th>호스트 아이디</th>
-                    <th>게스트아이디</th>
-                    <th>결제한 날짜</th>
-                </tr>
-            	<c:forEach var="r" items="${ list }">
+            	<thead>
 	                <tr>
-	                    <td><input type="checkbox"></td>
-	                    <td>${ r.reNo }</td>
-	                    <td>${ r.spcNo }</td>
-	                    <td>${ r.payMethod }</td>
-	                    <td>${ r.reHost }</td>
-	                    <td>${ r.reGuest }</td>
-	                    <td>${ r.payDate }</td>
+	                    <th>예약번호</th>
+	                    <th>공간번호</th>
+	                    <th>결제방법</th>
+	                    <th>호스트 아이디</th>
+	                    <th>게스트아이디</th>
+	                    <th>결제한 날짜</th>
+	                    <th>예약상태</th>
 	                </tr>
-				</c:forEach>                
+               </thead>
+               <tbody>
+	            	<c:forEach var="r" items="${ list }">
+		                <tr>		                 
+		                    <td>${ r.reNo }</td>
+		                    <td>${ r.spcNo }</td>
+		                    <td>${ r.payMethod }</td>
+		                    <td>${ r.reHost }</td>
+		                    <td>${ r.reGuest }</td>
+		                    <td>${ r.payDate }</td>
+		                    <td>${ r.reStatus }</td>
+		                </tr>
+					</c:forEach>                
+               </tbody> 
             </table>
+          
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
                 <form action="list.rad">
@@ -58,6 +79,7 @@
                     <option value="guest">게스트</option>
                     <option value="host">호스트</option>
                     </select>
+                    <input type="hidden" name="head" value="${head }">
                     <input type="text" name="keyword" style="line-height:29px; width:150px;">
                    <button class="btn btn-primary" style="margin-bottom:4px;">검색</button>
                 </form>
@@ -65,10 +87,10 @@
                 	<c:when test="${ pi.currentPage ne pi.startPage }">
                 		<c:choose>
                 			<c:when test="${ empty sc }">
-                				<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage -1}'"><</button>
+                				<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage -1}&head=${ head }'"><</button>
                 			</c:when>
                 			<c:otherwise>
-                				<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage -1}&search=${search }&keyword=${keyword }'"><</button>
+                				<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage -1}&search=${search }&keyword=${keyword }&head=${ head }'"><</button>
                 			</c:otherwise>
                 		</c:choose>
                 	</c:when>
@@ -79,10 +101,10 @@
                 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                 	<c:choose>
                 		<c:when test="${empty sc }">
-                			<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${p}'">${ p }</button>
+                			<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${p}&head=${ head }'">${ p }</button>
                 		</c:when>
                 		<c:otherwise>
-                			<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${p}&search=${search }&keyword=${keyword }'">${ p }</button>
+                			<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${p}&search=${search }&keyword=${keyword }&head=${ head }'">${ p }</button>
                 		</c:otherwise>
                 	</c:choose>
                 </c:forEach>
@@ -90,10 +112,10 @@
                 	<c:when test="${ pi.currentPage ne pi.maxPage }">
                 		<c:choose>
                 			<c:when test="${ empty sc }">
-                				<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage +1}'">></button>
+                				<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage +1}&head=${ head }'">></button>
                 			</c:when>
                 			<c:otherwise>
-                				<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage +1}&search=${search }&keyword=${keyword }'">></button>
+                				<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage +1}&search=${search }&keyword=${keyword }&head=${ head }'">></button>
                 			</c:otherwise>
                 		</c:choose>	
                 	</c:when>
@@ -102,7 +124,7 @@
                 	</c:otherwise>
                 </c:choose>
 
-                <button style="margin-left:255px;" class="btn btn-danger">삭제</button>        
+                       
             </div>
         </div>    
     </div>

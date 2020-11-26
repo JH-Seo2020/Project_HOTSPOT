@@ -1,6 +1,7 @@
 package com.kh.hotspot.admin.reservation.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,23 +32,23 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public int selectListCount() {
-		return rDao.selectListCount(sqlSession);
+	public int selectListCount(String head) {
+		return rDao.selectListCount(sqlSession, head);
 	}
 
 	@Override
-	public ArrayList<Reservation> selectList(PageInfo pi) {
-		return rDao.selectList(sqlSession, pi);
+	public ArrayList<Reservation> selectList(PageInfo pi, String head) {
+		return rDao.selectList(sqlSession, pi, head);
 	}
 
 	@Override
-	public int searchListCount(SearchCondition sc) {
-		return rDao.searchListCount(sqlSession, sc);
+	public int searchListCount(Map map) {
+		return rDao.searchListCount(sqlSession, map);
 	}
 
 	@Override
-	public ArrayList<Reservation> searchList(PageInfo pi, SearchCondition sc) {
-		return rDao.searchList(sqlSession, sc, pi);
+	public ArrayList<Reservation> searchList(PageInfo pi, Map map) {
+		return rDao.searchList(sqlSession, map, pi);
 	}
 
 }
