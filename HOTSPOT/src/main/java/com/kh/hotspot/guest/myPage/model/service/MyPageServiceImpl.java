@@ -32,7 +32,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Reservation selectReserv(int reservNo) {
+	public Reservation selectDetailReserv(int reservNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

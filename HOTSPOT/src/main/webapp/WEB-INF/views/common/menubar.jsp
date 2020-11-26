@@ -96,20 +96,20 @@
 		            <div><a id="myPageBtn" style="cursor: pointer;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지</a></div>
 		                       
 		
-		            <div class="myPage_popup" style=" width:300px; padding:50px; border-spacing: 5px 10px;">
-		                <div>
-		                    <span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
-		                </div>
+		            <div class="myPage_popup" style=" width:300px; padding:30px; margin:20px;">
+		            		<div>
+		                    	<span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
+		                    </div>
 		                <div id="myPage_Content">
-		                    <img src="resources/images/hospot_logo.png" width="60px" height="60px">
-		                    <label style="font-size: 25px; font-weight: bold;">${ loginUser.userNickname } 님</label><br>
-		                    <a href="myProfile.me"><span><small>내 프로필 관리</small></span></a>
+		                    <img width="60px" height="60px" style="float:left" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>"> &nbsp;&nbsp;&nbsp;
+		                    <span id="nickName">${ loginUser.userNickname } 님</span><br>
+		                    <a href="myProfile.me" style="color: black; padding-left: 20px"><small>내 프로필 관리</small></a>
 		                    <br><hr><br>
 		                    <table id="myPageMenu">
 		                    	<tr>
 			                        <td>
 			                            <img src="resources/images/Calendar.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-			                            <a href=""><span>나의 예약 리스트</span></a><br>
+			                            <a href="myReserv.re"><span>나의 예약 리스트</span></a><br>
 			                        </td>
 		                        </tr>
 		                        <tr>
@@ -187,8 +187,8 @@
                   var oWidth = $('.myPage_popup').width();
                   var oHeight = $('.myPage_popup').height();
 
-                  var divLeft = e.clientX + (-200);
-                  var divTop = e.clientY + 30;
+                  var divLeft = e.clientX + (-150);
+                  var divTop = e.clientY + 5;
 
                   $('.myPage_popup').css({
                       "top": divTop,
