@@ -8,18 +8,19 @@
   	<result column="spc_no" property="spcNo"/>
   	<result column="reservation_date" property="reDate"/>
   	<result column="reservation_name" property="reName"/>
-  	<result column="total_time" property="tTime"/>
+  	<result column="t_time" property="totalTime"/>
   	<result column="reservation_total" property="reTotal"/>
-  	<result column="purpose_type" property="pType"/>
+  	<result column="purpose_type" property="purType"/>
   	<result column="amount_time" property="aTime"/>
   	<result column="use_date" property="startDate"/>
   	<result column="use_time" property="startTime"/>
   	<result column="end_date" property="endDate"/>
   	<result column="end_time" property="endTime"/>
   	<result column="pay_date" property="payDate"/>
-  	<result column="pay_sum" property="pSum"/>
+  	<result column="pay_sum" property="paySum"/>
   	<result column="refund" property="refund"/>
   	<result column="pay_method" property="payMethod"/>
+  	<result column="spc_name" property="spcName"/>
   	<result column="reservation_status" property="reStatus"/>
   </resultMap>
   <select id="selectListCount"
@@ -184,7 +185,39 @@
   	               
   </select>
   
+  <select id="detailReservation"
+          resultMap="reservationResultSet">
+    select
+  	       r.reservation_no
+  	     , r.user_id
+  	     , spc_name
+  	     , r.user_id_h
+  	     , to_char(r.reservation_date, 'YYYY/MM/DD') reservation_date
+  	     , r.reservation_name
+  	     , r.reservation_total
+  	     , r.purpose_type
+  	     , r.amount_time
+  	     , r.use_date
+  	     , r.use_time
+  	     , r.end_date
+  	     , r.end_time
+  	     , to_char(r.pay_date, 'YYYY/MM/DD') pay_date
+  	     , r.pay_sum
+  	     , r.refund
+  	     , r.pay_method
+  	     , r.reservation_status
+  	     , round ((to_date(r.end_date || r.end_time, 'YYYY.MM.DD hh24:mi') - to_date(r.use_date || r.use_time, 'YYYY.MM.DD hh24:mi'))*24) t_time
+  	  from reservation r
+  	  join space_info using(spc_no)      
+  	 where reservation_no = #{rno}	
+  </select>
+  <update id="deleteReservation">
+  	update
+  	       reservation
+  	   set reservation_status = '취소환불'
+  	 where reservation_no = #{rno}      
   
+  </update>
   
   
   

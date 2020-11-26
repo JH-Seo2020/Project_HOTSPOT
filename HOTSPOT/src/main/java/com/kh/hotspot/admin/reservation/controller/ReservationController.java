@@ -67,4 +67,19 @@ public class ReservationController {
 		
 	}
 	
+	@RequestMapping("detail.rad")
+	public String detailReservation(int rno, Model model) {
+		
+		Reservation r = rService.detailReservation(rno);
+		
+		model.addAttribute("r", r);
+		return "admin/adminReservation/reservationDetail";
+	}
+	@RequestMapping("delete.rad")
+	public String deleteReservation(int rno) {
+		
+			int result = rService.deleteReservation(rno);
+		return "redirect:list.rad";
+	}
+	
 }

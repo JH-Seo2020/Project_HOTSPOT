@@ -15,7 +15,7 @@ public interface ReservationService {
 	int searchListCount(Map map);
 	ArrayList<Reservation> searchList(PageInfo pi, Map map);
 	
-	int deleteReservation(String[] rno);
+	int deleteReservation(int rno);
 	
 	Reservation detailReservation(int rno);
 		

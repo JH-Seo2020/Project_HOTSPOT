@@ -17,6 +17,12 @@
         #adminFooter form{
             display:inline;
         }
+         #adminNotice tbody tr{
+        	cursor:pointer;
+        }
+        #adminNotice tbody tr:hover{
+        	background:mintcream;
+        }
     </style>
 </head>
 <body>
@@ -24,7 +30,7 @@
 	<div class="outer">
         <div>
             <br>
-            <div style="font-size:20px; margin-left:20px;">예약관리</div>
+            <div style="font-size:20px; margin-left:20px; margin-top:11px;">예약관리</div>
             <hr style="background:ligthgrey;">
             <br><br>
             <div id="answerArray" style="width:1000px; margin:auto"> 
@@ -70,7 +76,13 @@
 					</c:forEach>                
                </tbody> 
             </table>
-          
+          	<script>
+          		$(function(){
+          			$("#adminNotice tbody tr").click(function(){
+          				location.href="detail.rad?rno="+$(this).children().eq(0).text();
+          			})
+          		})
+          	</script>
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
                 <form action="list.rad">

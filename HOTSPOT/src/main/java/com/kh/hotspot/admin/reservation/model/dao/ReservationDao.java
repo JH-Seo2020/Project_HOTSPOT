@@ -41,4 +41,14 @@ public class ReservationDao {
 		RowBounds rowbounds = new RowBounds(offset, limit);
 		return (ArrayList)sqlSession.selectList("reservationMapper.searchList", map, rowbounds);
 	}
+	
+	public Reservation detailReservation(SqlSessionTemplate sqlSession, int rno) {
+		
+		return sqlSession.selectOne("reservationMapper.detailReservation", rno);
+	}
+	
+	public int deleteReservation(SqlSessionTemplate sqlSession, int rno) {
+		
+		return sqlSession.update("reservationMapper.deleteReservation", rno);
+	}
 }

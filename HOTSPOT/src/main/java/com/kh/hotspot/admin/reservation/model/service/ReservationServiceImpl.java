@@ -22,13 +22,13 @@ public class ReservationServiceImpl implements ReservationService {
 	
 
 	@Override
-	public int deleteReservation(String[] rno) {
-		return 0;
+	public int deleteReservation(int rno) {
+		return rDao.deleteReservation(sqlSession, rno);
 	}
 
 	@Override
 	public Reservation detailReservation(int rno) {
-		return null;
+		return rDao.detailReservation(sqlSession, rno);
 	}
 
 	@Override
