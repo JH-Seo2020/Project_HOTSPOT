@@ -18,12 +18,16 @@ public class Review {
 	
 	private int reviewNo;
 	private int spcNo;
-	private String reviewWriter;	//리뷰작성자닉네임
+	private String reviewWriter;	//리뷰작성자아이디
 	private String reviewTitle;
 	private Clob reviewContent;
 	private int reviewScore;
 	private Date reviewDate;
 	private String reviewStatus;
 	private String reviewReply;
+	private String userNickname;
+	private String userProfileCh;
+	private String profilePath;
+	private String reviewCon;
 
 }

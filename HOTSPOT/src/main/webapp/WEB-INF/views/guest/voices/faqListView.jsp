@@ -6,80 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-    #noticeWrap{
-        width: 100%;
-        height: auto;
-        margin: auto;
-    }
-    #noticeWrap div,form{
-        margin: auto;
-    }
-    #noticeTitle{
-        text-align: center;
-        font-weight: bold;
-        font-size: 30px;
-    }
-    /*공지사항 검색*/
-    #noticeSearch{
-        width: 1200px;
-        height: auto;
-        margin-top: 4%;
-        margin-bottom: 4%;
-        border:3px solid lavender;
-        padding:2%;
-    }
-    /*공지사항 테이블*/
-    #noticeSpace{
-        width: 1200px;
-        height: auto;
-        padding: 2% 2%;
-        background-color: white;
-    }
-    .imgTd{width:5%;}
-    #ask{width: 1200px;height: auto;margin: auto;padding-top: 3%;}
-    /*페이지버튼*/
-    #pagination{
-        text-align: center;
-        padding: 4% 0;
-    }
-    #pagination>button{
-        border: none;
-        background-color: rebeccapurple;
-        color: white;
-    }
-    /*기타 css*/
-    .purple{
-        background-color: rebeccapurple !important;
-        color: white !important;
-        border: white !important;
-    }
-    .black{
-        color: black !important;
-        text-decoration: none !important;
-        font-weight: lighter;
-    }
-    .downImg{
-        width: 100%;
-        height: 5%;
-        cursor: pointer;
-    }
-    .type{width: 20%;}
-    .answers{
-        display: none;
-        border:3px solid rebeccapurple;
-    }
-    .forRight{float: right;}
-        .black{
-        color: black !important;
-        text-decoration: none !important;
-        font-weight: lighter;
-    }
-    .disabled{
-    	disabled:true;
-    	background-color: black !important;
-    }
-</style>
+<!-- CSS -->
+<link rel="stylesheet" href="resources/css/guest/faqListView.css" type="text/css"/>
 </head>
 <body>
 
