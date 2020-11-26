@@ -1,5 +1,7 @@
 package com.kh.hotspot.space.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,5 +36,11 @@ public class Space {
 	private String location;	//공간위치
 	private int reviews;		//리뷰갯수
 	private int wishes;			//좋아요 갯수
+	
+	// 유의사항
+	private ArrayList<SpcNotes> noteList; 
+	// 상세이미지
+	private ArrayList<SpcImages> imgList;
+	
 	
 }
