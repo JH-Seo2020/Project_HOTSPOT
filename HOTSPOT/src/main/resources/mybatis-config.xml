@@ -52,8 +52,10 @@
 		<mapper resource="mappers/guest/guestspace-mapper.xml"/>
 		<mapper resource="mappers/guest/customerservice-mapper.xml"/>
 		
-		<!-- 호스트 관련(지은) -->
+		<!-- 호스트,공간 관련(지은) -->
 		<mapper resource="mappers/host/host-mapper.xml"/>
+		<!-- <mapper resource="mappers/host/hostspace-mapper.xml"/> -->
+		
 		<!-- 마이페이지(성희) -->
 		<mapper resource="mappers/guest/mypage-mapper.xml"/>	
 	</mappers>
