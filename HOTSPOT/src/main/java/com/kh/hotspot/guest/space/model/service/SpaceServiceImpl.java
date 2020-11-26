@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.dao.SpaceDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
@@ -71,9 +72,9 @@ public class SpaceServiceImpl implements SpaceService {
 	}
 	
 	@Override
-	public ArrayList<Review> selectReviewsForHomep(String userId) {
+	public ArrayList<Review> selectReviewsForHomep(String userId, PageInfo pi) {
 		
-		return spaceDao.selectReviewsForHomep(sqlSession,userId);
+		return spaceDao.selectReviewsForHomep(sqlSession,userId, pi);
 	}
 
 
