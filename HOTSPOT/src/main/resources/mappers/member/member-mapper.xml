@@ -84,7 +84,7 @@
       		    <if test="userProfileC != null">user_profile_c=#{userProfileC},</if>
 		        <if test="userEmail != null">user_email=#{userEmail},</if>
 		        <if test="userPhone != null">user_phone=#{userPhone},</if>
-		        <if test="userPwd != null">user_pwd=#{userPwd},</if>
+		        <if test="userPwd != null">user_pwd=#{newUserPwd},</if>
 	     	    modify_date=#{modifyDate}
 	     	</set>
 		  where user_id=#{userId}

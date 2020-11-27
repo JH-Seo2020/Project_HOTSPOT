@@ -18,6 +18,7 @@ import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.service.SpaceDetailService;
 import com.kh.hotspot.guest.space.model.service.SpaceService;
+import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
@@ -104,6 +105,26 @@ public class SpaceController {
 		model.addAttribute("rv",rv);
 		
 		return "guest/space/hostHmpView";
+	}
+	
+	@RequestMapping("ask.guest")
+	public String askToHost(Qna qna, HttpSession session, Model model ) {
+		
+//		System.out.println(qna);
+		
+		if(qna.getQaSecret() == null) {
+			qna.setQaSecret("Y");
+		}
+		int result = spaceDetailService.insertQuestion(qna);
+		
+		if(result>0) {
+			session.setAttribute("alertMsg","성공적으로 질문을 등록하였습니다.");
+			return "redirect:spaceDetail.guest?spcNo="+qna.getSpaceNo();
+		}else {
+			model.addAttribute("errorMsg","질문 등록실패");
+			return "common/errorPage";
+		}
+		
 	}
 	
 

@@ -229,7 +229,7 @@
             <div id="detailQnA">
                 <br>
                 <h4><span class="badge badge-pill badge-dark">#QnA 5개</span></h4>
-                <h5><a class="badge badge-pill badge-warning" data-toggle="modal" data-target="#questionToHost" style="cursor: pointer;">✏호스트에게 질문하기</a></h5>
+                <h5><a id="qtohost" class="badge badge-pill badge-warning" data-toggle="modal" data-target="#questionToHost" style="cursor: pointer;">✏호스트에게 질문하기</a></h5>
                 <br>
                 <div class="qnaContent">
                     <div class="personImgs">
@@ -307,7 +307,16 @@
     	</div>
     </div>
     
-    
+    <script>
+    	var loginUser = '${loginUser}';
+    	$(function(){
+    		if(loginUser == ''){
+    			$("#qtohost").css("display","none");
+    		}else{
+    			$("#qtohost").css("display",true);
+    		}
+    	})
+    </script>
     
 
     <!--신고모달-->
@@ -366,20 +375,23 @@
 
     <!--질문하기 모달-->
     <div class="modal fade" id="questionToHost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="" action="">
+        <form method="post" action="ask.guest">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: slateblue; color: white;">
-                    <h5 class="modal-title" id="exampleModalLabel">호스트에게 질문하기</h5>
+                    	<h5 class="modal-title" id="exampleModalLabel">호스트에게 질문하기</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <h3><span class="badge badge-pill badge-dark">질문</span></h3><hr>
-                    <textarea class="form-control" placeholder="질문을 남겨주세요"></textarea>
+                    <textarea  name="qaContent" class="form-control" placeholder="질문을 남겨주세요" required></textarea> <!-- 내용 -->
                     <br>
-                    <input type="checkbox"> &nbsp;&nbsp;비공개
+                    <input type="checkbox" name="qaSecret" value="N"> &nbsp;&nbsp;비공개	<!-- 공개여부 -->
+                    <input type="hidden" name="qaWriter" value="${loginUser.userNickname }" />	<!-- 닉네임 -->
+                    <input type="hidden" name="userId" value="${loginUser.userId }" />	<!-- 아이디 -->
+                    <input type="hidden" name="spaceNo" value="${si.spcNo }" />	<!-- 공간번호 -->
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>

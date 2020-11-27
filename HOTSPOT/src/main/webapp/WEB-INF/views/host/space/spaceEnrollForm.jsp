@@ -272,18 +272,25 @@
                     <script>
                 	<!--이용유의사항 & 공간태그 관련 스크립트-->
                     $(function(){
+                    	var count = 0;
                         $(this).on("click","#notePlus",function(){
                         	if($(".content").length < 5){
+                        		
 	                            var $note = $("#note_0").val();
-	                            var html = '<div class="content"> <input type="text" class="form-control" name="notesContent" value="'
+	                            var html = '<div class="content"> <input type="text" class="form-control" name="noteList['
+	                            	html += count
+	                            	html += ']".notesContent" value="'
 	                                html += $note
 	                                html +='">'
 	                                html += '<img type="button" src="resources/images/host_images/close.png" class="noteClose"></div>'
 	                                $(".many_notes").append(html);
 	                                $("#note_0").val('');
+	                                
+	                               
                         	}else{
                         		 alert('유의사항은  5개 까지만 등록 가능합니다!')
                         	}
+                        	 count++;
                         });
                         $(this).on("click",".noteClose",function(){
                             var tar =$(this).parent();
@@ -356,8 +363,13 @@
                             var sel_files =[];
                             $(function(){
                                 $("#spc_img").on("change",handleImg)
-                                $("#spc_imgs").on("change",handleImgs)
-                                $("#spc_imgs").on("change",addImgs)
+                                $("#spc_imgs1").on("change",handleImg1)
+                                $("#spc_imgs2").on("change",handleImg2)
+          						$("#spc_imgs3").on("change",handleImg3)
+          						$("#spc_imgs4").on("change",handleImg4)
+          						$(".cancelImg").click(function(){
+                        	     $(this).next().removeAttr("src");
+                        	   });
                             });
                             function handleImg(e){
                                 var files = e.target.files
@@ -372,7 +384,7 @@
                                 reader.readAsDataURL(f);
                                 });
                             };
-                            function handleImgs(e){
+                            function handleImg1(e){
                                 var files = e.target.files
                                 var filesArr = Array.prototype.slice.call(files);
                                 filesArr.forEach(function(f){
@@ -385,22 +397,84 @@
                                 reader.readAsDataURL(f);
                                 });
                             };
-                           function addImgs(){
-                        	   var count = 0;
-                        	  
-                        	   
-                           }
+                            function handleImg2(e){
+                                var files = e.target.files
+                                var filesArr = Array.prototype.slice.call(files);
+                                filesArr.forEach(function(f){
+                                    sel_file=f;
+                                    var reader = new FileReader();
+                                    reader.onload = function(e){
+                                       
+                                        $("#imgs1").attr("src",e.target.result);
+                                    }
+                                reader.readAsDataURL(f);
+                                });
+                            };
+                            function handleImg3(e){
+                                var files = e.target.files
+                                var filesArr = Array.prototype.slice.call(files);
+                                filesArr.forEach(function(f){
+                                    sel_file=f;
+                                    var reader = new FileReader();
+                                    reader.onload = function(e){
+                                       
+                                        $("#imgs2").attr("src",e.target.result);
+                                    }
+                                reader.readAsDataURL(f);
+                                });
+                            };
+                            function handleImg4(e){
+                                var files = e.target.files
+                                var filesArr = Array.prototype.slice.call(files);
+                                filesArr.forEach(function(f){
+                                    sel_file=f;
+                                    var reader = new FileReader();
+                                    reader.onload = function(e){
+                                       
+                                        $("#imgs3").attr("src",e.target.result);
+                                    }
+                                reader.readAsDataURL(f);
+                                });
+                            };
+                            
+                         
                         </script>
-                        <p>상세 이미지<span style="color:red">* (최대 5개 )</span></p>
+                        <p>상세 이미지<span style="color:red">* (최대 4개 )</span></p>
                         <div class="many_imgbox">
-                            <div class="imgbox">
-                           		 <img id="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
-                                <img id="imgs">
-                            </div>
-                             <label for="spc_imgs"id="imgsLabel">+</label>
-                     	     <input type="file" name="imgOgImg" id="spc_imgs"></input><br> 
+                        	<div style="widhth:180px; height:200px;">
+	                            <div class="imgbox">
+	                           		 <img class="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
+	                                <img id="imgs">
+	                         	</div>
+	                             <label for="spc_imgs1"id="imgsLabel">파일첨부</label>
+	                     	     <input type="file" name="imgList[0].imgOgImg" id="spc_imgs1"></input><br> 
+                     	    </div> 
+                     	    <div style="widhth:180px; height:200px;">
+	                             <div class="imgbox1">
+	                           		 <img class="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
+	                                <img id="imgs1">
+	                            </div>
+	                             <label for="spc_imgs2"id="imgsLabel">파일첨부</label>
+	                     	     <input type="file" name="imgList[1].imgOgImg" id="spc_imgs2"></input><br> 
+                     	    </div> 
+                     	    <div style="widhth:180px; height:200px;">
+	                     	      <div class="imgbox2">
+	                           		 <img class="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
+	                                <img id="imgs2">
+	                            </div>
+	                             <label for="spc_imgs3"id="imgsLabel">파일첨부</label>
+	                     	     <input type="file" name="imgList[2].imgOgImg" id="spc_imgs3"></input><br>                       	     
+                     	     </div> 
+                     	     <div style="widhth:180px; height:200px;"> 
+	                      		  <div class="imgbox3">
+	                           		 <img class="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
+	                                <img id="imgs3">
+	                            </div>
+	                             <label for="spc_imgs4"id="imgsLabel">파일첨부</label>
+	                     	     <input type="file" name="imgList[3].imgOgImg" id="spc_imgs4"></input><br>                       	     
+                     	     </div>
                         </div>
-                      
+                      	
 						<button type="button" id="backBtn2" class="btn btn-secondary"> 돌아가기 </button>
                         <button type="button" id="subBtn" class="btn btn-primary"data-toggle="modal"data-target="#exampleModal"> 등록하기 </button>
             </div>

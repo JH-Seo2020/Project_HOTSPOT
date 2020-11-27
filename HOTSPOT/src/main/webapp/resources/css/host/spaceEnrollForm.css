@@ -159,15 +159,41 @@
           height:160px;
           background-color: gray;
           margin-top:15px;
-          margin-right: 10px;
+          margin-right: 20px;
       }
+       .imgbox1{
+          width:180px;
+          height:160px;
+          background-color: gray;
+          position: relative;
+    	  top: 15px;
+      }
+      .imgbox2{
+        width: 180px;
+	    height: 160px;
+	    background-color: gray;
+	    position: relative;
+	    top: 15px;
+	    left: 20px;
+      }
+       .imgbox3{
+        width: 180px;
+	    height: 160px;
+	    background-color: gray;
+	    position: relative;
+	    top: 15px;
+	    left: 41px;
+      }
+     
+
       .many_imgbox{
           margin-top: 30px;
-          width:680px;
+          width:880px;
           height:230px;
           background-color: #eeeeee;
+          padding-left:20px;
       }
-      #cancelImg{
+      .cancelImg{
        cursor:pointer
       }
       .many_imgbox div{
@@ -206,17 +232,60 @@
           cursor: pointer;
           
       }
-      #spaceForm2 label[for=spc_imgs]{
-        margin: 5px 0px 25px 0px;
+      #spaceForm2 label[for=spc_imgs3]{
+       margin: 5px 0px 25px 0px;
 	    padding: 3px;
 	    color: white;
 	    background-color: var(--color-purple);
 	    cursor: pointer;
-	    position: absolute;
-	    top: 770px;
-	    left: 10px;
-          
+	    /* position: absolute; */
+	    /* top: 770px; */
+	    /* left: 430px; */
+	    margin-top: 200px;
+	    margin-left: -159px;
       }
+         #spaceForm2 label[for=spc_imgs4]{
+           margin: 5px 0px 25px 0px;
+		    padding: 3px;
+		    color: white;
+		    background-color: var(--color-purple);
+		    cursor: pointer;
+		    margin-top: 200px;
+		    margin-left: -138px;
+      }
+      #backBtn{
+      margin-left: -245px;
+   	  margin-right: 30px;
+   	  margin-top:30px;
+   	  width:120px;
+      }
+      #backBtn2{
+      margin-top:45px;
+      }
+      #subBtn{
+       margin-top:45px;
+      }
+      #nextBtn{
+      margin-top:30px;
+   	  width:120px;
+      }
+      #spaceForm2 label[for=spc_imgs2]{
+	    padding: 3px;
+	    color: white;
+	    background-color: var(--color-purple);
+	    cursor: pointer;
+	    margin-left: -180px;
+	    margin-top: 200px;
+      }
+       #spaceForm2 label[for=spc_imgs1]{
+	    padding: 3px;
+	    color: white;
+	    background-color: var(--color-purple);
+	    cursor: pointer;
+	    margin-left: -200px;
+	    margin-top: 200px;
+      }
+   
       #spaceForm2 input[type=file]{
           display: none;
           background-color: var(--color-purple);
@@ -225,11 +294,13 @@
           width:100px;
           height:40px;
           margin-left:20px;
+          margin-top: 20px;
       }
       #backBtn2{
       	width:100px;
       	margin-left:300px;
       	height:40px;
+        margin-top: 20px;
       }
       .form-check{
       	display:inline;
@@ -273,15 +344,30 @@
         top:5px;
         left:10px;
     }
-    #imgsLabel{
-    	width:30px;
-    	height:25px;
-    	text-align:center;
-    	padding:3px;
-    	border-radius:5px;
-    	font-size:18px;
-    	line-height:20px;
-    }
+ 	#imgs1{
+ 	width: 160px;
+    height: 120px;
+    border: none;
+    position: relative;
+    top: 5px;
+    left: 10px;
+ 	}
+	#imgs2{
+ 	width: 160px;
+    height: 120px;
+    border: none;
+    position: relative;
+    top: 5px;
+    left: 10px;
+ 	}
+ 	#imgs3{
+ 	width: 160px;
+    height: 120px;
+    border: none;
+    position: relative;
+    top: 5px;
+    left: 10px;
+ 	}
     #map{
     postion:relative;
     top:-15px;

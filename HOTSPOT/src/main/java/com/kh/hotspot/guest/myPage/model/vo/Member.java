@@ -18,6 +18,7 @@ public class Member {
 	private String userId;		// 회원아이디
 	private String userType;	// 회원유형(Guest/Host/admin)
 	private String userPwd;		// 회원비밀번호
+	private String newUserPwd;  // 새비밀번호
 	private String userNickname; // 닉네임
 	private String userEmail;	 // 회원이메일
 	private String userPhone;	 // 회원전화번호

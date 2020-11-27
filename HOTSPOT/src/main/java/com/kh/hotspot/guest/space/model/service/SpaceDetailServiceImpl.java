@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.dao.SpaceDetailDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
@@ -59,9 +60,15 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 	}
 
 	@Override
-	public int insertReport() {
+	public int insertReport(Report report) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int insertQuestion(Qna qna) {
+		
+		return spaceDetailDao.insertQuestion(sqlSession, qna);
 	}
 
 	@Override
@@ -93,6 +100,7 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 
 

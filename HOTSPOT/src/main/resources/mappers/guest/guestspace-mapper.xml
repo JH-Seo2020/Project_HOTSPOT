@@ -285,5 +285,25 @@
 		                    from space_info
 		                   where spc_no = #{spcNo})
   	</select>
+  	
+  	<!-- 질문하기기능 -->
+  	<insert id="insertQuestion" parameterType="Qna">
+	  insert into QUESTION_ANSWER
+	       ( QA_NO
+	       , QA_CONTENT
+	       , QA_WRITER
+	       , QA_SECRET
+	       , USER_ID
+	       , SPC_NO
+	       )
+	       values
+	       ( SEQ_QA.nextval
+	       , #{qaContent}
+	       , #{qaWriter}
+	       , #{qaSecret}
+	       , #{userId}
+	       , #{spaceNo}
+	       )
+  	</insert>
 
 </mapper>

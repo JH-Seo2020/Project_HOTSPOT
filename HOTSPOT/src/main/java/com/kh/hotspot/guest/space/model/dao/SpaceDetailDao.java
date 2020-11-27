@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.space.model.vo.SpaceNotes;
@@ -30,8 +31,14 @@ public class SpaceDetailDao {
 	}
 
 	public Member selectWhoIsHost(SqlSessionTemplate sqlSession, int spcNo) {
-		// TODO Auto-generated method stub
+
 		return sqlSession.selectOne("guestspaceMapper.selectWhoIsHost",spcNo);
+	}
+
+	//질문등록
+	public int insertQuestion(SqlSessionTemplate sqlSession, Qna qna) {
+
+		return sqlSession.insert("guestspaceMapper.insertQuestion",qna);
 	}
 
 }

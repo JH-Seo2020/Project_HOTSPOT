@@ -17,13 +17,13 @@ import lombok.ToString;
 public class Qna {
 	
 	private int qaNo;
-	private Clob qaContent; 
+	private String qaContent;		//string으로 받아서 Clob으로 넘겨줄예정
 	private String qaWriter;	//닉네임
 	private Date qaDate;
 	private String qaAnswer;
 	private String qaStatus;
 	private String qaSecret;
 	private String userId;
-	private int spcNo;
+	private int spaceNo;
 
 }
