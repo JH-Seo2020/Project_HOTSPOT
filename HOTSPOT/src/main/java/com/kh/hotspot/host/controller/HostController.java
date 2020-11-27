@@ -106,6 +106,7 @@ public class HostController {
 		
 		String changeName = currentTime + ranNum + ext;
 		
+		
 		try {
 			upfile.transferTo(new File(savePath + changeName));
 		} catch (IllegalStateException e) {
