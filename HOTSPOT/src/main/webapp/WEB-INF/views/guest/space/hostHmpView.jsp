@@ -68,7 +68,7 @@
                 <br>
                 <h2>이용후기 ${listCount}개</h2>
                 <br>
-                <c:forEach var="r" items="${rv }" >
+ 				<c:forEach var="r" items="${rv }" >
 	                <div class="qnaContent">
 	                    <div class="personImgs">
 	                        <img src="${r.profilePath }${r.userProfileCh}" >
@@ -102,8 +102,76 @@
 	                    </div>
 	                </div>
 	                <hr>
-                </c:forEach>
-            </div>
+            	</div>
+            	
+			    <!--신고모달-->
+			    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			        <form method="post" action="report.guest">
+			            <div class="modal-dialog">
+			            <div class="modal-content">
+			                <div class="modal-header" style="background-color: slateblue;">
+			                    <h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
+			                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                        <span aria-hidden="true">&times;</span>
+			                    </button>
+			                </div>
+			                <div class="modal-body">
+			                    <table class="table table-borderless">
+			                    <input type="hidden" name="hostUserId" value="${hostUserId }" />
+			                    <input type="hidden" name="spcNo" value="<%=0 %>" />
+			                    <input type="hidden" name="reviewNo" value="${r.reviewNo }"/>
+			                        <tbody>
+			                          <tr>
+			                            <th scope="row">신고유형</th>
+			                            <td>
+			                                <select name="reportType1" class="custom-select">
+			                                    <option>공간신고</option>
+			                                    <option>후기신고</option>
+			                                    <option>게스트신고</option>
+			                                    <option>호스트신고</option>
+			                                </select>
+			                            </td>
+			                          </tr>
+			                          <tr>
+			                            <th scope="row">신고 상세유형</th>
+			                            <td>
+			                                <select name="reportType2"  class="custom-select">
+			                                    <option>기물파손</option>
+			                                    <option>태도불량</option>
+			                                    <option>서비스불만족</option>
+			                                    <option>허위내용</option>
+			                                    <option>광고</option>
+			                                    <option>기타</option>
+			                                </select>
+			                            </td>
+			                          </tr>
+			                          <tr>
+			                            <th scope="row">신고자</th>
+			                            <td><input type="text" name="reportWriter" value="${loginUser.userId }" class="form-control"></td>
+			                          </tr>
+			                          <tr>
+			                            <th scope="row">신고대상</th>
+			                            <c:set var="hostId" value="${r.reviewWriter }" />
+			                            <td><input type="text" name="reportTarget" value="${hostId}" class="form-control"></td>
+			                          </tr>
+			                          <tr>
+			                            <th scope="row">신고 내용</th>
+			                            <td ><input type="text" name="reportContent" class="form-control" placeholder="신고내용을 적어주세요"></td>
+			                          </tr>
+			                        </tbody>
+			                    </table>
+			                </div>
+			                <div class="modal-footer">
+			                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+			                <button type="submit" class="btn btn-primary" style="background-color: slateblue; border: none;">신고하기</button>
+			                </div>
+			            </div>
+			            </div>
+			        </form>
+			    </div>
+ 
+				</c:forEach>
+
             <div id="pagination">
 
         	<c:choose>
@@ -139,9 +207,8 @@
 	<script>
 		/*주소창 파라미터 없애기*/
 		/*history.replaceState({}, null, location.pathname);*/
-		
-		
 	</script>
+
 
 	
 </body>

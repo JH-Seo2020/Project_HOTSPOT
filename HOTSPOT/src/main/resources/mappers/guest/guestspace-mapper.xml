@@ -224,7 +224,8 @@
   	<select id="selectReviewsForHomep" parameterType="string" resultMap="reviewsSet" >
   		   select *
 		          from (
-		                select review_writer
+		                select review_no
+		                     , review_writer
 		                     , USER_NICKNAME
 		                     , USER_PROFILE_C
 		                     , PROFILE_PATH
@@ -309,7 +310,7 @@
   	<insert id="insertReport" parameterType="Report">
   		insert into REPORT
 		       ( REPORT_NO
-		       <if test="spcNo != null">
+		       <if test="spcNo != 0">
 		       , SPC_NO
 		       </if>
 		       <if test="reviewNo != 0">
@@ -323,7 +324,7 @@
 		       )
 		       VALUES
 		       ( SEQ_REPORT.NEXTVAL
-		       <if test="spcNo != null">
+		       <if test="spcNo != 0">
 		       , #{spcNo}
 		       </if>
 		       <if test="reviewNo != 0">

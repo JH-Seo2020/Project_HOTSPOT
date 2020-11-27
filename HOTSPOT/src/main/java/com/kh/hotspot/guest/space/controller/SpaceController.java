@@ -129,19 +129,23 @@ public class SpaceController {
 	}
 	
 	@RequestMapping("report.guest")
-	public String reportFromGuest(Report report, HttpSession session, Model model) {
+	public String reportFromGuest(Report report, String hostUserId, HttpSession session, Model model) {
 //		System.out.println(report);
-
+		
 		int result = spaceDetailService.insertReport(report);
 		
 		if(result>0) {
 			session.setAttribute("alertMsg","신고 완료되었습니다.");
-			return "redirect:spaceDetail.guest?spcNo="+report.getSpcNo();
+			if(report.getSpcNo() != 0) {
+				return "redirect:spaceDetail.guest?spcNo="+report.getSpcNo();
+			}else if(report.getReviewNo() != 0) {
+				return "redirect:hostHpg.guest?currentPage=1&userId="+hostUserId;
+			}
 		}else {
 			model.addAttribute("errorMsg","신고 등록실패");
 			return "common/errorPage";
 		}
-		
+		return"";
 	}
 	
 
