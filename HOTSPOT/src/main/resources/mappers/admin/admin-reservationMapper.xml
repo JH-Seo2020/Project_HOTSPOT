@@ -11,7 +11,6 @@
   	<result column="t_time" property="totalTime"/>
   	<result column="reservation_total" property="reTotal"/>
   	<result column="purpose_type" property="purType"/>
-  	<result column="amount_time" property="aTime"/>
   	<result column="use_date" property="startDate"/>
   	<result column="use_time" property="startTime"/>
   	<result column="end_date" property="endDate"/>
@@ -55,7 +54,6 @@
   	     , reservation_name
   	     , reservation_total
   	     , purpose_type
-  	     , amount_time
   	     , use_date
   	     , use_time
   	     , end_date
@@ -115,7 +113,6 @@
   	     , reservation_name
   	     , reservation_total
   	     , purpose_type
-  	     , amount_time
   	     , use_date
   	     , use_time
   	     , end_date
@@ -196,7 +193,6 @@
   	     , r.reservation_name
   	     , r.reservation_total
   	     , r.purpose_type
-  	     , r.amount_time
   	     , r.use_date
   	     , r.use_time
   	     , r.end_date

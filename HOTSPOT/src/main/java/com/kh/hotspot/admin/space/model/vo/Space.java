@@ -32,4 +32,5 @@ public class Space {
 	private String mapLatitude;
 	private String mapLongitude;
 	private String mapLocation;
+	private String enrollDate;
 }

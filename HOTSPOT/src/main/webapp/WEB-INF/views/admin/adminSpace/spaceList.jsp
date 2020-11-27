@@ -24,125 +24,127 @@
 	<div class="outer">
         <div>
             <br>
-            <div style="font-size:20px; margin-left:20px;">공간관리</div>
+            <div style="font-size:20px; margin-left:20px; margin-top:11px;">공간관리</div>
             <hr style="background:ligthgrey;">
             <br><br>
-            <div id="answerArray" style="width:1000px; margin:auto"> 
-                <select name="arr" id="arr" style="height:30px;">
-                	<option value="최신순">최신순</option>
-                    <option value="신고순">신고순</option>                   
-                </select>
             </div>
             <table class="table" id="adminNotice" style="text-align:center; margin:auto;">
-                <tr>
-                    <th><input type="checkbox"></th>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자 아이디</th>
-                    <th>신고수</th>
-                    <th>작성일</th>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>7</td>
-                    <td>조용한 스터디룸</td>
-                    <td>user01</td>
-                    <td>0</td>
-                    <td>2020-11-08</td>
-                </tr>
+            	<thead>
+	                <tr>
+	                    <th><input type="checkbox"></th>
+	                    <th>번호</th>
+	                    <th>제목</th>
+	                    <th>작성자 아이디</th>
+	                    <th>카테고리</th>
+	                    <th>작성일</th>
+	                </tr>
+                </thead>
+                <tbody>
+                	<c:forEach var="s" items="${ list }">
+		                <tr>
+		                    <td><input type="checkbox" id="check" value="${s.spcNo }"></td>
+		                    <td>${ s.spcNo }</td>
+		                    <td>${ s.spcName }</td>
+		                    <td>${ s.userId }</td>
+		                    <td>${ s.spcType }</td>
+		                    <td>${ s.enrollDate }</td>
+	    	            </tr>
+    	            </c:forEach>
+                </tbody>
             </table>
+                <script>
+                	$(function(){
+                		$("#adminNotice thead input[type=checkbox]").change(function(){
+                			if($("#adminNotice thead input[type=checkbox]").prop("checked")){
+                				$("#adminNotice tbody input[type=checkbox]").prop("checked", true);
+                			}else{
+                				$("#adminNotice tbody input[type=checkbox]").prop("checked", false);
+                			}
+                				
+                		})
+                			var selected = new Array();
+                		$("#delete").click(function(){
+                			$("#check:checked").each(function(){
+                				selected.push(this.value);
+                			})
+                			if(confirm("삭제하시겠습니까?")){
+                				
+                			location.href="delete.sad?sno="+ selected;
+                			}
+                		})
+                	})
+                </script>
+                
             <hr style="width:1000px;">
             <div id="adminFooter" style="width:1000px; margin:auto;" >
-                <form action="">
-                    <select name="" id="" style="height:34px;">
-                    <option value="">공간번호</option>
-                    <option value="">작성자</option>
-                    <option value="">제목</option>
+                <form action="list.sad">
+                    <select name="search" id="" style="height:34px;">
+                    <option value="no">공간번호</option>
+                    <option value="user">작성자</option>
+                    <option value="title">제목</option>
                     </select>
-                    <input type="text" style="line-height:29px; width:150px;">
+                    <input type="text" name="keyword" style="line-height:29px; width:150px;">
                    <button class="btn btn-primary" style="margin-bottom:4px;">검색</button>
                 </form>
-                <button style="margin-left:90px;" class="btn btn-secondary"><</button>
-                <button class="btn btn-secondary">1</button>
-                <button class="btn btn-secondary">2</button>
-                <button class="btn btn-secondary">3</button>
-                <button class="btn btn-secondary">4</button>
-                <button class="btn btn-secondary">5</button>
-                <button class="btn btn-secondary">></button>
-
-                <button style="margin-left:255px;" class="btn btn-danger">삭제</button>        
+              <c:choose>
+              	<c:when test="${ empty sc }">
+	                <c:choose>
+	                	<c:when test="${ pi.currentPage eq pi.startPage }">
+	                		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.sad?currentPage=${pi.currentPage -1}'"><</button>
+	                	</c:otherwise>
+	                </c:choose>
+	                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                	<c:choose>
+	                		<c:when test="${ pi.currentPage eq p }">
+	                			<button class="btn btn-secondary" disabled>${ p }</button>
+	                		</c:when>
+	                		<c:otherwise>
+	                			<button class="btn btn-secondary" onclick="location.href='list.sad?currentPage=${p}'">${ p }</button>
+	                		</c:otherwise>
+	                	</c:choose>                	
+	                </c:forEach>
+	                <c:choose>
+	                	<c:when test="${ pi.currentPage eq pi.maxPage }">       
+	                		<button class="btn btn-secondary" disabled>></button>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<button class="btn btn-secondary" onclick="location.href='list.sad?currentPage=${pi.currentPage +1}'">></button>
+	                	</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+	                	<c:when test="${ pi.currentPage eq pi.startPage }">
+	                		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.sad?currentPage=${pi.currentPage -1}&search=${search }&keyword=${keyword }'"><</button>
+	                	</c:otherwise>
+	                </c:choose>
+	                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                	<c:choose>
+	                		<c:when test="${ pi.currentPage eq p }">
+	                			<button class="btn btn-secondary" disabled>${ p }</button>
+	                		</c:when>
+	                		<c:otherwise>
+	                			<button class="btn btn-secondary" onclick="location.href='list.sad?currentPage=${p}&search=${search }&keyword=${keyword }'">${ p }</button>
+	                		</c:otherwise>
+	                	</c:choose>                	
+	                </c:forEach>
+	                <c:choose>
+	                	<c:when test="${ pi.currentPage eq pi.maxPage }">       
+	                		<button class="btn btn-secondary" disabled>></button>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<button class="btn btn-secondary" onclick="location.href='list.sad?currentPage=${pi.currentPage +1}&search=${search }&keyword=${keyword }'">></button>
+	                	</c:otherwise>
+					</c:choose>
+				</c:otherwise>	
+             </c:choose> 
+                <button style="margin-left:255px;" class="btn btn-danger" id="delete">삭제</button>        
             </div>
         </div>
     </div>

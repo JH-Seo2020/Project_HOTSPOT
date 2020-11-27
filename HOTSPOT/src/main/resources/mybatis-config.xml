@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.hotspot.admin.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 		<typeAlias type="com.kh.hotspot.admin.faq.model.vo.Faq" alias="Faq"/>
 		<typeAlias type="com.kh.hotspot.admin.reservation.model.vo.Reservation" alias="Reservationad"/>
+		<typeAlias type="com.kh.hotspot.admin.space.model.vo.Space" alias="Spacead"/>
 		<!-- 로그인(지수) -->
 		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Member" alias="Member"/>
 		<!-- 메인,게스트공간(지혜) -->
@@ -42,6 +43,7 @@
 		<mapper resource="mappers/admin/inquiry-mapper.xml"/>
 		<mapper resource="mappers/admin/admin-faq-mapper.xml"/>
 		<mapper resource="mappers/admin/admin-reservationMapper.xml"/>
+		<mapper resource="mappers/admin/admin-spaceMapper.xml"/>
 		<!-- 로그인기능 (전지수) -->
 		<mapper resource="mappers/member/member-mapper.xml"/>
 		<!-- admin(선경) -->

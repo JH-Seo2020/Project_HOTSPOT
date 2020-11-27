@@ -13,6 +13,7 @@ import lombok.ToString;
 @ToString
 public class SearchCondition {
 
-	private String recent;
-	private String report;
+	private String no;
+	private String user;
+	private String title;
 }

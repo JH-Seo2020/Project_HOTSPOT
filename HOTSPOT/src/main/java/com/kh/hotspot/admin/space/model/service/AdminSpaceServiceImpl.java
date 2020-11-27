@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.hotspot.admin.space.model.dao.AdminSpaceDao;
+import com.kh.hotspot.admin.space.model.vo.SearchCondition;
 import com.kh.hotspot.admin.space.model.vo.Space;
 import com.kh.hotspot.admin.space.model.vo.SpaceImg;
 import com.kh.hotspot.common.model.vo.PageInfo;
@@ -22,28 +23,28 @@ public class AdminSpaceServiceImpl implements AdminSpaceService {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int selectListCount(String arr) {
-		return 0;
+	public int selectListCount() {
+		return sDao.selectListCount(sqlSession);
 	}
 
 	@Override
-	public ArrayList<Space> selectList(PageInfo pi, String arr) {
-		return null;
+	public ArrayList<Space> selectList(PageInfo pi) {
+		return sDao.selectList(sqlSession, pi);
 	}
 
 	@Override
-	public int searchListCount(Map map) {
-		return 0;
+	public int searchListCount(SearchCondition sc) {
+		return sDao.searchListCount(sqlSession, sc);
 	}
 
 	@Override
-	public ArrayList<Space> searchList(PageInfo pi, Map map) {
-		return null;
+	public ArrayList<Space> searchList(PageInfo pi, SearchCondition sc) {
+		return sDao.searchList(sqlSession, pi, sc);
 	}
 
 	@Override
 	public int deleteSpace(String[] sno) {
-		return 0;
+		return sDao.deleteSpace(sqlSession, sno);
 	}
 
 	@Override
