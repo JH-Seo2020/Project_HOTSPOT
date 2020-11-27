@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
@@ -122,6 +123,22 @@ public class SpaceController {
 			return "redirect:spaceDetail.guest?spcNo="+qna.getSpaceNo();
 		}else {
 			model.addAttribute("errorMsg","질문 등록실패");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("report.guest")
+	public String reportFromGuest(Report report, HttpSession session, Model model) {
+//		System.out.println(report);
+
+		int result = spaceDetailService.insertReport(report);
+		
+		if(result>0) {
+			session.setAttribute("alertMsg","신고 완료되었습니다.");
+			return "redirect:spaceDetail.guest?spcNo="+report.getSpcNo();
+		}else {
+			model.addAttribute("errorMsg","신고 등록실패");
 			return "common/errorPage";
 		}
 		

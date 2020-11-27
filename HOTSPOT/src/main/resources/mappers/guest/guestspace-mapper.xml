@@ -305,5 +305,36 @@
 	       , #{spaceNo}
 	       )
   	</insert>
+  		
+  	<insert id="insertReport" parameterType="Report">
+  		insert into REPORT
+		       ( REPORT_NO
+		       <if test="spcNo != null">
+		       , SPC_NO
+		       </if>
+		       <if test="reviewNo != 0">
+		       , REVIEW_NO
+		       </if>
+		       , REPORT_TYPE1
+		       , REPORT_TYPE2
+		       , REPORT_WRITER
+		       , REPORT_TARGET
+		       , REPORT_CONTENT
+		       )
+		       VALUES
+		       ( SEQ_REPORT.NEXTVAL
+		       <if test="spcNo != null">
+		       , #{spcNo}
+		       </if>
+		       <if test="reviewNo != 0">
+		       , #{reviewNo}
+		       </if>
+		       , #{reportType1}
+		       , #{reportType2}
+		       , #{reportWriter}
+		       , #{reportTarget}
+		       , #{reportContent}
+		       )
+  	</insert>
 
 </mapper>

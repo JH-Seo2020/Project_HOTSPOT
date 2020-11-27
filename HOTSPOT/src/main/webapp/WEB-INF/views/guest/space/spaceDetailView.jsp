@@ -312,8 +312,10 @@
     	$(function(){
     		if(loginUser == ''){
     			$("#qtohost").css("display","none");
+    			$("#wishandlike").css("display","none");
     		}else{
     			$("#qtohost").css("display",true);
+    			$("#wishandlike").css("display",true);
     		}
     	})
     </script>
@@ -321,7 +323,7 @@
 
     <!--신고모달-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="" action="">
+        <form method="post" action="report.guest">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: slateblue;">
@@ -332,34 +334,46 @@
                 </div>
                 <div class="modal-body">
                     <table class="table table-borderless">
+                    <c:set var="spcNo" value="${si.spcNo }" />
+                    <input type="hidden" name="spcNo" value="${spcNo }" />
+                    <input type="hidden" name="reviewNo" value="<%=0%>"/>
                         <tbody>
                           <tr>
                             <th scope="row">신고유형</th>
                             <td>
-                                <select class="custom-select">
+                                <select name="reportType1" class="custom-select">
                                     <option>공간신고</option>
+                                    <option>후기신고</option>
+                                    <option>게스트신고</option>
+                                    <option>호스트신고</option>
                                 </select>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row">신고 상세유형</th>
                             <td>
-                                <select class="custom-select">
+                                <select name="reportType2"  class="custom-select">
+                                    <option>기물파손</option>
+                                    <option>태도불량</option>
+                                    <option>서비스불만족</option>
+                                    <option>허위내용</option>
                                     <option>광고</option>
+                                    <option>기타</option>
                                 </select>
                             </td>
                           </tr>
                           <tr>
-                            <th scope="row">신고대상</th>
-                            <td><input type="text" class="form-control"></td>
+                            <th scope="row">신고자</th>
+                            <td><input type="text" name="reportWriter" value="${loginUser.userId }" class="form-control"></td>
                           </tr>
                           <tr>
-                            <th scope="row">신고자</th>
-                            <td><input type="text" class="form-control"></td>
+                            <th scope="row">신고대상</th>
+                            <c:set var="hostId" value="${si.userId }" />
+                            <td><input type="text" name="reportTarget" value="${hostId}" class="form-control"></td>
                           </tr>
                           <tr>
                             <th scope="row">신고 내용</th>
-                            <td ><input type="text" class="form-control" placeholder="신고내용을 적어주세요"></td>
+                            <td ><input type="text" name="reportContent" class="form-control" placeholder="신고내용을 적어주세요"></td>
                           </tr>
                         </tbody>
                     </table>

@@ -61,8 +61,8 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 
 	@Override
 	public int insertReport(Report report) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return spaceDetailDao.insertReport(sqlSession, report);
 	}
 
 	@Override
