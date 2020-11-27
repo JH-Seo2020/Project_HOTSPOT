@@ -17,6 +17,6 @@ public interface AdminSpaceService {
 	
 	int deleteSpace(String[] sno);
 	Space detailSpace(int sno);
-	ArrayList<SpaceImg> selectImgList(int sno);
+	ArrayList<Space> selectImgList(int sno);
 	
 }

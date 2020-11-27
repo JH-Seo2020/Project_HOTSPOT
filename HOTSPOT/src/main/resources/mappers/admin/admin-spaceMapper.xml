@@ -10,7 +10,6 @@
   	<result column="spc_type" property="spcType"/>
   	<result column="spc_min" property="spcMin"/>
   	<result column="spc_max" property="spcMax"/>
-  	<result column="spc_img" property="spcImg"/>
   	<result column="spc_chimg" property="spcChimg"/>
   	<result column="spc_price" property="spcPrice"/>
   	<result column="spc_hours" property="spcHours"/>
@@ -22,6 +21,7 @@
   	<result column="map_longitude" property="mapLongitude"/>
   	<result column="map_location" property="mapLocation"/>
   	<result column="enroll_date" property="enrollDate"/>
+  	<result column="img_chimg" property="spcImg"/>
   </resultMap>
   <select id="selectListCount"
           resultType="_int">
@@ -121,7 +121,39 @@
   	 	#{sno}
   	 </foreach>      
   </update>
-  
+  <select id="detailSpace"
+          resultMap="spaceResultSet">
+  	select
+  	       spc_no
+  	     , spc_name
+  	     , spc_int
+  	     , spc_long
+  	     , spc_tag
+  	     , spc_type
+  	     , spc_min
+  	     , spc_max
+  	     , spc_img
+  	     , spc_chimg
+  	     , spc_price
+  	     , spc_hours
+  	     , spc_holiday
+  	     , spc_status
+  	     , spc_convn
+  	     , user_id
+  	     , to_char(enroll_Date, 'YYYY-MM-DD') enroll_date
+  	     , substr(map_location, 1, instr(map_location, ' ',1, 2 )) map_location    	
+      from space_info
+     where spc_no = 1
+  </select>
+  <select id="selectImgList"
+          resultMap="spaceResultSet">
+     select
+  	        img_chimg
+  	   from space_info
+  	   join spc_images using(spc_no)
+  	  where spc_no = #{sno}       
+  	        
+  </select>
   
   
   

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.admin.space.model.vo.SearchCondition;
 import com.kh.hotspot.admin.space.model.vo.Space;
+import com.kh.hotspot.admin.space.model.vo.SpaceImg;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
 @Repository
@@ -48,6 +49,18 @@ public class AdminSpaceDao {
 	public int deleteSpace(SqlSessionTemplate sqlSession, String[] sno) {
 		
 		return sqlSession.update("adminSpaceMapper.deleteSpace", sno);
+	}
+	
+	public Space detailSpace(SqlSessionTemplate sqlSession, int sno) {
+		
+		return sqlSession.selectOne("adminSpaceMapper.detailSpace", sno);
+		
+		
+	}
+	
+	public ArrayList<Space> selectImgList(SqlSessionTemplate sqlSession, int sno){
+		
+		return (ArrayList)sqlSession.selectList("adminSpaceMapper.selectImgList", sno);
 	}
 	
 	

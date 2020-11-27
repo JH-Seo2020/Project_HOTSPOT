@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.hotspot.admin.space.model.service.AdminSpaceService;
 import com.kh.hotspot.admin.space.model.vo.SearchCondition;
 import com.kh.hotspot.admin.space.model.vo.Space;
+import com.kh.hotspot.admin.space.model.vo.SpaceImg;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 
@@ -62,6 +63,18 @@ public class AdminSpaceController {
 		int result = sService.deleteSpace(sno);
 		
 		return "redirect:list.sad";
+	}
+	
+	@RequestMapping("detail.sad")
+	public String detailSpace(int sno, Model model) {
+		
+		
+		Space s = sService.detailSpace(sno);
+		ArrayList<Space> list = sService.selectImgList(sno);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("s", s);
+		return "admin/adminSpace/spaceDetail";
 	}
 		
 }

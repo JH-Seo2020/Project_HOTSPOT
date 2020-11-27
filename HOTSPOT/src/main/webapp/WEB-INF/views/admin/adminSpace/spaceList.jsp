@@ -17,6 +17,12 @@
         #adminFooter form{
             display:inline;
         }
+        #adminNotice tbody td:nth-child(3){
+        	cursor:pointer;
+        }
+        #adminNotice tbody tr:hover{
+        	background:mintcream;
+        }
     </style>
 </head>
 <body>
@@ -71,6 +77,9 @@
                 				
                 			location.href="delete.sad?sno="+ selected;
                 			}
+                		})
+                		$("#adminNotice tbody tr").find("td:eq(2)").click(function(){
+                			location.href="detail.sad?sno="+$(this).prev().text();
                 		})
                 	})
                 </script>

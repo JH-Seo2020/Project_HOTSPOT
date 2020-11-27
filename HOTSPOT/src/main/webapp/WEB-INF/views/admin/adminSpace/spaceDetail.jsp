@@ -24,7 +24,7 @@
         list-style:none;
         overflow:hidden;
     }
-    #back{
+    #back img{
         position:absolute;
         top:150px;
         margin-left:40px;
@@ -33,7 +33,7 @@
         width:40px;
         opacity:0.7;
     }
-    #next{
+    #next img{
         position:absolute;
         top:150px;
         margin-left:450px;
@@ -47,6 +47,8 @@
     </style>
 </head>
 <body>
+	
+	<jsp:include page="../../common/sidebar.jsp"/>
 	<div class="outer">
         
         <br>
@@ -56,32 +58,27 @@
 
         <div>
             <fieldset style="margin:auto; width:1000px; height:700px; border:1px solid">
-                <div style="font-size:22px; margin:10px;font-weight:bold;">[경복궁역] 한옥카페'그리다꿈'</div>
-                <div style="float:right; margin-right:20px;">2020-11-10</div>
+                <div style="font-size:22px; margin:10px;font-weight:bold;">${ s.spcName }</div>
+                <div style="float:right; margin-right:20px;">${s.enrollDate}</div>
                 <div style="margin:10px;">
                     user01&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;종로구
+                    &nbsp;&nbsp;&nbsp;&nbsp;${ s.mapLocation }
                 </div>
                 <hr>
                 <div style="font-size:15px; margin:10px;">
                     <div style= "width:452px; height:300px;  position:absolute" >
-                         <img  width="450" height="290" src="resources/예시3.jpg" alt="">
+                         <img  width="450" height="290" src="${ s.spcChimg }" alt="">
                     </div>    
                 </div>
                 <div class="slide">
                     <div id="back"><img src="resources/images/admin/left.png" alt=""></div>
-                    <ul>
-                        <li>
-                                <img src="resources/예시3.jpg"  width="490" height="300">
-                        </li>
-                        
-                        <li>
-                                <img src="resources/예시3.jpg"  width="490" height="300">
-                        </li>
-                        <li>
-                            <img src="resources/예시3.jpg"  width="490" height="300">
-                        </li>
-                    </ul>
+	                    <ul>
+                    <c:forEach var="s" items="${ list }">
+	                        <li>
+	                                <img src="${ s.spcImg }"  width="490" height="300">
+	                        </li>
+                    </c:forEach>
+	                    </ul>
                     <div id="next"><img src="resources/images/admin/right.png" alt=""></div>
                 </div>
                 <br>
@@ -114,16 +111,16 @@
             imgs = $(".slide ul");
             img_count =imgs.children().length;
 
-            $("#back").click(function(){
+            $("#back img").click(function(){
                 back();
             });
-            $("#next").click(function(){
+            $("#next img").click(function(){
                 next();
             });
             function back(){
                 if(1<img_position){
                     imgs.animate({
-                        left:'+=530px'
+                        left:'+=528px'
                     });
                     img_position--;
                     console.log(img_position)
@@ -132,7 +129,7 @@
             function next(){
                 if(img_count>img_position){
                     imgs.animate({
-                        left:'-=530px'
+                        left:'-=528px'
                     });
                     img_position++;
                     console.log(img_position)

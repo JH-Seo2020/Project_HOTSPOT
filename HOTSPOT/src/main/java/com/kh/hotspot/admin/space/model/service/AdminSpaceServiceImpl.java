@@ -49,12 +49,12 @@ public class AdminSpaceServiceImpl implements AdminSpaceService {
 
 	@Override
 	public Space detailSpace(int sno) {
-		return null;
+		return sDao.detailSpace(sqlSession, sno);
 	}
 
 	@Override
-	public ArrayList<SpaceImg> selectImgList(int sno) {
-		return null;
+	public ArrayList<Space> selectImgList(int sno) {
+		return sDao.selectImgList(sqlSession, sno);
 	}
 
 }
