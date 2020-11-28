@@ -9,7 +9,8 @@ public interface MyPageService {
 	
 	// 예약리스트 조회용 서비스
 	int selectReservListCount();
-	ArrayList<Reservation> selectReservList(PageInfo pi);
+	
+	ArrayList<Reservation> selectReservList(PageInfo pi, String userId);
 	
 	// 예약상세조회용 서비스
 	Reservation selectDetailReserv(int reservNo);

@@ -10,8 +10,8 @@
 		<result column="reservation_date" property="reservDate"/>
 		<result column="reservation_name" property="reservName"/>
 		<result column="total_time" property="totalTime"/>
-		<result column="reserv_total" property="reservTotal"/>
-		<result column="perpose_type" property="perpose"/>
+		<result column="reservation_total" property="reservTotal"/>
+		<result column="purpose_type" property="perpose"/>
 		<result column="amount_time" property="amountTime"/>
 		<result column="use_date" property="useDate"/>
 		<result column="use_time" property="useTime"/>
@@ -19,10 +19,27 @@
 		<result column="end_time" property="endTime"/>
 		<result column="pay_date" property="payDate"/>
 		<result column="pay_sum" property="paySum"/>
-		<result column="refund" property="refound"/>
+		<result column="refund" property="refund"/>
 		<result column="pay_method" property="payMethod"/>
 		<result column="reservation_status" property="reservStatus"/>
 	</resultMap>
+	
+	<resultMap id="memberResultSet" type="Member">
+  		<id column="user_id" property="userId" />
+  		<result column="user_type" property="userType" />
+  		<result column="user_pwd" property="userPwd" />
+  		<result column="user_nickname" property="userNickname" />
+  		<result column="user_email" property="userEmail" />
+  		<result column="user_phone" property="userPhone" />
+  		<result column="user_profile" property="userProfile" />
+  		<result column="user_profile_c" property="userProfileC" />
+  		<result column="profile_path" property="profilePath" />
+  		<result column="user_status" property="userStatus" />
+  		<result column="enroll_date" property="enrollDate" />
+  		<result column="modify_date" property="modifyDate" />
+  		<result column="withdrawal_date" property="withdrawalDate" />
+  		<result column="user_memo" property="userMemo" />
+  	</resultMap>
 	
 	<resultMap id="spaceInfoResultSet" type="SpaceInfo">
   		<id column="SPC_NO" property="spcNo" />
@@ -51,10 +68,12 @@
   		<result column="REVIEW_DATE" property="reviewDate" />
   	</resultMap>
 	
-	<select id="selectReservListCount" resultType="_int">
+	<select id="selectReservListCount" parameterType="Member" resultType="_int">
 		select
 		       count(*)
 		  from reservation
+		  join member using(user_id)
+		 where user_id=#{userId}
 	</select>
 	
 	<select id="selectReservList" resultMap="reservationSet">
@@ -76,10 +95,14 @@
 		      , map_location
 		  from reservation r
 		  join space_info using(spc_no)
-		 where r.user_id=#{userId}
-		   and r.reservation_no=#{ reservNo }
+        where r.user_id=#{userId}
 		 order
-		    by r.use_date desc;
+		    by r.use_date desc
 	</select>
+	
+	<update id="increaseCount" parameterType="_int">
+	
+	
+	</update>
 
 </mapper>

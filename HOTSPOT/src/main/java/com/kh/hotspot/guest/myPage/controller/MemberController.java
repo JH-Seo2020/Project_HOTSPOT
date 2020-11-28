@@ -70,7 +70,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("insert.me")
-	public String insertMember(@ModelAttribute Member m, HttpSession session) {
+	public String insertMember(@ModelAttribute Member m, HttpSession session, Model model) {
 		
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPwd);
@@ -82,8 +82,8 @@ public class MemberController {
 			return "redirect:/";
 			
 		}else { 
-			session.invalidate();
-			return "redirect:/";
+			model.addAttribute("errorMsg", "회원가입에 실패하셨습니다. 다시 시도해주세요");
+			return "common/errorPage";
 		}
 	}
 	
@@ -181,12 +181,10 @@ public class MemberController {
 	
 	@RequestMapping("update.me")
 	public String updateMember(Member m, MultipartFile upfile, HttpSession session, Model model) {
-		System.out.println(m);
 		
-		// 새로 넘어온 첨부파일이 있을경우
+		
 		if(!upfile.getOriginalFilename().equals("")) {
 			
-			// 기존의 첨부파일이 있었을 경우 => 서버에 업로드 된 기존 첨부파일을 지우기위해
 			if(m.getUserProfile() != null) {
 				
 				String removeFilePath = session.getServletContext().getRealPath(m.getUserProfileC());
@@ -195,7 +193,7 @@ public class MemberController {
 			
 			String changeName = saveFile(upfile, session);
 			m.setUserProfile(upfile.getOriginalFilename());
-			m.setUserProfileC("resources/uploadFiles/" + changeName);
+			m.setUserProfileC("resources/upFiles/" + changeName);
 			
 		}
 		
@@ -208,7 +206,7 @@ public class MemberController {
 			session.setAttribute("loginUser", mService.loginMember(m));
 			session.setAttribute("alertMsg", "성공적으로 정보수정되었습니다.");
 			
-			return "redirect:myPage.me";
+			return "redirect:myProfile.me";
 			
 		}else{
 			
@@ -336,19 +334,15 @@ public class MemberController {
 	// 파일업로드용 공통메소드
 	public String saveFile(MultipartFile userProfile, HttpSession session) {
 	
-		// 원본명
 		String originName = userProfile.getOriginalFilename();
 		
-		// 저장시킬 폴더의 물리적인 경로
-		String profilePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+		String profilePath = session.getServletContext().getRealPath("/resources/upFiles/");
 		
 		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		int ranNum = (int)(Math.random() * 90000 + 10000);
 		
-		// 인덱스값 뽑기
 		String ext = originName.substring(originName.lastIndexOf("."));
 		
-		// 수정프로필명
 		String changeName = currentTime + ranNum + ext;
 		
 		try {

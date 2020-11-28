@@ -16,14 +16,22 @@ public class MyPageDao {
 		return sqlSession.selectOne("mypageMapper.selectReservListCount");
 	}
 	
-	public ArrayList<Reservation> selectReservList(SqlSessionTemplate sqlSession, PageInfo pi){
+	public ArrayList<Reservation> selectReservList(SqlSessionTemplate sqlSession, PageInfo pi, String userId){
 
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectReservList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectReservList", userId, rowBounds);
 	}
 
+//	public int increaseCount(SqlSessionTemplate sqlSession, int reservNo) {
+//		return sqlSession.update("mypageMapper.increaseCount", reservNo);
+//	}
+	
+	
+	public Reservation selectDetailReserv(SqlSessionTemplate sqlSession, int reservNo) {
+		return sqlSession.selectOne("mypageMapper.selectDetailReserv", reservNo);
+	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
@@ -18,24 +19,25 @@ public class MyPageController {
 	
 	@Autowired
 	private MyPageService mpService;
+//	
+//	@RequestMapping("myReserv.re")
+//	public String selelctMyReserv() {
+//		
+//		return "guest/myPage/reservationListView";
+//	}
 	
 	@RequestMapping("myReserv.re")
-	public String selelctMyReserv() {
-		
-		return "guest/myPage/reservationListView";
-	}
-	
-	@RequestMapping("resevList.re")
-	public String selectReservListCount(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) { // 페이지 기본값을 1로지정
+	public String selectReservList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String userId, Model model) { // 페이지 기본값을 1로지정
 		
 		int listCount = mpService.selectReservListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10, 5);
 		
-		ArrayList<Reservation> list = mpService.selectReservList(pi);
+		ArrayList<Reservation> list = mpService.selectReservList(pi, userId);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
+		System.out.println(list);
 		
 		return "guest/myPage/reservationListView";
 
@@ -43,8 +45,15 @@ public class MyPageController {
 
 	
 	@RequestMapping("reservDetail.re")
-	public String selectDetailReserv() {
-		return "guest/myPage/reservationDetailView";
+	public ModelAndView selectDetailReserv(int reservNo, ModelAndView mv) {
+		
+		Reservation r = mpService.selectDetailReserv(reservNo);
+		
+		mv.addObject("r", r);
+		mv.setViewName("guest/myPage/reservationDetailView");
+		
+		return mv;
+
 	}
 	
 }

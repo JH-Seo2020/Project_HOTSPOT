@@ -85,7 +85,7 @@
 		        <if test="userEmail != null">user_email=#{userEmail},</if>
 		        <if test="userPhone != null">user_phone=#{userPhone},</if>
 		        <if test="userPwd != null">user_pwd=#{newUserPwd},</if>
-	     	    modify_date=#{modifyDate}
+	     	    modify_date=sysdate
 	     	</set>
 		  where user_id=#{userId}
   		</update>
