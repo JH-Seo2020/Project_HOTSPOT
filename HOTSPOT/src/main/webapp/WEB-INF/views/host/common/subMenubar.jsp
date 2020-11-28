@@ -81,7 +81,7 @@
           <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6pdx;margin-left:30px;"> <a href="">1:1챗봇 문의</a></ul>
           <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6px;margin-left:30px;">  <a href="">1:1관리자 문의</a></ul>
           <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6px;margin-left:30px;">  <a href="">나의 문의 내역</a></ul>
-          <ul class="f_notice"><img src="resources/images/host_images/volume.png" style="width:20px"><a href="">공지사항</a></ul>
+          <ul class="f_notice"><img src="resources/images/host_images/volume.png" style="width:20px"><a href="notice.ho">공지사항</a></ul>
           <ul class="f_calculate"><img src="resources/images/host_images/money.png"><a href="calculateForm.ho">정산</a></ul>
      
 

@@ -7,16 +7,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<!-- css외부 파일 연결 -->
-<link rel="stylesheet" href="resources/css/hostmenubar.css" type="text/css"/>
 <!-- 구글폰트  -->
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&amp;display=swap" rel="stylesheet">
- <!-- 부트스트랩에서 제공하고 있는 스타일 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <!-- jQuery 라이브러리 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<!-- 부트스트랩에서 제공하고 있는 스타일 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
     <style>
         #LocationAgreements, #PrivateAgreements, #Agreements{
             width: 375px;
@@ -120,7 +126,7 @@ NAVER 내의 개별 서비스 이용, 이벤트 응모 및 경품 신청 과정�
                 
 
                 
-                <a class="btn btn-primary" style="width: 120px; margin-left: 30px;" onclick="finalCheck()" href="enrollForm.me">확인</a>
+                <a class="btn btn-primary" style="width: 120px; margin-left: 30px;" id="checkBoxCheck" href="enrollForm.me">확인</a>
             </div>
 
             <script>
@@ -131,16 +137,18 @@ NAVER 내의 개별 서비스 이용, 이벤트 응모 및 경품 신청 과정�
                         $("input[type=checkbox]").prop("checked",false);
                     }
                 });
+
                 
-                function finalCheck(){
-                    if($("input[type=checkbox]").is(":checked") == false){
-                        alert("선택사항들을 체크해주세요.");
-                        $(".btn btn-primary").prop("disabled",true);
-                    }else{
-                        $(".btn btn-primary").prop("disabled",false);
-                    }
-                
-                }
+                $("#checkBoxCheck").click(
+                        function (){
+                            if($("input[type=checkbox]").is(":checked") == false){
+                                alert("선택사항들을 체크해주세요.");
+                                $(".btn btn-primary").prop("disabled",true);
+                            }else{
+                                $(".btn btn-primary").prop("disabled",false);
+                            }
+                        
+                        });
 
 
 

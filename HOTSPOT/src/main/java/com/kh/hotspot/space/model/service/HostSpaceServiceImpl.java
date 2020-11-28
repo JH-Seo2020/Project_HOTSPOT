@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.hotspot.space.model.vo.Space;
+import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.dao.HostSpaceDao;
 
 
@@ -14,7 +16,7 @@ import com.kh.hotspot.space.model.dao.HostSpaceDao;
 public class HostSpaceServiceImpl implements HostSpaceService{
 
 	@Autowired
-	private HostSpaceDao HostspaceDao;
+	private HostSpaceDao hSpaceDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
@@ -26,14 +28,28 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 	public ArrayList<Space> selectSpaceList(String userId) {
 		
 		
-		return HostspaceDao.selectSpaceList(sqlSession, userId);
+		return hSpaceDao.selectSpaceList(sqlSession, userId);
 	}
 
 
 	@Override
 	public int deleteSpace(String spcNo) {
 		
-		return HostspaceDao.deleteSpace(sqlSession, spcNo);
+		return hSpaceDao.deleteSpace(sqlSession, spcNo);
+	}
+
+
+	@Override
+	public int selectNoticeCount() {
+		
+		return hSpaceDao.selectNoticeCount(sqlSession);
+	}
+
+
+	@Override
+	public ArrayList<VoicesNotice> selectList(PageInfo pi) {
+		// TODO Auto-generated method stub
+		return hSpaceDao.selectList(sqlSession, pi);
 	}
 	
 	

@@ -2,7 +2,8 @@ package com.kh.hotspot.space.model.service;
 
 import java.util.ArrayList;
 
-
+import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.vo.Space;
 
 public interface HostSpaceService {
@@ -12,6 +13,12 @@ public interface HostSpaceService {
 	
 	//2. 공간 삭제
 	int deleteSpace(String spcNo);
+	
+	//3. 공지사항 게시글 개수 조회
+	int selectNoticeCount();
+
+	//공지사항 게시글 리스트 조회
+	ArrayList<VoicesNotice> selectList(PageInfo pi);
 
 	
 	

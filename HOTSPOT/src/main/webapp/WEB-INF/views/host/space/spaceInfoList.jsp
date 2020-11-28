@@ -12,6 +12,22 @@
 	type="text/css" />
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- 구글폰트  -->
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&amp;display=swap" rel="stylesheet">
+<!-- jQuery 라이브러리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- 부트스트랩에서 제공하고 있는 스타일 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 </head>
 <style>
 label {
@@ -155,23 +171,24 @@ label {
     		$(".todaySpace img").hover(function(){
     			$(this).css("cursor","pointer");
     		})
-    	})
+    	});
     	
-    	function deleteSpace(spcNo){   		
+    	function deleteSpcae(e){   		
     		
 			$.ajax({
 				url:"delete.space",
 				data:{
-					spcNo:spcNo
+					spcNo: e
 				},
 				success:function(data){
 					
-					alret('해당 공간이 삭제되었습니다!');
+					alert('해당 공간이 삭제되었습니다!');
 					
 				},error:function(){
 					console.log("ajax통신 실패");
 				}
 			})
+			
     	}
     	
     </script>

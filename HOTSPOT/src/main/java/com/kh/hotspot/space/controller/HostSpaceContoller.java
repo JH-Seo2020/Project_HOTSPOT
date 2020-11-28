@@ -8,17 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.space.model.service.HostSpaceService;
 import com.kh.hotspot.space.model.vo.Space;
+
 @Controller
 public class HostSpaceContoller {
 	
 	@Autowired
-	private HostSpaceService HostSpaceService;
+	private HostSpaceService hSpaceService;
 	
 	/**
 	 * @author jieun
@@ -42,7 +48,7 @@ public class HostSpaceContoller {
 		String userId = loginUser.getUserId();
 		
 		
-		ArrayList<Space> spaceList = HostSpaceService.selectSpaceList(userId);
+		ArrayList<Space> spaceList = hSpaceService.selectSpaceList(userId);
 		session.setAttribute("spaceList", spaceList);
 		
 		return "host/space/spaceInfoList";
@@ -76,16 +82,39 @@ public class HostSpaceContoller {
 	
 	
 	@RequestMapping("delete.space")
-	public String spaceDelete(String spcNo, Model m) {
+	public ModelAndView spaceDelete(String spcNo, ModelAndView mv, HttpSession session) {
 		
-		int result = HostSpaceService.deleteSpace(spcNo);
+		int result = hSpaceService.deleteSpace(spcNo);
 		
 		if(result > 0) {
-			return "redirect:/host/space/spaceInfoList";
-		}else {
-			m.addAttribute("alretMsg","삭제에 실패했습니다.");
 			
-			return "redirect:/host/space/spaceInfoList";
+			Member loginUser =(Member) session.getAttribute("loginUser");
+			
+			String userId = loginUser.getUserId();
+			
+			
+			ArrayList<Space> spaceList = hSpaceService.selectSpaceList(userId);
+			mv.addObject("spaceList", spaceList).setViewName("host/space/spaceInfoList");
+			
+		}else {
+			mv.addObject("errorMsg", "삭제에 실패했습니다").setViewName("common/errorPage");
+			
 		}
+		return mv;
+	}
+	
+	@RequestMapping("notice.ho")
+	public String hostNoticeList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
+		
+		int listCount = hSpaceService.selectNoticeCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		
+		ArrayList<VoicesNotice> list = hSpaceService.selectList(pi);
+		
+		model.addAttribute("pi",pi);
+		model.addAttribute("list",list);
+		
+		return "host/hostPage/hostNoticePage";
 	}
 }
