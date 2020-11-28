@@ -20,6 +20,19 @@
 		<result column="user_memo" property="userMemo" />
 	</resultMap>
 	
+	<resultMap id="adminHostInfoResultSet" type="adminHostInfo">
+		<id column="user_id" property="userId"></id>
+		<result column="business_no" property="businessNo" />
+		<result column="business_name" property="businessName" />
+		<result column="business_license" property="businessLicense" />
+		<result column="license_path" property="licensePath" />
+		<result column="business_loc" property="businessLoc" />
+		<result column="business_acc" property="businessAcc" />
+		<result column="business_phone" property="businessPhone" />
+		<result column="business_email" property="businessEmail" />
+		<result column="host_status" property="hostStatus" />
+	</resultMap>	
+	
 	<!-- 총 회원수 조회 -->
 	<select id="selectListCount" resultType="_int">
 		select
@@ -43,50 +56,23 @@
 		    by user_status desc
 	</select>
 	
-	<!-- 회원유형 검색결과조회 -->
-	<select id="selectSearchUserType" parameterType="String" resultMap="adminMemberResultSet">
+	<!-- test1 -->
+	<select id="selectHostStatus" parameterType="String" resultMap="adminHostInfoResultSet">
 		select
-		       user_type
-		     , user_id
-		     , user_nickname
-		     , user_email
-		     , user_phone
-		     , enroll_date
-		     , modify_date
-		     , user_status
-		  from member
-		 where user_type like #{searchText}||'%'
-		 order by decode(user_status, 'Y', 1), enroll_date desc
+		       user_id
+		     , business_no
+		     , business_name
+		     , business_license
+		     , license_path
+		     , business_loc
+		     , business_acc
+		     , business_phone
+		     , business_email
+		     , host_status
+		  from host_info
+		 where user_id=#{userId}
 	</select>
 	
-	<!-- 회원아이디 검색결과조회 -->
-	<select id="selectSearchUserId" parameterType="String" resultMap="adminMemberResultSet">
-		select
-		       user_type
-		     , user_id
-		     , user_nickname
-		     , user_email
-		     , user_phone
-		     , enroll_date
-		     , modify_date
-		     , user_status
-		  from member
-		 where user_type like #{searchText}||'%'
-		 order by decode(user_status, 'Y', 1), enroll_date desc
-	</select>
+
 	
-	<!-- 선택한 회원상태('N'인경우)로 우선정렬조회 -->
-	<select id="selectStatusSearchList" parameterType="String" resultMap="adminMemberResultSet">
-		select
-		       user_type
-		     , user_id
-		     , user_nickname
-		     , user_email
-		     , user_phone
-		     , enroll_date
-		     , modify_date
-		     , user_status
-		  from member
-		 order by decode(user_status, #{userStatus}, 1), enroll_date desc
-	</select>
 </mapper>

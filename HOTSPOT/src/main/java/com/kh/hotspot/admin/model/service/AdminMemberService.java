@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.host.model.vo.HostInfo;
 
 public interface AdminMemberService {
 	
@@ -13,11 +14,6 @@ public interface AdminMemberService {
 	// 모든 회원리스트 조회
 	ArrayList<Member> selectList(PageInfo pageInfo);
 	
-	// 검색결과 조회
-	ArrayList<Member> selectMemberSearchresult(String searchType, String searchText, PageInfo pageInfo);
-	
-	
-	// 선택한 회원상태('N'인경우)로 우선정렬조회
-	ArrayList<Member> selectStatusSearchList(String userStatus, PageInfo pageInfo);
+	HostInfo selectHostStatus(String userId);
 
 }

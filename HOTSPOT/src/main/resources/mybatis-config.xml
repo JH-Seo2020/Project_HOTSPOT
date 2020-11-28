@@ -11,6 +11,7 @@
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="Report" />
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Review" alias="Review" />
 		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Member" alias="adminMember"/>
+		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="adminHostInfo"/>
 		<!-- admin(현우 -->
 		<typeAlias type="com.kh.hotspot.admin.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.hotspot.admin.inquiry.model.vo.Inquiry" alias="Inquiry"/>
