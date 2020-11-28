@@ -11,8 +11,8 @@
 </head>
 <body>
 	<div class="outer">
-	<%@ include file="../common/menubar.jsp"%>
-    	<%@ include file="sidebarSunkyung.jsp"%>
+	<%@ include file="../../common/menubar.jsp"%>
+    	<%@ include file="../sidebarSunkyung.jsp"%>
         <div id="rightSpace">
             <div id="categoryName">
                 <span>회원관리</span>
@@ -87,11 +87,33 @@
     </div>
     <script>
 		$(function(){
-			$("#btn_userSearch").click(function(){
-				var searchType = $("#select_userSearchSelect").val();				// '회원유형'/'아이디'
-				var searchText = $("#input_userSearch").val();						// '검색어'
-				location.href="memberSearchresult.ad?searchType=" + searchType + "&searchText=" + searchText;
-			});
+			
+			$(".table tbody>tr").click(function(){
+				// 회원아이디 넘기면서 상세화면 요청
+				var userId = $(this).children().eq(1).text();
+				var userType = $(this).children().eq(0).text();
+				if(userType == 'Host'){
+					
+				}else{
+					$.ajax({
+						url: "guestDetail.ad",
+						data: {
+							userId:userId
+							}, 
+						success: function(hostStatus){
+							console.log(hostStatus);
+							// 대기상태가 아니면 게스트 상세화면으로 이동
+							//location.href="reportList.ad"
+							// 대기상태인경우 대기상태인 게스트상세화면으로 이동
+							//location.href="reportList.ad"
+						},
+						error: function(){
+							alert("실패하였습니다.");
+						}
+					});
+				}
+			})
+			
 		});
     </script>
 </body>

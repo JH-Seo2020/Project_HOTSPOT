@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper>
-  <cache-ref namespace=""/>
+  <cache-ref namespace="hostSpaceMapper"/>
+  <insert id="insertSpace" parameterType="Space">
+  	INSERT 
+	  INTO   SPACE_INFO (
+	         SPC_NO
+	       , SPC_NAME
+	       , SPC_INT
+	       , SPC_LONG
+	       , SPC_TAG
+	       , SPC_TYPE
+	       , SPC_MIN
+	       , SPC_MAX
+	       , SPC_IMG
+	       , SPC_CHIMG
+	       , SPC_PRICE
+	       , SPC_HOURS
+	       , SPC_HOLIDAY
+	       , SPC_STATUS
+	       , SPC_CONVN
+	       , USER_ID
+	       , MAP_LATITUDE
+	       , MAP_LONGITUDE
+	       , MAP_LOCATION
+	       ) 
+	VALUES (
+	         seq_space.nextval
+	    	,#{spcName}
+			,#{spcInt}
+			,#{spcLong}
+			,#{spcTag}
+			,#{spcType}
+			,#{spcMin}
+			,#{spcMax}
+			,#{spcImg}
+			,#{spcChimg}
+			,#{spcPrice}
+			,#{spcHours}
+			,#{spcHoliday}
+			,#{spcStatus}
+			,#{spcConvn}
+			,#{userId}
+			,#{latitude}
+			,#{longitude}
+			,#{location}
+	       )
+  </insert>
 </mapper>

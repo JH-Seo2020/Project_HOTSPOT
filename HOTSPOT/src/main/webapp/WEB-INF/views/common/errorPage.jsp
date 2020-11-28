@@ -28,7 +28,7 @@
         <h1 style="color: gray;">&nbsp;${ errorMsg }</h1><br>
         <img src="resources/images/404error.jpg" width="90%">
         <br><br>
-        <button type="button" id="gotoHomepage" class="btn btn-warning">메인페이지로 이동</button>
+        <button type="button" id="gotoHomepage" class="btn btn-warning" onclick="location.href='/hotspot'">메인페이지로 이동</button>
     </div>
     <br><br><br><br>
     

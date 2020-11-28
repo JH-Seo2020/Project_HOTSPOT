@@ -118,12 +118,12 @@
                         SMS &nbsp;&nbsp;&nbsp;<input type="radio" name="updateSms" value="yes"> 예
                             &nbsp;&nbsp;&nbsp;<input type="radio" name="updateSms" value="no" checked > 아니오
 
-                  </div><br><hr><br>
-                 <div id="profileBtn" align="center"> 
-                     <button type="submit">수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     <button type="button" onclick="location.href='myProfile.me'">취소하기</button>
-                 </div>
-             	</div>	
+                  	</div><br><hr><br>
+             	  	</div>	
+	                <div id="profileBtn" align="center"> 
+	                    <button type="submit">수정하기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <button type="button" onclick="location.href='myProfile.me'">취소하기</button>
+	                </div>
              </form>
          </div>
      </div>
@@ -131,11 +131,11 @@
      <!-- 프로필 첨부파일 클릭이벤트 -->
 	 <script>
 			$('.target_img').click(function(){
-				$("input[name='userProfile']").click();
+				$("input[name='upfile']").click();
 			})
 			
 			$(function(){
-				$("#userProfile").on('change', function(){
+				$("#upfile").on('change', function(){
 					readURL(this);
 				});
 			});

@@ -27,7 +27,7 @@
         	 $("#spaceForm").css({"display":"block"});
         	
         })  
-
+		<!-- 글자 수 제한 -->
         $("#spcInt").keyup(function(){
             var inputLength = $(this).val().length;
 
@@ -56,7 +56,7 @@
 
     </script>
     <div id="spaceInsertContainer">
-        <form id="spaceInsertForm"action="" method="post">
+        <form id="spaceInsertForm"action="insertSpace.ho" method="post"enctype="multipart/form-data">
             <h5><span class="importh">공간등록</span>을 원하시나요?</h5>
                 <hr>
             <span class="comment1"><p style="color:red">*</p> 필수 입력사항</span>
@@ -130,7 +130,8 @@
                             <th></th>
                             <td colspan="2">
 	                            <input type="hidden" name="latitude" id="latitude">
-	                            <input type="hidden" "name="longtitude" id="longtitude">
+	                            <input type="hidden" "name="longitude" id="longitude">
+	                            <input type="hidden" "name="${loginUser.userId }" >
                                 <input type="text" class="form-control"name="location" id="sample5_address"placeholder="">
                             </td>
                         </tr>
@@ -151,10 +152,10 @@
                         <tr>
                             <th>기본가격 <p style="color:red">*</p></th>
                             <td>
-                                <input type="text" class="form-control"name=""id="spacePrice"placeholder="">
+                                <input type="text" class="form-control"name="spcPrice"id="spacePrice"placeholder="">
                             </td>
                             <td style="margin: 0px;">
-                                <input type="text" class="form-control"name=""disabled id="unit"value="원/시간">
+                                <input type="text" class="form-control"disabled id="unit"value="원/시간">
                             </td>
                         </tr>
                         <tr>
@@ -356,7 +357,7 @@
                         	<img id="img"/>
                         </div>
                         <label for="spc_img">파일첨부</label>
-                        <input type="file" name="" id="spc_img" ></input><br>
+                        <input type="file" name="upfile" id="spc_img" ></input><br>
                         <!-- 공간 이미지 관련 스크립트  -->
                          <script>
                             var sel_file;
@@ -447,7 +448,7 @@
 	                                <img id="imgs">
 	                         	</div>
 	                             <label for="spc_imgs1"id="imgsLabel">파일첨부</label>
-	                     	     <input type="file" name="imgList[0].imgOgImg" id="spc_imgs1"></input><br> 
+	                     	     <input type="file" name="upfiles" id="spc_imgs1"></input><br> 
                      	    </div> 
                      	    <div style="widhth:180px; height:200px;">
 	                             <div class="imgbox1">
@@ -455,7 +456,7 @@
 	                                <img id="imgs1">
 	                            </div>
 	                             <label for="spc_imgs2"id="imgsLabel">파일첨부</label>
-	                     	     <input type="file" name="imgList[1].imgOgImg" id="spc_imgs2"></input><br> 
+	                     	     <input type="file" name="upfiles" id="spc_imgs2"></input><br> 
                      	    </div> 
                      	    <div style="widhth:180px; height:200px;">
 	                     	      <div class="imgbox2">
@@ -463,7 +464,7 @@
 	                                <img id="imgs2">
 	                            </div>
 	                             <label for="spc_imgs3"id="imgsLabel">파일첨부</label>
-	                     	     <input type="file" name="imgList[2].imgOgImg" id="spc_imgs3"></input><br>                       	     
+	                     	     <input type="file" name="upfiles" id="spc_imgs3"></input><br>                       	     
                      	     </div> 
                      	     <div style="widhth:180px; height:200px;"> 
 	                      		  <div class="imgbox3">
@@ -471,7 +472,7 @@
 	                                <img id="imgs3">
 	                            </div>
 	                             <label for="spc_imgs4"id="imgsLabel">파일첨부</label>
-	                     	     <input type="file" name="imgList[3].imgOgImg" id="spc_imgs4"></input><br>                       	     
+	                     	     <input type="file" name="upfiles" id="spc_imgs4"></input><br>                       	     
                      	     </div>
                         </div>
                       	

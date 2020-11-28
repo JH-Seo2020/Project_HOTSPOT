@@ -11,6 +11,7 @@
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="Report" />
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Review" alias="Review" />
 		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Member" alias="adminMember"/>
+		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="adminHostInfo"/>
 		<!-- admin(현우 -->
 		<typeAlias type="com.kh.hotspot.admin.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.hotspot.admin.inquiry.model.vo.Inquiry" alias="Inquiry"/>
@@ -30,10 +31,13 @@
 		<!-- 호스트 관련(지은) -->
 		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="HostInfo" />
 		<typeAlias type="com.kh.hotspot.space.model.vo.Space" alias="Space" />
+		<typeAlias type="com.kh.hotspot.space.model.vo.SpcNotes" alias="SpcNotes" />
+		<typeAlias type="com.kh.hotspot.space.model.vo.SpcImages" alias="SpcImages" />
 		<typeAlias type="com.kh.hotspot.host.model.vo.Qna" alias="hostQna" />
 		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesFaq" alias="VoicesFaq" />		
 		<!-- 마이페이지(성희) -->
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Reservation" alias="Reservation"/>
+		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Member" alias="Member"/>
 	</typeAliases>
 	
 	
@@ -58,7 +62,7 @@
 		
 		<!-- 호스트,공간 관련(지은) -->
 		<mapper resource="mappers/host/host-mapper.xml"/>
-		<!-- <mapper resource="mappers/host/hostspace-mapper.xml"/> -->
+	 <!--   <mapper resource="mappers/host/hostspace-mapper.xml"/>  --> 
 		
 		<!-- 마이페이지(성희) -->
 		<mapper resource="mappers/guest/mypage-mapper.xml"/>	

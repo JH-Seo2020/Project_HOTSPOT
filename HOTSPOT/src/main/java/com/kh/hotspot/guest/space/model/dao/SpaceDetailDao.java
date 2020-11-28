@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
@@ -39,6 +40,12 @@ public class SpaceDetailDao {
 	public int insertQuestion(SqlSessionTemplate sqlSession, Qna qna) {
 
 		return sqlSession.insert("guestspaceMapper.insertQuestion",qna);
+	}
+
+	//신고등록
+	public int insertReport(SqlSessionTemplate sqlSession, Report report) {
+		
+		return sqlSession.insert("guestspaceMapper.insertReport",report);
 	}
 
 }

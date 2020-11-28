@@ -71,7 +71,7 @@
             <br><br><br>
             <h2 align="center"><b>예약 내역 리스트</b></h2>
             <br><br>
-            <form action="reservList.re" class="selectArray">
+            <div class="selectArray">
                 <select name="reservationAlign">
                     <option value="useDate" selected>이용날짜순 정렬</option>
                     <option value="reservNo" >예약번호순 정렬</option>
@@ -83,73 +83,37 @@
                     <option value="cancel">취소환불</option>
                     <option value="usecomplete">이용완료</option>
                 </select>
-            </form>
-            <div id="reservation_listArea">
-                <div class="reserveInfo" onclick="location.href='reservDetail.re'">
-                    <input type="hidden" name="reservNo" value="${ list.reservNo }">
-                    <img src="resources/images/space1.jpg" class="reservation_thumbnail">
-                    <div>
-                        <span class="listInfo1"><a href="">[${ list.spcType }][${ list.location }] 그리다</a></span><br>
-                        <span class="listInfo2">${ list. reservDate } ${ list.useTime }시 ~ ${ list.endTime }시 ${ list.totalTime }시간 ${ list.reservTotal }명</span><br><br>
-                        <span class="listInfo2">${ list.amountTime }원</span>
-                        <span class="statusRable">${ list.reservStatus }</span>
-                    </div>
-                </div>
-                <br>
-                <div class="reserveInfo" onclick="location.href">
-                    <input type="hidden" value="">
-                    <img src="../../resources/images/cafe_1.jpg" class="reservation_thumbnail">
-                    <div>
-                        <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
-                        <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
-                        <span class="listInfo2">20,000원</span>
-                        <span class="badge badge-pill badge-warning" style="background: #49adff; width: 80px; height: 30px; float: right;">
-                            	결제대기
-                        </span>
-                    </div>
-                </div>
-                <br>
-                <div class="reserveInfo" onclick="location.href">
-                    <input type="hidden" value="">
-                    <img src="../../resources/images/cafe_1.jpg" class="reservation_thumbnail">
-                    <div>
-                        <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
-                        <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
-                        <span class="listInfo2">20,000원</span>
-                        <span class="badge badge-pill badge-warning" style="background: #ff4931; width: 80px; height: 30px; float: right;">
-                            	취소환불
-                        </span>
-                    </div>
-                </div>
-                <br>
-                <div class="listArea" onclick="location.href">
-                    <input type="hidden" value="">
-                    <img src="../../resources/images/cafe_1.jpg" class="reservation_thumbnail">
-                    <div>
-                        <span class="listInfo1"><a href="">[카페][경복궁역] 그리다</a></span><br>
-                        <span class="listInfo2">2020.11.19(목) 11시~13시 2시간 8명</span><br><br>
-                        <span class="listInfo2">20,000원</span>
-                        <span class="badge badge-pill badge-warning" style="background: #b6b6b6; width: 80px; height: 30px; float: right;">
-                           	 이용완료
-                        </span>
-                    </div>
-                </div>
             </div>
-        </div>
+            	<div id="reservation_listArea">
+		            <input type="hidden" name="userId" value="${ loginUser.userId }">
+	            	<c:forEach var="r" items="${ list }">
+		                <div class="reserveInfo" onclick="location.href='reservDetail.re'">
+		                    <input type="hidden" name="reservNo" value="${ r.reservNo }">
+		                    <img src="resources/images/space1.jpg" class="reservation_thumbnail">
+		                    <div>
+		                        <span class="listInfo1">[][${ r.location }] 그리다</span><br>
+		                        <span class="listInfo2">${ r. reservDate } ${ r.useTime }시 ~ ${ r.endTime }시 ${ r.totalTime }시간 ${ r.reservTotal }명</span><br><br>
+		                        <span class="listInfo2">${ r.amountTime }원</span>
+		                        <span class="statusRable">${ r.reservStatus }</span>
+		                    </div>
+		                </div><br>
+		         	</c:forEach>
+	           	</div>
+	       </div>
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
                 <c:choose>
                    	<c:when test="${ pi.currentPage eq 1}">
-                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    	<li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>
                     </c:when>
                     <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="list.bo?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="myReserv.re?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
                     </c:otherwise>
                    </c:choose>
                    
                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                   	<li class="page-item"><a class="page-link" href="list.bo?currentPage=${ p }">${ p }</a></li>
+                   	<li class="page-item"><a class="page-link" href="myReserv.re?currentPage=${ p }">${ p }</a></li>
 				</c:forEach>
 				
 				<c:choose>
@@ -157,7 +121,7 @@
                     	<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>
                     </c:when>
                     <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="list.bo?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="myReserv.re?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
                     </c:otherwise>
                	</c:choose>
             </ul>
