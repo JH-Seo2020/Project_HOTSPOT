@@ -18,6 +18,7 @@
 		<result column="modify_date" property="modifyDate" />
 		<result column="withdrawal_date" property="withdrawalDate" />
 		<result column="user_memo" property="userMemo" />
+		<result column="host_status" property="hostStatus" />
 	</resultMap>
 	
 	<resultMap id="adminHostInfoResultSet" type="adminHostInfo">
@@ -51,13 +52,14 @@
 		     , enroll_date
 		     , modify_date
 		     , user_status
+		     , host_status
 		  from member
-		 order
-		    by user_status desc
+		  left join host_info using (user_id)
+		 order by decode(user_status, 'Y', 1), enroll_date desc
 	</select>
 	
-	<!-- test1 -->
-	<select id="selectHostStatus" parameterType="String" resultMap="adminHostInfoResultSet">
+	<!-- 호스트정보 조회 -->
+	<select id="selectHostInfo" parameterType="String" resultMap="adminHostInfoResultSet">
 		select
 		       user_id
 		     , business_no
@@ -73,6 +75,33 @@
 		 where user_id=#{userId}
 	</select>
 	
-
+	<!-- 회원정보 조회 -->
+	<select id="selectUserInfo" parameterType="String" resultMap="adminMemberResultSet">
+		select
+		       user_id
+		     , user_type
+		     , user_pwd
+		     , user_nickname
+		     , user_email
+		     , user_phone
+		     , user_profile
+		     , user_profile_c
+		     , profile_path
+		     , user_status
+		     , enroll_date
+		     , modify_date
+		     , withdrawal_date
+		     , user_memo
+		  from member
+		 where user_id=#{userId}
+	</select>
+	
+	<!-- 회원상태, 메모 저장 -->
+	<update id="updateGuestinfo" parameterType="Member">
+		update
+		       member
+		   set user_status = #{userStatus}, user_memo = #{userMemo}
+		 where user_id = #{userId}
+	</update>
 	
 </mapper>

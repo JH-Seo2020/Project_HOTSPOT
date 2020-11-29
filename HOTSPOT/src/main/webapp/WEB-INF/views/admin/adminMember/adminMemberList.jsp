@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- CSS -->
-<link href="resources/css/admin/adminUserList.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="outer">
-	<%@ include file="../../common/menubar.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
+		<!-- CSS -->
+		<link href="resources/css/admin/adminMemberList.css" rel="stylesheet" type="text/css">
     	<%@ include file="../sidebarSunkyung.jsp"%>
         <div id="rightSpace">
             <div id="categoryName">
@@ -46,7 +46,18 @@
                     	<c:forEach var="mem" items="${ list }">
 							<tr>
 	                            <td>${ mem.userType }</td>
-	                            <td>${ mem.userId }</td>
+	                            <c:choose>
+	                            	<c:when test="${ mem.hostStatus eq 'W' }">
+	                            		<td style="padding-left: 3px;">
+                               				<img id="img_newIcon" src="resources/images/admin/newIcon.png" style="float: left; margin-right: -5px;">
+                                			${ mem.userId }
+                                			<input id="hidden_userId" type="hidden" name="userId" value="${mem.userId}">
+                            			</td>
+	                            	</c:when>
+	                            	<c:otherwise>
+	                            		<td>${ mem.userId }</td>
+	                            	</c:otherwise>
+	                            </c:choose>
 	                            <td>${ mem.userNickname }</td>
 	                            <td>${ mem.userEmail }</td>
 	                            <td>${ mem.userPhone }</td>
@@ -87,33 +98,32 @@
     </div>
     <script>
 		$(function(){
-			
 			$(".table tbody>tr").click(function(){
 				// 회원아이디 넘기면서 상세화면 요청
-				var userId = $(this).children().eq(1).text();
-				var userType = $(this).children().eq(0).text();
-				if(userType == 'Host'){
-					
-				}else{
-					$.ajax({
-						url: "guestDetail.ad",
-						data: {
-							userId:userId
-							}, 
-						success: function(hostStatus){
-							console.log(hostStatus);
-							// 대기상태가 아니면 게스트 상세화면으로 이동
-							//location.href="reportList.ad"
-							// 대기상태인경우 대기상태인 게스트상세화면으로 이동
-							//location.href="reportList.ad"
-						},
-						error: function(){
-							alert("실패하였습니다.");
+				/* var userId = $(this).children().eq(1).text(); */
+				var userId = $("#hidden_userId").val();
+				$.ajax({
+					url: "guestDetail.ad",
+					data: {
+						userId:userId
+						}, 
+					success: function(hostStatus){
+						if(hostStatus == 'W'){
+							// 호스트신청한 게스트인경우
+							location.href="hostRequest.ad?userId=" + userId;
+						}else if(hostStatus == 'Y'){
+							// 호스트인경우
+							location.href="hostInfo.ad?userId=" + userId;
+						}else{
+							// 게스트인경우
+							location.href="guestInfo.ad?userId=" + userId;
 						}
-					});
-				}
+					},
+					error: function(){
+						alert("조회 실패하였습니다.");
+					}
+				});
 			})
-			
 		});
     </script>
 </body>

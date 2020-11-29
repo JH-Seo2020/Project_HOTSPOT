@@ -31,5 +31,7 @@ public class Member {
 	private Date withdrawalDate; // 탈퇴날짜
 	private String userMemo;	 // 회원에 대한 메모
 	
+	private String hostStatus;	// 호스트등록상태
+	
 
 }

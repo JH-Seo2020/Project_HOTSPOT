@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+* {
+	font-family: "Nanum Gothic", sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.outer {
+	width: 1200px;
+	height: 700px;
+	margin: auto;
+	position: absolute;
+}
+
+body {
+	margin: 0px;
+}
+
+.outer>div {
+	height: 100%;
+	float: left;
+}
+
+#categoryName {
+	width: 100%;
+	height: 10%;
+	border-bottom: 2px solid gray;
+}
+
+#rightSpace {
+	width: 80%;
+}
+
+#guestInfo, #hostInfo {
+	width: 380px;
+	height: 570px;
+	background: #E0E0E0;
+	margin-top: 30px;
+	border-radius: 10px;
+}
+
+#guestInfo {
+	float: left;
+	margin-left: 35px;
+}
+
+#hostInfo {
+	float: right;
+	margin-right: 120px;
+}
+
+#profile {
+	float: left;
+	width: 130px;
+	height: 130px;
+	margin-top: 35px;
+	margin-left: -70px;
+	background: white;
+	border-radius: 100px;
+}
+
+#guestInfo textarea {
+	float: left;
+	margin-left: 20px;
+	margin-top: 10px;
+	border-radius: 5px;
+	resize: none;
+	overflow-y: scroll;
+	font-size: 12px;
+}
+
+#categoryName span {
+	float: left;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.span_infoTitle {
+	float: left;
+	font-weight: bold;
+	color: #5B5B5B;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+#table_infoDate {
+	font-size: 12px;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+#table_info1 {
+	font-size: 12px;
+	text-align: left;
+	float: right;
+	margin-right: 10px;
+	margin-top: 70px;
+}
+
+#table_info1 tr>th {
+	width: 80px;
+	height: 30px;
+}
+
+#table_info1 tr>td {
+	width: 80px;
+}
+
+#table_info2 {
+	font-size: 12px;
+	text-align: left;
+	float: right;
+	margin-right: 50px;
+	margin-top: 15px;
+}
+
+#table_info2 tr>th {
+	width: 80px;
+	height: 30px;
+}
+
+#table_info2 tr>td {
+	width: 225px;
+}
+
+#span_yesHost {
+	float: right;
+	font-weight: bold;
+	color: red;
+	margin-top: 220px;
+	margin-right: 95px;
+	padding-right: 10px;
+	font-size: 14px;
+}
+
+.btn-danger {
+	float: right;
+	margin-top: 10px;
+	margin-right: 137px;
+	width: 100px;
+	font-size: 14px;
+}
+
+#btn_submit {
+	background: #E0E0E0;
+	float: right;
+	margin-right: 20px;
+	margin-top: -37px;
+	width: 70px;
+}
+
+#table_hostInfo {
+	width: 430px;
+	margin-left: 15px;
+	font-size: 13px;
+}
+
+#btn_concent, #btn_refuse {
+	width: 70px;
+	height: 30px;
+	font-size: 14px;
+	padding-top: 4px;
+	margin: 7px;
+}

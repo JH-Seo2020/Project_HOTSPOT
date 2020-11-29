@@ -27,7 +27,6 @@ public class AdminMemberController {
 	@RequestMapping("memberList.ad")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 							 Model model) {
-		
 		// 총 회원수 조회
 		int listCount = memberService.selectListCount();
 		// 페이지 정보 조회
@@ -41,20 +40,73 @@ public class AdminMemberController {
 		return "admin/adminMember/adminMemberList";
 	}
 	
+	// 호스트 상태 확인
 	@ResponseBody
 	@RequestMapping(value="guestDetail.ad", produces="application/json; charset=utf-8")
-	public String selectGuestDetail(String userId) {
-		// 호스트 대기상태인지 확인
-		HostInfo hostInfo = memberService.selectHostStatus(userId);
+	public String selectHostStatus(String userId) {
+		
+		// 호스트정보
+		HostInfo hostInfo = memberService.selectHostInfo(userId);
+		// 호스트상태
 		String hostStatus = "";
 		if(hostInfo == null) {
+			// null이면 호스트신청내역없는 게스트
 			hostStatus = "onlyGuest";
-			System.out.println(hostStatus);
 		}else {
+			// 'Y'/'N'/'W'
 			hostStatus = hostInfo.getHostStatus();
-			System.out.println(hostStatus);
 		}
+		
 		return new Gson().toJson(hostStatus);
 	}
 	
+	
+	// 게스트 상세화면요청
+	@RequestMapping("guestInfo.ad")
+	public String selectGuestDetail(String userId, Model model) {
+		
+		// 회원정보
+		Member member = memberService.selectUserInfo(userId);
+		
+		model.addAttribute("member", member);
+		
+		return "admin/adminMember/adminGuestDetail";
+	}
+	
+	// 호스트 신청내역있는 게스트 상세화면요청
+	@RequestMapping("hostRequest.ad")
+	public String selectWantHostDetail(String userId, Model model) {
+		
+		// 회원정보
+		Member member = memberService.selectUserInfo(userId);
+		// 호스트신청정보
+		HostInfo hostInfo = memberService.selectHostInfo(userId);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("hostInfo", hostInfo);
+		
+		return "admin/adminMember/adminHostRequestDetail";
+	}
+	
+	// 호스트 상세화면요청
+	@RequestMapping("hostInfo.ad")
+	public String selectHostDetail(String userId,  Model model) {
+		
+		// 회원정보
+		Member member = memberService.selectUserInfo(userId);
+		// 호스트신청정보
+		HostInfo hostInfo = memberService.selectHostInfo(userId);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("hostInfo", hostInfo);
+		
+		return "admin/adminMember/adminHostDetail";
+	}
+	
+	// 회원상태, 메모 저장요청
+	@ResponseBody
+	@RequestMapping(value="updateGuestInfo.ad", produces="application/json; charset=utf-8")
+	public String updateGuestInfo(Member member) {
+		return new Gson().toJson(memberService.updateGuestInfo(member));
+	}
 }

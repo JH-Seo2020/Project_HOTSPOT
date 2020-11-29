@@ -30,7 +30,18 @@ public class AdminMemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectList", null, rowBounds);
 	}
 	
-	public HostInfo selectHostStatus(String userId, SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("memberMapper.selectHostStatus", userId);
+	// 호스트정보 조회
+	public HostInfo selectHostInfo(String userId, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectHostInfo", userId);
+	}
+	
+	// 회원정보 조회
+	public Member selectUserInfo(String userId, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectUserInfo", userId);
+	}
+	
+	// 회원상태, 메모 저장
+	public int updateGuestInfo(Member member, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.updateGuestinfo", member);
 	}
 }
