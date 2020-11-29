@@ -156,24 +156,24 @@ public class SpaceController {
 	}
 	
 
-	/*
+	
 	@ResponseBody
-	@RequestMapping(value="hostHpg.reviews", produces="application/json; charset=utf-8")
-	public String hostHomepageReviews(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String userId, Model model) {
+	@RequestMapping(value="question.guest", produces="application/json; charset=utf-8")
+	public String selectQnaList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, int spcNo, Model model) {
 
-		//1.이용후기전체개수
-		int listCount = spaceService.selectCountReviewForHomep(userId);
+		//1.질문답변 전체개수
+		int listCount = spaceDetailService.selectQnaListCount(spcNo);
 		//2.페이지네이션처리
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
 		//3.이용후기조회
-		ArrayList<Review> rv = spaceService.selectReviewsForHomep(userId, pi);
+		ArrayList<Qna> qna = spaceDetailService.selectQnaDetail(spcNo, pi);
 		
-		JSONObject reviews = new JSONObject();
-		reviews.put("pi", pi);
-		reviews.put("rv", rv);
+		JSONObject qnas = new JSONObject();
+		qnas.put("pi", pi);
+		qnas.put("qna", qna);
 		
-		return 	new Gson().toJson(reviews);
-	}*/
+		return 	new Gson().toJson(qnas);
+	}
 
 	
 

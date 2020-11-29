@@ -166,7 +166,11 @@
         		$("#d2").on("click",function(){$("#notices").css("display","block"); $("#notices").siblings("div").css("display","none");});
         		$("#d3").on("click",function(){$("#refundNotice").css("display","block"); $("#refundNotice").siblings("div").css("display","none");});
         		$("#d4").on("click",function(){$("#way").css("display","block"); $("#way").siblings("div").css("display","none");});
-        		$("#d5").on("click",function(){$("#detailQnA").css("display","block"); $("#detailQnA").siblings("div").css("display","none");});
+        		$("#d5").on("click",function(){
+        			$("#detailQnA").css("display","block"); 
+        			$("#detailQnA").siblings("div").css("display","none");
+        			selectQnaList(1);
+        		});
         	})
         </script>
 
@@ -230,11 +234,123 @@
                 <br>
                 <h4><span class="badge badge-pill badge-dark">#QnA 5개</span></h4>
                 <h5><a id="qtohost" class="badge badge-pill badge-warning" data-toggle="modal" data-target="#questionToHost" style="cursor: pointer;">✏호스트에게 질문하기</a></h5>
-                <p>여기에 테이블 형식으로 QnA 틀 수정할 예정. ajax로 불러오기 편하게 </p>
+                <br>
+                <div id="qnaSpace">
+		            <table class="table table-hover" id="qna">
+		                <thead>
+		                  <tr>
+		                    <th scope="col" class="type">작성자</th>
+		                    <th scope="col">자주묻는질문</th>
+		                    <th scope="col">날짜</th>
+		                  </tr>
+		                </thead>
+		                <tbody id="tbodyArea">
+		                    
+		                </tbody>
+		              </table>
+		        </div>
+		        <div id="qnaPagination">
+		        </div>
             </div>
+            
+        <script>
+	        $(function(){
+	            $(".answers").click(function(){
+	                $("#qna .answers").hide(100);   //괄호안의 숫자는 duration-시간-
+	                $("#qna tr[class=on]").attr("class","off");
+	            })
+	        });
+	        
+	        //질문클릭시 구동되는 함수 
+	        function fnAnswer(no){
+	            no = no+1;  //몇번째 tr을 내려줄 것인지 파악하기 위해서 매개변수로 no가 필요함!!
+	            $(".answers").slideUp(100);
+	            $("#qna .on").attr("class","off").css("color","black").css("font-weight","400");
+	            $("#qna tr:eq("+(no*2)+")").slideDown(100);
+	            $("#qna tr:eq("+(no*2-1)+")").attr("class","on").css("color","rebeccapurple").css("font-weight","800");
+	        }
+	        
+	        //ajax로 큐앤에이 리스트불러오기
+	        function selectQnaList(currentPage){
+	        	$.ajax({
+	        		url : "question.guest",
+	        		data : {
+	        			spcNo : ${si.spcNo}
+	        		},
+	        		success:function(result){
+	        			console.log(result);
+	        			console.log(result.qna[0].qaContent);
+	        			if(result.qna.length >=1){
+	        				
+	        				var qnas = "";
+	        				for (var i in result.qna){
+	        					qnas += "<tr onclick='fnAnswer("+i+");'>"
+	        					     + "<th scope='row'>"
+	        					     + "<a class='black'>"+result.qna[i].qaWriter+"</a>"
+	        					     + "</th>"
+	        					     + "<td>"+result.qna[i].qaContent+"</td>"
+	        					     + "<td">+result.qna[i].qaDate+"</td>"
+	        					     + "</tr>"
+	        					     + "<tr class='answers'>"
+	        					     + "<td></td>"
+	        					     + "<td>"+result.qna[i].qaAnswer+"</td>"
+	        					     + "<td>"+result.qna[i].aqAnswerDate+"</td>"
+	        					     + "</tr>";
+	        				}
+	        				
+	        				var $startPage = result.pi.startPage;
+	        				var $endPage = result.pi.endPage;
+	        				var $currentPage = result.pi.currentPage;
+	        				var $maxPage = result.pi.maxPage;
+	        				
+	        				var $btns = "";
+                            for(var $p = $startPage; $p <= $endPage; $p++ ){
+                         	   if($p != $currentPage){
+                         		   $btns += "<button class='badge badge-pill purple' onclick='selectQnaList(" + $p + ");'>" + $p + "</button>"+"&nbsp;";                       		  
+    	                       	  }else{
+    	                       		$btns += "<button class='badge badge-pill purple disabled' onclick='selectQnaList(" + $p + ");'>" + $p + "</button>"+"&nbsp;";
+    	                       	  }  
+                            }
+                            
+                            var $firstBtn = "<button class='badge badge-pill purple' onclick='selectQnaList(" + 1 + ");'>" + "&lt;&lt;" + "</button>"+"&nbsp;";
+                           	var $prevBtn = "<button class='badge badge-pill purple' onclick='selectQnaList(" + ($currentPage - 1) + ");'>" + "&lt;" + "</button>"+"&nbsp;";
+                           	var $nextBtn = "<button class='badge badge-pill purple' onclick='selectQnaList(" + ($currentPage + 1) + ");'>" + "&gt;" + "</button>"+"&nbsp;";
+                           	var $endBtn = "<button class='badge badge-pill purple' onclick='selectQnaList(" + $maxPage + ");'>" + "&gt;&gt;" + "</button>"+"&nbsp;";
+	        				
+                           	var $buttons = $firstBtn +"&nbsp;"+ $prevBtn +"&nbsp;"+ $btns +"&nbsp;"+ $nextBtn +"&nbsp;"+ $endBtn ;
+		                    var $buttons0 = $firstBtn +"&nbsp;"+ $btns +"&nbsp;"+ $endBtn ;
+	                    	var $buttons1 = $firstBtn + "&nbsp;"+ $btns +"&nbsp;"+ $nextBtn +"&nbsp;"+ $endBtn ;
+	                    	var $buttons2 = $firstBtn +"&nbsp;"+ $prevBtn +"&nbsp;"+ $btns +"&nbsp;" + $endBtn ;
+		                    
+	                    	$("#tbodyArea").html(qnas);
+	                    	
+	                    	if(currentPage == "1" && currentPage == $maxPage){
+   		                    	$("#qnaPagination").html($buttons0);
+   		                    }else if(currentPage == "1" && currentPage != $maxPage) {
+   		                    	$("#qnaPagination").html($buttons1);
+                            }else if(currentPage != "1" && currentPage != $maxPage){
+                               	$("#qnaPagination").html($buttons);
+                            }else if (currentPage != "1" && currentPage == $maxPage){
+                               	$("#qnaPagination").html($buttons2);
+                            }  
+                           	
+	        			}else{
+	        				 $("#tbodyArea").html('보여드릴 질문이 없습니다.');
+	        			}
+	        			
+	        		},error:function(){
+	        			console.log('질문답변 목록불러오기 실패');
+	        		}
+	        	})
+	        }
+
+	    </script>
+            
+            
+            
 	        <div id="detailReviews">
                 <br>
-                <h4><span class="badge badge-pill badge-dark">#이용후기</span></h4>                
+                <h4><span class="badge badge-pill badge-dark">#이용후기 ${fn:length(userReviews)}개</span></h4>                
                 <br>
                 <c:forEach var="ur" items="${userReviews}">
 	                <div class="reviewContent">

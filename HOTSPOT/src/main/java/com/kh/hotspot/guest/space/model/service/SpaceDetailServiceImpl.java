@@ -61,9 +61,15 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 	}
 
 	@Override
-	public ArrayList<Qna> selectQnaDetail(int spcNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public int selectQnaListCount(int spcNo) {
+		
+		return spaceDetailDao.selectQnaListCount(sqlSession, spcNo);
+	}
+
+	@Override
+	public ArrayList<Qna> selectQnaDetail(int spcNo, PageInfo pi) {
+
+		return spaceDetailDao.selectQnaDetail(sqlSession, spcNo, pi);
 	}
 
 	@Override

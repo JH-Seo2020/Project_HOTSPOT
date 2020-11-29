@@ -29,8 +29,10 @@ public interface SpaceDetailService {
 	//4-3.세부공간 후기조회
 	ArrayList<Review> selectUserReviewDetail(int spcNo, PageInfo pi);
 	
+	//Qna개수조회
+	int selectQnaListCount(int spcNo);
 	//4-4.세부공간 QnA조회
-	ArrayList<Qna> selectQnaDetail(int spcNo);
+	ArrayList<Qna> selectQnaDetail(int spcNo, PageInfo pi);
 	
 	//4-5.신고등록
 	int insertReport(Report report);

@@ -75,6 +75,19 @@
   		<result column="SPC_NO" property="spcNo" />
   	</resultMap>
   	
+  	<resultMap id="qnaSet" type="Qna">
+  	  	<id column="QA_NO" property="qaNo" />
+  		<result column="QA_CONTENT" property="qaContent" jdbcType="CLOB" javaType="java.lang.String" />
+  		<result column="QA_WRITER" property="qaWriter" />
+  		<result column="QA_DATE" property="qaDate" />
+  		<result column="QA_ANSWER" property="qaAnswer" />
+  		<result column="QA_ANSWERDATE" property="qaAnswerDate" />
+  		<result column="QA_STATUS" property="qaStatus" />
+  		<result column="QA_SECRET" property="qaSecret" />
+  		<result column="USER_ID" property="userId" />
+  		<result column="SPC_NO" property="spaceNo" />
+  	</resultMap>
+  	
   	
   	<!-- 투데이베스트 -->
   	 <select id="selectTodaySpace" resultMap="spaceInfoResultSet"> 
@@ -363,6 +376,24 @@
 		   and review_status = 'Y'
 		 order
 		    by review_no desc
+  	</select>
+  	
+  	<select id="selectQnaListCount" parameterType="_int" resultType="_int">
+  		select count(*) as qnas
+		  from question_answer
+		 where spc_no = #{spcNo}
+		   and qa_status = 'Y'
+		   and qa_secret = 'Y'
+  	</select>
+  	
+  	<select id="selectQnaDetail" parameterType="_int" resultMap="qnaSet">
+	  	select *
+		  from question_answer
+		 where spc_no = #{spcNo}
+		   and qa_status = 'Y'
+		   and qa_secret = 'Y'
+		 order
+		    by qa_no desc
   	</select>
 
 </mapper>

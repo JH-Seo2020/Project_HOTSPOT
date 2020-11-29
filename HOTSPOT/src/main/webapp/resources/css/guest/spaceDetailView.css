@@ -69,6 +69,32 @@
 #detailQnA{ width: 1200px;}
 #detailQnA>h5{text-align: right;}
 
+/*테이블*/
+#qnaSpace{
+    width: 1200px;
+    height: auto;
+    padding: 3% 3%;
+    background-color: white;
+}
+
+/*페이지버튼 및 기타..*/
+#pagination{
+    text-align: center;
+    padding: 4% 0;
+}
+#pagination>button{
+    border: none;
+    background-color: rebeccapurple;
+    color: white;
+}
+.type{width: 20%;}
+.answers{
+    display: none;
+    border:3px solid rebeccapurple;
+}
+.forRight{float: right;}
+
+/*review 이용후기 부분*/
 .reviewContent{width: 1200px; }
 .reviewContent>div{display: inline-block; margin-left: 2%;}
 .personImgs{width: 150px; height: 150px;  vertical-align: top !important;}

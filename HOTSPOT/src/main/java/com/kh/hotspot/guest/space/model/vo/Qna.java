@@ -21,6 +21,7 @@ public class Qna {
 	private String qaWriter;	//닉네임
 	private Date qaDate;
 	private String qaAnswer;
+	private Date qaAnswerDate;
 	private String qaStatus;
 	private String qaSecret;
 	private String userId;

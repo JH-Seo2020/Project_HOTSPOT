@@ -49,6 +49,21 @@ public class SpaceDetailDao {
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectUserReviewDetail", spcNo, rowBounds);
 	}
 
+	public int selectQnaListCount(SqlSessionTemplate sqlSession, int spcNo) {
+		
+		return sqlSession.selectOne("guestspaceMapper.selectQnaListCount", spcNo);
+	}
+
+	public ArrayList<Qna> selectQnaDetail(SqlSessionTemplate sqlSession, int spcNo, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectQnaDetail", spcNo, rowBounds);
+	}
+
 	public Member selectWhoIsHost(SqlSessionTemplate sqlSession, int spcNo) {
 
 		return sqlSession.selectOne("guestspaceMapper.selectWhoIsHost",spcNo);
