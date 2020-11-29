@@ -6,7 +6,7 @@
   	<result column="spc_name" property="spcName"/>
   	<result column="spc_int" property="spcInt"/>
   	<result column="spc_long" property="spcLong"/>
-  	<result column="spc_tag" property="spcTag"/>
+  	<result column="notes_content" property="spcTag"/>
   	<result column="spc_type" property="spcType"/>
   	<result column="spc_min" property="spcMin"/>
   	<result column="spc_max" property="spcMax"/>
@@ -143,7 +143,7 @@
   	     , to_char(enroll_Date, 'YYYY-MM-DD') enroll_date
   	     , substr(map_location, 1, instr(map_location, ' ',1, 2 )) map_location    	
       from space_info
-     where spc_no = 1
+     where spc_no = #{sno}
   </select>
   <select id="selectImgList"
           resultMap="spaceResultSet">
@@ -153,6 +153,15 @@
   	   join spc_images using(spc_no)
   	  where spc_no = #{sno}       
   	        
+  </select>
+  <select id="selectNotice"
+          resultMap="spaceResultSet">
+  	select 
+  	       notes_content
+  	  from space_info
+  	  join spc_notes using(spc_no)
+  	 where spc_no = #{sno}        
+  
   </select>
   
   

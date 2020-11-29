@@ -63,5 +63,9 @@ public class AdminSpaceDao {
 		return (ArrayList)sqlSession.selectList("adminSpaceMapper.selectImgList", sno);
 	}
 	
+	public ArrayList<Space> selectNotice(SqlSessionTemplate sqlSession, int sno){
+		return (ArrayList)sqlSession.selectList("adminSpaceMapper.selectNotice", sno);
+	}
+	
 	
 }

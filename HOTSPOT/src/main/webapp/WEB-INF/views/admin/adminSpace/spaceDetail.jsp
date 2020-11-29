@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
     .slide{
-        width:500px;
+        width:490px;
         height:300px;
         position:relative;
         margin-left:480px;
@@ -57,7 +57,7 @@
         <br><br>
 
         <div>
-            <fieldset style="margin:auto; width:1000px; height:700px; border:1px solid">
+            <fieldset style="margin:auto; overflow:auto; width:1000px;  border:1px solid">
                 <div style="font-size:22px; margin:10px;font-weight:bold;">${ s.spcName }</div>
                 <div style="float:right; margin-right:20px;">${s.enrollDate}</div>
                 <div style="margin:10px;">
@@ -66,7 +66,7 @@
                 </div>
                 <hr>
                 <div style="font-size:15px; margin:10px;">
-                    <div style= "width:452px; height:300px;  position:absolute" >
+                    <div style= "width:452px; height:300px; display:inline-block; position:absolute;" >
                          <img  width="450" height="290" src="${ s.spcChimg }" alt="">
                     </div>    
                 </div>
@@ -83,22 +83,39 @@
                 </div>
                 <br>
                 <ul>
-                    <li>공간 유형 : 스터디룸</li>
-                    <li>예약 시간 : 최소 1시간부터</li>
-                    <li>수용 인원 : 방별로 다름</li>
-                    <li>장비 및 주의사항 :  </li>
-                    <li>휴무일 : 월, 화</li>
-                    <li>편의시설 : 컴퓨터, 와이파이, 에어컨</li>
-                    <li>영업시간 : 00 : 00 ~ 23 : 00</li>
-                    <li>기본가격 : 시간당 7000원</li>
+                    <li>공간 유형 : ${ s.spcType }</li>
+                    <li>수용 인원 :${s.spcMin} ~ ${ s.spcMax }명</li>
+                    <li>주의사항 :
+                    	<ol>
+                    		<c:forEach var="n" items="${ nList }">  
+                    			<li>${ n.spcTag }</li>
+                    		</c:forEach>
+                    	</ol>
+                    </li>
+                    
+                    <c:choose>
+                    	<c:when test="${ empty s.spcHoliday }">
+                    		<li>휴무일 : 없음</li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li>휴무일 : ${ s.spcHoliday }</li>
+                    	</c:otherwise>
+                    </c:choose>
+                    <li>편의시설 : ${ s.spcCon }</li>
+                    <li id="hours">영업시간 : ${ s.spcHours.replace(",", "~") }</li>
+                    <li>기본가격 : 시간당 ${ s.spcPrice }원</li>
+                    <li>공간 소개 : ${s.spcLong }</li>
+               
+                    
                 </ul>
                 
             </fieldset>
+           
             <div style="width:1000px; margin:auto">
                 <hr>
                     <button style="float:right" class="btn btn-secondary">목록으로</button>
                     <br>
-                    <button style="margin-left:470px;" class="btn btn-danger">삭제</button>
+                    <button style="margin-left:470px;" class="btn btn-danger" onclick="location.href='delete.sad?sno=${s.spcNo}'">삭제</button>
             </div>
         </div>
     </div>
@@ -129,7 +146,7 @@
             function next(){
                 if(img_count>img_position){
                     imgs.animate({
-                        left:'-=528px'
+                        left:'-=530px'
                     });
                     img_position++;
                     console.log(img_position)

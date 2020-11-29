@@ -71,9 +71,11 @@ public class AdminSpaceController {
 		
 		Space s = sService.detailSpace(sno);
 		ArrayList<Space> list = sService.selectImgList(sno);
-		
+		ArrayList<Space> nList = sService.selectNotice(sno); 
 		model.addAttribute("list", list);
 		model.addAttribute("s", s);
+		model.addAttribute("nList", nList);
+		
 		return "admin/adminSpace/spaceDetail";
 	}
 		

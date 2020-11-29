@@ -57,4 +57,9 @@ public class AdminSpaceServiceImpl implements AdminSpaceService {
 		return sDao.selectImgList(sqlSession, sno);
 	}
 
+	@Override
+	public ArrayList<Space> selectNotice(int sno) {
+		return sDao.selectNotice(sqlSession, sno);
+	}
+
 }
