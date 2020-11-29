@@ -61,7 +61,7 @@
     text-decoration: none;
 }
 /*detail display처리*/
-#refundNotice, #way, #detailQnA, #detailReviews{
+#refundNotice, #way, #detailQnA, #notices{
 	display:none;
 }
 
@@ -69,11 +69,11 @@
 #detailQnA{ width: 1200px;}
 #detailQnA>h5{text-align: right;}
 
-.qnaContent{width: 1200px; }
-.qnaContent>div{display: inline-block; margin-left: 2%;}
+.reviewContent{width: 1200px; }
+.reviewContent>div{display: inline-block; margin-left: 2%;}
 .personImgs{width: 150px; height: 150px;  vertical-align: top !important;}
 .personImgs>img{height: 100%; width: 100%; border-radius: 100%;}
-.qna{height: 100%;}
+.review{height: 100%;}
 
 #pagination{text-align: center !important; font-size: 20px;}
 #pagination>button{border: none;}
@@ -92,4 +92,26 @@
 #hostIntroducingSpace>div{float: left;}
 #hostPhotoForIntro{width: 25%; height: 100%;}
 #hostPhotoForIntro>img{height: 170px; width: 170px; border-radius: 100%;}
+
+
+/*기타*/
+.purple{
+    background-color: rebeccapurple !important;
+    color: white !important;
+    border: white !important;
+}
+.black{
+color: black !important;
+text-decoration: none !important;
+font-weight: lighter;
+}
+.disabled{
+	disabled:true;
+	background-color: black !important;
+}
+.img_hotspotLogo{
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
+}
 	

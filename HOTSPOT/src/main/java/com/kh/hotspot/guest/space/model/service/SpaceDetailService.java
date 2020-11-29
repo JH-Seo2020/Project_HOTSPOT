@@ -3,6 +3,7 @@ package com.kh.hotspot.guest.space.model.service;
 import java.util.ArrayList;
 
 import com.kh.hotspot.admin.model.vo.Report;
+import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
@@ -23,8 +24,10 @@ public interface SpaceDetailService {
 	//호스트프로필조회용
 	Member selectWhoIsHost(int spcNo);
 	
+	//세부공간후기들 개수조회
+	int selectReviewListCount(int spcNo);
 	//4-3.세부공간 후기조회
-	ArrayList<Review> selectUserReviewDetail(int spcNo);
+	ArrayList<Review> selectUserReviewDetail(int spcNo, PageInfo pi);
 	
 	//4-4.세부공간 QnA조회
 	ArrayList<Qna> selectQnaDetail(int spcNo);

@@ -83,7 +83,7 @@
 	                        <span><h4>${r.reviewCon }
 	                        </h4></span>
 	                        <span style="color: gray;"><h6>${r.reviewDate }</h6></span>
-	                        <a class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;"><h8>신고하기</h8></a>
+	                        <a id="reportModal" class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;"><h8>신고하기</h8></a>
 	                        <br><Br>
 	                    </div>
 	                </div>
@@ -103,6 +103,17 @@
 	                </div>
 	                <hr>
             	</div>
+            	
+    <script>
+    	var loginUser = '${loginUser}';
+    	$(function(){
+    		if(loginUser == ''){
+    			$("#reportModal").css("display","none");
+    		}else{
+    			$("#reportModal").css("display",true);
+    		}
+    	})
+    </script>
             	
 			    <!--신고모달-->
 			    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -195,7 +206,7 @@
 		    		<a href="hostHpg.guest?currentPage=${pi.currentPage +1 }&userId=${hostUserId}" class="badge badge-pill purple">다음</a>
 		    	</c:otherwise>
 		    </c:choose> 
-
+			<br><Br>
             </div>
         </div>
 

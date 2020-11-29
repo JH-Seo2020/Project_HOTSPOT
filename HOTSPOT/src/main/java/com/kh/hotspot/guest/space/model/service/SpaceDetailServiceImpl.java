@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.hotspot.admin.model.vo.Report;
+import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.dao.SpaceDetailDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
@@ -48,9 +49,15 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 	}
 
 	@Override
-	public ArrayList<Review> selectUserReviewDetail(int spcNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public int selectReviewListCount(int spcNo) {
+		
+		return spaceDetailDao.selectReviewListCount(sqlSession, spcNo);
+	}
+	
+	@Override
+	public ArrayList<Review> selectUserReviewDetail(int spcNo, PageInfo pi) {
+
+		return spaceDetailDao.selectUserReviewDetail(sqlSession, spcNo, pi);
 	}
 
 	@Override
@@ -78,6 +85,12 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 	}
 
 	@Override
+	public int deleteLike() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
 	public ArrayList<SpaceInfo> selectStartTime() {
 		// TODO Auto-generated method stub
 		return null;
@@ -95,11 +108,8 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 		return 0;
 	}
 
-	@Override
-	public int deleteLike() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
+
 
 
 

@@ -54,7 +54,7 @@ public class SpaceController {
 	}
 	
 	@RequestMapping("spaceDetail.guest")
-	public String spaceDetailView(int spcNo, Model model) {
+	public String spaceDetailView(@RequestParam(value="currentPage", defaultValue="1") int currentPage, int spcNo, Model model) {
 		
 		//1.공간정보
 		SpaceInfo si = spaceDetailService.selectSpaceDetail(spcNo);
@@ -68,14 +68,21 @@ public class SpaceController {
 		//4.호스트프로필사진, 호스트닉네임.
 		Member host = spaceDetailService.selectWhoIsHost(spcNo);
 		
-		//4.공간리뷰들
+		//4-1.공간리뷰 게시글 개수 조회
+		int listCount = spaceDetailService.selectReviewListCount(spcNo);
 		
-		//5.공간faq들
+		//4-2.페이지네이션처리(5,5)
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		
+		//4-3.공간리뷰 전부조회
+		ArrayList<Review> userReviews = spaceDetailService.selectUserReviewDetail(spcNo, pi);
 		
 		model.addAttribute("si",si);
 		model.addAttribute("simg",simg);
 		model.addAttribute("snotes",snotes);
 		model.addAttribute("host",host);
+		model.addAttribute("userReviews",userReviews);
+		model.addAttribute("pi",pi);
 		
 		return "guest/space/spaceDetailView";
 	}

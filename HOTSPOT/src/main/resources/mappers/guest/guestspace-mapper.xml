@@ -337,5 +337,32 @@
 		       , #{reportContent}
 		       )
   	</insert>
+  	
+  	<select id="selectReviewListCount" parameterType="_int" resultType="_int" >
+  		select count(*) as listCount
+		  from review
+		 where spc_no = #{spcNo}
+		   and review_status = 'Y'
+  	</select>
+  	
+  	<select id="selectUserReviewDetail" parameterType="_int" resultMap="reviewsSet">
+		select review_no
+		     , spc_no
+		     , review_writer
+		     , review_title
+		     , review_content
+		     , review_score
+		     , review_date
+		     , review_reply
+		     , user_nickname
+		     , user_profile_c
+		     , profile_path
+		  from review
+		  join member on (review_writer = user_id)
+		 where spc_no = #{spcNo}
+		   and review_status = 'Y'
+		 order
+		    by review_no desc
+  	</select>
 
 </mapper>

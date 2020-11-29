@@ -162,21 +162,21 @@
         		$("#infoDetails>h3").hover(function(){
         			$(this).css("cursor","pointer");
         		})
-        		$("#d1").on("click",function(){$("#notices").css("display","block"); $("#notices").siblings("div").css("display","none");});
-        		$("#d2").on("click",function(){$("#refundNotice").css("display","block"); $("#refundNotice").siblings("div").css("display","none");});
-        		$("#d3").on("click",function(){$("#way").css("display","block"); $("#way").siblings("div").css("display","none");});
-        		$("#d4").on("click",function(){$("#detailQnA").css("display","block"); $("#detailQnA").siblings("div").css("display","none");});
-        		$("#d5").on("click",function(){$("#detailReviews").css("display","block"); $("#detailReviews").siblings("div").css("display","none");});
+        		$("#d1").on("click",function(){$("#detailReviews").css("display","block"); $("#detailReviews").siblings("div").css("display","none");});
+        		$("#d2").on("click",function(){$("#notices").css("display","block"); $("#notices").siblings("div").css("display","none");});
+        		$("#d3").on("click",function(){$("#refundNotice").css("display","block"); $("#refundNotice").siblings("div").css("display","none");});
+        		$("#d4").on("click",function(){$("#way").css("display","block"); $("#way").siblings("div").css("display","none");});
+        		$("#d5").on("click",function(){$("#detailQnA").css("display","block"); $("#detailQnA").siblings("div").css("display","none");});
         	})
         </script>
 
         <div id="infoDetails">
             <h1><span class="badge badge-pill badge-dark">Details</span></h1><br>
-            <h3><a id="d1">유의사항</a>&nbsp;|&nbsp;
-                <a id="d2">환불정책</a>&nbsp;|&nbsp;
-                <a id="d3">오시는길</a>&nbsp;|&nbsp;
-                <a id="d4">Q&A</a>&nbsp;|&nbsp;
-                <a id="d5">이용후기</a>&nbsp;
+            <h3><a id="d1">이용후기</a>&nbsp;|&nbsp;
+                <a id="d2">유의사항</a>&nbsp;|&nbsp;
+                <a id="d3">환불정책</a>&nbsp;|&nbsp;
+                <a id="d4">오시는길</a>&nbsp;|&nbsp;
+                <a id="d5">Q&A</a>&nbsp;
             </h3>
             <hr>
             <div id="notices">
@@ -230,92 +230,113 @@
                 <br>
                 <h4><span class="badge badge-pill badge-dark">#QnA 5개</span></h4>
                 <h5><a id="qtohost" class="badge badge-pill badge-warning" data-toggle="modal" data-target="#questionToHost" style="cursor: pointer;">✏호스트에게 질문하기</a></h5>
-                <br>
-                <div class="qnaContent">
-                    <div class="personImgs">
-                        <img src="resources/images/bannerSample_1.jpg" >
-                    </div>
-                    <div class="qna">
-                        <span><h4>painkiller</h4></span> <span>😀후기에서 별점들어갈위치</span> <br>
-                        <span><h4>이용하고싶은데 방법이뭐죠</h4></span>
-                        <span style="color: gray;"><h6>00월00일00시00초</h6></span>
-                        <a class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;"><h8>신고하기</h8></a>
-                        <br><Br>
-                    </div>
-                </div>
-                <div class="qnaContent" >
-                    <div class="personImgs"></div>
-                    <div class="qna">
-                        <span style="color: indigo;"><h4>👾호스트의 답변</h4></span> <br>
-                        <span><h4>일주일 뒤에 답변 드리겠습니다</h4></span>
-                        <span style="color: gray;"><h6>00월00일00시00초</h6></span>
-                    </div>
-                </div>
-                <hr>
-                <div class="qnaContent">
-                    <div class="personImgs">
-                        <img src="resources/images/bannerSample_1.jpg" >
-                    </div>
-                    <div class="qna">
-                        <span><h4>painkiller</h4></span> <span>😀😀😀😀</span><br>
-                        <span><h4>이용하고싶은데 방법이뭐죠</h4></span>
-                        <span style="color: gray;"><h6>00월00일00시00초</h6></span>
-                        <a class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;"><h8>신고하기</h8></a>
-                        <br><Br>
-                    </div>
-                </div>
-                <div class="qnaContent" >
-                    <div class="personImgs"></div>
-                    <div class="qna">
-                        <span style="color: indigo;"><h4>👾호스트의 답변</h4></span> <br>
-                        <span><h4>일주일 뒤에 답변 드리겠습니다</h4></span>
-                        <span style="color: gray;"><h6>00월00일00시00초</h6></span>
-                    </div>
-                </div>
-	            <div id="pagination">
-	                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">이전</button>
-	                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">1</button>
-	                <button class="badge badge-pill badge-warning" style="background-color: rebeccapurple; color: white;">2</button>
-	            </div>
+                <p>여기에 테이블 형식으로 QnA 틀 수정할 예정. ajax로 불러오기 편하게 </p>
             </div>
-            <div id="detailReviews">
+	        <div id="detailReviews">
                 <br>
-                <h4><span class="badge badge-pill badge-dark">#이용후기</span></h4>
-            <!-- 리뷰 추가할거야 -->
+                <h4><span class="badge badge-pill badge-dark">#이용후기</span></h4>                
+                <br>
+                <c:forEach var="ur" items="${userReviews}">
+	                <div class="reviewContent">
+	                    <div class="personImgs">
+	                        <img src="${ur.profilePath }${ur.userProfileCh}" >
+	                    </div>
+	                    <div class="review">
+	                        <span><h4>${ur.userNickname }</h4></span> 
+	                        <span>
+	                        	<c:forEach var="star" begin="1" end="${ur.reviewScore }">
+	                        		★
+	                        	</c:forEach>
+	                        </span>
+	                        <br>
+	                        <span><h4>${ur.reviewCon}</h4></span>
+	                        <span style="color: gray;"><h6>${ur.reviewDate }</h6></span>
+	                        <a id="reportModal" class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;" onclick="reviewReportSetting('${ur.reviewWriter},${ur.reviewNo }');">
+	                        <h8>신고하기</h8></a>
+	                        <br><Br>
+	                    </div>
+	                </div>
+	                <div class="reviewContent" >
+	                    <div class="review">
+	                        <span style="color: indigo;"><h4>👾호스트의 답변</h4></span> <br>
+	                        <span><h4>${ur.reviewReply }</h4></span>
+	                        <span style="color: gray;"><h6>00월00일00시00초</h6></span>
+	                    </div>
+	                </div>
+	                <hr>
+	                <c:set var="target" value="${ur.reviewWriter}"/>
+	                
+				</c:forEach>
+				
+                <script> /*후기 신고 시 기본세팅*/
+                	function reviewReportSetting(result){
+                		console.log(result);
+                		var resultSplit = result.split(',');
+                		$("#reportSpcNo").val('${si.spcNo}');
+                		$("#reportTarget").val(resultSplit[0]);
+                		$("#reportReviewNo").val(resultSplit[1]);
+                	}
+                </script>
+				
+            <div id="pagination">
+	        	<c:choose>
+	        		<c:when test="${pi.currentPage eq 1 }">
+			            <a class="badge badge-pill purple disabled ">이전</a>
+			        </c:when>
+			        <c:otherwise>
+			        	<a href="spaceDetail.guest?currentPage=${pi.currentPage-1}&spcNo=${si.spcNo}" class="badge badge-pill purple">이전</a>
+			        </c:otherwise>
+			    </c:choose>
+			    
+			    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
+			            <a href="spaceDetail.guest?currentPage=${p }&spcNo=${si.spcNo}" class="badge badge-pill purple">${p }</a>
+			    </c:forEach>
+			            
+			    <c:choose>
+			    	<c:when test="${pi.currentPage eq pi.maxPage}" >
+			    		<a class="badge badge-pill purple disabled ">다음</a>
+			    	</c:when>
+			    	<c:otherwise>
+			    		<a href="spaceDetail.guest?currentPage=${pi.currentPage +1 }&spcNo=${si.spcNo}" class="badge badge-pill purple">다음</a>
+			    	</c:otherwise>
+			    </c:choose> 
             </div>
-            
+	            
         </div>
     </div>
+            
 
-    <div id="whoishost">
-        <h2>호스트 소개</h2>
-        <br>
-        <div id="hostIntroducingSpace">
-            <div id="hostPhotoForIntro">
-                <img src="${host.profilePath }${host.userProfileC}" >
-            </div>
-            <div id="goToHostPage">
-                <span style="color: indigo; font-weight: bold;">HOST</span>
-                <span><h5>${host.userNickname }</h5></span> <br>
-                <span><h5>"안녕하세요, 호스트 ${host.userNickname } 입니다."</h5></span> <br>
-                <form action="hostHpg.guest" method="post" >
-                	<input type="hidden" value="${si.userId }" name="userId" />
-                	<!-- <input type="hidden" value="${si.spcNo }" name="spcNo" /> -->
-                	<h4><button class="badge badge-pill badge-warning">호스트의 홈피로 이동</button></h4>
-        		</form>
-        	</div>
-    	</div>
-    </div>
-    
+	    <div id="whoishost">
+	        <h2>호스트 소개</h2>
+	        <br>
+	        <div id="hostIntroducingSpace">
+	            <div id="hostPhotoForIntro">
+	                <img src="${host.profilePath }${host.userProfileC}" >
+	            </div>
+	            <div id="goToHostPage">
+	                <span style="color: indigo; font-weight: bold;">HOST</span>
+	                <span><h5>${host.userNickname }</h5></span> <br>
+	                <span><h5>"안녕하세요, 호스트 ${host.userNickname } 입니다."</h5></span> <br>
+	                <form action="hostHpg.guest" method="post" >
+	                	<input type="hidden" value="${si.userId }" name="userId" />
+	                	<!-- <input type="hidden" value="${si.spcNo }" name="spcNo" /> -->
+	                	<h4><button class="badge badge-pill badge-warning">호스트의 홈피로 이동</button></h4>
+	        		</form>
+	        	</div>
+	    	</div>
+	    </div>
+ 
     <script>
     	var loginUser = '${loginUser}';
     	$(function(){
     		if(loginUser == ''){
     			$("#qtohost").css("display","none");
     			$("#wishandlike").css("display","none");
+    			$("#reportModal").css("display","none");
     		}else{
     			$("#qtohost").css("display",true);
     			$("#wishandlike").css("display",true);
+    			$("#reportModal").css("display",true);
     		}
     	})
     </script>
@@ -335,8 +356,8 @@
                 <div class="modal-body">
                     <table class="table table-borderless">
                     <c:set var="spcNo" value="${si.spcNo }" />
-                    <input type="hidden" name="spcNo" value="${spcNo }" />
-                    <input type="hidden" name="reviewNo" value="<%=0%>"/>
+                    <input type="hidden" name="spcNo" id="reportSpcNo" value="${spcNo }" />
+                    <input type="hidden" name="reviewNo" id="reportReviewNo" value="<%=0%>"/>
                         <tbody>
                           <tr>
                             <th scope="row">신고유형</th>
@@ -369,7 +390,7 @@
                           <tr>
                             <th scope="row">신고대상</th>
                             <c:set var="hostId" value="${si.userId }" />
-                            <td><input type="text" name="reportTarget" value="${hostId}" class="form-control"></td>
+                            <td><input type="text" name="reportTarget" id="reportTarget" value="${hostId}" class="form-control"></td>
                           </tr>
                           <tr>
                             <th scope="row">신고 내용</th>
