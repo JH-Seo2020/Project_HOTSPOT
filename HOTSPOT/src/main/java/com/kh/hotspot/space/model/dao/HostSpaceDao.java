@@ -57,6 +57,12 @@ public class HostSpaceDao {
 		
 		return (ArrayList)sqlSession.selectList("customerservicemapper.selectList", null, rowBounds);
 	}
+	/**
+	 * @author jieun
+	 * @param sqlSession
+	 * @param sp
+	 * @return
+	 */
 	// 공간 등록 (상세이미지, 유의사항)
 	public int insertSpace(SqlSessionTemplate sqlSession,Space sp) {
 		return sqlSession.insert("hostSpaceMapper.insertSpace",sp);
@@ -67,7 +73,8 @@ public class HostSpaceDao {
 	}
 
 	public int insertNotes(SqlSessionTemplate sqlSession,ArrayList<SpcNotes> noteList) {
-		return sqlSession.insert("hostSpaceMapper.insertNotes",noteList);
+		return sqlSession.update("hostSpaceMapper.insertNotes",noteList);
+	}
 	
 	/**
 	 * @author jisu

@@ -16,29 +16,49 @@
 <body>
 
 <script>
-    $(function(){
-    	
-        $("#nextBtn").click(function(){
-            $("#spaceForm2").css({"display":"block"});
-            $("#spaceForm").css({"display":"none"});
-        })
+// form 1 > 2 이동
+function openClose(){	        
+  $("#spaceForm2").css({"display":"block"});
+  $("#spaceForm").css({"display":"none"});
+}  
+$(function(){
+	var isEmpty = function(value){
+		if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" &&
+				!Object.keys(value).length 	) )
+		{ return true 
+		} else{ 
+		 return false 
+		} 
+	};
+            
         $("#backBtn2").click(function(){
         	 $("#spaceForm2").css({"display":"none"});
         	 $("#spaceForm").css({"display":"block"});
         	
-        }) ;
+        })
+  	
         <!--상세이미지 넣지 않았을 경우 오류 생기지 않도록 조건 처리-->
         $("#subBtn").click(function(){
+        	if(isEmpty($("#spc_img").val())){
+        		alert('대표이미지를 첨부해주세요!')
+        		return false;
+        	}
+        	if(isEmpty($("#spc_imgs1").val())){
+        		alert('상세이미지를 첨부해주세요!')
+        		return false;
+        	}
+        	
          	for(var i=1; i<5; i++){
          		if($("#spc_imgs"+i).val() === null || $("#spc_imgs"+i).val() === '' ){
          			$(".many_images"+i).empty();
          		}
          	}
-         <!-- 공백 제거 -->
+         <!-- 공백 제거 및 마지막 콤마제거 -->
    		   var tag = $("#tagBox").text().trim();
            var realTag = tag.slice(0,-1);
    		   $("#real_spcTag").val(realTag);
          });
+        
 		<!-- 글자 수 제한 -->
         $("#spcInt").keyup(function(){
             var inputLength = $(this).val().length;
@@ -64,14 +84,15 @@
             }
 
         });
-});
+	});
 
-    </script>
+  </script>
     <div id="spaceInsertContainer">
         <form id="spaceInsertForm"action="insertSpace.ho" method="post"enctype="multipart/form-data">
             <h5><span class="importh">공간등록</span>을 원하시나요?</h5>
                 <hr>
             <span class="comment1"><p style="color:red">*</p> 필수 입력사항</span>
+            <p onclick="validate();">sf</p>
 
             <div id="spaceForm" style="display:block";>
                 <div id="form_1"class="spaceForm">
@@ -100,7 +121,7 @@
                         <tr class="tag">
                             <th>공간 태그 <p style="color:red">*</p></th>
                             <td>
-                                <input type="text" class="form-control"id="notTag" value="#"placeholder="태그를 입력해주세요">
+                                <input type="text" class="form-control"id="notTag" value="#" placeholder="태그를 입력해주세요">
                             </td>
                             <td><button type="button" id="tagAddBtn"class="btn btn-primary">추가 </button></td>
                         </tr>
@@ -119,7 +140,7 @@
                         <tr class="title">
                             <th>공간 카테고리 <p style="color:red">*</p></th>
                             <td colspan="2">
-                                <input type="text" required name="spcType" placeholder="카테고리를 선택해주세요" class="form-control"list="category">
+                                <input type="text" required id="spcCategory"name="spcType" placeholder="카테고리를 선택해주세요" class="form-control"list="category">
                                 <datalist id="category">
                                     <option value="파티룸">파티룸</option>
                                     <option value="회의실">회의실</option>
@@ -155,10 +176,10 @@
                         <tr>
                             <th>수용인원 <p style="color:red">*</p></th>
                             <td class="minNmax" >
-                                <p> 최소인원 </p><input type="number" class="form-control" name="spcMin" placeholder="">
+                                <p> 최소인원 </p><input type="number" class="form-control" value="1"id="spcMin" name="spcMin" placeholder="">
                             </td>
                             <td class="minNmax">
-                                <p> 최대인원 </p><input type="number" class="form-control" name="spcMax" placeholder="">
+                                <p> 최대인원 </p><input type="number" class="form-control" id="spcMax" name="spcMax" placeholder="">
                             </td>
                         </tr>
                         <tr>
@@ -173,16 +194,16 @@
                         <tr>
                             <th>영업시간 <p style="color:red">*</p></th>
                             <td class="spaceTime" >
-                                <input type="time" name="spcHours">
+                                <p style="margin-left:15px; color:var(--color-purple)">open</p><input type="time" name="spcHours" value="09:00">
                             </td>
                             <td class="spaceTime">
-                                <input type="time"  name="spcHours">
+                                <p style="margin-left:15px;color:var(--color-purple)">closed</p><input type="time"  name="spcHours" value="18:00">
                             </td>
                         </tr>
                     </table>
                     <div class="spaceBtn" style="margin-top: 80px; margin-left: 100px;">
                         <button type="button" id="backBtn"class="btn btn-secondary">돌아가기</button>
-                        <button type="button" id="nextBtn"class="btn btn-primary" >다음으로</button>
+                        <button type="button" onclick="return validate();"id="nextBtn"class="btn btn-primary" >다음으로</button>
                     </div>
                 </div> 
                 
@@ -493,7 +514,7 @@
                         </div>
                       	
 						<button type="button" id="backBtn2" class="btn btn-secondary"> 돌아가기 </button>
-                        <button type="button" id="subBtn" class="btn btn-primary"data-toggle="modal"data-target="#exampleModal"> 등록하기 </button>
+                        <button type="button" id="subBtn" onclick="validateCheck()" class="btn btn-primary"data-toggle="modal"data-target="#exampleModal"> 등록하기 </button>
             </div>
             <!-- Modal -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -516,5 +537,86 @@
     
    <!--  <jsp:include page="../../common/footer.jsp"/>  -->
  </body>
+<script>
+// 입력데이터들 유효성검사 
+// 유효한 값 입력 후 form2 로 넘어감
+function validate(){
+		// 요소가 비어있는지 확인 
+		var isEmpty = function(value){
+		if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length 
+				) )
+		{return true 
+		}else{ return false } };
 
+	
+		var name = $("#spcName").val();
+    	var spcInt = $("#spcInt").val();
+    	var spcLong = $("#introduceSpc").val();
+    	var tagBox = $(".span").val();
+    	var spcType = $("#spcCategory").val();
+    	var nameCheck =/^[가-힣!@#$%^&*]{2,20}$/;
+    	var longCheck = /^[가-힣!@#$%^&*]{2,200}$/;
+    	
+    	if(isEmpty(name)){
+    		alert('공간명을 입력해주세요!');
+    		$("#spcName").focus();
+    		return false;
+    	}else{
+    		if(!nameCheck.test(name)){
+    			alert('공간명은 1~20자 사이의 한글로 입력해주세요!');
+    			$("#spcName").focus();
+    			return false;
+    		}
+    		if(isEmpty(spcInt)){
+    			alert('공간을 소개해주세요!');
+    			 $("#spcInt").focus();
+    			 return false;
+    		}else{
+    			if(!nameCheck.test(spcInt)){
+    				alert('공간소개는 2~20자 사이의 한글로 입력해주세요!');
+    				 $("#spcInt").focus();
+        			 return false;
+    			}
+    			if(isEmpty(spcLong)){
+	   				alert('공간소개를 입력해주세요!');
+	   				$("#introduceSpc").focus();
+	       			 return false;
+    			}
+    			if(!longCheck.test(spcLong)){
+    				alert('공간소개는 2~200자 사이의 한글로 입력해주세요!');
+    				$("#introduceSpc").focus();
+	       			 return false;
+    			}
+    			if($(".span").length == 0){
+    				alert('공간 태그를 입력해주세요!')
+    				$("#notTag").focus();
+    				 return false;
+    			}
+    			if(isEmpty($("#spcCategory").val())){
+    				alert('카테고리를 선택해주세요!');
+    				$("#spcCategory").focus();
+    				return false;
+    			}
+	    		if(isEmpty($("#sample5_address").val())){
+	    			alert("위치를 입력해 주세요 !")
+	    			return false;
+	    		}
+	    		if(isEmpty($("#spcMax").val())){
+	    			alert("최대인원을 입력해주세요 !")
+	    			$("#spcMax").focus();
+	    			return false;
+	    		}
+    			if(isEmpty($("#spacePrice").val())){
+    				alert("시간당 가격(원)을 입력해주세요!");
+    				$("#spacePrice").focus();
+    				return false;
+    			}
+    		}
+    	}
+    
+    	return openClose();
+	
+	}
+
+</script>
 </html> 
