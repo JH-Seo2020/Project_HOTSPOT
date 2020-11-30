@@ -249,8 +249,10 @@
 		                </tbody>
 		              </table>
 		        </div>
+		        <br>
 		        <div id="qnaPagination">
 		        </div>
+		        <br>
             </div>
             
         <script>
@@ -268,6 +270,7 @@
 	            $("#qna .on").attr("class","off").css("color","black").css("font-weight","400");
 	            $("#qna tr:eq("+(no*2)+")").slideDown(100);
 	            $("#qna tr:eq("+(no*2-1)+")").attr("class","on").css("color","rebeccapurple").css("font-weight","800");
+	            
 	        }
 	        
 	        //ajax로 큐앤에이 리스트불러오기
@@ -275,28 +278,30 @@
 	        	$.ajax({
 	        		url : "question.guest",
 	        		data : {
-	        			spcNo : ${si.spcNo}
+	        			"spcNo" : ${si.spcNo},
+	        			"currentPage" : currentPage
 	        		},
 	        		success:function(result){
-	        			console.log(result);
-	        			console.log(result.qna[0].qaContent);
+	        			
 	        			if(result.qna.length >=1){
 	        				
-	        				var qnas = "";
+	        				var qnaList = "";
 	        				for (var i in result.qna){
-	        					qnas += "<tr onclick='fnAnswer("+i+");'>"
-	        					     + "<th scope='row'>"
-	        					     + "<a class='black'>"+result.qna[i].qaWriter+"</a>"
-	        					     + "</th>"
-	        					     + "<td>"+result.qna[i].qaContent+"</td>"
-	        					     + "<td">+result.qna[i].qaDate+"</td>"
-	        					     + "</tr>"
-	        					     + "<tr class='answers'>"
-	        					     + "<td></td>"
-	        					     + "<td>"+result.qna[i].qaAnswer+"</td>"
-	        					     + "<td>"+result.qna[i].aqAnswerDate+"</td>"
-	        					     + "</tr>";
+	        					qnaList += "<tr onclick='fnAnswer("+i+");' class='off'>"
+			       					     + "<th scope='row'>"
+			    					     + "<a class='black'>"+result.qna[i].qaWriter+"</a>"
+			    					     + "</th>"
+			    					     + "<td>"+result.qna[i].qaContent+"</td>"
+			    					     + "<td>"+result.qna[i].qaDate+"</td>"
+			    					     + "</tr>"
+			    					     + "<tr class='answers'>"
+			    					     + "<td>👾호스트</td>"
+			    					     + "<td class='answerArea'>"+result.qna[i].qaAnswer+"</td>"
+			    					     + "<td class='answerDateArea'>"+result.qna[i].qaAnswerDate+"</td>"
+			    					     + "</tr>"; 
 	        				}
+	        					                    
+	                    	$("#tbodyArea").html(qnaList);
 	        				
 	        				var $startPage = result.pi.startPage;
 	        				var $endPage = result.pi.endPage;
@@ -321,8 +326,7 @@
 		                    var $buttons0 = $firstBtn +"&nbsp;"+ $btns +"&nbsp;"+ $endBtn ;
 	                    	var $buttons1 = $firstBtn + "&nbsp;"+ $btns +"&nbsp;"+ $nextBtn +"&nbsp;"+ $endBtn ;
 	                    	var $buttons2 = $firstBtn +"&nbsp;"+ $prevBtn +"&nbsp;"+ $btns +"&nbsp;" + $endBtn ;
-		                    
-	                    	$("#tbodyArea").html(qnas);
+
 	                    	
 	                    	if(currentPage == "1" && currentPage == $maxPage){
    		                    	$("#qnaPagination").html($buttons0);
@@ -343,7 +347,7 @@
 	        		}
 	        	})
 	        }
-
+	        
 	    </script>
             
             

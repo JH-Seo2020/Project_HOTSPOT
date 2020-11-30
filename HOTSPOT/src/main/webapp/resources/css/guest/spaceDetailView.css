@@ -74,7 +74,6 @@
     width: 1200px;
     height: auto;
     padding: 3% 3%;
-    background-color: white;
 }
 
 /*페이지버튼 및 기타..*/
@@ -101,7 +100,7 @@
 .personImgs>img{height: 100%; width: 100%; border-radius: 100%;}
 .review{height: 100%;}
 
-#pagination{text-align: center !important; font-size: 20px;}
+#pagination,qnaPagination{text-align: center !important; font-size: 20px;}
 #pagination>button{border: none;}
 
 /*호스트홈피소개부분*/
