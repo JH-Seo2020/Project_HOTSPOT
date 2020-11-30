@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.hotspot.space.model.vo.Space;
+import com.kh.hotspot.space.model.vo.SpcImages;
+import com.kh.hotspot.space.model.vo.SpcNotes;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.dao.HostSpaceDao;
@@ -50,6 +52,18 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 	public ArrayList<VoicesNotice> selectList(PageInfo pi) {
 		// TODO Auto-generated method stub
 		return hSpaceDao.selectList(sqlSession, pi);
+	}
+
+
+	@Override
+	public int insertSpace(Space sp, ArrayList<SpcImages> imgList, ArrayList<SpcNotes> noteList) {
+		int result = hSpaceDao.insertSpace(sqlSession,sp);
+//		int result2 = hSpaceDao.insertImages(sqlSession, imgList);
+//		int result3 = hSpaceDao.insertNotes(sqlSession, noteList);
+//		
+//		if(result == 0 && result2 == 0 && result3 == 0) {
+//		}
+		return result;
 	}
 	
 	

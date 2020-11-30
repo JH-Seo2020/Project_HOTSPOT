@@ -13,21 +13,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
-import com.kh.hotspot.host.model.vo.HostInfo;
-import com.kh.hotspot.space.model.service.HostSpaceService;
-import com.kh.hotspot.space.model.vo.Space;
-
 import com.kh.hotspot.space.model.service.HostSpaceService;
 import com.kh.hotspot.space.model.vo.Space;
 import com.kh.hotspot.space.model.vo.SpcImages;
+import com.kh.hotspot.space.model.vo.SpcNotes;
 @Controller
 public class HostSpaceContoller {
 	
@@ -47,34 +43,49 @@ public class HostSpaceContoller {
 	 * @return 공간등록
 	 */
 	@RequestMapping("insertSpace.ho")
-	public String insertSpace(Space sp, MultipartFile upfile, MultipartFile[] upfiles,SpcImages si,HttpSession session) {
-	
-	// 1. 대표 이미지 파일 작업 
-		// 전달 된 파일이 있을 경우 => 파일명 수정 작업 후 업로드 
-		if(!upfile.getOriginalFilename().equals("")) {
-			
-			String changeName = saveFile(upfile,session); 
-			
-			if(changeName != null) {
-				sp.setSpcImg(upfile.getOriginalFilename());
-				sp.setSpcChimg("resources/upFiles/" + changeName);
-			}
-		}
-	// 2. 상세이미지 파일작업
-		if(upfiles.length > 0) {
-			ArrayList changeName = saveFile2(upfiles,session); 
-			ArrayList<SpcImages> list = new ArrayList();
-			if(changeName != null) {
-				for(int i=0; i<upfiles.length; i++) {
-					si.setImgOgImg(upfiles[i].getOriginalFilename());
-					si.setImgChImg("resources/upFiles/" + changeName.get(i));
-					list.add(si);
+	public String insertSpace(Space sp, MultipartFile upfile, MultipartFile[] upfiles,SpcImages si,SpcNotes sn,HttpSession session) {
+		
+		// 1. 대표 이미지 파일 작업 
+			// 전달 된 파일이 있을 경우 => 파일명 수정 작업 후 업로드 
+			if(!upfile.getOriginalFilename().equals("")) {
+				
+				String changeName = saveFile(upfile,session); 
+				
+				if(changeName != null) {
+					sp.setSpcImg(upfile.getOriginalFilename());
+					sp.setSpcChimg("resources/upFiles/" + changeName);
 				}
 			}
-			System.out.println(list);
+		// 2. 상세이미지 파일작업
+			ArrayList<SpcImages> imgList = new ArrayList();
+			if(upfiles.length > 0) {
+				ArrayList changeName = saveFile2(upfiles,session); 
+				if(changeName != null) {
+					for(int i=0; i<upfiles.length; i++) {
+						si.setImgOgImg(upfiles[i].getOriginalFilename());
+						si.setImgChImg("resources/upFiles/" + changeName.get(i));
+						imgList.add(si);
+					}
+				}
+			}
+		// 3. 유의사항 null 체크 및 값 넣어주기 
+			ArrayList<SpcNotes>noteList = new ArrayList();
+			if(sp.getNoteList() != null) {
+				for(int i=0; i<sp.getNoteList().size(); i++) {
+					sn.setNotesContent(sp.getNoteList().get(i).getNotesContent());
+					noteList.add(sn);
+				}
+			}
+			
+		System.out.println(sp);
+		int result =  hSpaceService.insertSpace(sp,imgList,noteList);
+		if(result > 0) {
+			
+			return "host/common/hostMain";
+		}else {
+			return "common/errorPage";
 		}
 	
-		return "host/space/spaceEnrollForm";
 	}
 	// 파일 저장 메소드 
 	public String saveFile(MultipartFile upfile, HttpSession session) {

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.vo.Space;
+import com.kh.hotspot.space.model.vo.SpcImages;
+import com.kh.hotspot.space.model.vo.SpcNotes;
 
 @Repository
 public class HostSpaceDao {
@@ -56,6 +58,18 @@ public class HostSpaceDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return (ArrayList)sqlSession.selectList("customerservicemapper.selectList", null, rowBounds);
+	}
+	// 공간 등록 (상세이미지, 유의사항)
+	public int insertSpace(SqlSessionTemplate sqlSession,Space sp) {
+		return sqlSession.insert("hostSpaceMapper.insertSpace",sp);
+	}
+
+	public int insertImages(SqlSessionTemplate sqlSession,ArrayList<SpcImages> imgList) {
+		return sqlSession.insert("hostSpaceMapper.insertImages",imgList);
+	}
+
+	public int insertNotes(SqlSessionTemplate sqlSession,ArrayList<SpcNotes> noteList) {
+		return sqlSession.insert("hostSpaceMapper.insertNotes",noteList);
 	}
 
 }

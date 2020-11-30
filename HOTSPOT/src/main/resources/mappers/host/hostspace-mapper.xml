@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace="hostSpaceMapper"/>
+<mapper namespace="hostSpaceMapper">
   <insert id="insertSpace" parameterType="Space">
   	INSERT 
 	  INTO   SPACE_INFO (
@@ -39,12 +38,44 @@
 			,#{spcPrice}
 			,#{spcHours}
 			,#{spcHoliday}
-			,#{spcStatus}
+			,'Y'
 			,#{spcConvn}
 			,#{userId}
 			,#{latitude}
 			,#{longitude}
 			,#{location}
 	       )
+  </insert>
+  <insert id="insertImages" parameterType="java.util.ArrayList">
+  	insert
+	  into spc_images(
+	       img_no
+	      ,img_ogimg
+	      ,img_chimg
+	      ,spc_no
+	     )
+	values(
+	        seq_images.nextval,
+	         <foreach collection="list" item="item" open="(" close=")" separator=",">
+			 #{item.imgOgImg},
+			 #{item.imgChImg},
+			</foreach>
+	         seq_space.currval
+	        )
+  </insert>
+  <insert id="insertNotes" parameterType="java.util.ArrayList">
+  insert
+	  into spc_notes(
+	       notes_no
+	      ,notes_content
+	      ,spc_no
+	      )
+	values(
+	         seq_notes.nextval,
+	        <foreach collection="list"  index="index" item="item" open="(" close=")" separator=",">
+			 #{item.notesContent}
+			</foreach>
+	        ,seq_space.currval
+	        )
   </insert>
 </mapper>

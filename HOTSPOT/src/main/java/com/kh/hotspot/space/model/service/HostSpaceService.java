@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.vo.Space;
+import com.kh.hotspot.space.model.vo.SpcImages;
+import com.kh.hotspot.space.model.vo.SpcNotes;
 
 public interface HostSpaceService {
 
@@ -19,6 +21,9 @@ public interface HostSpaceService {
 
 	//공지사항 게시글 리스트 조회
 	ArrayList<VoicesNotice> selectList(PageInfo pi);
+	
+	//5. 공간 등록 
+	int insertSpace(Space sp, ArrayList<SpcImages> imgList, ArrayList<SpcNotes> noteLIst);
 
 	
 	

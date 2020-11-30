@@ -26,7 +26,19 @@
         	 $("#spaceForm2").css({"display":"none"});
         	 $("#spaceForm").css({"display":"block"});
         	
-        })  
+        }) ;
+        <!--상세이미지 넣지 않았을 경우 오류 생기지 않도록 조건 처리-->
+        $("#subBtn").click(function(){
+         	for(var i=1; i<5; i++){
+         		if($("#spc_imgs"+i).val() === null || $("#spc_imgs"+i).val() === '' ){
+         			$(".many_images"+i).empty();
+         		}
+         	}
+         <!-- 공백 제거 -->
+   		   var tag = $("#tagBox").text().trim();
+           var realTag = tag.slice(0,-1);
+   		   $("#real_spcTag").val(realTag);
+         });
 		<!-- 글자 수 제한 -->
         $("#spcInt").keyup(function(){
             var inputLength = $(this).val().length;
@@ -95,7 +107,7 @@
                         <tr>
                             <th></th>
                             <td colspan="2">
-                                <div id="1"style="margin-left:10px;"class="form-control">
+                                <div id="tagBox"style="margin-left:10px;"class="form-control">
                                 </div>
                                 <input type="hidden" class="form-control"name="spcTag" id="real_spcTag"placeholder="">
                             </td>
@@ -107,15 +119,15 @@
                         <tr class="title">
                             <th>공간 카테고리 <p style="color:red">*</p></th>
                             <td colspan="2">
-                                <input type="text" required name="category" placeholder="카테고리를 선택해주세요" class="form-control"list="category">
+                                <input type="text" required name="spcType" placeholder="카테고리를 선택해주세요" class="form-control"list="category">
                                 <datalist id="category">
-                                    <option>파티룸</option>
-                                    <option>회의실</option>
-                                    <option>카페</option>
-                                    <option>촬영스튜디오</option>
-                                    <option>공연장/연습실</option>
-                                    <option>루프탑</option>
-                                    <option>한옥</option>
+                                    <option value="파티룸">파티룸</option>
+                                    <option value="회의실">회의실</option>
+                                    <option value="카페">카페</option>
+                                    <option value="촬영스튜디오">촬영스튜디오</option>
+                                    <option value="공연장/연습실">공연장/연습실</option>
+                                    <option value="루프탑">루프탑</option>
+                                    <option value="한옥">한옥</option>
                                 </datalist>
                             </td>
                         </tr>
@@ -130,8 +142,8 @@
                             <th></th>
                             <td colspan="2">
 	                            <input type="hidden" name="latitude" id="latitude">
-	                            <input type="hidden" "name="longitude" id="longitude">
-	                            <input type="hidden" "name="${loginUser.userId }" >
+	                            <input type="hidden" name="longitude" id="longitude">
+	                            <input type="hidden" name="userId" value="${loginUser.userId }" >
                                 <input type="text" class="form-control"name="location" id="sample5_address"placeholder="">
                             </td>
                         </tr>
@@ -250,10 +262,10 @@
 					                        var coords = new daum.maps.LatLng(result.y, result.x);
 					                        // 좌표(위도,경도) 저장해두기 
 					                        var latitude = result.y;
-					                        var longtitude = result.x;
+					                        var longitude = result.x;
 					                        // 숨겨진 input value에 해당 위치 좌표 넣어주기
 					                        $('#latitude').val(latitude);
-					                        $('#longtitude').val(longtitude);
+					                        $('#longitude').val(longitude);
 					                        // 지도를 보여준다.
 					                        mapContainer.style.display = "block";
 					                        map.relayout();
@@ -280,18 +292,18 @@
 	                            var $note = $("#note_0").val();
 	                            var html = '<div class="content"> <input type="text" class="form-control" name="noteList['
 	                            	html += count
-	                            	html += ']".notesContent" value="'
+	                            	html += '].notesContent" value="'
 	                                html += $note
 	                                html +='">'
 	                                html += '<img type="button" src="resources/images/host_images/close.png" class="noteClose"></div>'
 	                                $(".many_notes").append(html);
 	                                $("#note_0").val('');
-	                                
+	                                count++;
 	                               
                         	}else{
                         		 alert('유의사항은  5개 까지만 등록 가능합니다!')
                         	}
-                        	 count++;
+                        	
                         });
                         $(this).on("click",".noteClose",function(){
                             var tar =$(this).parent();
@@ -305,8 +317,9 @@
 		                        var tagVal = $("#notTag").val();
 		                        var html =  '<span class="span">'
 		                            html +=   tagVal
+		                            html += ','
 		                            html +=   '</span>'
-		                            $('#1').append(html);
+		                            $('#tagBox').append(html);
 		                            $("#notTag").val('#')
 	                   		 }else{
 	                   			 alert('공간태그는 5개 까지만 가능합니다!')
@@ -370,7 +383,10 @@
           						$("#spc_imgs4").on("change",handleImg4)
           						$(".cancelImg").click(function(){
                         	     $(this).next().removeAttr("src");
+            
+                        	    
                         	   });
+                
                             });
                             function handleImg(e){
                                 var files = e.target.files
@@ -437,20 +453,20 @@
                                 reader.readAsDataURL(f);
                                 });
                             };
-                            
+                          
                          
                         </script>
                         <p>상세 이미지<span style="color:red">* (최대 4개 )</span></p>
                         <div class="many_imgbox">
-                        	<div style="widhth:180px; height:200px;">
+                        	<div class="many_images1" style="widhth:180px; height:200px;">
 	                            <div class="imgbox">
 	                           		 <img class="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
 	                                <img id="imgs">
 	                         	</div>
 	                             <label for="spc_imgs1"id="imgsLabel">파일첨부</label>
-	                     	     <input type="file" name="upfiles" id="spc_imgs1"></input><br> 
+	                     	     <input type="file" name="upfiles"id="spc_imgs1"></input><br> 
                      	    </div> 
-                     	    <div style="widhth:180px; height:200px;">
+                     	    <div class="many_images2"style="widhth:180px; height:200px;">
 	                             <div class="imgbox1">
 	                           		 <img class="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
 	                                <img id="imgs1">
@@ -458,7 +474,7 @@
 	                             <label for="spc_imgs2"id="imgsLabel">파일첨부</label>
 	                     	     <input type="file" name="upfiles" id="spc_imgs2"></input><br> 
                      	    </div> 
-                     	    <div style="widhth:180px; height:200px;">
+                     	    <div class="many_images3"style="widhth:180px; height:200px;">
 	                     	      <div class="imgbox2">
 	                           		 <img class="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
 	                                <img id="imgs2">
@@ -466,7 +482,7 @@
 	                             <label for="spc_imgs3"id="imgsLabel">파일첨부</label>
 	                     	     <input type="file" name="upfiles" id="spc_imgs3"></input><br>                       	     
                      	     </div> 
-                     	     <div style="widhth:180px; height:200px;"> 
+                     	     <div class="many_images4" style="widhth:180px; height:200px;"> 
 	                      		  <div class="imgbox3">
 	                           		 <img class="cancelImg"src="resources/images/host_images/close.png" style="width:20px; height:20px; margin-left: 150px;margin-top:5px;">
 	                                <img id="imgs3">
