@@ -58,12 +58,14 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 	@Override
 	public int insertSpace(Space sp, ArrayList<SpcImages> imgList, ArrayList<SpcNotes> noteList) {
 		int result = hSpaceDao.insertSpace(sqlSession,sp);
-//		int result2 = hSpaceDao.insertImages(sqlSession, imgList);
-//		int result3 = hSpaceDao.insertNotes(sqlSession, noteList);
-//		
-//		if(result == 0 && result2 == 0 && result3 == 0) {
-//		}
+		int result2 = hSpaceDao.insertImages(sqlSession, imgList);
+		int result3 = hSpaceDao.insertNotes(sqlSession, noteList);
+		
+		//if(result == 0 && result2 == 0 && result3 == 0) {
+
 		return result;
+		}
+	
 	public int increaseCount(int nno) {
 		// TODO Auto-generated method stub
 		return hSpaceDao.increaseCount(sqlSession,nno);

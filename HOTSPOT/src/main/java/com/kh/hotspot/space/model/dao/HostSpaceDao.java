@@ -68,7 +68,7 @@ public class HostSpaceDao {
 
 	public int insertNotes(SqlSessionTemplate sqlSession,ArrayList<SpcNotes> noteList) {
 		return sqlSession.insert("hostSpaceMapper.insertNotes",noteList);
-	
+	}
 	/**
 	 * @author jisu
 	 * @return
