@@ -29,22 +29,22 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	public ArrayList<Member> selectList(PageInfo pageInfo) {
 		return memberDao.selectList(sqlSession, pageInfo);
 	}
-
+	
+	@Override	// 회원상세정보 조회
+	public Member selectDetail(String userId) {
+		return memberDao.selectDetail(userId, sqlSession);
+	}
+	
 	@Override	// 호스트정보 조회
-	public HostInfo selectHostInfo(String userId) {	
+	public HostInfo selectHostInfo(String userId) {
 		return memberDao.selectHostInfo(userId, sqlSession);
 	}
-
-	@Override	// 회원정보 조회
-	public Member selectUserInfo(String userId) {
-		return memberDao.selectUserInfo(userId, sqlSession);
-	}
-
+	
 	@Override	// 회원상태, 메모 저장
-	public int updateGuestInfo(Member member) {
-		return memberDao.updateGuestInfo(member, sqlSession);
+	public int updateUserInfo(Member member) {
+		return memberDao.updateUserInfo(member, sqlSession);
 	}
-	
-	
+
+
 
 }

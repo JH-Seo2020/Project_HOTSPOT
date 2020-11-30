@@ -40,73 +40,38 @@ public class AdminMemberController {
 		return "admin/adminMember/adminMemberList";
 	}
 	
-	// 호스트 상태 확인
-	@ResponseBody
-	@RequestMapping(value="guestDetail.ad", produces="application/json; charset=utf-8")
-	public String selectHostStatus(String userId) {
-		
-		// 호스트정보
+	// 상세화면 요청
+	@RequestMapping("memberDetail.ad")
+	public String selectDetail(String userId, Model model) {
+		// 회원정보조회
+		Member member = memberService.selectDetail(userId);
+		// 호스트정보조회
 		HostInfo hostInfo = memberService.selectHostInfo(userId);
-		// 호스트상태
-		String hostStatus = "";
-		if(hostInfo == null) {
-			// null이면 호스트신청내역없는 게스트
-			hostStatus = "onlyGuest";
+		String hostStatus = member.getHostStatus();
+
+		model.addAttribute("member", member);
+
+		if(hostStatus == null || "".equals(hostStatus)) {
+			// 게스트
+			return "admin/adminMember/adminGuestDetail";
+		}else if("W".equals(hostStatus)){
+			// 호스트 신청내역있는 게스트
+			model.addAttribute("hostInfo", hostInfo);
+			return "admin/adminMember/adminHostRequestDetail";
+		}else if("Y".equals(hostStatus)) {
+			// 호스트
+			model.addAttribute("hostInfo", hostInfo);
+			return "admin/adminMember/adminHostDetail";
 		}else {
-			// 'Y'/'N'/'W'
-			hostStatus = hostInfo.getHostStatus();
+			return "admin/adminMember/adminGuestDetail";
 		}
-		
-		return new Gson().toJson(hostStatus);
-	}
-	
-	
-	// 게스트 상세화면요청
-	@RequestMapping("guestInfo.ad")
-	public String selectGuestDetail(String userId, Model model) {
-		
-		// 회원정보
-		Member member = memberService.selectUserInfo(userId);
-		
-		model.addAttribute("member", member);
-		
-		return "admin/adminMember/adminGuestDetail";
-	}
-	
-	// 호스트 신청내역있는 게스트 상세화면요청
-	@RequestMapping("hostRequest.ad")
-	public String selectWantHostDetail(String userId, Model model) {
-		
-		// 회원정보
-		Member member = memberService.selectUserInfo(userId);
-		// 호스트신청정보
-		HostInfo hostInfo = memberService.selectHostInfo(userId);
-		
-		model.addAttribute("member", member);
-		model.addAttribute("hostInfo", hostInfo);
-		
-		return "admin/adminMember/adminHostRequestDetail";
-	}
-	
-	// 호스트 상세화면요청
-	@RequestMapping("hostInfo.ad")
-	public String selectHostDetail(String userId,  Model model) {
-		
-		// 회원정보
-		Member member = memberService.selectUserInfo(userId);
-		// 호스트신청정보
-		HostInfo hostInfo = memberService.selectHostInfo(userId);
-		
-		model.addAttribute("member", member);
-		model.addAttribute("hostInfo", hostInfo);
-		
-		return "admin/adminMember/adminHostDetail";
+
 	}
 	
 	// 회원상태, 메모 저장요청
 	@ResponseBody
-	@RequestMapping(value="updateGuestInfo.ad", produces="application/json; charset=utf-8")
-	public String updateGuestInfo(Member member) {
-		return new Gson().toJson(memberService.updateGuestInfo(member));
+	@RequestMapping(value="updateUserInfo.ad", produces="application/json; charset=utf-8")
+	public String updateUserInfo(Member member) {
+		return new Gson().toJson(memberService.updateUserInfo(member));
 	}
 }

@@ -66,6 +66,8 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 //		}
 		return result;
 	}
+	
+	
 	public int increaseCount(int nno) {
 		// TODO Auto-generated method stub
 		return hSpaceDao.increaseCount(sqlSession,nno);

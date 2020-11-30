@@ -4,7 +4,7 @@
 	font-family: "Nanum Gothic", sans-serif;
 }
 
-*, .btn {
+* {
 	box-sizing: border-box;
 }
 
@@ -72,7 +72,7 @@ body {
 	font-size: 12px;
 }
 
-.btn {
+#btn_save {
 	background: #E0E0E0;
 	float: right;
 	margin-right: 20px;

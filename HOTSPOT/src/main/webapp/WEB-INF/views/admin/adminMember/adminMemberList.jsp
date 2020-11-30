@@ -45,19 +45,18 @@
                     <tbody>
                     	<c:forEach var="mem" items="${ list }">
 							<tr>
-	                            <td>${ mem.userType }</td>
 	                            <c:choose>
 	                            	<c:when test="${ mem.hostStatus eq 'W' }">
 	                            		<td style="padding-left: 3px;">
                                				<img id="img_newIcon" src="resources/images/admin/newIcon.png" style="float: left; margin-right: -5px;">
-                                			${ mem.userId }
-                                			<input id="hidden_userId" type="hidden" name="userId" value="${mem.userId}">
+                                			${ mem.userType }
                             			</td>
 	                            	</c:when>
 	                            	<c:otherwise>
-	                            		<td>${ mem.userId }</td>
+	                            		<td>${ mem.userType }</td>
 	                            	</c:otherwise>
 	                            </c:choose>
+	                            <td>${ mem.userId }</td>
 	                            <td>${ mem.userNickname }</td>
 	                            <td>${ mem.userEmail }</td>
 	                            <td>${ mem.userPhone }</td>
@@ -100,29 +99,9 @@
 		$(function(){
 			$(".table tbody>tr").click(function(){
 				// 회원아이디 넘기면서 상세화면 요청
-				/* var userId = $(this).children().eq(1).text(); */
-				var userId = $("#hidden_userId").val();
-				$.ajax({
-					url: "guestDetail.ad",
-					data: {
-						userId:userId
-						}, 
-					success: function(hostStatus){
-						if(hostStatus == 'W'){
-							// 호스트신청한 게스트인경우
-							location.href="hostRequest.ad?userId=" + userId;
-						}else if(hostStatus == 'Y'){
-							// 호스트인경우
-							location.href="hostInfo.ad?userId=" + userId;
-						}else{
-							// 게스트인경우
-							location.href="guestInfo.ad?userId=" + userId;
-						}
-					},
-					error: function(){
-						alert("조회 실패하였습니다.");
-					}
-				});
+				var userId = $(this).children().eq(1).text();
+				console.log(userId);
+				location.href = "memberDetail.ad?userId=" + userId;
 			})
 		});
     </script>
