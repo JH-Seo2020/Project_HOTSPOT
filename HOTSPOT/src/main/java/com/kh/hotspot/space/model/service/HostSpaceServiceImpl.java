@@ -64,6 +64,30 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 //		if(result == 0 && result2 == 0 && result3 == 0) {
 //		}
 		return result;
+	public int increaseCount(int nno) {
+		// TODO Auto-generated method stub
+		return hSpaceDao.increaseCount(sqlSession,nno);
+	}
+
+
+	@Override
+	public VoicesNotice selectNotices(int nno) {
+		// TODO Auto-generated method stub
+		return hSpaceDao.selectNotices(sqlSession,nno);
+	}
+
+
+	@Override
+	public int selectSearchNoticeCount(String keyword) {
+		// TODO Auto-generated method stub
+		return hSpaceDao.selectSearchNoticeCount(sqlSession, keyword);
+	}
+
+
+	@Override
+	public ArrayList<VoicesNotice> selectSearchNoticeList(String keyword, PageInfo pi) {
+		// TODO Auto-generated method stub
+		return hSpaceDao.selectSearchNoticeList(sqlSession, keyword, pi);
 	}
 	
 	

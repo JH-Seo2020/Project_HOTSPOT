@@ -4,6 +4,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--부트스트랩-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<!--제이쿼리-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- 메뉴바 css -->
+<link rel="stylesheet" href="resources/css/guest/menubar.css" type="text/css"/>
+<!-- 구글폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&amp;display=swap" rel="stylesheet">
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- alertify cdn -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -61,7 +82,11 @@
 <body>
 
     <!--메뉴바-->
-    <jsp:include page="../../common/menubar.jsp"/>    
+    <jsp:include page="../common/hostMenubar.jsp" />
+	<jsp:include page="../common/subMenubar.jsp"/>
+
+
+	<div style="position: absolute; top: 50px; left: 300px">
     
 
     <div id="noticeWrap">
@@ -87,10 +112,11 @@
     <script>
     	$(function(){
     		$("#pagination").click(function(){
-    			location.href="notice.guest";
+    			location.href="notice.ho";
     		})
     	})
     </script>
+    </div>
 
     <!--푸터-->
    <jsp:include page="../../common/footer.jsp"/>

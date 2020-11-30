@@ -46,8 +46,6 @@ public class HostSpaceDao {
 
 	/**
 	 * @author jisu
-	 * @param sqlSession
-	 * @param pi
 	 * @return
 	 */
 	public ArrayList<VoicesNotice> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
@@ -70,6 +68,45 @@ public class HostSpaceDao {
 
 	public int insertNotes(SqlSessionTemplate sqlSession,ArrayList<SpcNotes> noteList) {
 		return sqlSession.insert("hostSpaceMapper.insertNotes",noteList);
+	
+	/**
+	 * @author jisu
+	 * @return
+	 */
+	public int increaseCount(SqlSessionTemplate sqlSession, int nno) {
+		
+		return sqlSession.update("customerservicemapper.increaseCount", nno);
+	}
+	
+	/**
+	 * @author jisu
+	 * @return
+	 */
+	public VoicesNotice selectNotices(SqlSessionTemplate sqlSession, int nno) {
+		
+		return sqlSession.selectOne("customerservicemapper.selectNotices", nno);
+	}
+
+	/**
+	 * @author jisu
+	 * @return
+	 */
+	public int selectSearchNoticeCount(SqlSessionTemplate sqlSession, String keyword) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("customerservicemapper.selectSearchNoticeCount", keyword);
+	}
+
+	/**
+	 * @author jisu
+	 * @return
+	 */
+	public ArrayList<VoicesNotice> selectSearchNoticeList(SqlSessionTemplate sqlSession, String keyword, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("customerservicemapper.selectSearchNoticeList", keyword, rowBounds);
 	}
 
 }

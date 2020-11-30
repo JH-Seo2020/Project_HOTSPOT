@@ -182,7 +182,10 @@ public class HostSpaceContoller {
 	
 	
 	
-	
+	/**
+	 * @author jisu
+	 * @return
+	 */
 	@RequestMapping("delete.space")
 	public ModelAndView spaceDelete(String spcNo, ModelAndView mv, HttpSession session) {
 		
@@ -205,6 +208,10 @@ public class HostSpaceContoller {
 		return mv;
 	}
 	
+	/**
+	 * @author jisu
+	 * @return
+	 */
 	@RequestMapping("notice.ho")
 	public String hostNoticeList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
 		
@@ -218,5 +225,50 @@ public class HostSpaceContoller {
 		model.addAttribute("list",list);
 		
 		return "host/hostPage/hostNoticePage";
+	}
+	
+	
+	/**
+	 * @author jisu
+	 * @return
+	 */
+	@RequestMapping("noticeDetail.ho")
+	public String noticeDetailForGuest(int nno, Model model) {
+		
+		//1.조회수증가
+		int result = hSpaceService.increaseCount(nno);
+		
+		if(result>0) {
+			//2.조회성공시
+			VoicesNotice vn = hSpaceService.selectNotices(nno);
+			model.addAttribute("vn",vn);
+			
+		}else {
+			//2-2.조회실패시
+			model.addAttribute("errorMsg","공지사항 조회실패");
+		}
+		
+		return "host/hostPage/hostNoticeDetail";
+		
+	}
+	
+	@RequestMapping("searchNotice.ho")
+	public String noticeSearchForGuest(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String keyword, Model model) {
+		
+		//1.게시글개수조회
+		int searchListCount = hSpaceService.selectSearchNoticeCount(keyword);
+		
+		//2.페이지네이션처리(5,5)
+		PageInfo pi = Pagination.getPageInfo(currentPage, searchListCount, 5, 5);
+		
+		//3.게시글리스트조회
+		ArrayList<VoicesNotice> list = hSpaceService.selectSearchNoticeList(keyword, pi);
+		
+		model.addAttribute("pi",pi);
+		model.addAttribute("list",list);
+		model.addAttribute("keyword",keyword);
+		
+		return "host/hostPage/hostNoticePage";
+		
 	}
 }

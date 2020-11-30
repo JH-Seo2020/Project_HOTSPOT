@@ -25,6 +25,18 @@ public interface HostSpaceService {
 	//5. 공간 등록 
 	int insertSpace(Space sp, ArrayList<SpcImages> imgList, ArrayList<SpcNotes> noteLIst);
 
+	//공지사항 조회수 증가
+	int increaseCount(int nno);
+	
+	//공지사항 상세조회
+	VoicesNotice selectNotices(int nno);
+
+	//공지사항 제목검색시 게시글 개수 조회
+	int selectSearchNoticeCount(String keyword);
+
+	//공지사항 제목검색 리스트 가져오기
+	ArrayList<VoicesNotice> selectSearchNoticeList(String keyword, PageInfo pi);
+
 	
 	
 }
