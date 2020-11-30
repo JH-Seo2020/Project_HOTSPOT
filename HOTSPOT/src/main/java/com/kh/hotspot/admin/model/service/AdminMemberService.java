@@ -14,13 +14,15 @@ public interface AdminMemberService {
 	// 모든 회원리스트 조회
 	ArrayList<Member> selectList(PageInfo pageInfo);
 	
+	// 회원상세정보 조회
+	Member selectDetail(String userId);
+	
 	// 호스트정보 조회
 	HostInfo selectHostInfo(String userId);
 	
-	// 회원정보 조회
-	Member selectUserInfo(String userId);
-	
 	// 회원상태, 메모 저장
-	int updateGuestInfo(Member member);
+	int updateUserInfo(Member member);
+	
+
 
 }

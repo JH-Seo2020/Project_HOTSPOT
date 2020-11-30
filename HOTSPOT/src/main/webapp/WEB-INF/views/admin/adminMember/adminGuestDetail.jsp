@@ -24,18 +24,16 @@
                 <table id="table_infoDate">
                     <tr>
                         <th>가입일</th>
-                        <td>2020-11-11</td>
+                        <td>${ member.enrollDate }</td>
                         <th style="padding-left: 10px;">수정일</th>
-                        <td>2020-11-11</td>
+                        <td>${ member.modifyDate }</td>
                     </tr>
                 </table>
-                <div id="profile">
-                   	 프로필이미지
-                </div>
+                <img id="profile" src="${ member.profilePath }${ member.userProfile }">
                 <table id="table_info1">
                     <tr>
                         <th>회원유형</th>
-                        <td>Guest</td>
+                        <td>${ member.userType }</td>
                     </tr>
                     <tr>
                         <th>활동상태</th>
@@ -81,9 +79,9 @@
                 <span class="span_infoTitle">호스트정보</span>
                 <span id="span_noHost">호스트 정보가 없습니다.</span>  
             </div>
-
-
-            <button class="btn">저장</button>
+            
+            <button id="btn_save" class="btn">저장</button>
+            
         </div>
     </div>
     <script>
@@ -91,7 +89,7 @@
     		// 전달받은 회원상태로 고정
     		$("#select_userStatus").val($("#hidden_userStatus").val()).attr("selected", "selected");
     		// 활동상태, 메모 저장
-    		$(".btn").click(function(){
+    		$("#btn_save").click(function(){
     			var userId = $("#table_info2 tr:eq(0)>td").text();	// 회원아이디
     			var userStatus = $("#select_userStatus").val();		// 회원상태
     			var userMemo = $("#textarea").val();				// 회원메모
@@ -100,7 +98,7 @@
 				if(question){
 					// 저장요청
 					$.ajax({
-						url: "updateGuestInfo.ad",
+						url: "updateUserInfo.ad",
 						data: {
 							userId:userId,
 							userStatus:userStatus,
@@ -121,7 +119,6 @@
 				}
     		});
     	});
-  
     </script>
 </body>
 </html>

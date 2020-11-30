@@ -6,12 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- CSS -->
-<link href="resources/css/common/spaceSearchresultList.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="menubar.jsp"%>
-	
+	<!-- CSS -->
+	<link href="resources/css/common/spaceSearchresultList.css" rel="stylesheet" type="text/css">
 	<!-- 검색필터 -->
     <div id="searchFilter">
         <span>'[검색어]'(으)로 검색한 결과입니다.</span>
