@@ -87,7 +87,7 @@
 
                         <label for="userEmail">이메일</label> &nbsp;&nbsp;&nbsp;
                         <input type="email" name="userEmail" id="userEmail" value="${ loginUser.userEmail }">
-                        <button type="button" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">이메일 인증받기</button><br><br>
+                        <button type="submit" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">이메일 인증받기</button><br><br>
 
                         <label for="userPhone">연락처</label>&nbsp;&nbsp;&nbsp;
                         <input type="text" name ="userPhone" id="profilePhone" value="${ loginUser.userPhone }"><br>
@@ -226,8 +226,8 @@
 	        <br>
 	        <!-- Modal body -->
 	        <div class="modal-body" align="center">
-		          <form action="emailCode.me${ code }" method="POST">
-                     <input type="text" name="emailCheck" placeholder="인증코드를 입력하세요.">
+		        <form action="emailCode.me${ code }" method="POST">
+                     <input type="number" name="emailInjeung" placeholder="인증코드를 입력하세요.">
              		 <button type="submit" class="serviceBtn">인증하기</button><br><br>
 	          	</form>
 	        </div>

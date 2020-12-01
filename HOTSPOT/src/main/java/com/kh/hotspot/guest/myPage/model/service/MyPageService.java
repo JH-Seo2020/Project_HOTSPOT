@@ -16,7 +16,7 @@ public interface MyPageService {
 	Reservation selectDetailReserv(int reservNo);
 		
 	// 예약취소하기 서비스
-	int updateReserv(int reservNo); // Reservation객체를 넘겨줘야되나?
+	int deleteReserv(int reservNo); // Reservation객체를 넘겨줘야되나?
 	
 	// 호스트, 공간 신고하기 서비스
 	int reportHostandSpace(String userIdHost, int spcNo);

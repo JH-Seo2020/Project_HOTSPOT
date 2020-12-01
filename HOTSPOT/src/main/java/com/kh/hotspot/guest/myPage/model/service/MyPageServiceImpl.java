@@ -42,9 +42,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public int updateReserv(int reservNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteReserv(int reservNo) {
+		return mpDao.deleteReserv(reservNo);
 	}
 
 	@Override
