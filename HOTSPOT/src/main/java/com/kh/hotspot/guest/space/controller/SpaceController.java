@@ -21,6 +21,7 @@ import com.kh.hotspot.guest.myPage.model.vo.Wish;
 import com.kh.hotspot.guest.space.model.service.SpaceDetailService;
 import com.kh.hotspot.guest.space.model.service.SpaceService;
 import com.kh.hotspot.guest.space.model.vo.Qna;
+import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
@@ -213,6 +214,19 @@ public class SpaceController {
 			return 0;
 		}
 		
+	}
+	
+	@RequestMapping("reservation.guest")
+	public String goToReservPage(Reservation reserv, Model model) {
+		System.out.println(reserv);
+		
+		//게스트정보받아오기
+		
+		//호스트정보받아오기
+		
+		model.addAttribute("reserv",reserv);
+		
+		return "guest/space/spaceReserv";
 	}
 
 }

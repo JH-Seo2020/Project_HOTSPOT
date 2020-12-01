@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <!-- 디테일페이지 css -->
 <link rel="stylesheet" href="resources/css/guest/spaceDetailView.css" type="text/css"/>
+<!-- moment js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -93,39 +95,51 @@
                     </div>
                 </div>
             </div>
-            <div id="selections">
+            <form id="selections" action="reservation.guest" method="post">
+            	<input type="hidden" name="userId" value="${loginUser.userId }" />
+            	<input type="hidden" name="reservName" value="${si.spcName }"/>
+            	<input type="hidden" name="spcNo" value="${si.spcNo }"	/>
+            	<input type="hidden" name="userIdHost" value="${si.userId }" />
+            	<input type="hidden" name="amountTime" value="${si.spcPrice }" />
+            	
                 <span style="color: rebeccapurple; font-weight: bold;">날짜를 선택해주세요</span>
                 <hr>
-                <p><input type="text" id="datepicker" class="form-control" placeholder="시작일"></p>
+                <p><input type="text" id="useDate" name="useDate" class="datepicker form-control" placeholder="시작일" required></p>
                 <div class="input-group mb-3">
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>시작시간</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="custom-select" id="useTime" name="useTime">
+                    	<option value="" disabled selected>시작시간</option>
+                        <option value="1">1:00</option>
+                        <option value="2">2:00</option>
+                        <option value="3">3:00</option>
+                        <option value="4">4:00</option>
+                        <option value="5">5:00</option>
+                        <option value="6">6:00</option>
                     </select>
                 </div>
-                <p><input type="text" id="datepicker" class="form-control" placeholder="종료일"></p>
+                <p><input type="text" id="endDate" name="endDate" class="datepicker form-control" placeholder="종료일" required></p>
                 <div class="input-group mb-3">
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>종료시간</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="custom-select" id="endTime" name="endTime">
+                        <option value="" disabled selected>종료시간</option>
+                        <option value="1">1:00</option>
+                        <option value="2">2:00</option>
+                        <option value="3">3:00</option>
+                        <option value="4">4:00</option>
+                        <option value="5">5:00</option>
+                        <option value="6">6:00</option>
                     </select>
                 </div>
                 <br>
-                <span style="color: rebeccapurple; font-weight: bold;">인원을 선택해주세요</span>
+                <span style="color: rebeccapurple; font-weight: bold;" >인원을 선택해주세요</span>
                 <hr>
                 <div class="input-group mb-3">
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>인원수</option>
-                        <c:forEach var="max" begin='1' end="${si.spcMax }">
+                    <select class="custom-select" id="reservTotal" name="reservTotal" required>
+                        <option value="" disabled selected>인원수</option>
+                        <c:forEach var="max" begin="${si.spcMin }" end="${si.spcMax }">
                         	<option value="${max }">${max }</option>
                         </c:forEach>
                     </select>
                 </div>
-                <button type="button" class="btn btn-warning btn-lg btn-block" style="background-color: lavender; border: none;">예상금액 확인</button>
+                <button type="button" id="payCheck" class="btn btn-warning btn-lg btn-block" style="background-color: lavender; border: none;">예상금액 확인</button>
                 <br><br>
                 <span style="color: rebeccapurple; font-weight: bold;">결제정보</span>
                 <hr>
@@ -133,36 +147,76 @@
                     <tbody>
                       <tr>
                         <th scope="row">공간명</th>
-                        <td>그리다꿈</td>
+                        <td id="checkName"></td>
                       </tr>
                       <tr>
                         <th scope="row">날짜</th>
-                        <td>2020.02.02 16:00 - 2020.02.03 15:00</td>
+                        <td id="checkDate"></td>
                       </tr>
                       <tr>
                         <th scope="row">시간</th>
-                        <td>23시간</td>
+                        <td id="totalTime" name="totalTime"></td>
                       </tr>
                       <tr>
                         <th scope="row">인원</th>
-                        <td>4명</td>
+                        <td id="checkPeople"></td>
                       </tr>
                       <tr>
                         <th scope="row" style="color: rebeccapurple">총금액</th>
-                        <td >1000000원</td>
+                        <td id="checkTotalpay"></td>
                       </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-warning btn-lg btn-block" style="background-color: rebeccapurple; color:white; border: none;">예약하기</button>  
-            </div>
+                <button id="reservBtn" type="submit" class="btn btn-warning btn-lg btn-block" style="background-color: rebeccapurple; color:white; border: none;">예약하기</button>  
+            </form>
         </div>
 
         <script>
+        var loginUser = '${loginUser}';
             $( function() {
-              $( "#datepicker" ).datepicker({
-                showButtonPanel: true
-              });
+              
+            	$( ".datepicker" ).datepicker({
+            		dateFormat: 'yy-mm-dd',
+                	showButtonPanel: true
+              	});
+            	
+            	$("#payCheck").on('click',function(){
+					if($("#useDate").val() == null || $("#endDate").val() == null || $("#useTime").val() == null || $("#endTime").val() == null || $("#reservTotal").val() == null){
+						//alert("선택해주세요");
+						//console.log(${si.spcPrice} * $("#reservTotal").val());
+					}else{
+	            		$("#checkName").text("${si.spcName }");
+	            		$("#checkDate").text(
+	            			$('#useDate').val()+'   '+$('#useTime').val()+':00'+'  '+'~'+'  '+$('#endDate').val()+'   '+$('#endTime').val()+':00'
+	            		);
+	            		$("#totalTime").text(3);
+	            		$("#checkPeople").text($('#reservTotal').val());
+	            		$("#checkTotalpay").text(${si.spcPrice} * $("#reservTotal").val() * $("#totalTime").text());
+					}
+            	});
+            	
+            	$("#reservBtn").on('click',function(){
+            		if(loginUser == ''){
+            			alert("로그인 후 이용하세요");
+            			$("#reservBtn").prop('disabled',true);
+            		}else{
+            			$("#reservBtn").prop('disabled',false);
+            		}
+            	});
+              
             } );
+            
+			function createDate(){
+	            moment().toObject({
+                         years: 2015,
+                         months: 6,
+                         date: 26,
+                         hours: 1,
+                         minutes: 53,
+                         seconds: 14,
+                         milliseconds: 600
+	                 });
+			}
         </script>
         
         <script> <!-- Details 관련 -->
