@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
@@ -53,24 +52,26 @@ public class MyPageController {
 		
 		ArrayList<Reservation> list = mpService.alignReservList(align, m.getUserId());
 		
-		model.addAttribute("list", list);
+		session.setAttribute("list", list);
 		
 		return "guest/myPage/reservationListView";
-		
 		
 		
 	}
 
 	
 	@RequestMapping("reservDetail.re")
-	public ModelAndView selectDetailReserv(int reservNo, ModelAndView mv) {
+	public String selectDetailReserv(int reservNo, HttpSession session, Model model) {
+
+		Member m = (Member)session.getAttribute("loginUser");
 		
-		Reservation r = mpService.selectDetailReserv(reservNo);
+		Reservation r = mpService.selectDetailReserv(reservNo, m.getUserId());
+		System.out.println(reservNo);
 		
-		mv.addObject("r", r);
-		mv.setViewName("guest/myPage/reservationDetailView");
+		model.addAttribute("r", r);
 		
-		return mv;
+		return "guest/myPage/reservationDetailView";
+
 
 	}
 	

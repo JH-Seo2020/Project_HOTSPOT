@@ -12,6 +12,7 @@
 	    margin-top: 50px;
     }
     .reservation_thumbnail{
+    	width: 160px;
         height:120px; 
         float: left;
     	margin:auto;
@@ -87,11 +88,11 @@
             	<div id="reservation_listArea">
 		            <input type="hidden" name="userId" value="${ loginUser.userId }">
 	            	<c:forEach var="r" items="${ list }">
-		                <div class="reserveInfo" onclick="location.href='reservDetail.re'">
-		                    <input type="hidden" name="reservNo" value="${ r.reservNo }">
+		                <div class="reserveInfo">
+		                    <input type="hidden" name="reservNo" id="reservNo" value="${ r.reservNo }">
 						<c:choose>
 			                <c:when test="${ r.reSpcImg != null}">
-			                	<img class="reservation_thumbnail" src="<c:url value='resources/images/spaces/${ r.reSpcImg}'/>">
+			                	<img class="reservation_thumbnail" src="<c:url value='resources/images/spaces/${ r.reSpcImg }'/>">
 							</c:when>
 							<c:otherwise>
 								<img class="reservation_thumbnail" src="resources/images/spaces/space1.jpg" >
@@ -99,8 +100,16 @@
 			            </c:choose>
 		                    <div>
 		                        <span class="listInfo1">[${ r.reSpcType }][${ r.location }] ${ r.reSpcName }</span><br>
-		                        <span class="listInfo2">${ r. reservDate } ${ r.useTime }시 ~ ${ r.endTime }시, ${ r.totalTime }시간, ${ r.reservTotal }명</span><br><br>
-		                        <span class="listInfo2">${ r.paySum }원</span>
+	                        	<span class="listInfo2">${ r. reservDate } ${ r.useTime }시 ~ ${ r.endTime }시, ${ r.totalTime }시간, ${ r.reservTotal }명</span><br><br>
+		                        <c:choose>
+			                        <c:when test="${ r.reservStatus eq '취소환불'}">
+			                        	<span class="listInfo2">0원</span>
+			                        	<span class="listInfo2">취소환불 완료</span>
+			                        </c:when>
+			                        <c:otherwise>
+			                        	<span class="listInfo2">${ r.paySum }원</span>
+			                        </c:otherwise>
+		                        </c:choose>
 		                        <span class="statusRable">${ r.reservStatus }</span>
 		                    </div>
 		                </div><br>
@@ -108,23 +117,34 @@
 	           	</div>
 	       </div>
 	       
+	       
 	       <script>
 	       	$(function(){
 	       		$("#reservAlign").change(function(){
-	       			location.href="align.re?align=" + $("#reservAlign option:selected").val();
+	       			location.href="align.re?align=" + $("#reservAlign option:selected").val(); // selected옵션으로 선택한 value값을 요청
 	       		})
-	       	})
+	       	});
 	       </script>
-	       
-	       
 	       
 	       <script>
 	       	$(function(){
 	       		$("#reservStatus").change(function(){
 	       			location.href="myReserv.re?reservStatus" + 
 	       		})
+	       	});
+	       </script>
+	       
+	       <script>
+	       	$(function(){
+	       		$(".reserveInfo").click(function(){
+	       			location.href="reservDetail.re?reservNo=" + $(this).children("#reservNo").val();
+	       		})
 	       	})
 	       </script>
+	       
+	       
+	       
+	       
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">

@@ -42,8 +42,12 @@ public class MyPageDao {
 //	}
 	
 	
-	public Reservation selectDetailReserv(SqlSessionTemplate sqlSession, int reservNo) {
-		return sqlSession.selectOne("mypageMapper.selectDetailReserv", reservNo);
+	public Reservation selectDetailReserv(SqlSessionTemplate sqlSession, int reservNo, String userId) {
+		
+		HashMap<Object, Object> hmap = new HashMap<>();
+		hmap.put("reservNo", reservNo);
+		hmap.put("userId", userId);
+		return sqlSession.selectOne("mypageMapper.selectDetailReserv", hmap);
 	}
 	
 	

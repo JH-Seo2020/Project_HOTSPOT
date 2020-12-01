@@ -37,8 +37,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Reservation selectDetailReserv(int reservNo) {
-		return mpDao.selectDetailReserv(sqlSession, reservNo);
+	public Reservation selectDetailReserv(int reservNo, String userId) {
+		return mpDao.selectDetailReserv(sqlSession, reservNo, userId);
 	}
 
 	@Override

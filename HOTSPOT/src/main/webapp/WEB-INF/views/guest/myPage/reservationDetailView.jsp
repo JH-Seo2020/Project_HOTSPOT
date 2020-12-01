@@ -66,12 +66,14 @@
 
     <div id="content">
         <div id="reservation_Detail">
+        	<input type="hidden" name="userId" value="${ loginUser.userId }">
+        	<input type="hidden" name="reservNo" value="${ list.reservNo }">
             <br>
             <h2 align="center"><b>예약 상세내역</b></h2>
             <br><br>
             <div>
                 <label class="reservTitle">공간 예약정보</label> &nbsp;&nbsp;
-                <label id="statusRable">예약확정</label>
+                <label id="statusRable">${ r.reservStatus }</label>
             </div>
             <hr>
             <div id="reserveTable">
@@ -80,34 +82,42 @@
                         <tbody>
                         <tr>
                             <th>공간명</th>
-                            <td>그리다꿈</td>
+                            <td>${ r.reSpcName }</td>
                         </tr>
                         <tr>
                             <th>사용목적</th>
-                            <td>파티룸</td>
+                            <td>${ r.perpose }</td>
                         </tr>
                         <tr>
-                            <th>예약신청 날짜 및 시간</th>
-                            <td>2020.10.30 16:00 - 2020.10.31 16:00</td>
+                            <th>예약날짜 및 시간</th>
+                            <td>${ r.useDate } ${ r.useTime } - ${ r.endDate } ${ r.endTime }</td>
                         </tr>
                         <tr>
                             <th>예약한 총 시간</th>
-                            <td>24시간</td>
+                            <td>${ r.totalTime }시간</td>
                         </tr>
                         <tr>
                             <th>예약인원</th>
-                            <td>8명</td>
+                            <td>${ r.reservTotal }명</td>
                         </tr>
                         <tr>
                             <th>시간당 금액</th>
-                            <td>7,000원</td>
+                            <td>${ r.reSpcPrice}원</td>
                         </tr>
-                        <tr>
-                        	<th>결제방법</th>
-                            <td>무통장입금</td>
+	                        <c:choose>
+		                        <c:when test="${ r.reservStatus eq '이용완료' && r.reservStatus eq '취소환불' }">
+			                        <tr>
+			                        	<th>결제방법 및 결제날짜</th>
+			                            <td>${ r.payMethod }</td>
+			                        </tr>
+			                        </c:when>
+			                        <c:otherwise>
+	
+			                        </c:otherwise>
+	                        </c:choose>
                         <tr>
                             <th>총 결제금액</th>
-                            <td>총시간 X 인원수 X 시간당 금액 = 1000000원</td>
+                            <td>${ r.paySum }원</td>
                         </tr>
                         </tbody>
                     </table>
@@ -124,19 +134,19 @@
                         <tbody>
                         <tr>
                             <th scope="row">상호명</th>
-                            <td>아무개상가</td>
+                            <td>${ r.hoName }</td>
                         </tr>
                         <tr>
                             <th scope="row">사업자번호</th>
-                            <td>123456789</td>
+                            <td>${ r.hoNo }</td>
                         </tr>
                         <tr>
                             <th scope="row">연락처</th>
-                            <td>010-0000-1111 / yeoc3@gmail.com</td>
+                            <td>핸드폰 : ${ r.hoPhone } / 이메일 : ${ r.hoEmail }</td>
                         </tr>
                         <tr>
                             <th scope="row">사업장 소재지</th>
-                            <td>경복궁역 출구 근처</td>
+                            <td>${ r.hoLoc }</td>
                         </tr>
                         </tbody>
                     </table>
@@ -144,10 +154,10 @@
             </div>
             <br>
             <c:choose>
-            	<c:when test="${ r.reservStatus eq ('예약확정') }">
+            	<c:when test="${ r.reservStatus eq '예약확정' }">
 	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#cancelModal">예약 취소하기</button>
 	            </c:when>
-	            <c:when test="${ r.reservStatus eq ('이용완료') }">
+	            <c:when test="${ r.reservStatus eq '이용완료' }">
 	            	<button type="button" class="reserveBtn" onclick="">신고하기</button>
 	            </c:when>
 	            <c:otherwise>

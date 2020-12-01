@@ -43,6 +43,13 @@ public class Reservation {
 	private String ReSpcPrice;
 	private String location;
 	
+	private String HoNo;
+	private String HoName;
+	private String HoPhone;
+	private String HoEmail;
+	private String HoLoc;
+	
+	
 	
 	
 	

@@ -15,7 +15,7 @@ public interface MyPageService {
 	ArrayList<Reservation> alignReservList(String align, String userId);
 	
 	// 예약상세조회용 서비스
-	Reservation selectDetailReserv(int reservNo);
+	Reservation selectDetailReserv(int reservNo, String userId);
 		
 	// 예약취소하기 서비스
 	int deleteReserv(int reservNo); // Reservation객체를 넘겨줘야되나?
