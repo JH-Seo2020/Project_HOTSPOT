@@ -73,8 +73,8 @@
             <br><br>
             <div class="selectArray">
                 <select name="reservationAlign">
-                    <option value="useDate" selected>이용날짜순 정렬</option>
-                    <option value="reservNo" >예약번호순 정렬</option>
+                    <option value="useDate">이용날짜순</option>
+                    <option value="reservNo" >예약번호순</option>
                 </select>
                 <select name="reservationStatus">
                     <option value="total" selected>전체</option>
@@ -89,11 +89,18 @@
 	            	<c:forEach var="r" items="${ list }">
 		                <div class="reserveInfo" onclick="location.href='reservDetail.re'">
 		                    <input type="hidden" name="reservNo" value="${ r.reservNo }">
-		                    <img src="resources/images/space1.jpg" class="reservation_thumbnail">
+						<c:choose>
+			                <c:when test="${ r.reSpcImg != null}">
+			                	<img class="reservation_thumbnail" src="<c:url value='resources/images/spaces/${ r.reSpcImg}'/>">
+							</c:when>
+							<c:otherwise>
+								<img class="reservation_thumbnail" src="resources/images/spaces/space1.jpg" >
+							</c:otherwise>
+			            </c:choose>
 		                    <div>
-		                        <span class="listInfo1">[][${ r.location }] 그리다</span><br>
-		                        <span class="listInfo2">${ r. reservDate } ${ r.useTime }시 ~ ${ r.endTime }시 ${ r.totalTime }시간 ${ r.reservTotal }명</span><br><br>
-		                        <span class="listInfo2">${ r.amountTime }원</span>
+		                        <span class="listInfo1">[${ r.reSpcType }][${ r.location }] ${ r.reSpcName }</span><br>
+		                        <span class="listInfo2">${ r. reservDate } ${ r.useTime }시 ~ ${ r.endTime }시, ${ r.totalTime }시간, ${ r.reservTotal }명</span><br><br>
+		                        <span class="listInfo2">${ r.paySum }원</span>
 		                        <span class="statusRable">${ r.reservStatus }</span>
 		                    </div>
 		                </div><br>

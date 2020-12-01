@@ -21,6 +21,7 @@ public class Member {
 	private String newUserPwd;  // 새비밀번호
 	private String userNickname; // 닉네임
 	private String userEmail;	 // 회원이메일
+	private String emailInjeung; // 이메일 인증번호
 	private String userPhone;	 // 회원전화번호
 	private String userProfile;	 // 프로필사진
 	private String userProfileC; // 프로필사진 수정명
