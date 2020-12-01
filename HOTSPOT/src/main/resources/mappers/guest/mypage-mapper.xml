@@ -75,7 +75,7 @@
   		<result column="REVIEW_DATE" property="reviewDate" />
   	</resultMap>
 	
-	<select id="selectReservListCount" parameterType="Member" resultType="_int">
+	<select id="selectReservListCount" parameterType="string" resultType="_int">
 		select
 		       count(*)
 		  from reservation
@@ -103,10 +103,35 @@
 		  from reservation r
 		  join space_info using(spc_no)
         where r.user_id=#{userId}
-		<trim prefix="order by">
-			<if test="reservationAlign eq '이용날짜순'">r.use_date desc</if>
-			<if test="reservationAlign eq '예약번호순'">r.reservation_no desc</if>
-		</trim>
+	</select>
+	
+	
+	<select id="alignReservList"  resultMap="reservationSet">
+		select
+	        r.reservation_no
+	      , r.user_id
+	      , to_char(r.reservation_date, 'YYYY-MM-DD') reservation_date
+	      , r.total_time
+	      , r.reservation_total
+	      , r.reservation_status
+	      , r.use_time
+	      , r.end_time
+	      , r.pay_sum
+	      , spc_no
+	      , spc_name
+	      , spc_type
+	      , spc_img
+	      , spc_chimg
+	      , spc_price
+	      , substr(map_location, 0, 7) as map_location
+	  from reservation r
+	  join space_info using(spc_no)
+     where r.user_id=#{userId}
+     order by
+       	<choose>
+			<when test="align == '이용날짜순'">r.use_date desc</when>
+			<otherwise>r.reservation_no desc</otherwise>
+		</choose>
 	</select>
 	
 	<update id="increaseCount" parameterType="_int">

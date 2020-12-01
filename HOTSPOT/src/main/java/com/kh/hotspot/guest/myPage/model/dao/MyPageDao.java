@@ -1,6 +1,7 @@
 package com.kh.hotspot.guest.myPage.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,8 +13,8 @@ import com.kh.hotspot.guest.space.model.vo.Reservation;
 @Repository
 public class MyPageDao {
 	
-	public int selectReservListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("mypageMapper.selectReservListCount");
+	public int selectReservListCount(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("mypageMapper.selectReservListCount", userId);
 	}
 	
 	public ArrayList<Reservation> selectReservList(SqlSessionTemplate sqlSession, PageInfo pi, String userId){
@@ -25,6 +26,15 @@ public class MyPageDao {
 		//System.out.println(userId);
 		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectReservList", userId, rowBounds);
+	}
+	
+	
+	public ArrayList<Reservation> alignReservList(SqlSessionTemplate sqlSession, String align, String userId){
+		
+		HashMap<String, String> hmap = new HashMap<>();
+		hmap.put("align", align);
+		hmap.put("userId", userId);
+		return (ArrayList)sqlSession.selectList("mypageMapper.alignReservList", hmap);
 	}
 
 //	public int increaseCount(SqlSessionTemplate sqlSession, int reservNo) {

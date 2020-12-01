@@ -72,11 +72,11 @@
             <h2 align="center"><b>예약 내역 리스트</b></h2>
             <br><br>
             <div class="selectArray">
-                <select name="reservationAlign">
-                    <option value="useDate">이용날짜순</option>
-                    <option value="reservNo" >예약번호순</option>
+                <select name="reservAlign" id="reservAlign">
+                    <option value="이용날짜순" selected>이용날짜순</option>
+                    <option value="예약번호순" >예약번호순</option>
                 </select>
-                <select name="reservationStatus">
+                <select name="reservStatus" id="reservStatus">
                     <option value="total" selected>전체</option>
                     <option value="reservfix">예약확정</option>
                     <option value="paywait">결제대기</option>
@@ -107,6 +107,24 @@
 		         	</c:forEach>
 	           	</div>
 	       </div>
+	       
+	       <script>
+	       	$(function(){
+	       		$("#reservAlign").change(function(){
+	       			location.href="align.re?align=" + $("#reservAlign option:selected").val();
+	       		})
+	       	})
+	       </script>
+	       
+	       
+	       
+	       <script>
+	       	$(function(){
+	       		$("#reservStatus").change(function(){
+	       			location.href="myReserv.re?reservStatus" + 
+	       		})
+	       	})
+	       </script>
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
@@ -120,6 +138,7 @@
                    </c:choose>
                    
                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                   	<input type="hidden" name="userId" value="${ loginUser.userId }"> 
                    	<li class="page-item"><a class="page-link" href="myReserv.re?currentPage=${ p }">${ p }</a></li>
 				</c:forEach>
 				

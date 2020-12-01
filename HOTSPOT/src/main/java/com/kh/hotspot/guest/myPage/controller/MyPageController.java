@@ -22,33 +22,43 @@ public class MyPageController {
 	
 	@Autowired
 	private MyPageService mpService;
-//	
-//	@RequestMapping("myReserv.re")
-//	public String selelctMyReserv() {
-//		
-//		return "guest/myPage/reservationListView";
-//	}
+
 	
 	@RequestMapping("myReserv.re")
 	public String selectReservList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model, HttpSession session) { // 페이지 기본값을 1로지정
 		
-		int listCount = mpService.selectReservListCount();
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
-		
 		
 		Member m = (Member)session.getAttribute("loginUser"); // 로그인한 Member객체 뽑아오기
 		
+		int listCount = mpService.selectReservListCount(m.getUserId());
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		//sout + ctrl+space
 		
 		ArrayList<Reservation> list = mpService.selectReservList(pi, m.getUserId());
 		
 		model.addAttribute("pi", pi);
-		System.out.println(pi);
 		model.addAttribute("list", list);
-		//System.out.println(list);
 		
 		return "guest/myPage/reservationListView";
 
+	}
+	
+	@RequestMapping("align.re")
+	public String alignReservList(String align, HttpSession session, Model model) {
+		
+		//session.setAttribute("align", align);
+		
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		ArrayList<Reservation> list = mpService.alignReservList(align, m.getUserId());
+		
+		model.addAttribute("list", list);
+		
+		return "guest/myPage/reservationListView";
+		
+		
+		
 	}
 
 	
