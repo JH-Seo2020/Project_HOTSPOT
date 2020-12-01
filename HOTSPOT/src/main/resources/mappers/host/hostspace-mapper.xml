@@ -63,18 +63,20 @@
 	         seq_space.currval
 	        )
   </insert>
-  <!-- <update id="insertNotes" parameterType="java.util.ArrayList">
-  <foreach collection="list" item="item" separator="" open="INSERT ALL" close="SELECT * FROM DUAL">
+ <insert id="insertNotes" parameterType="spcNotes">
+	insert
 	  into spc_notes(
 	       notes_no
 	      ,notes_content
 	      ,spc_no
 	      )
 	values
-	         (seq_notes.nextval,
-			 #{item.notesContent},
-	         seq_space.currval)
-	</foreach>
-	        
-  </update> -->
+         (
+          seq_notes.nextval
+         ,#{notesContent}
+         ,seq_space.currval
+         )
+  </insert> 
+  
+
 </mapper>
