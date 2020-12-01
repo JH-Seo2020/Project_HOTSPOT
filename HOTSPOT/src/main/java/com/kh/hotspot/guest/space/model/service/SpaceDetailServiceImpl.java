@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.myPage.model.vo.Wish;
 import com.kh.hotspot.guest.space.model.dao.SpaceDetailDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
@@ -85,15 +86,21 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 	}
 
 	@Override
-	public int insertLike(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertLike(Wish wish) {
+		
+		return spaceDetailDao.insertLike(sqlSession, wish);
 	}
 
 	@Override
-	public int deleteLike() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteLike(Wish wish) {
+		
+		return spaceDetailDao.deleteLike(sqlSession, wish);
+	}
+
+	@Override
+	public int checkLike(Wish wish) {
+		
+		return spaceDetailDao.checkLike(sqlSession, wish);
 	}
 
 	@Override
@@ -113,12 +120,6 @@ public class SpaceDetailServiceImpl implements SpaceDetailService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
-
-
-
-
 
 
 }
