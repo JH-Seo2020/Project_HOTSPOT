@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <!-- 디테일페이지 css -->
 <link rel="stylesheet" href="resources/css/guest/spaceDetailView.css" type="text/css"/>
-<!-- 카카오지도 API -->
 </head>
 <body>
 
@@ -31,9 +30,18 @@
                 <a data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
                     <img src="resources/images/report.png">
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href=""><img src="resources/images/heart_ready.png"></a>
+                <a><img id="likeImg" src="resources/images/heart_ready.png"></a>
             </div>
         </div>
+        
+        <script>
+        	$(function(){
+        		$("#likeImg").hover(function(){
+        			$(this).css("cursor","pointer");
+        		})
+        	})
+        </script>
+
         <div class="infoClass">
             <div id="informations">
                 <div id="titleImgOne">
@@ -174,6 +182,21 @@
         	})
         </script>
 
+	    <script>
+	    	var loginUser = '${loginUser}';
+	    	$(function(){
+	    		if(loginUser == ''){
+	    			$("#qtohost").css("display","none");
+	    			$("#wishandlike").css("display","none");
+	    			$("#reportModal").css("display","none");
+	    		}else{
+	    			$("#qtohost").css("display",true);
+	    			$("#wishandlike").css("display",true);
+	    			$("#reportModal").css("display",true);
+	    		}
+	    	})
+	    </script>
+
         <div id="infoDetails">
             <h1><span class="badge badge-pill badge-dark">Details</span></h1><br>
             <h3><a id="d1">이용후기</a>&nbsp;|&nbsp;
@@ -232,7 +255,7 @@
             
             <div id="detailQnA">
                 <br>
-                <h4><span class="badge badge-pill badge-dark">#QnA 5개</span></h4>
+                <h4><span class="badge badge-pill badge-dark">#QnA</span></h4>
                 <h5><a id="qtohost" class="badge badge-pill badge-warning" data-toggle="modal" data-target="#questionToHost" style="cursor: pointer;">✏호스트에게 질문하기</a></h5>
                 <br>
                 <div id="qnaSpace">
@@ -254,7 +277,7 @@
 		        </div>
 		        <br>
             </div>
-            
+
         <script>
 	        $(function(){
 	            $(".answers").click(function(){
@@ -349,8 +372,7 @@
 	        }
 	        
 	    </script>
-            
-            
+
             
 	        <div id="detailReviews">
                 <br>
@@ -445,23 +467,100 @@
 	        	</div>
 	    	</div>
 	    </div>
- 
+
+    <!-- 푸터 -->
+    <jsp:include page="../../common/footer.jsp"/>
+    
     <script>
-    	var loginUser = '${loginUser}';
-    	$(function(){
-    		if(loginUser == ''){
-    			$("#qtohost").css("display","none");
-    			$("#wishandlike").css("display","none");
-    			$("#reportModal").css("display","none");
+    <!--찜하기-->
+
+    var loginUser = '${loginUser}';
+
+    $(function(){
+    	changeImg();
+    	
+    	$("#likeImg").click(function(){
+    		if(loginUser!=null){
+    			if( $(this).attr("src") === "resources/images/heart_ready.png" ){
+    				$(this).attr("src","resources/images/heart_go.png");
+    				insertWish();
+    			}else{
+    				$(this).attr("src","resources/images/heart_ready.png");
+    				deletewish();
+    			}
     		}else{
-    			$("#qtohost").css("display",true);
-    			$("#wishandlike").css("display",true);
-    			$("#reportModal").css("display",true);
+    			alert("로그인 후 이용해주세요!");
     		}
-    	})
+    	});
+    });
+
+
+    function changeImg(){
+    	if(loginUser!=null){
+    		$.ajax({
+    			url : "checkImg.guest",
+    			type : "post",
+    			data : {
+    				"spcNo" : ${si.spcNo},
+    				"userId" : '${loginUser.userId}'
+    			},success : function(result){
+    				console.log(result);
+    				
+    				if(result>0){
+    					$("#likeImg").attr("src","resources/images/heart_go.png");
+    				}else{
+    					$("#likeImg").attr("src","resources/images/heart_ready.png");
+    				}
+    				
+    			},error : function(){
+    				console.log('like 상태체크 실패');
+    			}
+    			
+    		});	
+    	
+    	}else{
+    		$('#likeImg').attr("src","resources/images/heart_ready.png");
+    	}
+    }
+
+    function insertWish(){
+ 		$.ajax({
+ 			url:"wishIn.guest",
+ 			type:"post",
+ 			data:{
+				"spcNo" : ${si.spcNo},
+				"userId" : '${loginUser.userId}'
+ 			},success: function(result){
+ 				alert('관심등록성공!');
+ 			},
+ 			error: function(){
+ 				console.log('관심등록 실패');
+ 			}
+ 				
+ 		});
+ 	}
+     
+     function deletewish(){
+     	$.ajax({
+ 			url:"wishDelete.guest",
+ 			type:"post",
+ 			data:{
+				"spcNo" : ${si.spcNo},
+				"userId" : '${loginUser.userId}'
+ 			},success: function(result){
+ 				alert('관심등록삭제!');
+ 				changeImg();
+ 			},
+ 			error: function(){
+ 				console.log('관심목록 삭제실패');
+ 			}
+ 				
+ 		});
+     }
+
+
     </script>
     
-
     <!--신고모달-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form method="post" action="report.guest">
@@ -557,9 +656,5 @@
         </form>
     </div>
 
-
-
-    <!-- 푸터 -->
-    <jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>
