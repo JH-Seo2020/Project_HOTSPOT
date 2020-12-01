@@ -143,10 +143,17 @@
                 </div>
             </div>
             <br>
-            <button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#cancelModal">예약 취소하기</button>
-            <!-- 이용완료시에 보이는 신고하기버튼 
-            <button type="button" class="reserveBtn" onclick="">신고하기</button>
-            -->
+            <c:choose>
+            	<c:when test="${ r.reservStatus eq ('예약확정') }">
+	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#cancelModal">예약 취소하기</button>
+	            </c:when>
+	            <c:when test="${ r.reservStatus eq ('이용완료') }">
+	            	<button type="button" class="reserveBtn" onclick="">신고하기</button>
+	            </c:when>
+	            <c:otherwise>
+	            
+	            </c:otherwise>
+            </c:choose>
         </div>
     </div>
     

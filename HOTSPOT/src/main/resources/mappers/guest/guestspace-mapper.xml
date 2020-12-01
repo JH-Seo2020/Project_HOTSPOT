@@ -395,5 +395,31 @@
 		 order
 		    by qa_no desc
   	</select>
+  	
+  	<insert id="insertLike" parameterType="Wish">
+  		insert into WISH
+		       ( 
+		       	 USER_ID
+		       , SPC_NO
+		       )
+		       VALUES
+		       ( 
+		         #{userId}
+		       , #{spcNo} 
+		       )
+  	</insert>
+  	
+  	<delete id="deleteLike" parameterType="Wish">
+  		DELETE FROM WISH
+		WHERE USER_ID = #{userId}
+		  AND SPC_NO = #{spcNo} 
+  	</delete>
+  	
+  	<select id="checkLike" parameterType="Wish" resultType="_int">
+	  	SELECT COUNT(*)
+		  FROM WISH
+		WHERE USER_ID = #{userId}
+		  AND SPC_NO = #{spcNo} 
+  	</select>
 
 </mapper>

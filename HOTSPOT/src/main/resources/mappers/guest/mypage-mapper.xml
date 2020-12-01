@@ -22,6 +22,13 @@
 		<result column="refund" property="refund"/>
 		<result column="pay_method" property="payMethod"/>
 		<result column="reservation_status" property="reservStatus"/>
+		<result column="spc_no" property="ReSpcNo"/>
+		<result column="spc_name" property="ReSpcName"/>
+		<result column="spc_type" property="ReSpcType"/>
+		<result column="spc_img" property="ReSpcImg"/>
+		<result column="spc_chimg" property="ReSpcChimg"/>
+		<result column="spc_price" property="ReSpcPrice"/>
+		<result column="map_location" property="location"/>
 	</resultMap>
 	
 	<resultMap id="memberResultSet" type="Member">
@@ -72,7 +79,6 @@
 		select
 		       count(*)
 		  from reservation
-		  join member using(user_id)
 		 where user_id=#{userId}
 	</select>
 	
@@ -86,23 +92,31 @@
 		      , r.reservation_status
 		      , r.use_time
 		      , r.end_time
+		      , r.pay_sum
 		      , spc_no
 		      , spc_name
 		      , spc_type
 		      , spc_img
 		      , spc_chimg
 		      , spc_price
-		      , map_location
+		      , substr(map_location, 0, 7) as map_location
 		  from reservation r
 		  join space_info using(spc_no)
         where r.user_id=#{userId}
-		 order
-		    by r.use_date desc
+		<trim prefix="order by">
+			<if test="reservationAlign eq '이용날짜순'">r.use_date desc</if>
+			<if test="reservationAlign eq '예약번호순'">r.reservation_no desc</if>
+		</trim>
 	</select>
 	
 	<update id="increaseCount" parameterType="_int">
-	
-	
+		update
+	        reservation
+	    <set> 
+	        <if test="reservStatus eq '예약확정'">reservation_status='취소환불'</if>
+	    </set>
+	  where user_id=#{userId}
+        and reservation_no between 1 and 83;
 	</update>
 
 </mapper>

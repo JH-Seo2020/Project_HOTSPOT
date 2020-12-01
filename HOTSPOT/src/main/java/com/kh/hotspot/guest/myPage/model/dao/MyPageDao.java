@@ -22,6 +22,7 @@ public class MyPageDao {
 		int limit = pi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);	
+		//System.out.println(userId);
 		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectReservList", userId, rowBounds);
 	}
@@ -33,5 +34,10 @@ public class MyPageDao {
 	
 	public Reservation selectDetailReserv(SqlSessionTemplate sqlSession, int reservNo) {
 		return sqlSession.selectOne("mypageMapper.selectDetailReserv", reservNo);
+	}
+	
+	
+	public int deleteReserv(SqlSessionTemplate sqlSession, int reservNo) {
+		return sqlSession.delete("mypageMapper.deleteReserv", reservNo);
 	}
 }

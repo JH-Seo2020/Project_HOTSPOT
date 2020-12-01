@@ -17,6 +17,7 @@ import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.myPage.model.vo.Wish;
 import com.kh.hotspot.guest.space.model.service.SpaceDetailService;
 import com.kh.hotspot.guest.space.model.service.SpaceService;
 import com.kh.hotspot.guest.space.model.vo.Qna;
@@ -155,8 +156,6 @@ public class SpaceController {
 		return"";
 	}
 	
-
-	
 	@ResponseBody
 	@RequestMapping(value="question.guest", produces="application/json; charset=utf-8")
 	public String selectQnaList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, int spcNo, Model model) {
@@ -165,7 +164,7 @@ public class SpaceController {
 		int listCount = spaceDetailService.selectQnaListCount(spcNo);
 		//2.페이지네이션처리
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
-		//3.이용후기조회
+		//3.질문답변 전체조회
 		ArrayList<Qna> qna = spaceDetailService.selectQnaDetail(spcNo, pi);
 		
 		JSONObject qnas = new JSONObject();
@@ -174,7 +173,46 @@ public class SpaceController {
 		
 		return 	new Gson().toJson(qnas);
 	}
-
 	
+	@ResponseBody
+	@RequestMapping(value="wishIn.guest", produces="application/json; charset=utf-8")
+	public int insertWishForGuest(Wish wish, Model model) {
+		
+		System.out.println(wish);
+		
+		int result = spaceDetailService.insertLike(wish);
+		if(result>0) {
+			return 1; 
+		}else {
+			return 0;
+		}
+		
+	}
+
+	@ResponseBody
+	@RequestMapping(value="wishDelete.guest", produces="application/json; charset=utf-8")
+	public int deleteWishForGuest(Wish wish, Model model) {
+		
+		int result = spaceDetailService.deleteLike(wish);
+		if(result>0) {
+			return 1; 
+		}else {
+			return 0;
+		}
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="checkImg.guest", produces="application/json; charset=utf-8")
+	public int checkWishForGuest(Wish wish, Model model) {
+		
+		int result = spaceDetailService.checkLike(wish);
+		if(result>0) {
+			return 1; 
+		}else {
+			return 0;
+		}
+		
+	}
 
 }
