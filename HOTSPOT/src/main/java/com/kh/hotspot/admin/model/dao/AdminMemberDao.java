@@ -45,4 +45,19 @@ public class AdminMemberDao {
 		return sqlSession.update("memberMapper.updateUserInfo", member);
 	}
 	
+	// 회원유형 변경
+	public int updateUserType(String userId, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.updateUserType", userId);
+	}
+	
+	// 호스트정보 상태변경(수락)
+	public int updateHostStatusY(String userId, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.updateHostStatusY", userId);
+	}
+	
+	// 호스트정보 상태변경(거절)
+	public int updateHostStatusN(String userId, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.updateHostStatusN", userId);
+	}
+	
 }

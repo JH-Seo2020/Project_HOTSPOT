@@ -70,7 +70,7 @@
                         <td>${ member.userPhone }</td>
                     </tr>
                 </table>
-                <textarea id="textarea" cols="53" rows="10" placeholder="회원 메모를 작성해주세요."></textarea>
+                <textarea id="textarea" cols="53" rows="10" placeholder="회원 메모를 작성해주세요.">${ member.userMemo }</textarea>
             </div>
 
 
@@ -145,7 +145,8 @@
     	$(function(){
     		// 전달받은 회원상태로 고정
     		$("#select_userStatus").val($("#hidden_userStatus").val()).attr("selected", "selected");
-    		// 활동상태, 메모 저장
+    		
+    		// 활동상태, 메모 저장 요청
     		$("#btn_save").click(function(){
     			var userId = $("#table_info2 tr:eq(0)>td").text();	// 회원아이디
     			var userStatus = $("#select_userStatus").val();		// 회원상태
@@ -174,6 +175,54 @@
 						}
 					});
 				}
+    		});
+    		// 호스트 수락
+    		$("#btn_concent").click(function(){
+    			var userId = $("#table_info2 tr:eq(0)>td").text();		// 회원아이디
+    			var userEmail = $("#table_info2 tr:eq(3)>td").text();	// 회원이메일
+    			$.ajax({
+    				url: "concent.ad",
+    				data: {
+    					userId:userId,
+    					userEmail:userEmail
+    				},
+    				success: function(result){
+						if(result > 1){
+	    					alert(userId + " 님의 호스트승인을 수락합니다.");
+	    					location.href="memberDetail.ad?userId=" + userId;
+						}else{
+							alert("처리 실패하였습니다.");
+						}
+    				},
+    				error: function(){
+    					alert("처리 실패하였습니다.");
+    				}
+    			});
+    		});
+    		
+    		// 호스트 거절
+    		$("#btn_refuse").click(function(){
+    			var userId = $("#table_info2 tr:eq(0)>td").text();		// 회원아이디
+    			var userEmail = $("#table_info2 tr:eq(3)>td").text();	// 회원이메일
+    			// 거절하는경우
+    			$.ajax({
+    				url: "refuseHost.ad",
+    				data: {
+    					userId:userId,
+    					userEmail:userEmail
+    				},
+    				success: function(result){
+    					if(result > 0){
+    						alert(userId + " 님의 호스트승인을 거절합니다.");
+    						location.href="memberDetail.ad?userId=" + userId;
+    					}else{
+    						alert("처리 실패하였습니다.");
+    					}
+    				},
+    				error: function(){
+    					alert("처리 실패하였습니다.");
+    				}
+    			});
     		});
     	});
     </script>    
