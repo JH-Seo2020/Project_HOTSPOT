@@ -56,22 +56,24 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 
 
 	@Override
-	public int insertSpace(Space sp, ArrayList<SpcImages> imgList, ArrayList<SpcNotes> noteList) {
+	public int insertSpace(Space sp, ArrayList<SpcNotes> noteList) {
 		int result = hSpaceDao.insertSpace(sqlSession,sp);
-		int result3 = 0;
+		int result2 = 0;
 		for(int i =0; i<noteList.size(); i++) {
-			result3 = hSpaceDao.insertNotes(sqlSession, noteList.get(i));
-		}
-		for(int i =0; i<imgList.size(); i++) {
-			int result2 = hSpaceDao.insertImages(sqlSession, imgList.get(i));
+			result2= hSpaceDao.insertNotes(sqlSession, noteList.get(i));
 		}
 		
-//		if(result == 0 || result2 == 0 || result3 == 0 ) {
+		
+//		if(result == 0 || result2 == 0  ) {
 //			return 0;
 //		}
 		return result;
 	}
-	
+	@Override
+	public int insertImages(SpcImages si) {
+		
+		return hSpaceDao.insertImages(sqlSession, si);
+	}
 	
 	public int increaseCount(int nno) {
 		// TODO Auto-generated method stub
@@ -98,6 +100,9 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 		// TODO Auto-generated method stub
 		return hSpaceDao.selectSearchNoticeList(sqlSession, keyword, pi);
 	}
+
+
+
 	
 	
 

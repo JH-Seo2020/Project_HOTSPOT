@@ -56,10 +56,8 @@
 	     )
 	values(
 	        seq_images.nextval,
-	         <foreach collection="list" item="item" >
-			 #{item.imgOgImg},
-			 #{item.imgChImg},
-			</foreach>
+			 #{imgOgImg},
+			 #{imgChImg},
 	         seq_space.currval
 	        )
   </insert>

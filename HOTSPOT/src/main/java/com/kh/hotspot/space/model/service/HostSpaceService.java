@@ -23,7 +23,7 @@ public interface HostSpaceService {
 	ArrayList<VoicesNotice> selectList(PageInfo pi);
 	
 	//5. 공간 등록 
-	int insertSpace(Space sp, ArrayList<SpcImages> imgList, ArrayList<SpcNotes> noteLIst);
+	int insertSpace(Space sp, ArrayList<SpcNotes> noteLIst);
 
 	//공지사항 조회수 증가
 	int increaseCount(int nno);
@@ -36,6 +36,9 @@ public interface HostSpaceService {
 
 	//공지사항 제목검색 리스트 가져오기
 	ArrayList<VoicesNotice> selectSearchNoticeList(String keyword, PageInfo pi);
+	
+	// 상세이미지 등록
+	int insertImages(SpcImages si);
 
 	
 	

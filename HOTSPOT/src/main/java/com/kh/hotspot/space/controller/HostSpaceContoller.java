@@ -42,7 +42,7 @@ public class HostSpaceContoller {
 	 * @author jieun
 	 */
 	@RequestMapping("insertSpace.ho")
-	public void insertSpace(Space sp, MultipartFile upfile, MultipartFile[] upfiles,SpcNotes sn,HttpSession session,Model model) {
+	public String insertSpace(Space sp, MultipartFile upfile, MultipartFile[] upfiles,SpcNotes sn,HttpSession session,Model model) {
 		// 1. 대표 이미지 파일 작업 
 			// 전달 된 파일이 있을 경우 => 파일명 수정 작업 후 업로드 
 			if(!upfile.getOriginalFilename().equals("")) {
@@ -54,34 +54,34 @@ public class HostSpaceContoller {
 					sp.setSpcChimg("resources/upFiles/" + changeName);
 				}
 			}
-		// 2. 상세이미지 파일작업
-		
-			ArrayList<SpcImages> imgList = new ArrayList();
-			SpcImages si = new SpcImages();
-			if(upfiles.length > 0) {
-			ArrayList changeName = saveFile2(upfiles,session); 
-				if(changeName != null) {
-					for(int i=0; i<upfiles.length; i++) {
-							si.setImgOgImg(upfiles[i].getOriginalFilename());
-							si.setImgChImg("resources/upFiles/" + changeName.get(i));
-							imgList.add(i,si);
-						 System.out.println(imgList);
-						}
-				}
-			}
-		// 3. 유의사항 null 체크 및 값 넣어주기 
+	
+		// 2. 유의사항 null 체크 및 값 넣어주기 
 			ArrayList<SpcNotes>noteList = new ArrayList();
 			if(sp.getNoteList() != null) {
 				noteList=sp.getNoteList();
 			}
+		// 3. service 호출
+		int result =  hSpaceService.insertSpace(sp,noteList);
 		
-		//int result =  hSpaceService.insertSpace(sp,imgList,noteList);
-//		if(result > 0) {
-//			session.setAttribute("alertMsg","공간등록이 성공적으로 완료 되었습니다 :)");
-//			return "host/common/hostMain";
-//		}else {
-//			return "common/errorPage";
-//		}
+		// 4. 상세이미지 파일작업
+		int imageResult =0;
+		SpcImages si = new SpcImages();
+		if(upfiles.length > 0) {
+		ArrayList changeName = saveFile2(upfiles,session); 
+			if(changeName != null) {
+				for(int i=0; i<upfiles.length; i++) {
+					si.setImgOgImg(upfiles[i].getOriginalFilename());
+					si.setImgChImg("resources/upFiles/" + changeName.get(i));
+					imageResult = hSpaceService.insertImages(si);
+				}
+			}
+		}
+		if(result > 0 && imageResult > 0) {
+			session.setAttribute("alertMsg","공간등록이 성공적으로 완료 되었습니다 :)");
+			return "host/common/hostMain";
+		}else {
+			return "common/errorPage";
+		}
 	
 	}
 	// 파일 저장 메소드 
