@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 
@@ -52,6 +53,12 @@ public class MyPageDao {
 	
 	
 	public int deleteReserv(SqlSessionTemplate sqlSession, int reservNo) {
-		return sqlSession.delete("mypageMapper.deleteReserv", reservNo);
+		return sqlSession.update("mypageMapper.deleteReserv", reservNo);
 	}
+	
+	
+	public int reportReserv(SqlSessionTemplate sqlSession, Report rp) {
+		return sqlSession.insert("mypageMapper.reportReserv", rp);
+	}
+	
 }

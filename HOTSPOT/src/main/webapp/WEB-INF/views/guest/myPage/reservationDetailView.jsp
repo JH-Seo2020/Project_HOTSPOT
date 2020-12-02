@@ -19,21 +19,25 @@
 	    font-size: 20px;
 	}
 	.reserveBtn{
-	    width: 150px;
-	    height: 30px;
+	    width: 160px;
+	    height: 40px;
 	    background:  rgb(145, 37, 247);
 	    color:white;
 	    border: none;
 	    border-radius: 3px;
 	    float:right
 	}
-	#reserveAlert{
+	#cancelAlert{
 	    position: relative;
 	    background: rgb(243, 243, 243);
 	    padding: 15px;
-	    margin: 30%;
-	    margin-left: 40%;
-	    width: 400px;
+	    margin-top: 35%;
+	}
+	#reportAlert{
+	    position: relative;
+	    background: rgb(243, 243, 243);
+	    padding: 30px;
+	    width: 500px;
 	}
 	.submitBtn{
 	    width: 90px;
@@ -108,7 +112,7 @@
 		                        <c:when test="${ r.reservStatus eq '이용완료' && r.reservStatus eq '취소환불' }">
 			                        <tr>
 			                        	<th>결제방법 및 결제날짜</th>
-			                            <td>${ r.payMethod }</td>
+			                            <td>${ r.payMethod }, ${ r.payDate }</td>
 			                        </tr>
 			                        </c:when>
 			                        <c:otherwise>
@@ -158,80 +162,93 @@
 	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#cancelModal">예약 취소하기</button>
 	            </c:when>
 	            <c:when test="${ r.reservStatus eq '이용완료' }">
-	            	<button type="button" class="reserveBtn" onclick="">신고하기</button>
+	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#reportModal">신고하기</button>
 	            </c:when>
 	            <c:otherwise>
 	            
 	            </c:otherwise>
             </c:choose>
         </div>
+	    <div align="center">
+	     <c:if test="${ r.reservStatus eq '취소환불' }">
+	     	<h3>해당 예약취소가 완료되셨습니다! 감사합니다.</h3>
+	     </c:if>
+	    </div>
     </div>
     
     
 	  <!-- 예약취소 모달 -->
 	  <div class="modal" id="cancelModal">
 	    <div class="modal-dialog">
-          <div id="reserveAlert" class="modal-content">
-	        <div align="center">
-	            <br>
-	            <h6><b>예약을 정말로 취소하시겠습니까?</b></h6>
-	            <div>
-	                <span><b> 예약을 취소하시면 입력한 정보가 모두 소멸됩니다.</b></span><br><br>
-	                <button type="submit" class="submitBtn">확인</button> &nbsp;
-	                <button type="button" class="submitBtn" class="close" data-dismiss="modal">취소</button>
-	            </div>
-	        </div>
+          <div id="cancelAlert" class="modal-content">
+          	<form action="reservDelete.re" method="post">
+          	<input type="hidden" name="reservNo" value="${ r.reservNo }">
+		        <div align="center">
+		            <br>
+		            <h6><b>예약을 정말로 취소하시겠습니까?</b></h6>
+		            <div>
+		                <span><b> 예약을 취소하시면 입력한 정보가 모두 소멸됩니다.</b></span><br><br>
+		                <button type="submit" class="submitBtn">확인</button> &nbsp;
+		                <button type="button" class="submitBtn" class="close" data-dismiss="modal">취소</button>
+		            </div>
+		        </div>
+	        </form>
 	      </div>
 	    </div>
 	  </div>
 
     
     
-
-    <!-- 신고하기 버튼 클릭시 뜨는 alert
-    <div id="reserveAlert">
-        <div align="center">
-            <br>
-            <h5 style="color:  rgb(145, 37, 247)"><b>신고</b></h5>
-            <form action="" method="POST">
-                <table id="reportEnrollForm">
-                    <tr>
-                        <td>신고유형</td> &nbsp;&nbsp;
-                        <td>
-                            <select name="reportType"> 
-                                <option value="hostReport">호스트신고</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>신고상세유형</td>
-                        <td>
-                            <select name="reportDetailType">
-                                <option value="">서비스불만족</option>
-                                <option value="">허위내용</option>
-                                <option value="">광고</option>
-                                <option value="">기타</option>
-                            </select>
-                        </td> 
-                    </tr>
-                    <tr>
-                        <td>신고자</td>
-                        <td><input type="text" name="userId" value="userId01" readonly></td>
-                    </tr>
-                    <tr>
-                        <td>신고내용</td>
-                        <td>
-                            <textarea name="" id="" cols="30" rows="5" style="resize: none;"></textarea>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-                <button type="submit" class="submitBtn">신고하기</button>
-            </form>
-        </div>
-        <br>
-    </div>
-     -->
+   	  <!-- 신고 모달 -->
+	  <div class="modal" id="reportModal">
+	    <div class="modal-dialog">
+          <div id="reportAlert" class="modal-content">
+		     <div align="center">
+	            <br>
+	            <h5 style="color:  rgb(145, 37, 247)"><b>어떤것이 불편하셨나요?</b></h5><br>
+		            <form action="reservReport.re" method="POST">
+		            <input type="hidden" name="reportNo">
+		            <input type="hidden" name="reportWriter" value="${ loginUser.userId }">
+		                <table id="reportEnrollForm">
+		                    <tr>
+		                        <td>신고유형</td>
+		                        <td>
+		                            <select name="reportType1"> 
+		                                <option value="hostReport">호스트신고</option>
+		                            </select>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>신고상세유형</td>
+		                        <td>
+		                            <select name="reportType2">
+		                                <option value="">서비스불만족</option>
+		                                <option value="">허위내용</option>
+		                                <option value="">광고</option>
+		                                <option value="">기타</option>
+		                            </select>
+		                        </td> 
+		                    </tr>
+		                    <tr>
+		                        <td>신고할 호스트</td>
+		                        <td><input type="text" name="reportTarget" value="${ loginUser.userId }" readonly></td>
+		                    </tr>
+		                    <tr>
+		                        <td>신고내용</td>
+		                        <td>
+		                            <textarea name="reportContent" cols="40" rows="5" style="resize: none;"></textarea>
+		                        </td>
+		                    </tr>
+		                </table>
+		                <br>
+		                <button type="submit" class="submitBtn">신고하기</button>
+		                <button type="button" class="submitBtn" class="close" data-dismiss="modal">취소</button>
+			        </form>
+		        </div>
+		    </div>
+	    </div>
+	  </div>
+    
 
     <jsp:include page="../../common/footer.jsp"/>
     

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.service.MyPageService;
@@ -66,7 +67,6 @@ public class MyPageController {
 		Member m = (Member)session.getAttribute("loginUser");
 		
 		Reservation r = mpService.selectDetailReserv(reservNo, m.getUserId());
-		System.out.println(reservNo);
 		
 		model.addAttribute("r", r);
 		
@@ -75,7 +75,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping("delete.re")
+	@RequestMapping("reservDelete.re")
 	public String deleteReserv(int reservNo, HttpSession session, Model model) {
 		
 		int result = mpService.deleteReserv(reservNo);
@@ -94,5 +94,25 @@ public class MyPageController {
 		
 		
 	}
+	
+	@RequestMapping("reservReport.re")
+	public String reportReserv(Report rp, HttpSession session, Model model) {
+	
+		int result = mpService.reportReserv(rp);
+		
+		if(result > 0) {
+			
+			session.setAttribute("alert", "신고가 접수되었습니다!");
+			return "redirect:reservDetail.re";
+			
+		}else {
+			
+			model.addAttribute("errorMsg", "신고접수에 실패하셨습니다.");
+			return "common/errorPage";
+			
+		}
+		
+	}
+
 	
 }
