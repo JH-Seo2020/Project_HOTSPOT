@@ -37,7 +37,7 @@
 	    position: relative;
 	    background: rgb(243, 243, 243);
 	    padding: 30px;
-	    width: 500px;
+	    width: 550px;
 	}
 	.submitBtn{
 	    width: 90px;
@@ -71,7 +71,7 @@
     <div id="content">
         <div id="reservation_Detail">
         	<input type="hidden" name="userId" value="${ loginUser.userId }">
-        	<input type="hidden" name="reservNo" value="${ list.reservNo }">
+        	<input type="hidden" name="reservNo" value="${ r.reservNo }">
             <br>
             <h2 align="center"><b>예약 상세내역</b></h2>
             <br><br>
@@ -162,7 +162,7 @@
 	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#cancelModal">예약 취소하기</button>
 	            </c:when>
 	            <c:when test="${ r.reservStatus eq '이용완료' }">
-	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#reportModal">신고하기</button>
+	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#reportModal">호스트 신고하기</button>
 	            </c:when>
 	            <c:otherwise>
 	            
@@ -207,14 +207,13 @@
 	            <br>
 	            <h5 style="color:  rgb(145, 37, 247)"><b>어떤것이 불편하셨나요?</b></h5><br>
 		            <form action="reservReport.re" method="POST">
-		            <input type="hidden" name="reportNo">
 		            <input type="hidden" name="reportWriter" value="${ loginUser.userId }">
 		                <table id="reportEnrollForm">
 		                    <tr>
 		                        <td>신고유형</td>
 		                        <td>
 		                            <select name="reportType1"> 
-		                                <option value="hostReport">호스트신고</option>
+		                                <option value="호스트신고">호스트신고</option>
 		                            </select>
 		                        </td>
 		                    </tr>
@@ -222,16 +221,16 @@
 		                        <td>신고상세유형</td>
 		                        <td>
 		                            <select name="reportType2">
-		                                <option value="">서비스불만족</option>
-		                                <option value="">허위내용</option>
-		                                <option value="">광고</option>
-		                                <option value="">기타</option>
+		                                <option value="서비스불만족">서비스불만족</option>
+		                                <option value="허위내용">허위내용</option>
+		                                <option value="광고">광고</option>
+		                                <option value="기타">기타</option>
 		                            </select>
 		                        </td> 
 		                    </tr>
 		                    <tr>
 		                        <td>신고할 호스트</td>
-		                        <td><input type="text" name="reportTarget" value="${ loginUser.userId }" readonly></td>
+		                        <td><input type="text" name="reportTarget" value="${ r.userIdHost }" readonly></td>
 		                    </tr>
 		                    <tr>
 		                        <td>신고내용</td>
@@ -241,7 +240,7 @@
 		                    </tr>
 		                </table>
 		                <br>
-		                <button type="submit" class="submitBtn">신고하기</button>
+		                <button type="submit" class="submitBtn">신고하기</button> &nbsp;&nbsp;
 		                <button type="button" class="submitBtn" class="close" data-dismiss="modal">취소</button>
 			        </form>
 		        </div>

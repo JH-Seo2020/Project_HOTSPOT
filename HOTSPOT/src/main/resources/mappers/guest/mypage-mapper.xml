@@ -114,6 +114,7 @@
 	<select id="selectDetailReserv" resultMap="reservationSet">
 		select
 		        r.reservation_no
+		      , r.user_id_h
 		      , r.reservation_total
 		      , r.reservation_date
 		      , r.reservation_status
@@ -166,7 +167,7 @@
 		  )
 		  values
 		  (
-		    #{reportNo}
+		    seq_report.nextval
 		  , #{reportType1}
 		  , #{reportType2}
 		  , #{reportWriter}
