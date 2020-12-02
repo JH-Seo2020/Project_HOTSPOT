@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,7 +104,8 @@
                     </c:choose>
                     <li>편의시설 : ${ s.spcCon }</li>
                     <li id="hours">영업시간 : ${ s.spcHours.replace(",", "~") }</li>
-                    <li>기본가격 : 시간당 ${ s.spcPrice }원</li>
+                    <li>기본가격 : 시간당 <fmt:formatNumber value="${ s.spcPrice }" groupingUsed="true"/>원</li>
+                    
                     <li>공간 소개 : ${s.spcLong }</li>
                
                     

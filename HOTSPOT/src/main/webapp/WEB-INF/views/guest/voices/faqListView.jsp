@@ -66,7 +66,7 @@
               </table>
         </div>
         <div id="ask">
-            <button class="forRight btn purple" type="button">챗봇으로 물어보기</button> 
+            <button class="forRight btn purple" type="button" onclick="location.href='chat.ad'">챗봇으로 물어보기</button> 
         </div>
         <div id="pagination">
 
