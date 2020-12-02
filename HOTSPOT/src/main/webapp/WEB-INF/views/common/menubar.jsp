@@ -115,7 +115,7 @@
 		                        <tr>
 			                        <td>
 		                                <img src="resources/images/list.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-		                                <a href=""><span>이용후기 / 문의 관리</span></a> <br>
+		                                <a href="myReview.mg"><span>이용후기 / 문의관리</span></a> <br>
 			                        </td>
 			                    </tr>
 			                    <tr>

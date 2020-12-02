@@ -38,10 +38,6 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.alignReservList", hmap);
 	}
 
-//	public int increaseCount(SqlSessionTemplate sqlSession, int reservNo) {
-//		return sqlSession.update("mypageMapper.increaseCount", reservNo);
-//	}
-	
 	
 	public Reservation selectDetailReserv(SqlSessionTemplate sqlSession, int reservNo, String userId) {
 		
