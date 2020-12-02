@@ -92,7 +92,7 @@ $(function(){
             <h5><span class="importh">공간등록</span>을 원하시나요?</h5>
                 <hr>
             <span class="comment1"><p style="color:red">*</p> 필수 입력사항</span>
-            <p onclick="validate();">sf</p>
+            <p onclick="validate();"></p>
 
             <div id="spaceForm" style="display:block";>
                 <div id="form_1"class="spaceForm">

@@ -106,4 +106,28 @@
 		 where user_id = #{userId}
 	</update>
 	
+	<!-- 회원유형 변경(Host로 변경) -->
+	<update id="updateUserType" parameterType="String">
+		update
+		       member
+		   set user_type = 'Host'
+		 where user_id = #{userId}
+	</update>
+	
+	<!-- 호스트정보 상태변경(수락) -->
+	<update id="updateHostStatusY" parameterType="String">
+		update
+		       host_info
+		   set host_status = 'Y'
+		 where user_id = #{userId}
+	</update>
+		
+	<!-- 호스트정보 상태변경(거절) -->
+	<update id="updateHostStatusN" parameterType="String">
+		update
+		       host_info
+		   set host_status = 'N'
+		 where user_id = #{userId}
+	</update>
+
 </mapper>

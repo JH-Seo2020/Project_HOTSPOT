@@ -6,30 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-.forCenter{text-align: center;}
- .forRight{float: right; color: rebeccapurple; font-size: 25px; font-weight: bold;}
- .forTitle{font-weight: bold; font-size: 20px; }
- .btn-purple{background-color: rebeccapurple; border: none; color: white; }
- .smallNotice{font-size: 13px; font-weight: bolder; color: rebeccapurple;}
- .radioChoice{height: 20px; width: 20px;}
- table{width: 100%; height: auto;}
- th{text-align: left; font-size: 20px; width: 25%;}
- td{text-align: right;font-size: 20px;width: 25%;}
- #reservWrap{
-     width: 1200px;
-     height: auto;
-     margin: auto;
-     padding: 2% 2%;
- }
- #reservWrap>div{
-     margin-bottom: 5%;
- }
-</style>
+<!-- css -->
+<link rel="stylesheet" href="resources/css/guest/spaceReserv.css" type="text/css"/>
+<!-- moment js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- 메뉴바 -->
-    <jsp:include page="../common/menubar.jsp"/>
+    <jsp:include page="../../common/menubar.jsp"/>
     
         <form id="reservWrap">
         <div class="forCenter"><h1>예약하기</h1></div>
@@ -39,19 +23,19 @@
             <table class="table table-borderless">
                 <tr>
                     <th scope="row">공간명</th>
-                    <td>[경복궁역]한옥카페 '그리다꿈'</td>
+                    <td>${reserv.reservName }</td>
                 </tr>
                 <tr>
                     <th scope="row">예약일 및 시간</th>
-                    <td>2020.01.01 05:00 ~ 2020.03.03 04:00 (24시간)</td>
+                    <td>${reserv.useDate } ${reserv.useTime }:00 ~ ${reserv.endDate } ${reserv.endTime }:00 (24시간)</td>
                 </tr>
                 <tr>
                     <th scope="row">예약 인원</th>
-                    <td>8명</td>
+                    <td>${reserv.reservTotal }명</td>
                 </tr>    
                 <tr>
                     <th scope="row">시간 당 금액</th>
-                    <td>7,000원</td>
+                    <td>${reserv.amountTime }원</td>
                 </tr>  
             </table>
         </div>
@@ -114,7 +98,7 @@
         <div id="totalPay">
             <span class="forTitle">결제할 금액</span>
             <hr>
-            <span style="font-size: 25px; ">24시간 x 8명 x 7,000원 =</span>
+            <span style="font-size: 25px; ">24시간 x ${reserv.reservTotal }명 x ${reserv.amountTime }원 =</span>
             <span class="forRight">1,344,000원</span> 
         </div>
         <div id="methods">
@@ -136,7 +120,7 @@
     
     
     <!-- 푸터 -->
-    <jsp:include page="../common/footer.jsp"/>
+    <jsp:include page="../../common/footer.jsp"/>
 
 </body>
 </html>

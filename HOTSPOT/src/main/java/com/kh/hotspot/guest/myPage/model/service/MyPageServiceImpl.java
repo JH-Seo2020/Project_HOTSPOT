@@ -20,8 +20,8 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	
 	@Override
-	public int selectReservListCount() {
-		return mpDao.selectReservListCount(sqlSession);
+	public int selectReservListCount(String userId) {
+		return mpDao.selectReservListCount(sqlSession, userId);
 	}
 	
 
@@ -30,21 +30,20 @@ public class MyPageServiceImpl implements MyPageService{
 		return mpDao.selectReservList(sqlSession, pi, userId);
 	}
 	
-	
-//	@Override
-//	public int increaseCount(int reservNo) {
-//		return mpDao.increaseCount(sqlSession, reservNo);
-//	}
 
 	@Override
-	public Reservation selectDetailReserv(int reservNo) {
-		return mpDao.selectDetailReserv(sqlSession, reservNo);
+	public ArrayList<Reservation> alignReservList(String align, String userId) {
+		return mpDao.alignReservList(sqlSession, align, userId);
 	}
 
 	@Override
-	public int updateReserv(int reservNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Reservation selectDetailReserv(int reservNo, String userId) {
+		return mpDao.selectDetailReserv(sqlSession, reservNo, userId);
+	}
+
+	@Override
+	public int deleteReserv(int reservNo) {
+		return mpDao.deleteReserv(reservNo);
 	}
 
 	@Override
@@ -52,6 +51,8 @@ public class MyPageServiceImpl implements MyPageService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 
 
 

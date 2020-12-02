@@ -22,57 +22,25 @@
 		<result column="refund" property="refund"/>
 		<result column="pay_method" property="payMethod"/>
 		<result column="reservation_status" property="reservStatus"/>
+		<result column="spc_no" property="ReSpcNo"/>
+		<result column="spc_name" property="ReSpcName"/>
+		<result column="spc_type" property="ReSpcType"/>
+		<result column="spc_img" property="ReSpcImg"/>
+		<result column="spc_chimg" property="ReSpcChimg"/>
+		<result column="spc_price" property="ReSpcPrice"/>
+		<result column="map_location" property="location"/>
+		<result column="BUSINESS_NO" property="HoNo"/>
+		<result column="BUSINESS_NAME" property="HoName"/>
+		<result column="BUSINESS_PHONE" property="HoPhone"/>
+		<result column="BUSINESS_EMAIL" property="HoEmail"/>
+		<result column="BUSINESS_LOC" property="HoLoc"/>
 	</resultMap>
 	
-	<resultMap id="memberResultSet" type="Member">
-  		<id column="user_id" property="userId" />
-  		<result column="user_type" property="userType" />
-  		<result column="user_pwd" property="userPwd" />
-  		<result column="user_nickname" property="userNickname" />
-  		<result column="user_email" property="userEmail" />
-  		<result column="user_phone" property="userPhone" />
-  		<result column="user_profile" property="userProfile" />
-  		<result column="user_profile_c" property="userProfileC" />
-  		<result column="profile_path" property="profilePath" />
-  		<result column="user_status" property="userStatus" />
-  		<result column="enroll_date" property="enrollDate" />
-  		<result column="modify_date" property="modifyDate" />
-  		<result column="withdrawal_date" property="withdrawalDate" />
-  		<result column="user_memo" property="userMemo" />
-  	</resultMap>
 	
-	<resultMap id="spaceInfoResultSet" type="SpaceInfo">
-  		<id column="SPC_NO" property="spcNo" />
-  		<result column="SPC_NAME" property="spcName" />
-  		<result column="SPC_INT" property="spcInt" />
-  		<result column="SPC_LONG" property="spcLong" />
-  		<result column="SPC_TAG" property="spcTag" />
-  		<result column="SPC_TYPE" property="spcType" />
-  		<result column="SPC_MIN" property="spcMin" />
-  		<result column="SPC_MAX" property="spcMax" />
-  		<result column="SPC_IMG" property="spcImg" />
-  		<result column="SPC_CHIMG" property="spcChimg" />
-  		<result column="SPC_PRICE" property="spcPrice" />
-  		<result column="SPC_HOURS" property="spcHours" />
-  		<result column="SPC_HOLIDAY" property="spcHoliday" />
-  		<result column="SPC_STATUS" property="spcStatus" />
-  		<result column="SPC_CONVN" property="spcConvn" />
-  		<result column="USER_ID" property="userId" />
-  		<result column="MAP_LATITUDE" property="latitude" />
-  		<result column="MAP_LONGITUDE" property="longitude" />
-  		<result column="MAP_LOCATION" property="location" />
-  		<result column="REVIEWS" property="reviews" />
-  		<result column="WISHES" property="wishes" />
-  		<result column="REVIEW_CONTENT" property="reviewCon" jdbcType="CLOB" javaType="java.lang.String" />
-  		<result column="REVIEW_SCORE" property="reviewScore" />
-  		<result column="REVIEW_DATE" property="reviewDate" />
-  	</resultMap>
-	
-	<select id="selectReservListCount" parameterType="Member" resultType="_int">
+	<select id="selectReservListCount" parameterType="string" resultType="_int">
 		select
 		       count(*)
 		  from reservation
-		  join member using(user_id)
 		 where user_id=#{userId}
 	</select>
 	
@@ -86,23 +54,80 @@
 		      , r.reservation_status
 		      , r.use_time
 		      , r.end_time
+		      , r.pay_sum
 		      , spc_no
 		      , spc_name
 		      , spc_type
 		      , spc_img
 		      , spc_chimg
 		      , spc_price
-		      , map_location
+		      , substr(map_location, 0, 7) as map_location
 		  from reservation r
 		  join space_info using(spc_no)
         where r.user_id=#{userId}
-		 order
-		    by r.use_date desc
 	</select>
 	
-	<update id="increaseCount" parameterType="_int">
+	
+	<select id="alignReservList"  resultMap="reservationSet">
+		select
+	        r.reservation_no
+	      , r.user_id
+	      , to_char(r.reservation_date, 'YYYY-MM-DD') reservation_date
+	      , r.total_time
+	      , r.reservation_total
+	      , r.reservation_status
+	      , r.use_time
+	      , r.end_time
+	      , r.pay_sum
+	      , spc_no
+	      , spc_name
+	      , spc_type
+	      , spc_img
+	      , spc_chimg
+	      , spc_price
+	      , substr(map_location, 0, 6) as map_location
+	  from reservation r
+	  join space_info using(spc_no)
+     where r.user_id=#{userId}
+     order by
+       	<choose>
+			<when test="align eq '이용날짜순'">r.use_date desc</when>
+			<otherwise>r.reservation_no desc</otherwise>
+		</choose>
+	</select>
 	
 	
-	</update>
+	<select id="selectDetailReserv" resultMap="reservationSet">
+		select
+		        r.reservation_no
+		      , r.reservation_total
+		      , r.reservation_date
+		      , r.reservation_status
+		      , r.total_time
+		      , r.use_date
+		      , r.use_time
+		      , r.end_date
+		      , r.end_time
+		      , r.purpose_type
+		      , r.pay_method
+		      , r.pay_date
+		      , r.pay_sum
+		      , r.user_id
+		      , sp.spc_no
+		      , sp.spc_name
+		      , sp.spc_type
+		      , sp.spc_price
+		      , sp.map_location
+		      , h.business_no
+		      , h.business_name
+		      , h.business_phone
+		      , h.business_email
+		      , h.business_loc
+	  from reservation r
+	  join space_info sp on(r.spc_no=sp.spc_no)
+	  join host_info h on(sp.user_id=h.user_id)
+	 where r.user_id = #{userId}
+	   and r.reservation_no = #{reservNo}
+	</select>
 
 </mapper>

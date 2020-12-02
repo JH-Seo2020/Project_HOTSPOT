@@ -74,4 +74,37 @@ public class AdminMemberController {
 	public String updateUserInfo(Member member) {
 		return new Gson().toJson(memberService.updateUserInfo(member));
 	}
+	
+	// 호스트 수락요청
+	@ResponseBody
+	@RequestMapping(value="concent.ad", produces="application/json; charset=utf-8")
+	public String concentHost(Member member) {
+		
+		String result = "concent";
+		try {
+			memberService.sendEmail(member, result);	// 수락메일 발송
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int updateResultUserType = memberService.updateUserType(member.getUserId());				// 회원유형 Host로 변경
+		int updateResultHostStatus = memberService.updateHostStatus(member.getUserId(), result);	// 호스트상태 Y로 변경
+		
+		return new Gson().toJson(updateResultUserType + updateResultHostStatus);
+	}
+	
+	// 호스트 거절요청
+	@ResponseBody
+	@RequestMapping(value="refuseHost.ad", produces="application/json; charset=utf-8")
+	public String refuseHost(Member member) {
+		
+		String result = "refuse";
+		try {
+			memberService.sendEmail(member, result);	// 거절메일 발송
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new Gson().toJson(memberService.updateHostStatus(member.getUserId(), result));
+	}
 }

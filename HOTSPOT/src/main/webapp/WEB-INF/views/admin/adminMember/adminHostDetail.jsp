@@ -70,7 +70,7 @@
                         <td>${ member.userPhone }</td>
                     </tr>
                 </table>
-                <textarea id="textarea" cols="53" rows="10" placeholder="회원 메모를 작성해주세요."></textarea>
+                <textarea id="textarea" cols="53" rows="10" placeholder="회원 메모를 작성해주세요.">${ member.userMemo }</textarea>
             </div>
 
 

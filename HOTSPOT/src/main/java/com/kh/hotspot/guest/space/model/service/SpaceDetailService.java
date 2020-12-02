@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.myPage.model.vo.Wish;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.space.model.vo.SpaceNotes;
@@ -38,7 +39,7 @@ public interface SpaceDetailService {
 	int insertReport(Report report);
 	
 	//4-6.찜하기등록
-	int insertLike(String userId);
+	int insertLike(Wish wish);
 	
 	//4-7.가능한 시작시간 조회 
 	ArrayList<SpaceInfo> selectStartTime();
@@ -50,9 +51,12 @@ public interface SpaceDetailService {
 	int insertQuestion();
 	
 	//4-10.찜하기 해제
-	int deleteLike();
+	int deleteLike(Wish wish);
 	
-	//4-11.질문하기 기능!!
+	//4-11.찜하기 체크
+	int checkLike(Wish wish);
+	
+	//4-12.질문하기 기능!!
 	int insertQuestion(Qna qna);
 
 }

@@ -12,6 +12,7 @@
 	    margin-top: 50px;
     }
     .reservation_thumbnail{
+    	width: 160px;
         height:120px; 
         float: left;
     	margin:auto;
@@ -72,11 +73,11 @@
             <h2 align="center"><b>예약 내역 리스트</b></h2>
             <br><br>
             <div class="selectArray">
-                <select name="reservationAlign">
-                    <option value="useDate" selected>이용날짜순 정렬</option>
-                    <option value="reservNo" >예약번호순 정렬</option>
+                <select name="reservAlign" id="reservAlign">
+                    <option value="이용날짜순" selected>이용날짜순</option>
+                    <option value="예약번호순" >예약번호순</option>
                 </select>
-                <select name="reservationStatus">
+                <select name="reservStatus" id="reservStatus">
                     <option value="total" selected>전체</option>
                     <option value="reservfix">예약확정</option>
                     <option value="paywait">결제대기</option>
@@ -87,19 +88,63 @@
             	<div id="reservation_listArea">
 		            <input type="hidden" name="userId" value="${ loginUser.userId }">
 	            	<c:forEach var="r" items="${ list }">
-		                <div class="reserveInfo" onclick="location.href='reservDetail.re'">
-		                    <input type="hidden" name="reservNo" value="${ r.reservNo }">
-		                    <img src="resources/images/space1.jpg" class="reservation_thumbnail">
+		                <div class="reserveInfo">
+		                    <input type="hidden" name="reservNo" id="reservNo" value="${ r.reservNo }">
+						<c:choose>
+			                <c:when test="${ r.reSpcImg != null}">
+			                	<img class="reservation_thumbnail" src="<c:url value='resources/images/spaces/${ r.reSpcImg }'/>">
+							</c:when>
+							<c:otherwise>
+								<img class="reservation_thumbnail" src="resources/images/spaces/space1.jpg" >
+							</c:otherwise>
+			            </c:choose>
 		                    <div>
-		                        <span class="listInfo1">[][${ r.location }] 그리다</span><br>
-		                        <span class="listInfo2">${ r. reservDate } ${ r.useTime }시 ~ ${ r.endTime }시 ${ r.totalTime }시간 ${ r.reservTotal }명</span><br><br>
-		                        <span class="listInfo2">${ r.amountTime }원</span>
+		                        <span class="listInfo1">[${ r.reSpcType }][${ r.location }] ${ r.reSpcName }</span><br>
+	                        	<span class="listInfo2">${ r. reservDate } ${ r.useTime }시 ~ ${ r.endTime }시, ${ r.totalTime }시간, ${ r.reservTotal }명</span><br><br>
+		                        <c:choose>
+			                        <c:when test="${ r.reservStatus eq '취소환불'}">
+			                        	<span class="listInfo2">0원</span>
+			                        	<span class="listInfo2">취소환불 완료</span>
+			                        </c:when>
+			                        <c:otherwise>
+			                        	<span class="listInfo2">${ r.paySum }원</span>
+			                        </c:otherwise>
+		                        </c:choose>
 		                        <span class="statusRable">${ r.reservStatus }</span>
 		                    </div>
 		                </div><br>
 		         	</c:forEach>
 	           	</div>
 	       </div>
+	       
+	       
+	       <script>
+	       	$(function(){
+	       		$("#reservAlign").change(function(){
+	       			location.href="align.re?align=" + $("#reservAlign option:selected").val(); // selected옵션으로 선택한 value값을 요청
+	       		})
+	       	});
+	       </script>
+	       
+	       <script>
+	       	$(function(){
+	       		$("#reservStatus").change(function(){
+	       			location.href="myReserv.re?reservStatus" + 
+	       		})
+	       	});
+	       </script>
+	       
+	       <script>
+	       	$(function(){
+	       		$(".reserveInfo").click(function(){
+	       			location.href="reservDetail.re?reservNo=" + $(this).children("#reservNo").val();
+	       		})
+	       	})
+	       </script>
+	       
+	       
+	       
+	       
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
@@ -113,6 +158,7 @@
                    </c:choose>
                    
                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                   	<input type="hidden" name="userId" value="${ loginUser.userId }"> 
                    	<li class="page-item"><a class="page-link" href="myReserv.re?currentPage=${ p }">${ p }</a></li>
 				</c:forEach>
 				

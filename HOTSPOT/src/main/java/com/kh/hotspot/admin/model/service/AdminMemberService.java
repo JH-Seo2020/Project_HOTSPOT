@@ -23,6 +23,16 @@ public interface AdminMemberService {
 	// 회원상태, 메모 저장
 	int updateUserInfo(Member member);
 	
+	// 메일전송
+	void sendEmail(Member member, String result) throws Exception;
+	
+	// 회원유형 변경
+	int updateUserType(String userId);
+	
+	// 호스트상태 변경
+	int updateHostStatus(String userId, String result);
+	
+	
 
 
 }

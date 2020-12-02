@@ -68,12 +68,12 @@ public class HostSpaceDao {
 		return sqlSession.insert("hostSpaceMapper.insertSpace",sp);
 	}
 
-	public int insertImages(SqlSessionTemplate sqlSession,ArrayList<SpcImages> imgList) {
-		return sqlSession.insert("hostSpaceMapper.insertImages",imgList);
+	public int insertImages(SqlSessionTemplate sqlSession,SpcImages spcImages) {
+		return sqlSession.insert("hostSpaceMapper.insertImages",spcImages);
 	}
 
-	public int insertNotes(SqlSessionTemplate sqlSession,ArrayList<SpcNotes> noteList) {
-		return sqlSession.update("hostSpaceMapper.insertNotes",noteList);
+	public int insertNotes(SqlSessionTemplate sqlSession,SpcNotes spcNotes) {
+		return sqlSession.insert("hostSpaceMapper.insertNotes",spcNotes);
 	}
 	
 	/**

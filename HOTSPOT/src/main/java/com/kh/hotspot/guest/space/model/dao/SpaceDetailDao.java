@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.myPage.model.vo.Wish;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
@@ -79,6 +80,24 @@ public class SpaceDetailDao {
 	public int insertReport(SqlSessionTemplate sqlSession, Report report) {
 		
 		return sqlSession.insert("guestspaceMapper.insertReport",report);
+	}
+
+	//찜하기-insert
+	public int insertLike(SqlSessionTemplate sqlSession, Wish wish) {
+		
+		return sqlSession.insert("guestspaceMapper.insertLike",wish);
+	}
+
+	//찜하기-delete
+	public int deleteLike(SqlSessionTemplate sqlSession, Wish wish) {
+		
+		return sqlSession.delete("guestspaceMapper.deleteLike",wish);
+	}
+
+	//찜하기-상태체크
+	public int checkLike(SqlSessionTemplate sqlSession, Wish wish) {
+		
+		return sqlSession.selectOne("guestspaceMapper.checkLike",wish);
 	}
 
 
