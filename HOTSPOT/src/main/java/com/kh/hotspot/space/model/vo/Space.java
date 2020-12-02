@@ -34,7 +34,8 @@ public class Space {
 	private String latitude;	//위도 Y!!!
 	private String longitude;	//경도 X !!!
 	private String location;	//공간위치
-	
+	private int reviews;
+	private int wishes;
 	// 유의사항
 	private ArrayList<SpcNotes> noteList; 
 	// 상세이미지

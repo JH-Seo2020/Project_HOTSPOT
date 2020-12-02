@@ -36,7 +36,16 @@
 		<result column="reviews" property="reviews" />
   		<result column="wishes" property="wishes" />
 	</resultMap>
-	 
+	 <resultMap id="selectCalResultSet" type="calculation">
+	 	<result column="reservation_no" property="reservNo"/>
+	 	<result column="spc_no" property="spcNo"/>
+	 	<result column="spc_name" property="spcName"/>
+	 	<result column="pay_sum" property="reservDate"/>
+	 	<result column="pay_date" property="payDate"/>
+	 	<result column="pay_sum" property="paySum"/>
+	 	<result column="reservation_status" property="reservStatus"/>
+	 	<result column="user_id_h" property="userId"/>
+	 </resultMap>
 	<resultMap id="selectQnaListResultSet" type="hostQna">
 		<result column="qa_no" property="qaNo" />
 		<result column="qa_content"  jdbcType="CLOB" javaType="java.lang.String" property="qaContent" />
@@ -266,4 +275,20 @@
 	       ,qa_answerdate = null
 	 where qa_no = #{qaNo}
   </update>
+  
+  <select id="selectCalAll" parameterType="calculation" resultMap="selectCalResultSet">
+  	select
+	       reservation_no
+	       ,spc_no
+	       ,spc_name 
+	       ,pay_date
+	       ,pay_sum
+	       ,reservation_status
+	  from reservation r
+	  join space_info s using(spc_no)
+	  where user_id_h = #{userId}
+	    and pay_date  BETWEEN TO_DATE('202011', 'YYYYMM') AND  TO_DATE('202011', 'YYYYMM')+30 
+	    and (reservation_status = '취소환불'
+	    or reservation_status = '이용완료')
+  </select>
 </mapper>
