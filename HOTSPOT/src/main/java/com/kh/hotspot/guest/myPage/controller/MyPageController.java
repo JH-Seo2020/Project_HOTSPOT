@@ -152,4 +152,13 @@ public class MyPageController {
 		return "guest/myPage/inquiryListView";
 	}
 	
+
+	/**
+	 * 찜한공간 시작
+	 */ 
+	@RequestMapping("myLike.lv")
+	public String selectmyWishList(HttpSession session, Model model) {
+		return "guest/myPage/likeView";
+	}
+	
 }
