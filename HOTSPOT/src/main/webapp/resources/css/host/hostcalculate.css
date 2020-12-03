@@ -93,7 +93,9 @@
             height: 40px;
             text-align: center;
             font-size: 15px;
-            margin-top :15px;
+            position:absolute;
+            top:312px;
+            left:1px;
         }
         .payment_clear{
             width:60%; 
@@ -137,6 +139,12 @@
             width:25px;
             height: 25px; 
         }
+        .result td{
+         font-size:16.5px;
+        }
+        .resultHead{
+        font-size:15px;
+        }
         .searchIcon{
             transition: all var(--animation-duration) ease;
         }
@@ -149,12 +157,12 @@
         #paymentList {
         	margin-top:10px;
         }
-        #paymentList th{
+        #paymentList th:not(.resultHead){
         	font-weight:bolder;
         	font-size: 16px;
         }
         #paymentList tr{
-            font-size: 14px;
+            font-size: 15px;
             height:44px;
             height-line:44px;
         }

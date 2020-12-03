@@ -71,4 +71,8 @@ public class HostDao {
 	public ArrayList<Calculation> selectCalAll(SqlSessionTemplate sqlSession, Calculation cal) {
 		return (ArrayList)sqlSession.selectList("hostMapper.selectCalAll",cal);
 	}
+
+	public ArrayList<Calculation> selectCalList(SqlSessionTemplate sqlSession, Calculation cal) {
+		return (ArrayList)sqlSession.selectList("hostMapper.selectCalList",cal);
+	}
 }

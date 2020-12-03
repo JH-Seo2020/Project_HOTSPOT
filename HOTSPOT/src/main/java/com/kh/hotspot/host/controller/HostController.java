@@ -6,8 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -152,21 +163,240 @@ public class HostController {
 	@RequestMapping("selectCalculate.ho")
 	public String hostCalculate(Calculation cal, HttpSession session, Model model) {
 		//1. 전달값 확인
-		String spcName = cal.getSpcName();
-		if(spcName.equals("전체 공간 선택")) {
+		if(cal != null) {
+			String spcName = cal.getSpcName();
+			model.addAttribute("spcName", spcName);
 			String reservDate = cal.getReservDate().replace(",", "");
+			String month = reservDate.substring(4);
+			String year = reservDate.substring(0,4);
+			model.addAttribute("month", month);
+			model.addAttribute("year", year);
+			String date = cal.getReservDate().replace(",","년 ");
+			model.addAttribute("date", date);
 			cal.setReservDate(reservDate);
-			ArrayList<Calculation> list = hService.selectCalAll(cal);
-			System.out.println(list);
 			
-			if(list != null) {
-				model.addAttribute("list",list);
-				return "host/hostPage/hostCalculateForm";
+			if(spcName.equals("전체 공간 선택")) {
+			
+				ArrayList<Calculation> list = hService.selectCalAll(cal);
+				
+				if(list != null) {
+					model.addAttribute("list",list);
+					return "host/hostPage/hostCalculateForm";
+				}
+			} else { // 전제공간 선택이 아닐경우
+				ArrayList<Calculation> list = hService.selectCalList(cal);
+				if(list != null) {
+					model.addAttribute("list",list);
+					return "host/hostPage/hostCalculateForm";
+				}
 			}
-		} else {
 			
+		}else { // 넘어온 전달 값이 없을 경우 
+			return "common/errorPage";
 		}
-		return "host/hostPage/hostCalculateForm";
+		return "common/errorPage";
+	}
+	/**
+	 * @author jieun
+	 * @param response
+	 * @param cal
+	 * @throws Exception
+	 *	정산내역 엑셀파일 다운로드 기능
+	 */
+	@RequestMapping("exceldown.ho")
+	public void excelDown(HttpServletResponse response, Calculation cal) throws Exception {
+
+	    // 정산 목록조회
+		String userId = cal.getUserId();
+		String reservDate = cal.getReservDate().replace(",", "");
+		cal.setReservDate(reservDate);
+
+		ArrayList<Calculation> list = hService.selectCalAll(cal);
+
+	    // 워크북 생성
+	    Workbook wb = new HSSFWorkbook();
+	    org.apache.poi.ss.usermodel.Sheet sheet = wb.createSheet("정산내역");
+	  
+	    sheet.setColumnWidth(0, 6*256);
+
+	    sheet.setColumnWidth(1, 20*256);
+
+
+	    Row row = null;
+
+	    Cell cell = null;
+
+	    int rowNo = 0;
+	    int rowCount =0;
+	    // 테이블 헤더용 스타일
+	    CellStyle headStyle = wb.createCellStyle();
+	    CellStyle footStyle = wb.createCellStyle();
+	    // 가는 경계선을 가집니다.
+	   
+	    headStyle.setBorderTop(BorderStyle.THIN);
+	    headStyle.setBorderBottom(BorderStyle.THIN);
+	    headStyle.setBorderLeft(BorderStyle.THIN);
+	    headStyle.setBorderRight(BorderStyle.THIN);
+	    footStyle.setBorderTop(BorderStyle.THIN);
+	    footStyle.setBorderBottom(BorderStyle.THIN);
+	    footStyle.setBorderLeft(BorderStyle.THIN);
+	    footStyle.setBorderRight(BorderStyle.THIN);
+	    
+	    // 스타일 배경색
+	    headStyle.setFillForegroundColor(HSSFColorPredefined.YELLOW.getIndex());
+	    headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+	   
+	    footStyle.setFillForegroundColor(HSSFColorPredefined.LAVENDER.getIndex());
+	    footStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+
+	    //가운데 정렬
+	    headStyle.setAlignment(HorizontalAlignment.CENTER);
+
+
+	    // 데이터용 경계 스타일 테두리만 지정
+
+	    CellStyle bodyStyle = wb.createCellStyle();
+
+	    bodyStyle.setBorderTop(BorderStyle.THIN);
+
+	    bodyStyle.setBorderBottom(BorderStyle.THIN);
+
+	    bodyStyle.setBorderLeft(BorderStyle.THIN);
+
+	    bodyStyle.setBorderRight(BorderStyle.THIN);
+
+	    // 타이틀 
+	    rowCount++;
+	 //   sheet.addMergedRegion(new CellRangeAddress(0,1,0,1)); //열시작, 열종료, 행시작, 행종료
+	    
+	    row = sheet.createRow(rowNo++);
+		   
+	    cell = row.createCell(1);
+
+	    cell.setCellStyle(headStyle);
+	    
+	    cell.setCellValue("핫스팟 정산내역 보고서 ");
+	    
+	    cell = row.createCell(2);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("host ID: ");
+	    
+	    cell = row.createCell(3);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue(cal.getUserId());
+
+	    // 헤더 생성
+
+	    row = sheet.createRow(rowNo++);
+	   
+	    cell = row.createCell(0);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("결제번호");
+
+	    cell = row.createCell(1);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("공간명");
+
+	    cell = row.createCell(2);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("거래일자");
+	    
+	    cell = row.createCell(3);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("총금액");
+	    
+	    cell = row.createCell(4);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("수수료");
+	    
+	    cell = row.createCell(5);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("정산금액");
+
+	    // 데이터 부분 생성
+	    int paySum =0;
+	    int fees = 0;
+	    int calcul =0;
+	    
+	    for(Calculation c : list) {
+	 
+	        row = sheet.createRow(rowNo++);
+	        cell = row.createCell(0);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(c.getReservNo());
+	        cell = row.createCell(1);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(c.getSpcName());
+	        cell = row.createCell(2);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(c.getPayDate());
+	        cell = row.createCell(3);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(c.getPaySum());
+	        cell = row.createCell(4);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(c.getPaySum()/10);
+	        cell = row.createCell(5);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(c.getPaySum()-(c.getPaySum()/10));
+	        
+	        paySum += c.getPaySum();
+	        fees += c.getPaySum()/10;
+	        calcul +=  paySum -c.getPaySum()/10;
+	    }
+	    row = sheet.createRow(rowNo++);
+		   
+	    cell = row.createCell(2);
+
+	    cell.setCellStyle(footStyle);
+
+	    cell.setCellValue("총계 ");
+	    
+	    cell = row.createCell(3);
+
+	    cell.setCellStyle(footStyle);
+
+	    cell.setCellValue(paySum);
+	    
+	    cell = row.createCell(4);
+
+	    cell.setCellStyle(footStyle);
+
+	    cell.setCellValue(fees);
+	    
+	    cell = row.createCell(5);
+
+	    cell.setCellStyle(footStyle);
+
+	    cell.setCellValue(calcul);
+	    
+	  
+	    // 컨텐츠 타입과 파일명 지정
+	    response.setContentType("ms-vnd/excel");
+	    response.setHeader("Content-Disposition", "attachment;filename=calculate.xls");
+
+	    // 엑셀 출력
+	    wb.write(response.getOutputStream());
+	    wb.close();
+
 	}
 	
 	/**
