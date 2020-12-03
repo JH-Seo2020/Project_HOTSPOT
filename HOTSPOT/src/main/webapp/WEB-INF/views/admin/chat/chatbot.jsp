@@ -117,16 +117,17 @@
 		   	  							"<div class='balloon_03'>";
   							for(var i  in list){
 	  		 	  					value +="<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>" + list[i].chatResponse+"</div>";
-	   	  						if(list[i].chatStep > 0 && list[i].chatStep <= 2){
+	   	  						if(list[i].chatStep > 0 && list[i].chatStep <= 1){
 	   	  							if(i == list.length-1){	   	  								
 	   	  								value += "<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>처음으로</div>";
-	   	  							}
-	   	  						}else{
-	   	  						value +="<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>처음으로</div>"+  
-	   	  								"<div style='border:1px solid lightgray; cursor:pointer;' onclick='winClose()'>종료하기</div>";
-	   	  						}
-	  		 	  				
-  							}
+		   	  							}	
+	  								}else if(list[i].chatStep == 2){
+	  									if( i == list.length-1){	  										
+	  										value +="<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>처음으로</div>"+  
+				   	  								"<div style='border:1px solid lightgray; cursor:pointer;' onclick='winClose()'>종료하기</div>";
+	  									}
+	  								} 								
+								}
 		   	  					
 				        
 				        	
