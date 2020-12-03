@@ -10,6 +10,7 @@ import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.dao.MyPageDao;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
+import com.kh.hotspot.guest.space.model.vo.Review;
 
 @Service
 public class MyPageServiceImpl implements MyPageService{
@@ -50,6 +51,39 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public int reportReserv(Report rp) {
 		return mpDao.reportReserv(sqlSession, rp);
+	}
+
+
+	@Override
+	public int selectMyReviewListCount(String userId) {
+		return mpDao.selectMyReviewListCount(sqlSession, userId);
+	}
+
+
+	@Override
+	public ArrayList<Review> selectMyReviewList(PageInfo pi, String userId, int reservNo) {
+		return mpDao.selectMyReviewList(sqlSession, pi, userId, reservNo);
+	}
+
+
+	@Override
+	public int insertMyReview(int reservNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int updateMyReview(int reservNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int deleteMyReview(int reservNo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

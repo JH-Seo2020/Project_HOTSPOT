@@ -49,6 +49,22 @@
 		<result column="report_status" property="reportStatus" />
 	</resultMap>
 	
+	
+	<resultMap id="myReviewSet" type="myReview">
+  		<id column="REVIEW_NO" property="reviewNo" />
+  		<result column="SPC_NO" property="spcNo" />
+  		<result column="REVIEW_WRITER" property="reviewWriter" />
+  		<result column="REVIEW_TITLE" property="reviewTitle" />
+  		<result column="REVIEW_CONTENT" property="reviewCon" jdbcType="CLOB" javaType="java.lang.String"  />
+  		<result column="REVIEW_SCORE" property="reviewScore" />
+  		<result column="REVIEW_DATE" property="reviewDate" />
+  		<result column="REVIEW_STATUS" property="reviewStatus" />
+  		<result column="REVIEW_REPLY" property="reviewReply" />
+  		<result column="USER_NICKNAME" property="userNickname" />
+  		<result column="USER_PROFILE_C" property="userProfileCh" />
+  		<result column="PROFILE_PATH" property="profilePath" />
+  	</resultMap>
+	
 	<!-- 로그인한 유저의 예약총게시물 갯수 -->
 	<select id="selectReservListCount" parameterType="string" resultType="_int">
 		select
@@ -148,7 +164,7 @@
 	<update id="deleteReserv" parameterType="_int">
 		update
 		        reservation
-		    set reservation_status = '취소환불'
+		    set reservation_status='취소환불'
 		 where reservation_no=#{reservNo}
 		   and reservation_status like '%예약확정%'
 	</update>
@@ -176,5 +192,62 @@
 		  , sysdate
 		  )
 	</insert>
+	
+	<select id="selectMyReviewListCount" parameterType="string" resultType="_int">
+		 select
+		       count(*)
+		  from review rv
+		  join reservation r on(rv.spc_no=r.spc_no)
+		 where review_writer=#{userId}
+		   and reservation_status like '%이용완료%
+	</select>
+	
+	
+	<select id="selectMyReviewList" resultMap="myReviewSet">
+		select
+		       r.reservation_no
+		     , r.use_date
+		     , rv.review_writer
+		     , rv.review_title
+		     , rv.review_content
+		     , rv.review_date
+		     , rv.review_status
+		     , rv.review_reply
+		     , sp.spc_name
+		     , sp.spc_type
+		     , substr(sp.map_location, 0, 7) as location
+		  from review rv
+		  join space_info sp on(sp.spc_no=rv.spc_no)
+		full outer  
+		      join reservation r on(sp.spc_no=r.spc_no)
+		 where review_writer=#{userId}
+		   and review_status='Y'
+		   and reservation_no=#{reservNo}
+		 order 
+		    by r.use_date desc
+	</select>
+
+
+
+
+
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

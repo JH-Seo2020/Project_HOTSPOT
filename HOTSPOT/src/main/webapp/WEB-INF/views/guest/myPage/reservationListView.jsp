@@ -62,6 +62,19 @@
 		margin-right: 65px;
 		border-radius: 30px;
 	}
+	#reviewBtn{
+		float: right;
+	    width: 90px;
+	    height: 30px;
+	    background:  rgb(145, 37, 247);
+	    color:white;
+	    border: none;
+	    border-radius: 3px;
+	    margin-top: -38px;
+	    margin-right: 7px;
+		border-radius: 30px;
+	}
+	
 </style>
 </head>
 <body>
@@ -112,6 +125,10 @@
 		                        </c:choose>
 		                        <span class="statusRable">${ r.reservStatus }</span>
 		                    </div>
+	                        <c:if test="${ r.reservStatus eq '이용완료' }">
+	                        	<span class="statusRable">${ r.reservStatus }</span> 
+	                        	<button type="button" id="reviewBtn" onclick="location.href='enrollReview.mg'">후기 작성</button>
+	                        </c:if>
 		                </div><br>
 		         	</c:forEach>
 	           	</div>

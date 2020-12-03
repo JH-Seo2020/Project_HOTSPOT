@@ -68,9 +68,7 @@
             <br><br>
             <div class="ManageBtn" data-example-id="simple-button-group" align="center">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button class="btn btn-primary" style="background: rgb(145, 37, 247);" onclick="location.href='myReview.mg'">
-                       	 이용후기
-                    </button>
+                    <button class="btn btn-primary" style="background: rgb(145, 37, 247);" onclick="location.href='myReview.mg'">이용후기</button>
                     <button class="btn btn-default" style="background: rgb(212, 212, 212);" onclick="location.href='myQna.mg'">Q & A</button>
                     <button class="btn btn-default" style="background: rgb(212, 212, 212);" onclick="location.href='myInquiry.mg'">1:1문의</button>
                 </div>
@@ -86,41 +84,29 @@
             </div>
             <br>
             <div id="inputReview">
-                <div class="review">
-                    <div class="reviewInfo">
-                        <dl>
-                            <dt><b> 예약번호 : 22345622</b></dt><br>
-                            <dd>
-                                <a href=""><b>공간명 : [카페][경복궁역] 그리다꿈</b></a><br>
-                                <small class="useDate"> 이용날짜 : 2020.10.23</small>
-                                <button type="button" class="inputBtn" onclick="">후기 작성</button>
-                            </dd>
-                            <dd>
-                                
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="review">
-                    <div class="reviewInfo">
-                        <dl>
-                            <dt><b> 예약번호 : 22345622</b></dt><br>
-                            <dd>
-                                <a href=""><b>공간명 : [카페][경복궁역] 그리다꿈</b></a><br>
-                                <small class="useDate"> 이용날짜 : 2020.10.23</small>
-                                <button type="button" class="inputBtn" onclick="">후기 작성</button>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
+	            <div class="review">
+	         		<c:forEach var="rv" items="${ rvList }">
+	                    <div class="reviewInfo">
+	                        <dl>
+	                            <dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
+	                            <dd>
+	                                <a href=""><b>공간명 : [ ${ rv.spcType }][ ${ rv.location }] ${ rv.spcName }</b></a><br>
+	                                <small class="useDate"> 이용날짜 : ${ rv.reservUseDate }</small>
+	                                <button type="button" class="inputBtn" onclick="">후기 작성</button>
+	                            </dd>
+	                        </dl>
+	                    </div>
+	              	</c:forEach>
+	               </div>
+	              
                 <!-- 후기작성이 되어있을때 => 수정, 삭제버튼 보여짐-->
                 <div class="review">
                     <div class="reviewInfo">
                         <dl>
-                            <dt><b>제목 : 짱좋</b></dt><br>
+                            <dt><b>제목 : ${ rv.reviewTitle }</b></dt><br>
                             <dd>
-                                <span>공간이 편하고 너무너무 좋았어요!!</span><br>
-                                <span class="useDate"><small>2020.10.30</small></span>
+                                <span>${ rv.reviewContent }</span><br>
+                                <span class="useDate"><small>${ rv.reviewDate }</small></span>
                                 <button type="button" class="inputBtn" onclick="">수정</button> <br clear="both">
                                 <button type="button" class="inputBtn" onclick="" >삭제</button>
                             </dd>
@@ -130,8 +116,7 @@
                         <dl>
                             <dt><b>호스트님의 답글 :</b></dt><br>
                             <dd>
-                                <span>안녕하세요. 저희 공간을 이용해주셔서 감사합니다. 다음에도 사용해주세요!</span><br>
-                                <span class="useDate"><small>2020.11.03</small></span>
+                                <span>${ rv.reviewReply }</span><br>
                             </dd>
                         </dl>
                     </div>
@@ -140,16 +125,36 @@
         </div>
         <br><br>
 
+
+
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&lt</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&gt</a></li>
+                <c:choose>
+                   	<c:when test="${ pi.currentPage eq 1}">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
+                    </c:otherwise>
+                   </c:choose>
+                   
+                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                   	<input type="hidden" name="userId" value="${ loginUser.userId }"> 
+                   	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ p }">${ p }</a></li>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
+                    </c:otherwise>
+               	</c:choose>
             </ul>
-        </div>
-        <br><br>
+        </div><br><br><br>
+        
+        
     </div>
 
     <jsp:include page="../../common/footer.jsp"/>

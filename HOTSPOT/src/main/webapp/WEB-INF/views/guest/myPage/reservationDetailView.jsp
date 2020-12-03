@@ -171,7 +171,7 @@
         </div>
 	    <div align="center">
 	     <c:if test="${ r.reservStatus eq '취소환불' }">
-	     	<h3>해당 예약취소가 완료되셨습니다! 감사합니다.</h3>
+	     	<h3>해당 예약이 취소완료 되었습니다! 감사합니다.</h3>
 	     </c:if>
 	    </div>
     </div>

@@ -43,6 +43,7 @@
 		<!-- 마이페이지(성희) -->
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Reservation" alias="Reservation"/>
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="reservReport" />
+		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Review" alias="myReview" />
 	</typeAliases>
 	
 	
