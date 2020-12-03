@@ -66,7 +66,15 @@
                     <td>
                         <select class="form-control accountNo">
                             <option>은행명</option>
-                            <option value="">신한</option>
+                            <option value="신한">신한</option>
+                            <option value="국민">국민</option>
+                            <option value="농협">농협</option>
+                            <option value="수협">수협</option>
+                            <option value="우리">우리</option>
+                            <option value="씨티">씨티</option>
+                            <option value="기업">기업</option>
+                            <option value="하나">하나</option>
+                            <option value="카카오뱅크">카카오뱅크</option>
                         </select>
                         <input type="text" class="form-control accountNo" placeholder="계좌번호를 -제외하고 적어주세요">
                     </td>
@@ -79,26 +87,26 @@
             <table class="table table-borderless">
                 <tr>
                     <th scope="row">상호명</th>
-                    <td>경복궁 카페 그리다꿈</td>
+                    <td>${host.businessName }</td>
                 </tr>
                 <tr>
                     <th scope="row">사업자 번호</th>
-                    <td>202012091520</td>
+                    <td>${host.businessNo }</td>
                 </tr>
                 <tr>
                     <th scope="row">연락처</th>
-                    <td>01033330000 또는 yeok3@gmail.com</td>
+                    <td>${host.businessPhone } 또는 ${host.businessEmail }</td>
                 </tr>    
                 <tr>
                     <th scope="row">사업장 소재지</th>
-                    <td>경복궁역 출구 근처 어딘가</td>
+                    <td>${host.businessLoc }</td>
                 </tr>    
             </table>
         </div>
         <div id="totalPay">
             <span class="forTitle">결제할 금액</span>
             <hr>
-            <span style="font-size: 25px; ">24시간 x ${reserv.reservTotal }명 x ${reserv.amountTime }원 =</span>
+            <span style="font-size: 25px; ">24시간  x ${reserv.amountTime }원 =</span>
             <span class="forRight">1,344,000원</span> 
         </div>
         <div id="methods">

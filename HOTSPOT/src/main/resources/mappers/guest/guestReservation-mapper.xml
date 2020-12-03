@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guestReservtaionMapper">
+
+  	<resultMap id="memberInfo" type="Member">
+  		<id column="user_id" property="userId" />
+  		<result column="user_type" property="userType" />
+  		<result column="user_pwd" property="userPwd" />
+  		<result column="user_nickname" property="userNickname" />
+  		<result column="user_email" property="userEmail" />
+  		<result column="user_phone" property="userPhone" />
+  		<result column="user_profile" property="userProfile" />
+  		<result column="user_profile_c" property="userProfileC" />
+  		<result column="profile_path" property="profilePath" />
+  		<result column="user_status" property="userStatus" />
+  		<result column="enroll_date" property="enrollDate" />
+  		<result column="modify_date" property="modifyDate" />
+  		<result column="withdrawal_date" property="withdrawalDate" />
+  		<result column="user_memo" property="userMemo" />
+  	</resultMap>
+  	
+  	<resultMap id="hostInfoResultSet" type="HostInfo">
+		<result column="user_id" property="userId" />
+		<result column="business_no" property="businessNo" />
+		<result column="business_name" property="businessName" />
+		<result column="business_license" property="businessLicense" />
+		<result column="license_path" property="licensePath" />
+		<result column="business_loc" property="businessLoc" />
+		<result column="business_acc" property="businessAcc" />
+		<result column="business_phone" property="businessPhone" />
+		<result column="business_email" property="businessEmail" />
+		<result column="host_status" property="hostStatus" />
+	</resultMap>
+
+	
+	<select id="hostInfo" parameterType="Reservation" resultMap="hostInfoResultSet">
+		select BUSINESS_NAME
+		     , BUSINESS_NO
+		     , BUSINESS_PHONE
+		     , BUSINESS_LOC
+		     , BUSINESS_EMAIL
+		  from host_info
+		 where user_id = #{userIdHost}
+	</select>
+
+</mapper>

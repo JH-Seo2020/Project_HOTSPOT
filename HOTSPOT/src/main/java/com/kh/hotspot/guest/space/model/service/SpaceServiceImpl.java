@@ -10,7 +10,9 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.dao.SpaceDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
+import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
+import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.guest.space.model.vo.Review;
 
 @Service
@@ -39,6 +41,12 @@ public class SpaceServiceImpl implements SpaceService {
 		return spaceDao.selectUserReview(sqlSession);
 	}
 
+	@Override
+	public HostInfo hostInfo(Reservation reserv) {
+		
+		return spaceDao.hostInfo(sqlSession, reserv);
+	}
+	
 	@Override
 	public SpaceInfo selectReservView(int spcNo, String userId) {
 		// TODO Auto-generated method stub
@@ -76,6 +84,7 @@ public class SpaceServiceImpl implements SpaceService {
 		
 		return spaceDao.selectReviewsForHomep(sqlSession,userId, pi);
 	}
+
 
 
 }

@@ -26,6 +26,7 @@ import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.space.model.vo.SpaceNotes;
+import com.kh.hotspot.host.model.vo.HostInfo;
 
 @Controller
 public class SpaceController {
@@ -47,12 +48,6 @@ public class SpaceController {
 		model.addAttribute("reviewList",reviewList);
 		
 		return "main";
-	}
-	
-	@RequestMapping("test.search")
-	public String searchTest() {
-		//이거 고쳐야된다 나중에 
-		return "common/spaceSearchresultList";
 	}
 	
 	@RequestMapping("spaceDetail.guest")
@@ -218,13 +213,13 @@ public class SpaceController {
 	
 	@RequestMapping("reservation.guest")
 	public String goToReservPage(Reservation reserv, Model model) {
-		System.out.println(reserv);
-		
-		//게스트정보받아오기
+//		System.out.println(reserv);
 		
 		//호스트정보받아오기
+		HostInfo host = spaceService.hostInfo(reserv);
 		
 		model.addAttribute("reserv",reserv);
+		model.addAttribute("host",host);
 		
 		return "guest/space/spaceReserv";
 	}
