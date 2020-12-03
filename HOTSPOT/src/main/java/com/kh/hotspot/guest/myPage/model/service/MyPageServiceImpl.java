@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.dao.MyPageDao;
+import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 @Service
 public class MyPageServiceImpl implements MyPageService{
@@ -54,6 +56,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
+	// 이용후기 
 	@Override
 	public int selectMyReviewListCount(String userId) {
 		return mpDao.selectMyReviewListCount(sqlSession, userId);
@@ -61,10 +64,18 @@ public class MyPageServiceImpl implements MyPageService{
 
 
 	@Override
-	public ArrayList<Review> selectMyReviewList(PageInfo pi, String userId, int reservNo) {
-		return mpDao.selectMyReviewList(sqlSession, pi, userId, reservNo);
+	public ArrayList<Review> selectMyReviewList(PageInfo pi, String userId) {
+		return mpDao.selectMyReviewList(sqlSession, pi, userId);
 	}
 
+	
+	@Override
+	public int selectDetailReview(int reviewNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
 
 	@Override
 	public int insertMyReview(int reservNo) {
@@ -87,6 +98,61 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
+
+	
+	/**
+	 * 
+	 * Qna
+	 */
+	@Override
+	public int selectMyQnaListCount(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public ArrayList<Qna> selectMyQnaList(PageInfo pi, String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int deleteMyQna(int QnaNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	/**
+	 * 
+	 * 1:1고객문의
+	 */
+
+	@Override
+	public int selectMyInquiryListCount(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public ArrayList<VoicesInquiry> selectMyInquiryList(PageInfo pi, String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int deleteMyInquiry(int inquiryNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	
+	
 
 
 

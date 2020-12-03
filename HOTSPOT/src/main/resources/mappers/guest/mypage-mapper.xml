@@ -63,6 +63,12 @@
   		<result column="USER_NICKNAME" property="userNickname" />
   		<result column="USER_PROFILE_C" property="userProfileCh" />
   		<result column="PROFILE_PATH" property="profilePath" />
+  		<result column="reservation_no" property="reservNo"/>
+  		<result column="reservation_status" property="reservStatus"/>
+  		<result column="use_date" property="useDate"/>
+  		<result column="spc_name" property="spcName"/>
+  		<result column="spc_type" property="spcType"/>
+  		<result column="map_location" property="location"/>
   	</resultMap>
 	
 	<!-- 로그인한 유저의 예약총게시물 갯수 -->
@@ -199,7 +205,7 @@
 		  from review rv
 		  join reservation r on(rv.spc_no=r.spc_no)
 		 where review_writer=#{userId}
-		   and reservation_status like '%이용완료%
+		   and reservation_status like '%이용완료%'
 	</select>
 	
 	
@@ -207,22 +213,26 @@
 		select
 		       r.reservation_no
 		     , r.use_date
+		     , r.reservation_status
+		     , rv.review_no
 		     , rv.review_writer
 		     , rv.review_title
 		     , rv.review_content
 		     , rv.review_date
 		     , rv.review_status
 		     , rv.review_reply
+		     , sp.spc_no
 		     , sp.spc_name
 		     , sp.spc_type
-		     , substr(sp.map_location, 0, 7) as location
+		     , substr(map_location, 0, 7) as map_location
 		  from review rv
 		  join space_info sp on(sp.spc_no=rv.spc_no)
 		full outer  
 		      join reservation r on(sp.spc_no=r.spc_no)
 		 where review_writer=#{userId}
+		   and r.user_id=#{userId}
 		   and review_status='Y'
-		   and reservation_no=#{reservNo}
+		   and reservation_status like '%이용완료%'
 		 order 
 		    by r.use_date desc
 	</select>

@@ -64,6 +64,7 @@
             <div id="inputQna">
                 <div class="qna">
                     <div class="qnaInfo">
+                    <input type="hidden" name="userId" value="${ loginUser.userId }">
                         <dl>
                             <dt><a href=""><b>공간명 : [카페][경복궁역] 그리다꿈</b></a></dt><br>
                             <dd>
@@ -113,14 +114,31 @@
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&lt</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&gt</a></li>
+                <c:choose>
+                   	<c:when test="${ pi.currentPage eq 1}">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="myQna.mg?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
+                    </c:otherwise>
+                   </c:choose>
+                   
+                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                   	<input type="hidden" name="userId" value="${ loginUser.userId }"> 
+                   	<li class="page-item"><a class="page-link" href="myQna.mg?currentPage=${ p }">${ p }</a></li>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="myQna.mg?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
+                    </c:otherwise>
+               	</c:choose>
             </ul>
-        </div>
-        <br><br>
+        </div><br><br><br>
+        
     </div>
     
     <jsp:include page="../../common/footer.jsp"/>

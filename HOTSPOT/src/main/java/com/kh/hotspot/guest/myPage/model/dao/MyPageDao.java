@@ -77,18 +77,18 @@ public class MyPageDao {
 		return sqlSession.selectOne("mypageMapper.selectMyReviewListCount", userId);
 	}
 	
-	public ArrayList<Review> selectMyReviewList(SqlSessionTemplate sqlSession, PageInfo pi, String userId, int reservNo){
+	public ArrayList<Review> selectMyReviewList(SqlSessionTemplate sqlSession, PageInfo pi, String userId){
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		HashMap<Object, Object> hmap = new HashMap<>();
-		hmap.put("reservNo", reservNo);
-		hmap.put("userId", userId);
-		
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyReviewList", hmap, rowBounds);
+//		HashMap<Object, Object> hmap = new HashMap<>();
+//		hmap.put("reservNo", reservNo);
+//		hmap.put("userId", userId);
+//		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyReviewList", userId, rowBounds);
 		
 	}
 	

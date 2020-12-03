@@ -115,6 +115,7 @@
 		                        <tr>
 			                        <td>
 		                                <img src="resources/images/list.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
+		                                <input type="hidden" name="reservNo" value="${ r.reservNo }">
 		                                <a href="myReview.mg"><span>이용후기 / 문의관리</span></a> <br>
 			                        </td>
 			                    </tr>

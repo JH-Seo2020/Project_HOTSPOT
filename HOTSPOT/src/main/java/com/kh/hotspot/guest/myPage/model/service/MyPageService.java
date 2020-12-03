@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 public interface MyPageService {
 	
@@ -36,11 +38,11 @@ public interface MyPageService {
 	 * 
 	 */
 	// 이용후기리스트 조회용 서비스
-	int selectMyReviewListCount(String userId);
-	
-	ArrayList<Review> selectMyReviewList(PageInfo pi, String userId, int reservNo);
+	int selectMyReviewListCount(String userId); // 총게시물 갯수
+	ArrayList<Review> selectMyReviewList(PageInfo pi, String userId);
 	
 	// 이용후기 작성하기 서비스
+	int selectDetailReview(int reviewNo);
 	int insertMyReview(int reservNo);
 	
 	// 이용후기 수정하기 서비스
@@ -48,6 +50,26 @@ public interface MyPageService {
 	
 	//이용후기 수정하기 서비스
 	int deleteMyReview(int reservNo);
+	
+	
+	// Qna리스트 조회용 서비스 
+	int selectMyQnaListCount(String userId);
+	ArrayList<Qna> selectMyQnaList(PageInfo pi, String userId);
+	
+	// Qna작성하기는 공간에서 가능 그래서 없어두 됨!
+	
+	// Qna삭제하기 서비스
+	int deleteMyQna(int QnaNo);
+	
+	
+	// 1:1고객문의
+	int selectMyInquiryListCount(String userId);
+	ArrayList<VoicesInquiry> selectMyInquiryList(PageInfo pi, String userId);
+	
+	
+	// 1:1고객문의 삭제하기 서비스
+	int deleteMyInquiry(int inquiryNo);
+	
 	
 	
 	

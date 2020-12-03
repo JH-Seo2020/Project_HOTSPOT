@@ -84,43 +84,52 @@
             </div>
             <br>
             <div id="inputReview">
-	            <div class="review">
-	         		<c:forEach var="rv" items="${ rvList }">
-	                    <div class="reviewInfo">
-	                        <dl>
-	                            <dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
-	                            <dd>
-	                                <a href=""><b>공간명 : [ ${ rv.spcType }][ ${ rv.location }] ${ rv.spcName }</b></a><br>
-	                                <small class="useDate"> 이용날짜 : ${ rv.reservUseDate }</small>
-	                                <button type="button" class="inputBtn" onclick="">후기 작성</button>
-	                            </dd>
-	                        </dl>
-	                    </div>
-	              	</c:forEach>
-	               </div>
-	              
-                <!-- 후기작성이 되어있을때 => 수정, 삭제버튼 보여짐-->
-                <div class="review">
-                    <div class="reviewInfo">
-                        <dl>
-                            <dt><b>제목 : ${ rv.reviewTitle }</b></dt><br>
-                            <dd>
-                                <span>${ rv.reviewContent }</span><br>
-                                <span class="useDate"><small>${ rv.reviewDate }</small></span>
-                                <button type="button" class="inputBtn" onclick="">수정</button> <br clear="both">
-                                <button type="button" class="inputBtn" onclick="" >삭제</button>
-                            </dd>
-                        </dl>
-                    </div><hr>
-                    <div class="reviewReply">
-                        <dl>
-                            <dt><b>호스트님의 답글 :</b></dt><br>
-                            <dd>
-                                <span>${ rv.reviewReply }</span><br>
-                            </dd>
-                        </dl>
-                    </div>
-                </div> 
+            <input type="hidden" name="userId" value="${ loginUser.userId }">
+            <input type="hidden" name="reviewNo" value="${ rv.reviewNo }">
+            <c:choose>
+            <c:when test="${ empty reviewContent && empty reviewTitle }">
+			      <c:forEach var="rv" items="${ rvList }">
+			            <div class="review">
+			                    <div class="reviewInfo">
+			                        <dl>
+			                            <dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
+			                            <dd>
+			                                <a href="spaceDetail.guest?spcNo=${ rv.spcNo }"><b>공간명 : [${ rv.spcType }][${ rv.location }] ${ rv.spcName }</b></a><br>
+			                                <small class="useDate"> 이용날짜 : ${ rv.useDate }</small> 
+			                                <button type="button" class="inputBtn" onclick="location.href='enrollReview.mg?reservNo=' + ${ rv.reservNo }">후기 작성</button>
+			                            </dd>
+			                        </dl>
+			                    </div>
+			               </div>
+		             </c:forEach>
+		            </c:when>
+		            
+		            <c:otherwise>
+		            	<c:forEach var="rv" items="${ rvList }">
+			                <div class="review">
+			                    <div class="reviewInfo">
+			                        <dl>
+			                        	<dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
+			                            <dd>
+			                                <span><b>제목 : ${ rv.reviewTitle }</b></span><br>
+			                                <span class="useDate"><small>${ rv.reviewDate }</small></span>
+			                                <button type="button" class="inputBtn" onclick="">수정</button> <br clear="both">
+			                                <button type="button" class="inputBtn" onclick="" >삭제</button>
+			                            </dd>
+			                        </dl>
+			                    </div><hr>
+			                    <div class="reviewReply">
+			                        <dl>
+			                            <dt><b>호스트님의 답글 :</b></dt><br>
+			                            <dd>
+			                                <span>${ rv.reviewReply }</span><br>
+			                            </dd>
+			                        </dl>
+			                    </div>
+			                </div>
+		                </c:forEach>
+               		</c:otherwise>
+               </c:choose>
             </div>
         </div>
         <br><br>

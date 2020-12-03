@@ -15,6 +15,7 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.service.MyPageService;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
 
@@ -53,7 +54,7 @@ public class MyPageController {
 		
 		ArrayList<Reservation> list = mpService.alignReservList(align, loginUser.getUserId());
 		
-		model.addAttribute("list", list);
+		session.setAttribute("list", list);
 		
 		return "guest/myPage/reservationListView";
 		
@@ -101,6 +102,7 @@ public class MyPageController {
 		int result = mpService.reportReserv(rp);
 		
 		Reservation reserv = (Reservation)session.getAttribute("r"); // 위에 session담긴 예약정보 갖고오기
+		System.out.println(reserv);
 		
 		if(result > 0) {
 			
@@ -125,19 +127,19 @@ public class MyPageController {
 	 * 이용후기 리스트 조회 서비스
 	 */
 	@RequestMapping("myReview.mg")
-	public String selectmyReviewList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model) {
+	public String selectMyReviewList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		int listCount = mpService.selectMyReviewListCount(loginUser.getUserId());
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
-		
-		Reservation reserv = (Reservation)session.getAttribute("r");
-		
-		ArrayList<Review> rvList = mpService.selectMyReviewList(pi, loginUser.getUserId(), reserv.getReservNo());
+
+		ArrayList<Review> rvList = mpService.selectMyReviewList(pi, loginUser.getUserId());
 		
 		model.addAttribute("pi", pi);
+		//System.out.println(pi);
 		model.addAttribute("rvList", rvList);
+		//System.out.println(rvList);
 		
 		return "guest/myPage/reviewListView";
 	}
@@ -146,6 +148,8 @@ public class MyPageController {
 	
 	@RequestMapping("enrollReview.mg")
 	public String enrollReview() {
+
+		
 		return "guest/myPage/reviewEnrollForm";
 	}
 	
@@ -157,7 +161,18 @@ public class MyPageController {
 	 * 
 	 */
 	@RequestMapping("myQna.mg")
-	public String selectmyQnaList(HttpSession session, Model model) {
+	public String selectMyQnaList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model) {
+
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int listCount = mpService.selectMyQnaListCount(loginUser.getUserId());
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		
+		ArrayList<Qna> qnList = mpService.selectMyQnaList(pi, loginUser.getUserId());
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("qnList", qnList);
+		
 		return "guest/myPage/qnaListView";
 	}
 	
