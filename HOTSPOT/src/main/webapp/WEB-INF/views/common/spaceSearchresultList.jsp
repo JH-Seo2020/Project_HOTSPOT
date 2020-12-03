@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,8 +120,11 @@
 			    	<div class="list">
 			            <img class="spcImage" src="${ list.spcChimg }">
 			            <div class="spcName">${ list.spcName }</div>
-			            <div class="spcLocationTag">서울 | #태그명</div>
-			            <div class="spcPriceHours">가격 : ${ list.spcPrice }<br>운영시간 : ${ list.spcHours }</div>
+			            <div class="spcLocationTag">${ fn:substring(list.location, 0, 2) } / ${ fn:replace(list.spcTag, ',', ' ') }</div>
+			            <div class="spcPriceHours">
+			            	<fmt:formatNumber value="${ list.spcPrice }" type="number"/>원<br>
+			            	운영시간 : ${ fn:replace(list.spcHours, ',', ' ~ ') }
+			            </div>
 			            <div class="spcReview"><img id="img_hotspotLogo" src="resources/images/common/main_reviewIcon.png">${ list.reviewCount }</div>
 			            <div class="spcWish"><img id="img_hotspotLogo" src="resources/images/common/main_wishIcon.png">${ list.wishCount }</div>
 			        </div>
