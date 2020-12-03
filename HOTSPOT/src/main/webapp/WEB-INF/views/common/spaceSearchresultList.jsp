@@ -26,7 +26,7 @@
 	            <tbody>
 	                <tr>
 	                    <td>
-	                        <select name="spcType" class="custom-select custom-select-sm mb-3">
+	                        <select name="spcType" id="spcType" class="custom-select custom-select-sm mb-3">
 	                            <option selected disabled>모든공간</option>
 	                            <option value="파티룸">파티룸</option>
 	                            <option value="회의실">회의실</option>
@@ -157,6 +157,14 @@
     </div>
     
     <%@ include file="footer.jsp"%>
+    
+    <script>
+    	$(function(){
+    		if('${searchWord}' != ''){
+    			$("#spcType").val('${searchWord}');
+    		}
+    	})
+    </script>
     
 </body>
 </html>
