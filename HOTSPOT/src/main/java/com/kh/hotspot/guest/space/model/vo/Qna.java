@@ -26,5 +26,8 @@ public class Qna {
 	private String qaSecret;
 	private String userId;
 	private int spaceNo;
+	private String spcName;
+	private String spcType;
+	private String location;
 
 }

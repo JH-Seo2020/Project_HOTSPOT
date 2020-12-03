@@ -23,6 +23,10 @@ public class MyPageServiceImpl implements MyPageService{
 	private SqlSessionTemplate sqlSession;
 	
 	
+	
+	/**
+	 * 예약리스트
+	 */
 	@Override
 	public int selectReservListCount(String userId) {
 		return mpDao.selectReservListCount(sqlSession, userId);
@@ -56,7 +60,9 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
-	// 이용후기 
+	/**
+	 * 이용후기
+	 */
 	@Override
 	public int selectMyReviewListCount(String userId) {
 		return mpDao.selectMyReviewListCount(sqlSession, userId);
@@ -98,23 +104,18 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
-
-	
 	/**
-	 * 
 	 * Qna
 	 */
 	@Override
 	public int selectMyQnaListCount(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mpDao.selectMyQnaListCount(sqlSession, userId);
 	}
 
 
 	@Override
 	public ArrayList<Qna> selectMyQnaList(PageInfo pi, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return mpDao.selectMyQnaList(sqlSession, pi, userId);
 	}
 
 
@@ -126,7 +127,6 @@ public class MyPageServiceImpl implements MyPageService{
 
 	
 	/**
-	 * 
 	 * 1:1고객문의
 	 */
 

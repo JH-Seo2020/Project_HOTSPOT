@@ -62,14 +62,16 @@
             </div>
             <br><br><br>
             <div id="inputQna">
+             <c:forEach var="q" items="${ qnList }">
                 <div class="qna">
-                    <div class="qnaInfo">
+                  <div class="qnaInfo">
                     <input type="hidden" name="userId" value="${ loginUser.userId }">
+                    <input type="hidden" name="qaNo" value="${ q.qaNo }">
                         <dl>
-                            <dt><a href=""><b>공간명 : [카페][경복궁역] 그리다꿈</b></a></dt><br>
+                            <dt><a href="spaceDetail.guest?spcNo=${ q.spaceNo }"><b>공간명 : [${ q.spcType }][${ q.location }] ${ q.spcName }</b></a></dt><br>
                             <dd>
-                                <span> Q: 건물에 엘리베이터 있나요?</span><br>
-                                <span class="qnaDate"><small>2020.08.03</small></span>
+                                <span> Q: ${ q.qaContent }</span><br>
+                                <span class="qnaDate"><small>${q.qaDate}</small></span>
                                 <button type="button" class="inputBtn" onclick="">삭제</button>
                             </dd>
                         </dl>
@@ -78,36 +80,17 @@
                         <dl>
                             <dt><b>호스트님의 답글 :</b></dt><br>
                             <dd>
-                                <span>A: 안녕하세요. 건물에는 엘레베이터가 없습니다.</span><br>
-                                <span  class="qnaDate"><small>2020.11.03</small></span>
+                                <span>${ q.qaAnswer }</span><br>
+                                <span  class="qnaDate"><small>${ q.qaAnswerDate }</small></span>
                             
                             </dd>
                             <dd></dd>
                         </dl>
                     </div>
                 </div> 
-                <div class="qna">
-                    <div class="qnaInfo">
-                        <dl>
-                            <dt><a href=""><b>공간명 : [카페][경복궁역] 그리다꿈</b></a></dt><br>
-                            <dd>
-                                <span> Q: 건물에 엘리베이터 있나요?</span><br>
-                                <span class="qnaDate"><small>2020.08.03</small></span>
-                                <button type="button" class="inputBtn" onclick="">삭제</button>
-                            </dd>
-                        </dl>
-                    </div><hr>
-                    <div class="qnaReply">
-                        <dl>
-                            <dt><b>호스트님의 답글 :</b></dt><br>
-                            <dd>
-                                <span>A: 안녕하세요. 건물에는 엘레베이터가 없습니다.</span><br>
-                                <span  class="qnaDate"><small>2020.11.03</small></span>
-                            
-                            </dd>
-                        </dl>
-                    </div>
-                </div> 
+              </c:forEach>
+                  
+
             </div>
         </div>
         <br><br>

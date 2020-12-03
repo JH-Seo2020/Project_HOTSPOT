@@ -162,7 +162,7 @@
 	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#cancelModal">예약 취소하기</button>
 	            </c:when>
 	            <c:when test="${ r.reservStatus eq '이용완료' }">
-	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#reportModal">호스트 신고하기</button>
+	            	<button type="button" class="reserveBtn" class="btn btn-primary" data-toggle="modal" data-target="#reportModal">신고하기</button>
 	            </c:when>
 	            <c:otherwise>
 	            
@@ -214,6 +214,7 @@
 		                        <td>
 		                            <select name="reportType1"> 
 		                                <option value="호스트신고">호스트신고</option>
+		                                <option value="공간신고">공간신고</option>
 		                            </select>
 		                        </td>
 		                    </tr>

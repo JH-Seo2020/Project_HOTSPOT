@@ -101,10 +101,10 @@
 		                    	<span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
 		                    </div>
 		                <div id="myPage_Content">
-		                    <img width="60px" height="60px" style="float:left" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>"> &nbsp;&nbsp;&nbsp;
+		                    <img width="80px" height="80px" style="float:left; border-radius:100%;" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>"> &nbsp;&nbsp;&nbsp;
 		                    <span id="nickName">${ loginUser.userNickname } 님</span><br>
 		                    <a href="myProfile.me" style="color: black; padding-left: 20px"><small>내 프로필 관리</small></a>
-		                    <br><hr><br>
+		                    <br><br><hr><br>
 		                    <table id="myPageMenu">
 		                    	<tr>
 			                        <td>

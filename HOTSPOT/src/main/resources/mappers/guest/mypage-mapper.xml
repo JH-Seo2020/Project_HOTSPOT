@@ -49,7 +49,6 @@
 		<result column="report_status" property="reportStatus" />
 	</resultMap>
 	
-	
 	<resultMap id="myReviewSet" type="myReview">
   		<id column="REVIEW_NO" property="reviewNo" />
   		<result column="SPC_NO" property="spcNo" />
@@ -69,6 +68,22 @@
   		<result column="spc_name" property="spcName"/>
   		<result column="spc_type" property="spcType"/>
   		<result column="map_location" property="location"/>
+  	</resultMap>
+  	
+  	 <resultMap id="qnaResultSet" type="myQna">
+  	  	<id column="QA_NO" property="qaNo" />
+  		<result column="QA_CONTENT" property="qaContent" jdbcType="CLOB" javaType="java.lang.String" />
+  		<result column="QA_WRITER" property="qaWriter" />
+  		<result column="QA_DATE" property="qaDate" />
+  		<result column="QA_ANSWER" property="qaAnswer" />
+  		<result column="QA_ANSWERDATE" property="qaAnswerDate" />
+  		<result column="QA_STATUS" property="qaStatus" />
+  		<result column="QA_SECRET" property="qaSecret" />
+  		<result column="USER_ID" property="userId" />
+  		<result column="SPC_NO" property="spaceNo" />
+  		<result column="SPC_NAME" property="spcName" />
+  		<result column="SPC_TYPE" property="spcType" />
+  		<result column="MAP_LOCATION" property="location" />
   	</resultMap>
 	
 	<!-- 로그인한 유저의 예약총게시물 갯수 -->
@@ -236,8 +251,36 @@
 		 order 
 		    by r.use_date desc
 	</select>
-
-
+	
+	
+	<select id="selectMyQnaListCount" parameterType="string" resultType="_int">
+		 select
+		       count(*)
+		  from inquiry i
+		  join member m on(i.user_id=m.user_id)
+		 where i.user_id=#{userId}
+	</select>
+	
+	<select id="selectMyQnaList" resultMap="qnaResultSet">
+		select
+		       q.qa_no
+		     , q.qa_content
+		     , q.qa_writer
+		     , q.qa_date
+		     , q.qa_answer
+		     , q.qa_answerdate
+		     , q.qa_status
+		     , q.qa_secret
+		     , q.user_id
+		     , sp.spc_no
+		     , sp.spc_name
+		     , sp.spc_type
+		     , substr(sp.map_location, 0, 7) as map_location
+		  from question_answer q
+		  join space_info sp on(q.spc_no=sp.spc_no)
+		 where q.user_id=#{userId}
+		   and qa_status='Y'
+	</select>
 
 
 

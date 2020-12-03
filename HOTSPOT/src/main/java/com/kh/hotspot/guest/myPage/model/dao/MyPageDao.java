@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
 
@@ -84,12 +85,31 @@ public class MyPageDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-//		HashMap<Object, Object> hmap = new HashMap<>();
-//		hmap.put("reservNo", reservNo);
-//		hmap.put("userId", userId);
-//		
+		//HashMap<Object, Object> hmap = new HashMap<>();
+		//hmap.put("reservNo", reservNo);
+		//hmap.put("userId", userId);
+		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyReviewList", userId, rowBounds);
 		
+	}
+	
+	
+	/**
+	 * Qna
+	 * 
+	 */
+	public int selectMyQnaListCount(SqlSessionTemplate sqlSession, String userId){
+		return sqlSession.selectOne("mypageMapper.selectMyQnaListCount", userId);
+	}
+	
+	public ArrayList<Qna> selectMyQnaList(SqlSessionTemplate sqlSession, PageInfo pi, String userId){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);	
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyQnaList", userId, rowBounds);
 	}
 	
 }

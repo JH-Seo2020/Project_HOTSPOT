@@ -33,6 +33,26 @@
 	    border: none;
 	    border-radius: 3px;
 	}
+	#updateBtn{
+		float: right;
+	    width: 90px;
+	    height: 30px;
+	    margin-right: 100px;
+	    background:  rgb(145, 37, 247);
+	    color:white;
+	    border: none;
+	    border-radius: 3px;
+	}
+	#deleteBtn{
+		float: right;
+	    width: 90px;
+	    height: 30px;
+	    margin-top: -30px;
+	    background:  rgb(145, 37, 247);
+	    color:white;
+	    border: none;
+	    border-radius: 3px;
+	}
 	#inputReview{
 	    position: relative;
 	    left: auto;
@@ -87,7 +107,7 @@
             <input type="hidden" name="userId" value="${ loginUser.userId }">
             <input type="hidden" name="reviewNo" value="${ rv.reviewNo }">
             <c:choose>
-            <c:when test="${ empty reviewContent && empty reviewTitle }">
+            <c:when test="${ empty rv.reviewNo }">
 			      <c:forEach var="rv" items="${ rvList }">
 			            <div class="review">
 			                    <div class="reviewInfo">
@@ -111,22 +131,24 @@
 			                        <dl>
 			                        	<dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
 			                            <dd>
-			                                <span><b>제목 : ${ rv.reviewTitle }</b></span><br>
-			                                <span class="useDate"><small>${ rv.reviewDate }</small></span>
-			                                <button type="button" class="inputBtn" onclick="">수정</button> <br clear="both">
-			                                <button type="button" class="inputBtn" onclick="" >삭제</button>
-			                            </dd>
-			                        </dl>
-			                    </div><hr>
-			                    <div class="reviewReply">
-			                        <dl>
-			                            <dt><b>호스트님의 답글 :</b></dt><br>
-			                            <dd>
-			                                <span>${ rv.reviewReply }</span><br>
+			                                <span><b>제목 : ${ rv.reviewTitle }</b></span> &nbsp;
+			                                <span class="useDate"><small>작성일 : ${ rv.reviewDate }</small></span>
+			                                <button type="button" id="updateBtn" onclick="">수정</button> <br clear="both">
+			                                <button type="button" id="deleteBtn" onclick="" >삭제</button>
 			                            </dd>
 			                        </dl>
 			                    </div>
-			                </div>
+			                    <c:if test="${ !empty rv.reviewReply }"><hr>
+				                    <div class="reviewReply">
+				                        <dl>
+				                            <dt><b>호스트님의 답글 :</b></dt><br>
+				                            <dd>
+				                                <span>${ rv.reviewReply }</span><br>
+				                            </dd>
+				                        </dl>
+				                    </div>
+				                 </c:if>
+			               	</div>
 		                </c:forEach>
                		</c:otherwise>
                </c:choose>

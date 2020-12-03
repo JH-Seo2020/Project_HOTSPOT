@@ -54,7 +54,7 @@ public class MyPageController {
 		
 		ArrayList<Reservation> list = mpService.alignReservList(align, loginUser.getUserId());
 		
-		session.setAttribute("list", list);
+		model.addAttribute("list", list);
 		
 		return "guest/myPage/reservationListView";
 		
