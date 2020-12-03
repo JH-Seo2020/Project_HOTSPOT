@@ -42,5 +42,8 @@ public class SpaceInfo {
 	private Date reviewDate;
 	private String reviewCon;	//CLOB String으로 받으려고 만들었음
 	
+	private int reviewCount;	// 공간의 총 리뷰수
+	private int wishCount;		// 공간의 총 위시수
+	
 
 }

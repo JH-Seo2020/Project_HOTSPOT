@@ -25,6 +25,18 @@
 		<result column="map_location" property="location" />
 	</resultMap>
 	
+	<!-- 검색결과 갯수 조회 -->
+	<select id="selectListCount" parameterType="String" resultType="_int">
+		select
+		       count(*)
+		  from space_info
+		 where spc_name like #{searchWord}||'%' or spc_name like '%'||#{searchWord}||'%' or spc_name like '%'||#{searchWord} or
+		       spc_tag like '%'||#{searchWord}||'%' or spc_tag like '%'||#{searchWord} or
+		       spc_type like #{searchWord}||'%' or spc_type like '%'||#{searchWord}||'%' or spc_type like '%'||#{searchWord} or spc_type like #{searchWord} or
+		       map_location like #{searchWord}||'%'
+	</select>
+	
+	<!-- 검색결과리스트 조회 -->
 	<select id="selectList" parameterType="String" resultMap="commonSpaceInfoSet">
 		select
 		       spc_no
@@ -52,5 +64,20 @@
 		       spc_type like #{searchWord}||'%' or spc_type like '%'||#{searchWord}||'%' or spc_type like '%'||#{searchWord} or spc_type like #{searchWord} or
 		       map_location like #{searchWord}||'%'
 	</select>
-
+	
+	<!-- 해당 공간의 총 리뷰 수 조회 -->
+	<select id="selectReviewCount" parameterType="_int" resultType="_int">
+		select
+		      count(*)
+		  from review
+		 where spc_no = #{spcNo} 
+	</select>
+	
+	<!-- 해당 공간의 총 위시 수 조회 -->
+	<select id="selectWishCount" parameterType="_int" resultType="_int">
+		select
+		      count(*)
+		  from wish
+		 where spc_no = #{spcNo} 
+	</select>
 </mapper>
