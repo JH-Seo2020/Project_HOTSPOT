@@ -36,7 +36,20 @@
 		<result column="BUSINESS_LOC" property="HoLoc"/>
 	</resultMap>
 	
+	<resultMap id="reportSet" type="reservReport">
+		<id column="report_no" property="reportNo" />
+		<result column="spc_no" property="spcNo" />
+		<result column="review_no" property="reviewNo" />
+		<result column="report_type1" property="reportType1" />
+		<result column="report_type2" property="reportType2" />
+		<result column="report_writer" property="reportWriter" />
+		<result column="report_target" property="reportTarget" />
+		<result column="report_content" property="reportContent" />
+		<result column="report_date" property="reportDate" />
+		<result column="report_status" property="reportStatus" />
+	</resultMap>
 	
+	<!-- 로그인한 유저의 예약총게시물 갯수 -->
 	<select id="selectReservListCount" parameterType="string" resultType="_int">
 		select
 		       count(*)
@@ -44,6 +57,7 @@
 		 where user_id=#{userId}
 	</select>
 	
+	<!-- 예약리스트 -->
 	<select id="selectReservList" resultMap="reservationSet">
 		select
 		        r.reservation_no
@@ -67,7 +81,7 @@
         where r.user_id=#{userId}
 	</select>
 	
-	
+	<!-- 예약번호로 정렬한 예약리스트  -->
 	<select id="alignReservList"  resultMap="reservationSet">
 		select
 	        r.reservation_no
@@ -96,10 +110,11 @@
 		</choose>
 	</select>
 	
-	
+	<!-- 예약상세조회 -->
 	<select id="selectDetailReserv" resultMap="reservationSet">
 		select
 		        r.reservation_no
+		      , r.user_id_h
 		      , r.reservation_total
 		      , r.reservation_date
 		      , r.reservation_status
@@ -129,5 +144,37 @@
 	 where r.user_id = #{userId}
 	   and r.reservation_no = #{reservNo}
 	</select>
+	
+	<update id="deleteReserv" parameterType="_int">
+		update
+		        reservation
+		    set reservation_status = '취소환불'
+		 where reservation_no=#{reservNo}
+		   and reservation_status like '%예약확정%'
+	</update>
+	
+	<insert id="reportReserv" parameterType="Report">
+		insert
+		  into report
+		  (
+		     report_no
+		   , report_type1
+		   , report_type2
+		   , report_writer
+		   , report_target
+		   , report_content
+		   , report_date
+		  )
+		  values
+		  (
+		    seq_report.nextval
+		  , #{reportType1}
+		  , #{reportType2}
+		  , #{reportWriter}
+		  , #{reportTarget}
+		  , #{reportContent}
+		  , sysdate
+		  )
+	</insert>
 
 </mapper>

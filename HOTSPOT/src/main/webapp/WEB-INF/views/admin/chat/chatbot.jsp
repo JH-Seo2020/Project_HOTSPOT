@@ -83,38 +83,64 @@
                     
                     <li>
                         <div class="balloon_03">
-                            
-                            <div style="border:1px solid lightgray; cursor:pointer;" onclick="chatList(1, $(this).text());" >1. 게스트</div>
-                            
-                            <div style="border:1px solid lightgray; cursor:pointer;" >2. 호스트</div>
+                           	<c:forEach var="c" items="${ list }" varStatus="status">
+                           	 	<div style="border:1px solid lightgray; cursor:pointer;" onclick="chatList(${status.index}, $(this).text());" >${ c.chatResponse }</div>
+                           </c:forEach>
                         </div>
-                    </li>                                  
+                    </li>
+                    
+          
                 </ul>
                 
             </div>  
             
     </div>
     <script>
-        $(function(){
-            var sel = $(".balloon_03>div");
-           
-            for(var i =0; i<= sel.length -1; i++){
-                if(i==0){
-                    sel.eq(0).click(function(){
-                        $(".chatContent>ul").append("<li align='right'><div style='text-align:left;' class='balloon_04'>"+ sel.eq(0).text() +"</div></li>")
-                    })
-                }else if(i==1){
-                    sel.eq(1).click(function(){
-                        $(".chatContent>ul").append("<li align='right'><div style='text-align:left;' class='balloon_04'>"+ sel.eq(1).text() +"</div></li>")
-                    })
-                }
-            }
-            
-        })
-        function chatList(num, str){
-            
-            $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
-        }
+		    function winClose()
+			    {
+			     window.open('','_self').close(); 
+			   }
+	        function chatList(num, str){           
+      	 		var sel = $(".balloon_03>div");         
+	   	  		$(".chatContent>ul").append("<li align='right'><div style='text-align:left;' class='balloon_04'>"+ str +"</div></li>")
+	           
+	   	  		$.ajax({
+	   	  			url:"list.cad",
+	   	  			data:{
+	   	  				message:str
+		   	  		},
+		   	  		success:function(list){
+		   	  			console.log(list);
+		   	  			
+		   	  			var value="";
+		   	  				value += "<li>"+
+		   	  							"<div class='balloon_03'>";
+  							for(var i  in list){
+	  		 	  					value +="<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>" + list[i].chatResponse+"</div>";
+	   	  						if(list[i].chatStep > 0 && list[i].chatStep <= 2){
+	   	  							if(i == list.length-1){	   	  								
+	   	  								value += "<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>처음으로</div>";
+	   	  							}
+	   	  						}else{
+	   	  						value +="<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>처음으로</div>"+  
+	   	  								"<div style='border:1px solid lightgray; cursor:pointer;' onclick='winClose()'>종료하기</div>";
+	   	  						}
+	  		 	  				
+  							}
+		   	  					
+				        
+				        	
+		   	  			$(".chatContent>ul").append(value).fadeIn(500);
+				        	
+	          	  $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
+		   	  		},
+		   	  		error:function(){
+		   	  			
+		   	  		}
+	   	  		});
+	                                            
+	        }
+     
     </script>
 </body>
 </html>

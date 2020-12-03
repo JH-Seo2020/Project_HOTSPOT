@@ -7,17 +7,19 @@
 	
 	<typeAliases>
 		
-		<!-- admin(선경) -->
+		<!-- admin, 공간검색 (선경) -->
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="Report" />
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Review" alias="Review" />
 		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Member" alias="adminMember"/>
 		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="adminHostInfo"/>
+		<typeAlias type="com.kh.hotspot.guest.space.model.vo.SpaceInfo" alias="commonSpaceInfo"/>
 		<!-- admin(현우 -->
 		<typeAlias type="com.kh.hotspot.admin.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.hotspot.admin.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 		<typeAlias type="com.kh.hotspot.admin.faq.model.vo.Faq" alias="Faq"/>
 		<typeAlias type="com.kh.hotspot.admin.reservation.model.vo.Reservation" alias="Reservationad"/>
 		<typeAlias type="com.kh.hotspot.admin.space.model.vo.Space" alias="Spacead"/>
+		<typeAlias type="com.kh.hotspot.admin.chat.model.vo.ChatBot" alias="ChatBot"/>
 		<!-- 로그인(지수) -->
 		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Member" alias="Member"/>
 		<!-- 메인,게스트공간(지혜) -->
@@ -35,9 +37,12 @@
 		<typeAlias type="com.kh.hotspot.space.model.vo.SpcNotes" alias="SpcNotes" />
 		<typeAlias type="com.kh.hotspot.space.model.vo.SpcImages" alias="SpcImages" />
 		<typeAlias type="com.kh.hotspot.host.model.vo.Qna" alias="hostQna" />
-		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesFaq" alias="VoicesFaq" />		
+		<typeAlias type="com.kh.hotspot.host.model.vo.Calculation" alias="calculation" />
+		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesFaq" alias="VoicesFaq" />	
+			
 		<!-- 마이페이지(성희) -->
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Reservation" alias="Reservation"/>
+		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="reservReport" />
 	</typeAliases>
 	
 	
@@ -49,12 +54,14 @@
 		<mapper resource="mappers/admin/admin-faq-mapper.xml"/>
 		<mapper resource="mappers/admin/admin-reservationMapper.xml"/>
 		<mapper resource="mappers/admin/admin-spaceMapper.xml"/>
+		<mapper resource="mappers/admin/chatbotMapper.xml"/>
 		<!-- 로그인기능 (전지수) -->
 		<mapper resource="mappers/member/member-mapper.xml"/>
-		<!-- admin(선경) -->
+		<!-- admin, 공간검색 (선경) -->
 		<mapper resource="mappers/admin/admin-reportMapper.xml"/>
 		<mapper resource="mappers/admin/admin-reviewMapper.xml"/>
 		<mapper resource="mappers/admin/admin-memberMapper.xml"/>
+		<mapper resource="mappers/common/common-spaceSearchMapper.xml"/>
 		
 		<!-- 메인,게스트공간(지혜) -->
 		<mapper resource="mappers/guest/guestspace-mapper.xml"/>

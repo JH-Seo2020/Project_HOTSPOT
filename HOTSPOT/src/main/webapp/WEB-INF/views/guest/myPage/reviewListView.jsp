@@ -9,7 +9,7 @@
 <style>
 	#content{
 	    background: rgb(243, 243, 243);
-	    margin-top: 10%;
+	    margin-top: 40px;
 	}
 	.btn-group{
 	    width: 60%;
@@ -40,7 +40,8 @@
 	.review{
 	    border: 1px solid rgb(218, 218, 218);
 	    background: white;
-	    padding: 16px;
+	    padding: 17px;
+	    padding-inline: 30px;
 	    margin: auto;
 	    margin-bottom: 15px;
 	    width: 60%;
@@ -67,11 +68,11 @@
             <br><br>
             <div class="ManageBtn" data-example-id="simple-button-group" align="center">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button class="btn btn-primary" style="background: rgb(145, 37, 247);" onclick="">
+                    <button class="btn btn-primary" style="background: rgb(145, 37, 247);" onclick="location.href='myReview.mg'">
                        	 이용후기
                     </button>
-                    <button class="btn btn-default" style="background: rgb(212, 212, 212);">Q & A</button>
-                    <button class="btn btn-default" style="background: rgb(212, 212, 212);">1:1문의</button>
+                    <button class="btn btn-default" style="background: rgb(212, 212, 212);" onclick="location.href='myQna.mg'">Q & A</button>
+                    <button class="btn btn-default" style="background: rgb(212, 212, 212);" onclick="location.href='myInquiry.mg'">1:1문의</button>
                 </div>
             </div>
             <br><br>
@@ -150,7 +151,6 @@
         </div>
         <br><br>
     </div>
-    
 
     <jsp:include page="../../common/footer.jsp"/>
 </body>

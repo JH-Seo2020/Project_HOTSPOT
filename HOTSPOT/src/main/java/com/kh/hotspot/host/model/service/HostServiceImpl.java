@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.dao.HostDao;
+import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.space.model.vo.Space;
 
@@ -66,5 +67,9 @@ public class HostServiceImpl implements HostService {
 	@Override
 	public int deleteQna(Qna q) {
 		return hDao.deleteQna(sqlSession, q);
+	}
+	@Override
+	public ArrayList<Calculation> selectCalAll(Calculation cal) {
+		return hDao.selectCalAll(sqlSession,cal);
 	}
 }

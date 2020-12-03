@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.dao.MyPageDao;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
@@ -43,13 +44,12 @@ public class MyPageServiceImpl implements MyPageService{
 
 	@Override
 	public int deleteReserv(int reservNo) {
-		return mpDao.deleteReserv(reservNo);
+		return mpDao.deleteReserv(sqlSession, reservNo);
 	}
 
 	@Override
-	public int reportHostandSpace(String userIdHost, int spcNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int reportReserv(Report rp) {
+		return mpDao.reportReserv(sqlSession, rp);
 	}
 
 

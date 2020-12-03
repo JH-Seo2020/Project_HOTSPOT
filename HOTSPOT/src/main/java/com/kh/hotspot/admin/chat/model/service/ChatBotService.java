@@ -8,5 +8,7 @@ import com.kh.hotspot.admin.chat.model.vo.ChatBot;
 
 public interface ChatBotService {
 
-	ArrayList<ChatBot> selectList(Map map);
+	ArrayList<ChatBot> selectList();
+	ArrayList<ChatBot> chatList(String message);
+	
 }
