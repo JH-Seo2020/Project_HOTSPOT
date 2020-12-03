@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.host.model.vo.Qna;
+import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.space.model.vo.Space;
 
@@ -65,5 +66,9 @@ public class HostDao {
 
 	public int deleteQna(SqlSessionTemplate sqlSession, Qna q) {
 		return sqlSession.update("hostMapper.deleteQna",q);
+	}
+
+	public ArrayList<Calculation> selectCalAll(SqlSessionTemplate sqlSession, Calculation cal) {
+		return (ArrayList)sqlSession.selectList("hostMapper.selectCalAll",cal);
 	}
 }

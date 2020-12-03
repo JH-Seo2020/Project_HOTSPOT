@@ -9,7 +9,7 @@
 <style>
    #content{
         background: rgb(243, 243, 243);
-	    margin-top: 50px;
+	    margin-top: 40px;
     }
     .reservation_thumbnail{
     	width: 160px;

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.service.MyPageService;
@@ -52,7 +53,7 @@ public class MyPageController {
 		
 		ArrayList<Reservation> list = mpService.alignReservList(align, m.getUserId());
 		
-		session.setAttribute("list", list);
+		model.addAttribute("list", list);
 		
 		return "guest/myPage/reservationListView";
 		
@@ -66,24 +67,23 @@ public class MyPageController {
 		Member m = (Member)session.getAttribute("loginUser");
 		
 		Reservation r = mpService.selectDetailReserv(reservNo, m.getUserId());
-		System.out.println(reservNo);
 		
-		model.addAttribute("r", r);
+		session.setAttribute("r", r);
 		
 		return "guest/myPage/reservationDetailView";
 
 
 	}
 	
-	@RequestMapping("delete.re")
+	@RequestMapping("reservDelete.re")
 	public String deleteReserv(int reservNo, HttpSession session, Model model) {
 		
 		int result = mpService.deleteReserv(reservNo);
 		
 		if(result > 0) {
 			
-			session.setAttribute("alert", "성공적으로 예약이 취소되었습니다");
-			return "redirect:reservDetail.re";
+			session.setAttribute("alertMsg", "성공적으로 예약이 취소되었습니다");
+			return "redirect:reservDetail.re?reservNo="+ reservNo;
 			
 		}else {
 			
@@ -93,6 +93,72 @@ public class MyPageController {
 		}
 		
 		
+	}
+	
+	@RequestMapping("reservReport.re")
+	public String reportReserv(Report rp, HttpSession session, Model model) {
+	
+		int result = mpService.reportReserv(rp);
+		
+		Reservation rv = (Reservation)session.getAttribute("r");
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "신고가 접수되었습니다!");
+			return "redirect:reservDetail.re?reservNo=" + rv.getReservNo();
+			
+		}else {
+			
+			model.addAttribute("errorMsg", "신고접수에 실패하셨습니다.");
+			return "common/errorPage";
+			
+		}
+		
+	}
+	
+	// 나의 예약리스트 끝
+	
+	
+	/**
+	 * 이용후기 시작
+	 * 
+	 */
+	@RequestMapping("myReview.mg")
+	public String selectmyManageList(HttpSession session, Model model) {
+		return "guest/myPage/reviewListView";
+	}
+
+	
+	
+	/**
+	 * Q&A시작
+	 * 
+	 */
+	@RequestMapping("myQna.mg")
+	public String selectmyQnaList(HttpSession session, Model model) {
+		return "guest/myPage/qnaListView";
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 고객문의관리시작
+	 * 
+	 */
+	@RequestMapping("myInquiry.mg")
+	public String selectmyInquiryList(HttpSession session, Model mdoel) {
+		return "guest/myPage/inquiryListView";
+	}
+	
+
+	/**
+	 * 찜한공간 시작
+	 */ 
+	@RequestMapping("myLike.lv")
+	public String selectmyWishList(HttpSession session, Model model) {
+		return "guest/myPage/likeView";
 	}
 	
 }

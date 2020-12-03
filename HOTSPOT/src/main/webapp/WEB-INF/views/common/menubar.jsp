@@ -41,9 +41,9 @@
 	<div id="menubar">
         <div id="logoSpace"><a href="/hotspot"><img src="resources/images/logo_letter_1.png" width="100%" height="70%"></a></div>
         <div id="search">
-            <form action="" method="">
-                <input type="search" placeholder="검색어를 입력하세요!">
-                <div><a href="test.search"><img src="resources/images/serarch_icon.png" width="80%" height="90%"></a></div>
+            <form action="search.hotspot" id="spaceSearchForm" method="GET">
+                <input id="searchWord" name="searchWord" type="search" placeholder="검색어를 입력하세요!">
+                <div><a id="a_search"><img src="resources/images/serarch_icon.png" width="80%" height="90%"></a></div>
             </form>
         </div>
         <div id="menuOptions">
@@ -115,13 +115,13 @@
 		                        <tr>
 			                        <td>
 		                                <img src="resources/images/list.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-		                                <a href=""><span>이용후기 / 문의 관리</span></a> <br>
+		                                <a href="myReview.mg"><span>이용후기 / 문의관리</span></a> <br>
 			                        </td>
 			                    </tr>
 			                    <tr>
 			                        <td>
 			                            <img src="resources/images/heart.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
-			                            <a href=""><span>찜한공간</span></a>
+			                            <a href="myLike.lv"><span>찜한공간</span></a>
 			                        </td>
 			                     </tr>
 		                    </table>    
@@ -197,6 +197,13 @@
                   }).show();
               });
 
+          });
+          
+          // 검색기능 (선경추가)
+          $(function(){
+        	  $("#a_search").click(function(){
+        		  $("#spaceSearchForm").submit();
+        	  });
           });
          </script>
     </div>

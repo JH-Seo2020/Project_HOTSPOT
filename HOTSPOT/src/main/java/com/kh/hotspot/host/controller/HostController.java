@@ -20,9 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
-import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.service.HostService;
+import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
+import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.space.model.vo.Space;
 
 @Controller
@@ -118,6 +119,56 @@ public class HostController {
 		}
 			return changeName;
 	}
+	/**
+	 * @author jieun
+	 * @param session
+	 * @param h
+	 * @return 호스트 정산 페이지
+	 */
+	
+	@RequestMapping("hostCalculateForm.ho")
+	public String hostCalculateForm(HttpSession session, Model model) {
+		//1. userId 뽑기 
+		HostInfo hi = (HostInfo) session.getAttribute("hostInfo");
+		String userId = hi.getUserId();
+		//2.  hService 전달 
+		ArrayList<Space> space = hService.selectSpaceList(userId);
+		//3. 결과의 따른 화면 
+		if(space != null) {
+			session.setAttribute("space",space);
+			return "host/hostPage/hostCalculateForm";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	/**
+	 * @author jieun
+	 * @param session
+	 * @param h
+	 * @return 호스트 정산 
+	 */
+	
+	@RequestMapping("selectCalculate.ho")
+	public String hostCalculate(Calculation cal, HttpSession session, Model model) {
+		//1. 전달값 확인
+		String spcName = cal.getSpcName();
+		if(spcName.equals("전체 공간 선택")) {
+			String reservDate = cal.getReservDate().replace(",", "");
+			cal.setReservDate(reservDate);
+			ArrayList<Calculation> list = hService.selectCalAll(cal);
+			System.out.println(list);
+			
+			if(list != null) {
+				model.addAttribute("list",list);
+				return "host/hostPage/hostCalculateForm";
+			}
+		} else {
+			
+		}
+		return "host/hostPage/hostCalculateForm";
+	}
+	
 	/**
 	 * @author jieun
 	 * @param session
@@ -229,13 +280,9 @@ public class HostController {
 	@RequestMapping("hostInquiry.ho")
 	public String hostInquiryForm() {
 		
-		return "host/hostPage/hostInquiry";
+		return "host/hostPage/hostInquiryForm";
 	}
 	
-	@RequestMapping("hostCalculateForm.ho")
-	public String hostCalculateForm() {
-		return "host/hostPage/hostCalculateForm";
-	}
 	
 	
 	

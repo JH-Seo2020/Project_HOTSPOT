@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.host.model.vo.Qna;
+import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.space.model.vo.Space;
 
@@ -29,4 +30,6 @@ public interface HostService {
 	ArrayList<Qna> selectAnswerInComplete(PageInfo pi, int spcNo);
 	//4_4 qna 삭제
 	int deleteQna(Qna q);
+	//5. 전체 정산 조회
+	ArrayList<Calculation> selectCalAll(Calculation cal);
 }
