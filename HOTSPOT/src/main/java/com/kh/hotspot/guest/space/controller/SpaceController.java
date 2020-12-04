@@ -223,5 +223,24 @@ public class SpaceController {
 		
 		return "guest/space/spaceReserv";
 	}
+	
+	@RequestMapping("reservInsert.guest")
+	public String insertReservation(Reservation r, Model model) {
+//		System.out.println(r);
+		
+		int result = spaceService.insertReservation(r);
+		
+		if(result>0) {
+			
+			//insert 성공 시 api에 뿌려줄 정보 보내기
+			model.addAttribute("r",r);
+			return "guest/space/paymentPage";
+			
+		}else {
+			model.addAttribute("errorMsg","결제페이지 로딩 실패, 다시 예약해주세요");
+			return "common/errorPage";
+		}
+		
+	}
 
 }
