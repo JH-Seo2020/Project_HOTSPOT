@@ -96,5 +96,31 @@
        , #{reservStatus}
        )
 	</insert>
+	
+	<select id="selectRightBeforeReserv" parameterType="Reservation" resultType="_int">
+		 select reservation_no 
+		   from reservation
+		 where user_id = #{userId}
+		   and rownum = 1
+		 order
+		    by reservation_no desc
+	</select>
+	
+	<update id="updatePaymentInfo" parameterType="Reservation">
+		update reservation
+		<if test="payMethod == '무통장입금'">
+		set reservation_status='결제대기'
+		</if>
+		<if test="payMethod == '신용카드'">
+		set reservation_status='예약확정'
+		   , pay_date = to_date(sysdate)
+		</if>
+		where reservation_no=#{reservNo}
+	</update>
+	
+	<delete id="deleteReserv" parameterType="_int" >
+		delete from reservation
+		where reservation_no = #{reservNo}
+	</delete>
 
 </mapper>

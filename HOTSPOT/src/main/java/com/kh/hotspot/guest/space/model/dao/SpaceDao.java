@@ -63,5 +63,20 @@ public class SpaceDao {
 		return sqlSession.insert("guestReservtaionMapper.insertReservation", r);
 	}
 
+	public int updatePaymentInfo(SqlSessionTemplate sqlSession, Reservation reservUp) {
+		
+		return sqlSession.update("guestReservtaionMapper.updatePaymentInfo", reservUp);
+	}
+	
+	public int selectRightBeforeReserv(SqlSessionTemplate sqlSession, Reservation r) {
+		
+		return sqlSession.selectOne("guestReservtaionMapper.selectRightBeforeReserv", r);
+	}
+
+	public int deleteReserv(SqlSessionTemplate sqlSession, int reservNo) {
+		
+		return sqlSession.delete("guestReservtaionMapper.deleteReserv", reservNo);
+	}
+
 
 }

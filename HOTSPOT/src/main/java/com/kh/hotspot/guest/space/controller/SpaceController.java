@@ -232,13 +232,46 @@ public class SpaceController {
 		
 		if(result>0) {
 			
-			//insert 성공 시 api에 뿌려줄 정보 보내기
+			//insert 성공 시 api에 뿌려줄 예약번호
+			int rno = spaceService.selectRightBeforeReserv(r);
+			model.addAttribute("rno",rno);
 			model.addAttribute("r",r);
+//			System.out.println(rno);
 			return "guest/space/paymentPage";
 			
 		}else {
 			model.addAttribute("errorMsg","결제페이지 로딩 실패, 다시 예약해주세요");
 			return "common/errorPage";
+		}
+		
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="payUpdate.guest", produces="application/json; charset=utf-8")
+	public int payUpdateForGuest(Reservation reservUp, Model model) {
+		
+		int result = spaceService.updatePaymentInfo(reservUp);
+		
+		if(result>0) {
+			return 1; 
+		}else {
+			return 0;
+		}
+		
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="deleteReserv.guest", produces="application/json; charset=utf-8")
+	public int deleteReservForGuest(int reservNo, Model model) {
+		
+		int result = spaceService.deleteReserv(reservNo);
+		
+		if(result>0) {
+			return 1; 
+		}else {
+			return 0;
 		}
 		
 	}

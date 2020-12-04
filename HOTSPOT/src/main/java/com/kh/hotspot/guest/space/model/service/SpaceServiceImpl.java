@@ -54,9 +54,9 @@ public class SpaceServiceImpl implements SpaceService {
 	}
 
 	@Override
-	public int updatePaymentInfo(int reservNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updatePaymentInfo(Reservation reservUp) {
+		
+		return spaceDao.updatePaymentInfo(sqlSession, reservUp);
 	}
 
 	
@@ -90,6 +90,18 @@ public class SpaceServiceImpl implements SpaceService {
 	public int insertReservation(Reservation r) {
 		
 		return spaceDao.insertReservation(sqlSession,r);
+	}
+
+	@Override
+	public int selectRightBeforeReserv(Reservation r) {
+		
+		return spaceDao.selectRightBeforeReserv(sqlSession, r);
+	}
+
+	@Override
+	public int deleteReserv(int reservNo) {
+		
+		return spaceDao.deleteReserv(sqlSession, reservNo);
 	}
 
 

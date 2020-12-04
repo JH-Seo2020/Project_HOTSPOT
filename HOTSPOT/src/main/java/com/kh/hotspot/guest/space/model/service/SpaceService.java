@@ -27,9 +27,13 @@ public interface SpaceService {
 	HostInfo hostInfo(Reservation reserv);
 	//예약미리insert
 	int insertReservation(Reservation r);
+	//예약번호 다시가져오기
+	int selectRightBeforeReserv(Reservation r);
 	
 	//6.결제하기 기능
-	int updatePaymentInfo(int reservNo);
+	int updatePaymentInfo(Reservation reservUp);
+	//예약삭제기능
+	int deleteReserv(int reservNo);
 
 	
 
