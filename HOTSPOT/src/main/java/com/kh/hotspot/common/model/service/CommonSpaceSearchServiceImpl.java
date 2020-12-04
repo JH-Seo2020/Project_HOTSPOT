@@ -19,13 +19,13 @@ public class CommonSpaceSearchServiceImpl implements CommonSpaceSearchService{
 	private CommonSpaceSearchDao spaceSearchDao;
 	
 	@Override	// 조회결과수
-	public int selectListCount(String searchWord) {
-		return spaceSearchDao.selectListCount(searchWord, sqlSession);
+	public int selectListCount(SpaceInfo spaceInfo) {
+		return spaceSearchDao.selectListCount(spaceInfo, sqlSession);
 	}
 	
 	@Override	// 검색결과리스트 조회
-	public ArrayList<SpaceInfo> selectList(String searchWord, PageInfo pageInfo) {
-		return spaceSearchDao.selectList(searchWord, pageInfo, sqlSession);
+	public ArrayList<SpaceInfo> selectList(SpaceInfo spaceInfo, PageInfo pageInfo) {
+		return spaceSearchDao.selectList(spaceInfo, pageInfo, sqlSession);
 	}	
 	
 	@Override	// 각 공간별 리뷰수 조회
@@ -37,11 +37,5 @@ public class CommonSpaceSearchServiceImpl implements CommonSpaceSearchService{
 	public int selectWishCount(int spcNo) {
 		return spaceSearchDao.selectWishCount(spcNo, sqlSession);
 	}
-	
-	
-
-
-
-	
 
 }

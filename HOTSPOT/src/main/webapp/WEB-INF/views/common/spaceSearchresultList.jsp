@@ -16,8 +16,10 @@
 	<!-- 검색필터 -->
 	<div style="background: lavender; height:30px; margin-top: 40px;"></div>
 	<div style="background: lavender;">
+		<form action="search.hotspot" id="SearchConditionForm" method="GET">
 	    <div id="searchFilter">
 	        <span>'${ searchWord }'(으)로 검색한 결과입니다.</span>
+	        <input type="hidden" id="searchWord" name="searchWord" value="${ searchWord }">
 	        <table id="table_select">
 	            <thead>
 	                <tr>
@@ -29,7 +31,7 @@
 	                <tr>
 	                    <td>
 	                        <select name="spcType" id="spcType" class="custom-select custom-select-sm mb-3">
-	                            <option selected disabled>모든공간</option>
+	                            <option selected value="">모든공간</option>
 	                            <option value="파티룸">파티룸</option>
 	                            <option value="회의실">회의실</option>
 	                            <option value="촬영스튜디오">촬영스튜디오</option>
@@ -40,8 +42,8 @@
 	                        </select>
 	                    </td>
 	                    <td>
-	                        <select name="spcArea" class="custom-select custom-select-sm mb-3">
-	                            <option selected disabled>모든지역</option>
+	                        <select name="location" id="location" class="custom-select custom-select-sm mb-3">
+	                            <option selected value="">모든지역</option>
 	                            <option value="서울">서울</option>
 	                            <option value="인천">인천</option>
 	                            <option value="부산">부산</option>
@@ -72,12 +74,12 @@
 	            <tbody>
 	                <tr>
 	                    <td>
-	                        <input id="TV" type="checkbox" name="spcConvn" value="TV">
-	                        <label class="input_spcConvn" for="TV">TV</label>
+	                        <input id="ref" type="checkbox" name="spcConvn" value="다과">
+	                        <label class="input_spcConvn" for="ref">다과</label>
 	                    </td>
 	                    <td>
-	                        <input id="computer" type="checkbox" name="spcConvn" value="컴퓨터">
-	                        <label class="input_spcConvn" for="computer">컴퓨터</label>
+	                        <input id="computer" type="checkbox" name="spcConvn" value="냉난방">
+	                        <label class="input_spcConvn" for="computer">냉난방</label>
 	                    </td>
 	                    <td>
 	                        <input id="wifi" type="checkbox" name="spcConvn" value="와이파이">
@@ -88,7 +90,7 @@
 	                        <label class="input_spcConvn" for="copy">복사</label>
 	                    </td>
 	                    <td>
-	                        <input id="cafe" type="checkbox" name="spcConvn" value="컴퓨터">
+	                        <input id="cafe" type="checkbox" name="spcConvn" value="카페">
 	                        <label class="input_spcConvn" for="cafe">카페</label>
 	                    </td>
 	                </tr>
@@ -110,6 +112,7 @@
             </td>
         </tr>
     </table>
+    </form>
     <div id="searchresultList">
      	<c:choose>
     		<c:when test="${ empty list  }">
@@ -168,6 +171,43 @@
     		if('${searchWord}' != ''){
     			$("#spcType").val('${searchWord}');
     		}
+    		if('${spcType}' != ''){
+    			$("#spcType").val('${spcType}');
+    		}
+    		if('${location}' != ''){
+    			$("#location").val('${location}');
+    		}
+    		
+    		if("${checkbox0}" != null){
+    			$("input[value='${checkbox0}']").attr("checked", true);
+    		}
+    		if("${checkbox1}" != null){
+    			$("input[value='${checkbox1}']").attr("checked", true);
+    		}
+    		if("${checkbox2}" != null){
+    			$("input[value='${checkbox2}']").attr("checked", true);
+    		}
+    		if("${checkbox3}" != null){
+    			$("input[value='${checkbox3}']").attr("checked", true);
+    		}
+    		if("${checkbox4}" != null){
+    			$("input[value='${checkbox4}']").attr("checked", true);
+    		}
+
+    		$("#spcType").change(function(){
+    			$("#SearchConditionForm").submit();
+    		})
+    		$("#location").change(function(){
+    			$("#SearchConditionForm").submit();	
+    		});
+    		
+    		$("input[name=spcConvn]").click(function(){
+    			$("#SearchConditionForm").submit();	
+    		});
+    		$("#select_order").change(function(){
+    			$("#SearchConditionForm").submit();	
+    		});
+
     	})
     </script>
     
