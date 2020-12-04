@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <!-- CSS -->
 <link rel="stylesheet" href="resources/css/guest/faqListView.css" type="text/css"/>
+
 </head>
 <body>
 
@@ -66,7 +67,7 @@
               </table>
         </div>
         <div id="ask">
-            <button class="forRight btn purple" type="button" onclick="location.href='chat.ad'">챗봇으로 물어보기</button> 
+            <button class="forRight btn purple" type="button" onclick="chatBot();">챗봇으로 물어보기</button> 
         </div>
         <div id="pagination">
 
@@ -96,6 +97,10 @@
     </div>
 
     <script>
+    	function chatBot(){
+    		window.open("chat.ad","_blank","width=400px, height=552px");
+    		
+    	}
         $(function(){
             $(".answers").click(function(){
                 $("#faq .answers").hide(100);   //괄호안의 숫자는 duration-시간-

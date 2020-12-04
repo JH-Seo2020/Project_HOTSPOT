@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +67,7 @@
         top:5px;
         left:175px;
     }
+    html {overflow:hidden;}
     </style>
 </head>
 <body>
@@ -72,9 +75,9 @@
   	 <div align="center" style="background:#704de4; height:50px; color:white; font-size:20px; line-height:2.3;">
         1:1 문의상담
     </div>
-        
+        <c:set var="current" value="<%= new java.util.Date() %>"/>
         <div align="center" style="background:#eef0f3; height:500px; overflow:scroll;" id="chatBox"> 
-            <div style="margin-top:10px;">2020-11-15</div>
+            <div style="margin-top:10px;"><fmt:formatDate value="${ current }" type="date" pattern="yyyy-MM-dd HH:mm"/></div>
             <hr>
             <div class="chatContent" >
                 <ul align="left">    
@@ -84,7 +87,7 @@
                     <li>
                         <div class="balloon_03">
                            	<c:forEach var="c" items="${ list }" varStatus="status">
-                           	 	<div style="border:1px solid lightgray; cursor:pointer;" onclick="chatList(${status.index}, $(this).text());" >${ c.chatResponse }</div>
+                           	 	<div style="border:1px solid lightgray; cursor:pointer; color: #704de4;" onclick="chatList(${status.index}, $(this).text());" >${ c.chatResponse }</div>
                            </c:forEach>
                         </div>
                     </li>
@@ -116,14 +119,16 @@
 		   	  				value += "<li>"+
 		   	  							"<div class='balloon_03'>";
   							for(var i  in list){
-	  		 	  					value +="<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>" + list[i].chatResponse+"</div>";
-	   	  						if(list[i].chatStep > 0 && list[i].chatStep <= 1){
+	  		 	  					value +="<div style='border:1px solid lightgray; color:#704de4; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>" + list[i].chatResponse+"</div>";
+	   	  						if(list[i].chatStep > 0 && list[i].chatStep <= 2){
 	   	  							if(i == list.length-1){	   	  								
-	   	  								value += "<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>처음으로</div>";
+	   	  								value += "<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>처음으로</div>"+
+   	  									    	 "<div style='border:1px solid lightgray; cursor:pointer;' onclick='winClose()'>1:1문의하기</div>";
 		   	  							}	
-	  								}else if(list[i].chatStep == 2){
+	  								}else if(list[i].chatStep == 3){
 	  									if( i == list.length-1){	  										
 	  										value +="<div style='border:1px solid lightgray; cursor:pointer;' onclick='chatList(" +i +", $(this).text());'>처음으로</div>"+  
+  													"<div style='border:1px solid lightgray; cursor:pointer;' onclick='winClose()'>1:1문의하기</div>"+
 				   	  								"<div style='border:1px solid lightgray; cursor:pointer;' onclick='winClose()'>종료하기</div>";
 	  									}
 	  								} 								
