@@ -25,6 +25,8 @@ public interface SpaceService {
 	SpaceInfo selectReservView(int spcNo, String userId);
 	//호스트정보가져와서 뿌려주기
 	HostInfo hostInfo(Reservation reserv);
+	//예약미리insert
+	int insertReservation(Reservation r);
 	
 	//6.결제하기 기능
 	int updatePaymentInfo(int reservNo);

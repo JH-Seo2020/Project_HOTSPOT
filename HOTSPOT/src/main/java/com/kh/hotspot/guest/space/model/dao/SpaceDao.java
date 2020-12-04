@@ -58,5 +58,10 @@ public class SpaceDao {
 		return sqlSession.selectOne("guestReservtaionMapper.hostInfo", reserv);
 	}
 
+	public int insertReservation(SqlSessionTemplate sqlSession, Reservation r) {
+		
+		return sqlSession.insert("guestReservtaionMapper.insertReservation", r);
+	}
+
 
 }

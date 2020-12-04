@@ -85,6 +85,13 @@ public class SpaceServiceImpl implements SpaceService {
 		return spaceDao.selectReviewsForHomep(sqlSession,userId, pi);
 	}
 
+	//예약기능
+	@Override
+	public int insertReservation(Reservation r) {
+		
+		return spaceDao.insertReservation(sqlSession,r);
+	}
+
 
 
 }

@@ -42,5 +42,59 @@
 		  from host_info
 		 where user_id = #{userIdHost}
 	</select>
+	
+	<insert id="insertReservation" parameterType="Reservation" >
+		insert into RESERVATION
+       ( 
+         RESERVATION_NO
+       , USER_ID 
+       , SPC_NO 
+       , USER_ID_H 
+       , RESERVATION_NAME
+       , RESERVATION_PHONE
+       , RESERVATION_EMAIL
+       , TOTAL_TIME 
+       , RESERVATION_TOTAL
+       <if test="perpose != null">
+       , PURPOSE_TYPE
+       </if>
+       , AMOUNT_TIME 
+       , USE_DATE 
+       , USE_TIME 
+       , END_DATE 
+       , END_TIME 
+       , PAY_SUM 
+       <if test="refund != null">
+       , REFUND
+       </if>
+       , PAY_METHOD
+       , RESERVATION_STATUS 
+       )
+       VALUES
+       ( SEQ_RESERVATION.nextval
+       , #{userId}
+       , #{spcNo}
+       , #{userIdHost}
+       , #{reservName}
+       , #{reservPhone}
+       , #{reservEmail}
+       , #{totalTime}
+       , #{reservTotal}
+       <if test="perpose != null">
+       , #{perpose}
+       </if>
+       , #{amountTime}
+       , #{useDate}
+       , #{useTime}
+       , #{endDate}
+       , #{endTime}
+       , #{paySum}
+       <if test="refund != null">
+       , #{refund}
+       </if>
+       , #{payMethod}
+       , #{reservStatus}
+       )
+	</insert>
 
 </mapper>
