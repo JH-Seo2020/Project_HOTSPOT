@@ -145,10 +145,15 @@ public class MyPageController {
 		return "guest/myPage/reviewListView";
 	}
 
+//	@RequestMapping("enrollFormReview.mg")
+//	public String selectEnrollFormReview(int reservNo, HttpSession session, Model model) {
+//		
+//	}
+//	
+//	
 	
-	
-	@RequestMapping("enrollReview.mg")
-	public String enrollReview() {
+	@RequestMapping("insertReview.mg")
+	public String insertEnrollReview() {
 
 		
 		return "guest/myPage/reviewEnrollForm";

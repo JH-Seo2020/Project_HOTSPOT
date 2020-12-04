@@ -261,7 +261,7 @@
 		   and review_status='Y'
 		   and reservation_status like '%이용완료%'
 		 order 
-		    by r.use_date desc
+		    by r.reservation_no desc
 	</select>
 	
 	
