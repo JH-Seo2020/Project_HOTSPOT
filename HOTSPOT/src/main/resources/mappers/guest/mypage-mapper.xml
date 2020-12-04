@@ -85,6 +85,18 @@
   		<result column="SPC_TYPE" property="spcType" />
   		<result column="MAP_LOCATION" property="location" />
   	</resultMap>
+  	
+  	<resultMap id="voicesInquirySet" type="VoicesInquiry">
+  		<id column="inquiry_no" property="inquiryNo"/>
+  		<result column="user_id" property="inquiryWriter"/>
+  		<result column="inquiry_title" property="inquiryTitle"/>
+  		<result column="inquiry_content" property="inquiryContent"/>
+  		<result column="inquiry_reply" property="inquiryReply"/>
+  		<result column="reply_status" property="replyStatus"/>
+  		<result column="enroll_date" property="inquiryDate"/>
+  		<result column="reply_date" property="replyDate"/>
+  		<result column="status" property="inquiryStatus"/> 	
+  	</resultMap>
 	
 	<!-- 로그인한 유저의 예약총게시물 갯수 -->
 	<select id="selectReservListCount" parameterType="string" resultType="_int">
@@ -256,9 +268,9 @@
 	<select id="selectMyQnaListCount" parameterType="string" resultType="_int">
 		 select
 		       count(*)
-		  from inquiry i
-		  join member m on(i.user_id=m.user_id)
-		 where i.user_id=#{userId}
+		  from question_answer q
+		  join member m on(q.user_id=m.user_id)
+		 where q.user_id=#{userId}
 	</select>
 	
 	<select id="selectMyQnaList" resultMap="qnaResultSet">
@@ -281,9 +293,30 @@
 		 where q.user_id=#{userId}
 		   and qa_status='Y'
 	</select>
-
-
-
+	
+	<select id="selectMyInquiryListCount" parameterType="string" resultType="_int">
+		 select
+		       count(*)
+		  from inquiry i
+		  join member m on(i.user_id=m.user_id)
+		 where i.user_id=#{userId}
+	</select>
+	
+	<select id="selectMyInquiryList"  parameterType="string" resultMap="voicesInquirySet">
+		select
+		       i.inquiry_no
+		     , i.user_id
+		     , i.inquiry_title
+		     , i.inquiry_content
+		     , i.inquiry_reply
+		     , i.reply_status
+		     , i.enroll_date
+		     , i.reply_date
+		     , i.status
+		  from inquiry i
+		 where i.user_id=#{userId}
+		   and i.status='Y'
+	</select>
 
 </mapper>
 

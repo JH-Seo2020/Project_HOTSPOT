@@ -132,15 +132,13 @@ public class MyPageServiceImpl implements MyPageService{
 
 	@Override
 	public int selectMyInquiryListCount(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mpDao.selectMyInquiryListCount(sqlSession, userId);
 	}
 
 
 	@Override
 	public ArrayList<VoicesInquiry> selectMyInquiryList(PageInfo pi, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return mpDao.selectMyInquiryList(sqlSession, pi, userId);
 	}
 
 

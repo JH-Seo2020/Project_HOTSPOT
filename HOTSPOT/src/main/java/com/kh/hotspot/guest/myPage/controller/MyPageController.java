@@ -18,6 +18,7 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 @Controller
 public class MyPageController {
@@ -185,7 +186,18 @@ public class MyPageController {
 	 * 
 	 */
 	@RequestMapping("myInquiry.mg")
-	public String selectmyInquiryList(HttpSession session, Model mdoel) {
+	public String selectMyInquiryList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int listCount = mpService.selectMyInquiryListCount(loginUser.getUserId());
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		
+		ArrayList<VoicesInquiry> viList = mpService.selectMyInquiryList(pi, loginUser.getUserId());
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("viList", viList);
+		
 		return "guest/myPage/inquiryListView";
 	}
 	

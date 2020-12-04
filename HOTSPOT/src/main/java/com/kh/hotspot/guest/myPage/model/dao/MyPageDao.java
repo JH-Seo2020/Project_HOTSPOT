@@ -12,6 +12,7 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 @Repository
 public class MyPageDao {
@@ -111,6 +112,27 @@ public class MyPageDao {
 		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyQnaList", userId, rowBounds);
 	}
+	
+	
+	/**
+	 * 1:1문의
+	 * 
+	 */
+	public int selectMyInquiryListCount(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("mypageMapper.selectMyInquiryListCount", userId);
+	}
+	
+	
+	public ArrayList<VoicesInquiry> selectMyInquiryList(SqlSessionTemplate sqlSession, PageInfo pi,String userId){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);	
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyInquiryList", userId, rowBounds);
+	}
+	
+	
 	
 }
 

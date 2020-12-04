@@ -46,6 +46,7 @@
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="reservReport" />
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Review" alias="myReview" />
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Qna" alias="myQna" />
+		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesInquiry" alias="VoicesInquiry"/>
 	</typeAliases>
 	
 	

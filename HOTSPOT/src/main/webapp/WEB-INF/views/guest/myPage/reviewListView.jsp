@@ -165,13 +165,13 @@
                     	<li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>
                     </c:when>
                     <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="myInquiry.mg?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
                     </c:otherwise>
                    </c:choose>
                    
                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                    	<input type="hidden" name="userId" value="${ loginUser.userId }"> 
-                   	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ p }">${ p }</a></li>
+                   	<li class="page-item"><a class="page-link" href="myInquiry.mg?currentPage=${ p }">${ p }</a></li>
 				</c:forEach>
 				
 				<c:choose>
@@ -179,12 +179,11 @@
                     	<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>
                     </c:when>
                     <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="myInquiry.mg?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
                     </c:otherwise>
                	</c:choose>
             </ul>
         </div><br><br><br>
-        
         
     </div>
 

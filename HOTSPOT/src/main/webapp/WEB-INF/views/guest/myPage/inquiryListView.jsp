@@ -62,64 +62,64 @@
             </div>
             <br><br><br>
             <div id="inputInquiry">
-                <div class="inquiry">
-                    <div class="inquiryInfo">
-                        <dl>
-                            <dt><b>제목 : 챗봇기능으로 안되서 문의해요</b></dt><br>
-                            <dd>
-                                <span> 찬미를 듣는다 그것은 웅대한 관현악이며 미묘한 교향악이다 뼈 끝에 스며들어 간다. </span><br>
-                                <span class="qnaDate"><small>2020.08.03</small></span>
-                                <button type="button" class="inputBtn" onclick="">삭제</button>
-                            </dd>
-                        </dl>
-                    </div><hr>
-                    <div class="inquiryReply">
-                        <dl>
-                            <dt><b>관리자 답변 :</b></dt><br>
-                            <dd>
-                                <span>만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을 행복스럽고 평화스러운 곳으로 인도하겠다.</span><br>
-                                <span  class="qnaDate"><small>2020.11.03</small></span>
-                            </dd>
-                            <dd></dd>
-                        </dl>
-                    </div>
-                </div> 
-                <div class="inquiry">
-                    <div class="inquiryInfo">
-                        <dl>
-                            <dt><b>제목 : 챗봇기능으로 안되서 문의해요</b></dt><br>
-                            <dd>
-                                <span> 찬미를 듣는다 그것은 웅대한 관현악이며 미묘한 교향악이다 뼈 끝에 스며들어 간다. </span><br>
-                                <span class="qnaDate"><small>2020.08.03</small></span>
-                                <button type="button" class="inputBtn" onclick="">삭제</button>
-                            </dd>
-                        </dl>
-                    </div><hr>
-                    <div class="inquiryReply">
-                        <dl>
-                            <dt><b>관리자 답변 :</b></dt><br>
-                            <dd>
-                                <span>만천하의 대중을 품에 안고 그들에게 밝은 길을 찾아 주며 그들을 행복스럽고 평화스러운 곳으로 인도하겠다.</span><br>
-                                <span  class="qnaDate"><small>2020.11.03</small></span>
-                            </dd>
-                            <dd></dd>
-                        </dl>
-                    </div>
-                </div> 
+            <c:forEach var="vi" items="${ viList }">
+	            <div class="inquiry">
+	                <input type="hidden" name="userId" value="${ loginUser.userId }">
+	                <input type="hidden" name="inquiryNo" value="${ vi.inquiryNo }">
+	                    <div class="inquiryInfo">
+	                        <dl>
+	                            <dt><b>제목 : ${ vi.inquiryTitle }</b></dt><br>
+	                            <dd>
+	                                <span> ${ vi.inquiryContent }</span><br>
+	                                <span class="qnaDate"><small>${ vi.inquiryDate }</small></span>
+	                                <button type="button" class="inputBtn" onclick="">삭제</button>
+	                            </dd>
+	                        </dl>
+	                    </div><hr>
+	                    <div class="inquiryReply">
+	                        <dl>
+	                            <dt><b>관리자 답변 :</b></dt><br>
+	                            <dd>
+	                                <span>${ vi.inquiryReply }</span><br>
+	                                <span  class="qnaDate"><small>${ vi.inquiryDate }</small></span>
+	                            </dd>
+	                            <dd></dd>
+	                        </dl>
+	                    </div>
+	                </div> 
+                </c:forEach>
             </div>
         </div>
         <br><br>
+        
 
-        <div id="paging-area" align="center">
+		 <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&lt</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&gt</a></li>
+                <c:choose>
+                   	<c:when test="${ pi.currentPage eq 1}">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
+                    </c:otherwise>
+                   </c:choose>
+                   
+                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                   	<input type="hidden" name="userId" value="${ loginUser.userId }"> 
+                   	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ p }">${ p }</a></li>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
+                    </c:otherwise>
+               	</c:choose>
             </ul>
-        </div>
-        <br><br>
+        </div><br><br><br>
+        
     </div>
     
     <jsp:include page="../../common/footer.jsp"/>
