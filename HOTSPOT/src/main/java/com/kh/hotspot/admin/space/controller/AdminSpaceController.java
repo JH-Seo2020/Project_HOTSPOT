@@ -2,6 +2,8 @@ package com.kh.hotspot.admin.space.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.hotspot.admin.space.model.service.AdminSpaceService;
 import com.kh.hotspot.admin.space.model.vo.SearchCondition;
 import com.kh.hotspot.admin.space.model.vo.Space;
-import com.kh.hotspot.admin.space.model.vo.SpaceImg;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 
@@ -58,10 +59,10 @@ public class AdminSpaceController {
 		}
 	}
 	@RequestMapping("delete.sad")
-	public String deleteSpace(String[] sno) {
+	public String deleteSpace(String[] sno, HttpSession session ) {
 		
 		int result = sService.deleteSpace(sno);
-		
+		session.setAttribute("alertAd", "삭제되었습니다.");
 		return "redirect:list.sad";
 	}
 	

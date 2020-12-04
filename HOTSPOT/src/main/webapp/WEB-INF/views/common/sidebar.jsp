@@ -51,6 +51,12 @@
     </style>
 </head>
 <body>
+	<c:if test="${ !empty alertAd }">
+		<script>
+			alert("${alertAd}");
+		</script>
+		<c:remove var="alertAd" scope="session"/>
+	</c:if>
 	<div class="wrap">
         <div class="sidebar">
             

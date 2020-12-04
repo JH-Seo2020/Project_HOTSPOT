@@ -73,10 +73,14 @@
                 			$("#check:checked").each(function(){
                 				selected.push(this.value);
                 			})
+                			if(selected == ""){
+	            				alert("선택된 항목이 없습니다.");
+	            			}else{
                 			if(confirm("삭제하시겠습니까?")){
                 				
                 			location.href="delete.sad?sno="+ selected;
                 			}
+	            			}
                 		})
                 		$("#adminNotice tbody tr").find("td:eq(2)").click(function(){
                 			location.href="detail.sad?sno="+$(this).prev().text();

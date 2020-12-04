@@ -117,7 +117,7 @@
                 <hr>
                     <button style="float:right" class="btn btn-secondary">목록으로</button>
                     <br>
-                    <button style="margin-left:470px;" class="btn btn-danger" onclick="location.href='delete.sad?sno=${s.spcNo}'">삭제</button>
+                    <button style="margin-left:470px;" class="btn btn-danger" onclick="if(confirm('삭제하시겠습니까?')){location.href='delete.sad?sno=${s.spcNo}'}">삭제</button>
             </div>
         </div>
     </div>

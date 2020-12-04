@@ -83,8 +83,8 @@
                      <button class="btn btn-secondary">목록으로</button><br>
                  </div>
                  <c:choose>
-                 	<c:when test="${ r.reStatus == '예약확정' || r.reStatus == '결제대기'}">
-	                 	<button class="btn btn-danger" onclick="location.href='delete.rad?rno=${r.reNo}'">예약취소</button>
+                 	<c:when test="${ r.reStatus == '예약확정' || r.reStatus == '결제대기'}">                		
+	                 	<button class="btn btn-danger" onclick="if(confirm('취소하시겠습니까?')){location.href='delete.rad?rno=${r.reNo}'}">예약취소</button>
                  	</c:when>
                  </c:choose>
              </div>

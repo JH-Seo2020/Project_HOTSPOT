@@ -135,8 +135,14 @@
     		$("#check:checked").each(function(){
     			selected.push($(this).val());
     		})
-    		
-    		location.href="delete.fad?fno=" + selected;
+    		if(selected == ""){
+				alert("선택된 항목이 없습니다.");
+			}else{
+    		if(confirm("삭제하시겠습니까?")){
+    			
+	    		location.href="delete.fad?fno=" + selected;
+    		}
+			}
     	}
     </script>
 </body>

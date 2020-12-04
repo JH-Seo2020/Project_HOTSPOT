@@ -44,10 +44,10 @@
                     <input type="hidden" name="inquiryNo" value="${i.inquiryNo }">
                     <button style="float:right" class="btn btn-secondary" onclick="history.back()">목록으로</button>
                     <br>
-                    <a href="delete.inq?ino=${ i.inquiryNo }" style="margin-left:420px;" class="btn btn-danger" >삭제</a>
+                    <button type="button" onclick="if(confirm('삭제하시겠습니까?')){location.href='delete.inq?ino=${ i.inquiryNo }'}" style="margin-left:420px;" class="btn btn-danger" >삭제</button>
             		
             		<c:if test="${ empty i.inquiryReply }">												  
-                    <button style="margin-left:30px;"class="btn btn-primary" >답변하기</button>
+                    <button type="submit" style="margin-left:30px;"class="btn btn-primary" >답변하기</button>
                     </c:if>
                 </form>
             </div>

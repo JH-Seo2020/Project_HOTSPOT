@@ -93,7 +93,10 @@
 	            			if(selected == ""){
 	            				alert("선택된 항목이 없습니다.");
 	            			}else{		
-	            				location.href = "deleteList.no?nno="+selected;
+	            				if(confirm("삭제하시겠습니까?")){
+	            					
+		            				location.href = "deleteList.no?nno="+selected;
+	            				}
 	            			}
             				
             			})

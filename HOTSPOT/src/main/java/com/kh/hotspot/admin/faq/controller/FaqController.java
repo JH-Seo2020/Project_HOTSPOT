@@ -2,6 +2,8 @@ package com.kh.hotspot.admin.faq.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,10 +67,10 @@ public class FaqController {
 		return "admin/faq/faqDetail";
 	}
 	@RequestMapping("delete.fad")
-	public String deleteFaq(String[] fno) {
+	public String deleteFaq(String[] fno, HttpSession session) {
 		
 		int result = fService.deleteFaq(fno);
-		
+		session.setAttribute("alertAd", "삭제되었습니다");
 		return "redirect:list.fad";
 	}
 	@RequestMapping("enrollForm.fad")
@@ -78,10 +80,10 @@ public class FaqController {
 	}
 	
 	@RequestMapping("insert.fad")
-	public String insertFaq(Faq f) {
+	public String insertFaq(Faq f, HttpSession session) {
 		
 		int result = fService.insertFaq(f);
-		
+		session.setAttribute("alertAd", "등록되었습니다.");
 		return "redirect:detail.fad=" + f.getFaqNo();
 	}
 	
@@ -95,10 +97,10 @@ public class FaqController {
 		return "admin/faq/faqUpdateForm";
 	}
 	@RequestMapping("update.fad")
-	public String update(Faq f) {
+	public String update(Faq f, HttpSession session) {
 		
 		int result = fService.updateFaq(f);
-		
+		session.setAttribute("alertAd", "수정되었습니다.");
 		return "redirect:detail.fad?fno=" + f.getFaqNo();
 	}
 	

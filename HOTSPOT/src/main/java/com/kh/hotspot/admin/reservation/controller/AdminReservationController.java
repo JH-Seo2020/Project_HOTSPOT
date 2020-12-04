@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,10 +78,10 @@ public class AdminReservationController {
 		return "admin/adminReservation/reservationDetail";
 	}
 	@RequestMapping("delete.rad")
-	public String deleteReservation(int rno) {
+	public String deleteReservation(int rno,  HttpSession session) {
 		
 			int result = rService.deleteReservation(rno);
-			
+			session.setAttribute("alertAd", "예약취소 되었습니다.");
 		return "redirect:list.rad";
 	}
 	

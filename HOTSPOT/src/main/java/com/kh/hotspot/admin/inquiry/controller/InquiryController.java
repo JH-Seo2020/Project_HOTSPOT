@@ -1,8 +1,8 @@
 package com.kh.hotspot.admin.inquiry.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.hotspot.admin.inquiry.model.service.InquiryService;
 import com.kh.hotspot.admin.inquiry.model.vo.Inquiry;
-import com.kh.hotspot.admin.notice.model.vo.SearchCondition;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 
@@ -47,26 +46,26 @@ public class InquiryController {
 	
 	@RequestMapping("deleteList.inq")
 	
-	public String deleteList(String[] ino) {
+	public String deleteList(String[] ino, HttpSession session) {
 		
 		int result = iService.deleteListInquiry(ino);
-		
+		session.setAttribute("alertAd", "삭제되었습니다.");
 		return "redirect:list.inq";
 	}
 	
 	@RequestMapping("delete.inq")
-	public String delete(int ino) {
+	public String delete(int ino, HttpSession session) {
 		int result = iService.deleteInquiry(ino);
-
+		session.setAttribute("alertAd", "삭제되었습니다.");
 		return "redirect:list.inq";
 	}
 	
 	@RequestMapping("reply.inq")
-	public String insertReply(Inquiry i) {
+	public String insertReply(Inquiry i, HttpSession session) {
 		
 		
 		int result = iService.insertReply(i);
-		
+		session.setAttribute("alertAd", "등록되었습니다.");
 		return "redirect:detail.inq?ino="+i.getInquiryNo();
 	}
 //	@RequestMapping("search.inq")

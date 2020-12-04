@@ -2,6 +2,8 @@ package com.kh.hotspot.admin.notice.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,25 +56,25 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("insert.no")
-	public String noticeInsert(Notice n) {
+	public String noticeInsert(Notice n, HttpSession session) {
 		
 		int result = nService.insertNotice(n);
-		
+		session.setAttribute("alertAd", "등록되었습니다.");
 		return "redirect:detail.no?nno="+n.getNoticeNo();
 	}
 	@RequestMapping("deleteList.no")
-	public String deleteListNotice(String[] nno) {
+	public String deleteListNotice(String[] nno, HttpSession session) {
 		
 		int result = nService.deleteListNotice(nno);
-		
+		session.setAttribute("alertAd", "삭제되었습니다.");
 		return "redirect:list.no";
 	}
 	
 	@RequestMapping("delete.no")
-	public String deleteNotice(int nno) {
+	public String deleteNotice(int nno, HttpSession session) {
 	
 		int result = nService.deleteNotice(nno);
-		
+		session.setAttribute("alertAd", "삭제되었습니다.");
 		return "redirect:list.no";
 	}
 	@RequestMapping("updateForm.no")
@@ -85,10 +87,10 @@ public class NoticeController {
 		return "admin/notice/noticeUpdateForm";
 	}
 	@RequestMapping("update.no")
-	public String update(Notice n) {
+	public String update(Notice n, HttpSession session) {
 		
 		int result = nService.updateNotice(n);
-		
+		session.setAttribute("alertAd", "수정되었습니다.");
 		return "redirect:detail.no?nno="+n.getNoticeNo();
 	}
 	@RequestMapping("search.no")
