@@ -14,11 +14,12 @@ import org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -212,16 +213,29 @@ public class HostController {
 		cal.setReservDate(reservDate);
 
 		ArrayList<Calculation> list = hService.selectCalAll(cal);
-
+		System.out.println(list);
+		
 	    // 워크북 생성
 	    Workbook wb = new HSSFWorkbook();
 	    org.apache.poi.ss.usermodel.Sheet sheet = wb.createSheet("정산내역");
-	  
-	    sheet.setColumnWidth(0, 6*256);
-
+	    
+	   // 특정 서식 지정 (가격, 날짜타입)
+	    CellStyle cellStyle = wb.createCellStyle();
+	    CellStyle dataStyle = wb.createCellStyle();
+	    DataFormat format = wb.createDataFormat();
+	    dataStyle.setDataFormat(format.getFormat("#,##0"));
+	    CreationHelper createHelper = wb.getCreationHelper();
+	    cellStyle.setDataFormat(
+	    createHelper.createDataFormat().getFormat("yyyy-mm-dd"));
+	    
+	    // 셀 너비 지정
+	    sheet.setColumnWidth(0, 11*256);
 	    sheet.setColumnWidth(1, 20*256);
-
-
+	    sheet.setColumnWidth(2, 15*256);
+	    sheet.setColumnWidth(3, 14*256);
+	    sheet.setColumnWidth(4, 14*256);
+	    sheet.setColumnWidth(5, 14*256);
+	    sheet.setColumnWidth(6, 14*256);
 	    Row row = null;
 
 	    Cell cell = null;
@@ -231,8 +245,12 @@ public class HostController {
 	    // 테이블 헤더용 스타일
 	    CellStyle headStyle = wb.createCellStyle();
 	    CellStyle footStyle = wb.createCellStyle();
+	  
 	    // 가는 경계선을 가집니다.
-	   
+	    cellStyle.setBorderTop(BorderStyle.THIN);
+	    cellStyle.setBorderBottom(BorderStyle.THIN);
+	    cellStyle.setBorderLeft(BorderStyle.THIN);
+	    cellStyle.setBorderRight(BorderStyle.THIN);
 	    headStyle.setBorderTop(BorderStyle.THIN);
 	    headStyle.setBorderBottom(BorderStyle.THIN);
 	    headStyle.setBorderLeft(BorderStyle.THIN);
@@ -241,30 +259,31 @@ public class HostController {
 	    footStyle.setBorderBottom(BorderStyle.THIN);
 	    footStyle.setBorderLeft(BorderStyle.THIN);
 	    footStyle.setBorderRight(BorderStyle.THIN);
-	    
+	    dataStyle.setBorderTop(BorderStyle.THIN);
+	    dataStyle.setBorderBottom(BorderStyle.THIN);
+	    dataStyle.setBorderLeft(BorderStyle.THIN);
+	    dataStyle.setBorderRight(BorderStyle.THIN);
 	    // 스타일 배경색
 	    headStyle.setFillForegroundColor(HSSFColorPredefined.YELLOW.getIndex());
 	    headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
 	   
 	    footStyle.setFillForegroundColor(HSSFColorPredefined.LAVENDER.getIndex());
 	    footStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
+	    footStyle.setDataFormat(format.getFormat("#,##0"));
 
 	    //가운데 정렬
 	    headStyle.setAlignment(HorizontalAlignment.CENTER);
-
-
+	    footStyle.setAlignment(HorizontalAlignment.CENTER);
+	    cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	    dataStyle.setAlignment(HorizontalAlignment.CENTER);
 	    // 데이터용 경계 스타일 테두리만 지정
 
 	    CellStyle bodyStyle = wb.createCellStyle();
-
+	    
+	    bodyStyle.setAlignment(HorizontalAlignment.CENTER);
 	    bodyStyle.setBorderTop(BorderStyle.THIN);
-
 	    bodyStyle.setBorderBottom(BorderStyle.THIN);
-
 	    bodyStyle.setBorderLeft(BorderStyle.THIN);
-
 	    bodyStyle.setBorderRight(BorderStyle.THIN);
 
 	    // 타이틀 
@@ -272,24 +291,27 @@ public class HostController {
 	 //   sheet.addMergedRegion(new CellRangeAddress(0,1,0,1)); //열시작, 열종료, 행시작, 행종료
 	    
 	    row = sheet.createRow(rowNo++);
-		   
+	    cell = row.createCell(0);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue(reservDate+"월");
 	    cell = row.createCell(1);
-
 	    cell.setCellStyle(headStyle);
-	    
 	    cell.setCellValue("핫스팟 정산내역 보고서 ");
-	    
 	    cell = row.createCell(2);
-
 	    cell.setCellStyle(headStyle);
-
-	    cell.setCellValue("host ID: ");
-	    
+	    cell.setCellValue("호스트 아이디: ");
 	    cell = row.createCell(3);
-
 	    cell.setCellStyle(headStyle);
-
 	    cell.setCellValue(cal.getUserId());
+	    cell = row.createCell(4);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("");
+	    cell = row.createCell(5);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("");
+	    cell = row.createCell(6);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("");
 
 	    // 헤더 생성
 
@@ -330,12 +352,21 @@ public class HostController {
 	    cell.setCellStyle(headStyle);
 
 	    cell.setCellValue("정산금액");
+	    
+	    cell = row.createCell(6);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("승인");
 
 	    // 데이터 부분 생성
 	    int paySum =0;
 	    int fees = 0;
-	    int calcul =0;
-	    
+	    int calcul = 0;
+	    int CpaySum = 0;
+	    int Cfees = 0;
+	    int Ccalcul =0;
+	    int success = 0;
 	    for(Calculation c : list) {
 	 
 	        row = sheet.createRow(rowNo++);
@@ -346,21 +377,32 @@ public class HostController {
 	        cell.setCellStyle(bodyStyle);
 	        cell.setCellValue(c.getSpcName());
 	        cell = row.createCell(2);
-	        cell.setCellStyle(bodyStyle);
+	        cell.setCellStyle(cellStyle);
 	        cell.setCellValue(c.getPayDate());
 	        cell = row.createCell(3);
-	        cell.setCellStyle(bodyStyle);
-	        cell.setCellValue(c.getPaySum());
+	        cell.setCellStyle(dataStyle);
+	        cell.setCellValue(c.getPaySum()+"원");
 	        cell = row.createCell(4);
-	        cell.setCellStyle(bodyStyle);
-	        cell.setCellValue(c.getPaySum()/10);
+	        cell.setCellStyle(dataStyle);
+	        cell.setCellValue(c.getPaySum()/10+"원");
 	        cell = row.createCell(5);
+	        cell.setCellStyle(dataStyle);
+	        cell.setCellValue(c.getPaySum()-(c.getPaySum()/10)+"원");
+	        cell = row.createCell(6);
 	        cell.setCellStyle(bodyStyle);
-	        cell.setCellValue(c.getPaySum()-(c.getPaySum()/10));
+	        cell.setCellValue(c.getReservStatus());
 	        
 	        paySum += c.getPaySum();
 	        fees += c.getPaySum()/10;
 	        calcul +=  paySum -c.getPaySum()/10;
+	        if(c.getReservStatus().equals("이용완료")) {
+	        	success ++;
+	        }
+	        if(c.getReservStatus().equals("취소환불")) {
+	        	CpaySum += c.getPaySum();
+	        	Cfees += c.getPaySum()/10;
+	        	Ccalcul += CpaySum -c.getPaySum()/10;
+	        }
 	    }
 	    row = sheet.createRow(rowNo++);
 		   
@@ -374,19 +416,24 @@ public class HostController {
 
 	    cell.setCellStyle(footStyle);
 
-	    cell.setCellValue(paySum);
+	    cell.setCellValue(paySum-CpaySum+"원");
 	    
 	    cell = row.createCell(4);
 
 	    cell.setCellStyle(footStyle);
 
-	    cell.setCellValue(fees);
+	    cell.setCellValue(fees-Cfees+"원");
 	    
 	    cell = row.createCell(5);
 
 	    cell.setCellStyle(footStyle);
 
-	    cell.setCellValue(calcul);
+	    cell.setCellValue(paySum-CpaySum-fees-Cfees+"원");
+	    cell = row.createCell(6);
+
+	    cell.setCellStyle(footStyle);
+
+	    cell.setCellValue("결제완료 총"+success+"건");
 	    
 	  
 	    // 컨텐츠 타입과 파일명 지정
@@ -396,7 +443,7 @@ public class HostController {
 	    // 엑셀 출력
 	    wb.write(response.getOutputStream());
 	    wb.close();
-
+	
 	}
 	
 	/**
