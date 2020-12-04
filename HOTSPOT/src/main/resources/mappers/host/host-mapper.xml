@@ -39,6 +39,7 @@
 	 <resultMap id="selectCalResultSet" type="calculation">
 	 	<result column="reservation_no" property="reservNo"/>
 	 	<result column="spc_no" property="spcNo"/>
+	 	<result column="user_id" property="userId"/>
 	 	<result column="spc_name" property="spcName"/>
 	 	<result column="pay_sum" property="reservDate"/>
 	 	<result column="pay_date" property="payDate"/>
@@ -279,6 +280,7 @@
   <select id="selectCalAll" parameterType="calculation" resultMap="selectCalResultSet">
   	select
 	       reservation_no
+	       ,r.user_id
 	       ,spc_no
 	       ,spc_name 
 	       ,pay_date
@@ -287,8 +289,28 @@
 	  from reservation r
 	  join space_info s using(spc_no)
 	  where user_id_h = #{userId}
-	    and pay_date  BETWEEN TO_DATE('202011', 'YYYYMM') AND  TO_DATE('202011', 'YYYYMM')+30 
+	    and pay_date  BETWEEN TO_DATE(#{reservDate}, 'YYYYMM') AND  TO_DATE(#{reservDate}, 'YYYYMM')+29 
 	    and (reservation_status = '취소환불'
 	    or reservation_status = '이용완료')
+     order by pay_date
+         	  desc
+  </select>
+  
+  <select id="selectCalList" parameterType="calculation" resultMap="selectCalResultSet">
+  		select
+		       reservation_no
+		       ,spc_no
+		       ,spc_name 
+		       ,pay_date
+		       ,pay_sum
+		       ,reservation_status
+		  from reservation r
+		  join space_info s using(spc_no)
+		  where spc_name = #{spcName}
+		    and pay_date  BETWEEN TO_DATE(#{reservDate}, 'YYYYMM') AND  TO_DATE(#{reservDate}, 'YYYYMM')+29
+		    and (reservation_status = '취소환불'
+		    or reservation_status = '이용완료')
+		  order by pay_date
+         	  desc
   </select>
 </mapper>

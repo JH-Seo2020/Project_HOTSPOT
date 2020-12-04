@@ -7,52 +7,54 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-      #content{
-          margin-top: 10%;
-      }
-      #reviewContent{
-          padding: 100px;
-          margin: auto;
-          margin-top: -50px;
-          width: 70%;
-      }
-      #reviewHeader{
-          padding: 15px;;
-      }
-      .forMiddle{
-          text-align: center;
-          margin-top: 3%;
-      }
-      .reviewBtn{
-          width: 70px;
-          height: 30px;
-          background:  rgb(145, 37, 247);
-          color:white;
-          border: none;
-          border-radius: 3px
-      }
-  </style>
+    #content{
+        margin-top: 32px;
+    }
+    #reviewContent{
+        padding: 100px;
+        margin: auto;
+        margin-top: -50px;
+        width: 70%;
+    }
+    #reviewHeader{
+        padding: 15px;;
+    }
+    .forMiddle{
+        text-align: center;
+        margin-top: 3%;
+    }
+    .reviewBtn{
+        width: 100px;
+        height: 30px;
+        background:  rgb(145, 37, 247);
+        color:white;
+        border: none;
+        border-radius: 3px
+    }
+</style>
 </head>
 <body>
     <jsp:include page="../../common/menubar.jsp"/>
 
     <div id="content">
         <div id="reviewContent">
-            <h2 align="center"><b>이용후기 작성하기</b></h2>
+            <input type="hidden" name="userId" value="${ loginUser.userId }">
+            <input type="hidden" name="reviewNo" value="${ rv.reviewNo }">
+            <h2 align="center"><b>이용후기 작성</b></h2>
             <br><hr><br>
             <div id="reviewHeader" style="border: 2px solid rgb(145, 37, 247);">
                 <dl>
-                    <dt><b> 예약번호 : 22345622</b></dt><br>
+                    <dt><b> 예약번호 : ${ rv.reviewNo }</b></dt><br>
                     <dd>
-                        <b style="color: rgb(145, 37, 247);">공간명 : [카페][경복궁역] 그리다꿈</b><br>
-                        <small> 이용날짜 : 2020.10.23</small>
+                        <b style="color: rgb(145, 37, 247);">공간명 : [${ rv.spcType }][${ rv.location }] ${ rv.spcName }</b><br>
+                        <small> 이용날짜 : ${ rv.useDate }</small>
                     </dd>
                 </dl>
             </div>
             <br><br>
             <form method="POST">
-                <label for="reviewTitle"><b>제목</b></label>
-                <input type="text" name="inquiryTitle" id="reviewTitle" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;
+                <label for="reviewTitle"><b>제목</b></label> &nbsp;&nbsp;
+                <input type="text" name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;&nbsp;
                 <label for="reviewStar"><b>별점</b></label>
                 <select name="reviewStar" id="reviewStar" required>
                     <option value="5">5점</option>
@@ -63,26 +65,35 @@
                 </select>
                 <br><br>
                 <div method="post" id="reviewEnrollCotent">
-                    <textarea id="reviewSummernote" name="editordata" required></textarea><br><br>
+                    <textarea id="summernote" name="reviewContent" style="resize:none" required ></textarea><br><br>
                     <div class="forMiddle">
-                        <button type="submit" class="reviewBtn">등록</button>
-                        <button type="button" class="reviewBtn">취소</button>
+                        <button type="submit" class="reviewBtn">후기등록</button> &nbsp;&nbsp;&nbsp;
+                        <button type="button" class="reviewBtn">취소하기</button>
                     </div>
                 </div>
             </form>
         </div>
+        <br><br>
+        
+        <!-- 
+        	썸머노트 사용시 주의 ! 
+        	메뉴바를 포함하고 있으면 썸머노트 스크립트(src경로)는 메뉴바에 갖다붙이자! 계속 이 페이지에서 붙일려고 하니까 적용 1도안됨
+          -->
+		<script>
+		$(document).ready(function() {
+			  $('#summernote').summernote({
+		 	    	placeholder: '내용을 입력하세요',
+                    maxHeight : 500,
+                    minHeight: 500,
+			        focus: true, 
+			        lang : 'ko-KR'
+			  });
+			});
+		</script>
     </div>
+    <br><br>
 
-    <script>
-        $(function(){
-            $('#reviewSummernote').summernote({
-            placeholder: '내용을 입력하세요',
-            tabsize: 2,
-            height:600,
-            focus: true
-            });
-        });
-    </script>
+
 
     <!--푸터-->
     <jsp:include page="../../common/footer.jsp"/>

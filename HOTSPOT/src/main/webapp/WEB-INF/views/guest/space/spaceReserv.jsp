@@ -15,7 +15,25 @@
 	<!-- 메뉴바 -->
     <jsp:include page="../../common/menubar.jsp"/>
     
-        <form id="reservWrap">
+
+    
+    <form id="reservWrap" action="reservInsert.guest" method="post">
+        
+        <!-- 같이 넘겨줘야할 정보들 -->
+        <input type="hidden" name="userId" value="${reserv.userId }" />
+        <input type="hidden" name="spcNo" value="${reserv.spcNo }" />
+        <input type="hidden" name="userIdHost" value="${reserv.userIdHost }" />
+        <input type="hidden" name="totalTime" value="24" />
+        <input type="hidden" name="reservTotal" value="${reserv.reservTotal }" />
+        <input type="hidden" name="amountTime" value="${reserv.amountTime }" />
+        <input type="hidden" name="useDate" value="${reserv.useDate }" />
+        <input type="hidden" name="useTime" value="${reserv.useTime }" />
+        <input type="hidden" name="endDate" value="${reserv.endDate }" />
+        <input type="hidden" name="endTime" value="${reserv.endTime }" />
+        <input type="hidden" name="paySum" value="${reserv.amountTime*3 }" />
+        <input type="hidden" name="reservStatus" value="결제대기" />
+        <input type="hidden" name="refund" id="refund" value="" />
+        
         <div class="forCenter"><h1>예약하기</h1></div>
         <div id="resInfo">
             <span class="forTitle">공간 예약 정보</span>
@@ -47,28 +65,36 @@
             <table class="table table-borderless">
                 <tr>
                     <th scope="row">예약자 성명 *</th>
-                    <td><input type="text" class="form-control" value="" required></td>
+                    <td><input type="text" name="reservName" class="form-control" value="" required></td>
                 </tr>
                 <tr>
                     <th scope="row">연락처 *</th>
-                    <td><input type="tel" class="form-control" value="" required></td>
+                    <td><input type="tel" name="reservPhone" class="form-control" value="" required></td>
                 </tr>
                 <tr>
                     <th scope="row">이메일 *</th>
-                    <td><input type="text" class="form-control" value="" required></td>
+                    <td><input type="text" name="reservEmail" class="form-control" value="" required></td>
                 </tr>    
                 <tr>
                     <th scope="row">사용 목적</th>
-                    <td><input type="text" class="form-control" placeholder="목적 혹은 요청사항을 적어주세요"></td>
+                    <td><input type="text"  name="perpose" class="form-control" placeholder="목적 혹은 요청사항을 적어주세요"></td>
                 </tr>
                 <tr>
                     <th scope="row">취소 시 환불받을 계좌</th>
                     <td>
-                        <select class="form-control accountNo">
-                            <option>은행명</option>
-                            <option value="">신한</option>
+                        <select class="form-control accountNo" id="bank">
+                            <option disabled selected >은행명</option>
+                            <option value="신한">신한</option>
+                            <option value="국민">국민</option>
+                            <option value="농협">농협</option>
+                            <option value="수협">수협</option>
+                            <option value="우리">우리</option>
+                            <option value="씨티">씨티</option>
+                            <option value="기업">기업</option>
+                            <option value="하나">하나</option>
+                            <option value="카카오뱅크">카카오뱅크</option>
                         </select>
-                        <input type="text" class="form-control accountNo" placeholder="계좌번호를 -제외하고 적어주세요">
+                        <input type="text" id="account" class="form-control accountNo" placeholder="계좌번호를 -제외하고 적어주세요">
                     </td>
                 </tr>    
             </table>
@@ -79,35 +105,35 @@
             <table class="table table-borderless">
                 <tr>
                     <th scope="row">상호명</th>
-                    <td>경복궁 카페 그리다꿈</td>
+                    <td>${host.businessName }</td>
                 </tr>
                 <tr>
                     <th scope="row">사업자 번호</th>
-                    <td>202012091520</td>
+                    <td>${host.businessNo }</td>
                 </tr>
                 <tr>
                     <th scope="row">연락처</th>
-                    <td>01033330000 또는 yeok3@gmail.com</td>
+                    <td>${host.businessPhone } 또는 ${host.businessEmail }</td>
                 </tr>    
                 <tr>
                     <th scope="row">사업장 소재지</th>
-                    <td>경복궁역 출구 근처 어딘가</td>
+                    <td>${host.businessLoc }</td>
                 </tr>    
             </table>
         </div>
         <div id="totalPay">
             <span class="forTitle">결제할 금액</span>
             <hr>
-            <span style="font-size: 25px; ">24시간 x ${reserv.reservTotal }명 x ${reserv.amountTime }원 =</span>
+            <span style="font-size: 25px; ">24시간  x ${reserv.amountTime }원 =</span>
             <span class="forRight">1,344,000원</span> 
         </div>
         <div id="methods">
             <span class="forTitle">결제 방법</span>
             <hr>
-            <input type="radio" value="신용카드" name="paymentMethod" class="radioChoice" required>
+            <input type="radio" value="신용카드" name="payMethod" class="radioChoice" required>
             <label class="forTitle">신용카드</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" value="무통장입금" name="paymentMethod" class="radioChoice" required>
+            <input type="radio" value="무통장입금" name="payMethod" class="radioChoice" required>
             <label class="forTitle">무통장입금</label>
         </div>
         <div class="forCenter">
@@ -121,6 +147,17 @@
     
     <!-- 푸터 -->
     <jsp:include page="../../common/footer.jsp"/>
+    
+        <script>
+    		$(function(){
+    			if($("#bank").on('change',function(){
+    				$("#refund").val($("#bank").val()+","+$("#account").val());
+    			}));
+    			if($("#account").on('change',function(){
+    				$("#refund").val($("#bank").val()+","+$("#account").val());
+    			}));
+    		});
+    	</script>
 
 </body>
 </html>

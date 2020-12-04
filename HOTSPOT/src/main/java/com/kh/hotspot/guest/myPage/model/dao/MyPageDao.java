@@ -9,11 +9,19 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
+import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 @Repository
 public class MyPageDao {
 	
+	
+	/**
+	 * 나의 예약리스트
+	 * 
+	 */
 	public int selectReservListCount(SqlSessionTemplate sqlSession, String userId) {
 		return sqlSession.selectOne("mypageMapper.selectReservListCount", userId);
 	}
@@ -57,4 +65,95 @@ public class MyPageDao {
 		return sqlSession.insert("mypageMapper.reportReserv", rp);
 	}
 	
+	
+	
+	
+	/**
+	 * 이용후기
+	 * 
+	 */
+	public int selectMyReviewListCount(SqlSessionTemplate sqlSession, String userId) {
+		
+		
+		
+		return sqlSession.selectOne("mypageMapper.selectMyReviewListCount", userId);
+	}
+	
+	public ArrayList<Review> selectMyReviewList(SqlSessionTemplate sqlSession, PageInfo pi, String userId){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);	
+		
+		//HashMap<Object, Object> hmap = new HashMap<>();
+		//hmap.put("reservNo", reservNo);
+		//hmap.put("userId", userId);
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyReviewList", userId, rowBounds);
+		
+	}
+	
+	
+	/**
+	 * Qna
+	 * 
+	 */
+	public int selectMyQnaListCount(SqlSessionTemplate sqlSession, String userId){
+		return sqlSession.selectOne("mypageMapper.selectMyQnaListCount", userId);
+	}
+	
+	public ArrayList<Qna> selectMyQnaList(SqlSessionTemplate sqlSession, PageInfo pi, String userId){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);	
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyQnaList", userId, rowBounds);
+	}
+	
+	
+	/**
+	 * 1:1문의
+	 * 
+	 */
+	public int selectMyInquiryListCount(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("mypageMapper.selectMyInquiryListCount", userId);
+	}
+	
+	
+	public ArrayList<VoicesInquiry> selectMyInquiryList(SqlSessionTemplate sqlSession, PageInfo pi,String userId){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);	
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyInquiryList", userId, rowBounds);
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

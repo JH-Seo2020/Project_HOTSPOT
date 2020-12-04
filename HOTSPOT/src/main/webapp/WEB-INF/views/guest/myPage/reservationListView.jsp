@@ -59,7 +59,19 @@
 		font-size: 15px; 
 		float: right;
 		margin-top: -38px;
-		margin-right: 65px;
+		margin-right: 110px;
+		border-radius: 30px;
+	}
+	#reviewBtn{
+		float: right;
+	    width: 90px;
+	    height: 30px;
+	    background:  rgb(145, 37, 247);
+	    color:white;
+	    border: none;
+	    border-radius: 3px;
+	    margin-top: -38px;
+	    margin-right: 7px;
 		border-radius: 30px;
 	}
 </style>
@@ -111,6 +123,9 @@
 			                        </c:otherwise>
 		                        </c:choose>
 		                        <span class="statusRable">${ r.reservStatus }</span>
+		                        <c:if test="${ r.reservStatus eq '이용완료' }">
+		                        	<button type="button" id="reviewBtn">후기 작성</button>
+		                        </c:if>
 		                    </div>
 		                </div><br>
 		         	</c:forEach>
@@ -126,6 +141,7 @@
 	       	});
 	       </script>
 	       
+	       <!-- 
 	       <script>
 	       	$(function(){
 	       		$("#reservStatus").change(function(){
@@ -133,12 +149,18 @@
 	       		})
 	       	});
 	       </script>
+	        -->
 	       
 	       <script>
 	       	$(function(){
 	       		$(".reserveInfo").click(function(){
 	       			location.href="reservDetail.re?reservNo=" + $(this).children("#reservNo").val();
 	       		})
+	       	});
+	       	
+	       	$("#reviewBtn").click(function(e){
+	       		e.stopPropagation();  // '후기작성'버튼에 이벤트 버블링 주기
+	       		location.href="enrollReview.mg?reservNo=" + $(".reserveInfo").children("#reservNo").val();
 	       	})
 	       </script>
 	       
@@ -172,6 +194,8 @@
                	</c:choose>
             </ul>
         </div><br><br><br>
+        
+        
     </div>
 
     <jsp:include page="../../common/footer.jsp"/>

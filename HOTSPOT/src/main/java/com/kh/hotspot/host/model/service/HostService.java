@@ -32,4 +32,6 @@ public interface HostService {
 	int deleteQna(Qna q);
 	//5. 전체 정산 조회
 	ArrayList<Calculation> selectCalAll(Calculation cal);
+	//5_1.공간별 정산 조회 
+	ArrayList<Calculation> selectCalList(Calculation cal);
 }

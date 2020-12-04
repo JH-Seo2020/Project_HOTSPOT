@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.dao.MyPageDao;
+import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
+import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 @Service
 public class MyPageServiceImpl implements MyPageService{
@@ -20,6 +23,10 @@ public class MyPageServiceImpl implements MyPageService{
 	private SqlSessionTemplate sqlSession;
 	
 	
+	
+	/**
+	 * 예약리스트
+	 */
 	@Override
 	public int selectReservListCount(String userId) {
 		return mpDao.selectReservListCount(sqlSession, userId);
@@ -53,6 +60,97 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
+	/**
+	 * 이용후기
+	 */
+	@Override
+	public int selectMyReviewListCount(String userId) {
+		return mpDao.selectMyReviewListCount(sqlSession, userId);
+	}
+
+
+	@Override
+	public ArrayList<Review> selectMyReviewList(PageInfo pi, String userId) {
+		return mpDao.selectMyReviewList(sqlSession, pi, userId);
+	}
+
+	
+	@Override
+	public int selectDetailReview(int reviewNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+
+	@Override
+	public int insertMyReview(int reservNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int updateMyReview(int reservNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int deleteMyReview(int reservNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	/**
+	 * Qna
+	 */
+	@Override
+	public int selectMyQnaListCount(String userId) {
+		return mpDao.selectMyQnaListCount(sqlSession, userId);
+	}
+
+
+	@Override
+	public ArrayList<Qna> selectMyQnaList(PageInfo pi, String userId) {
+		return mpDao.selectMyQnaList(sqlSession, pi, userId);
+	}
+
+
+	@Override
+	public int deleteMyQna(int QnaNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	/**
+	 * 1:1고객문의
+	 */
+
+	@Override
+	public int selectMyInquiryListCount(String userId) {
+		return mpDao.selectMyInquiryListCount(sqlSession, userId);
+	}
+
+
+	@Override
+	public ArrayList<VoicesInquiry> selectMyInquiryList(PageInfo pi, String userId) {
+		return mpDao.selectMyInquiryList(sqlSession, pi, userId);
+	}
+
+
+	@Override
+	public int deleteMyInquiry(int inquiryNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	
+	
 
 
 

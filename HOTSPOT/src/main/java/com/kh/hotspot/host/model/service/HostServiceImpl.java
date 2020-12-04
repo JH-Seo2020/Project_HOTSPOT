@@ -72,4 +72,8 @@ public class HostServiceImpl implements HostService {
 	public ArrayList<Calculation> selectCalAll(Calculation cal) {
 		return hDao.selectCalAll(sqlSession,cal);
 	}
+	@Override
+	public ArrayList<Calculation> selectCalList(Calculation cal) {
+		return hDao.selectCalList(sqlSession,cal);
+	}
 }

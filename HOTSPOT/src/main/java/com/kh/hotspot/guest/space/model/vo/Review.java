@@ -29,5 +29,13 @@ public class Review {
 	private String userProfileCh;
 	private String profilePath;
 	private String reviewCon;
+	
+	private String reservNo; 	   // 예약번호
+	private String reservStatus;
+	private String useDate;  		// 이용날짜
+	private String spcName;	 	  // 공간명
+	private String spcType;       // 공간타입
+	private String location;
+	
 
 }

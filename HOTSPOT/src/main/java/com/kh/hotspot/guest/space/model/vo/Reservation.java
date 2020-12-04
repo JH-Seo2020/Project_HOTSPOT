@@ -20,7 +20,9 @@ public class Reservation {
 	private int spcNo;
 	private String userIdHost;	//호스트아이디
 	private Date reservDate;	//예약신청일
-	private String reservName;
+	private String reservName;	//예약자이름
+	private String reservPhone;	//예약자전화번호
+	private String reservEmail;	//예약자이메일
 	private String totalTime;	//총예약시간
 	private int reservTotal;	//예약인원수
 	private String perpose;		//사용목적

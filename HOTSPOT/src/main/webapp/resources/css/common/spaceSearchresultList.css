@@ -12,12 +12,10 @@
 	width: 120px;
 	margin-top: 10px;
 }
-
 /* 검색필터 */
 #searchFilter {
 	width: 1200px;
 	margin: auto;
-	margin-top: 100px;
 }
 
 #searchFilter span {
@@ -36,20 +34,25 @@
 	margin-right: 25px;
 	margin-left: 5px;
 }
-
 /* 검색결과 목록 */
 #searchresultList {
 	width: 1200px;
 	margin: auto;
+	height: 1500px;
 }
 
-#searchresultList table>thead>tr>td>select {
+#select_order {
 	float: right;
 	margin-right: 50px;
+	margin-top: 30px;
 }
 
-#searchresultList table {
-	margin-top: 40px;
+.list {
+	float: left;
+	margin-right: 48px;
+	width: 352px;
+	height: 400px;
+	margin-bottom: 100px;
 }
 
 .spcImage {
@@ -94,4 +97,17 @@
 	width: 20px;
 	height: 20px;
 	margin-right: 5px;
+}
+
+.pagination {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.pagination li>a {
+	color: black;
+}
+
+.pagination li>a:hover{
+	color: black;
 }

@@ -62,13 +62,16 @@
             </div>
             <br><br><br>
             <div id="inputQna">
+             <c:forEach var="q" items="${ qnList }">
                 <div class="qna">
-                    <div class="qnaInfo">
+                  <div class="qnaInfo">
+                    <input type="hidden" name="userId" value="${ loginUser.userId }">
+                    <input type="hidden" name="qaNo" value="${ q.qaNo }">
                         <dl>
-                            <dt><a href=""><b>공간명 : [카페][경복궁역] 그리다꿈</b></a></dt><br>
+                            <dt><a href="spaceDetail.guest?spcNo=${ q.spaceNo }"><b>공간명 : [${ q.spcType }][${ q.location }] ${ q.spcName }</b></a></dt><br>
                             <dd>
-                                <span> Q: 건물에 엘리베이터 있나요?</span><br>
-                                <span class="qnaDate"><small>2020.08.03</small></span>
+                                <span> Q: ${ q.qaContent }</span><br>
+                                <span class="qnaDate"><small>${q.qaDate}</small></span>
                                 <button type="button" class="inputBtn" onclick="">삭제</button>
                             </dd>
                         </dl>
@@ -77,50 +80,48 @@
                         <dl>
                             <dt><b>호스트님의 답글 :</b></dt><br>
                             <dd>
-                                <span>A: 안녕하세요. 건물에는 엘레베이터가 없습니다.</span><br>
-                                <span  class="qnaDate"><small>2020.11.03</small></span>
+                                <span>${ q.qaAnswer }</span><br>
+                                <span  class="qnaDate"><small>${ q.qaAnswerDate }</small></span>
                             
                             </dd>
                             <dd></dd>
                         </dl>
                     </div>
                 </div> 
-                <div class="qna">
-                    <div class="qnaInfo">
-                        <dl>
-                            <dt><a href=""><b>공간명 : [카페][경복궁역] 그리다꿈</b></a></dt><br>
-                            <dd>
-                                <span> Q: 건물에 엘리베이터 있나요?</span><br>
-                                <span class="qnaDate"><small>2020.08.03</small></span>
-                                <button type="button" class="inputBtn" onclick="">삭제</button>
-                            </dd>
-                        </dl>
-                    </div><hr>
-                    <div class="qnaReply">
-                        <dl>
-                            <dt><b>호스트님의 답글 :</b></dt><br>
-                            <dd>
-                                <span>A: 안녕하세요. 건물에는 엘레베이터가 없습니다.</span><br>
-                                <span  class="qnaDate"><small>2020.11.03</small></span>
-                            
-                            </dd>
-                        </dl>
-                    </div>
-                </div> 
+              </c:forEach>
+                  
+
             </div>
         </div>
         <br><br>
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&lt</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0);">&gt</a></li>
+                <c:choose>
+                   	<c:when test="${ pi.currentPage eq 1}">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="myQna.mg?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
+                    </c:otherwise>
+                   </c:choose>
+                   
+                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                   	<input type="hidden" name="userId" value="${ loginUser.userId }"> 
+                   	<li class="page-item"><a class="page-link" href="myQna.mg?currentPage=${ p }">${ p }</a></li>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${ pi.currentPage eq pi.maxPage }">
+                    	<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    	<li class="page-item"><a class="page-link" href="myQna.mg?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
+                    </c:otherwise>
+               	</c:choose>
             </ul>
-        </div>
-        <br><br>
+        </div><br><br><br>
+        
     </div>
     
     <jsp:include page="../../common/footer.jsp"/>

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.guest.space.model.vo.SpaceImages;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
+import com.kh.hotspot.host.model.vo.HostInfo;
 
 @Repository
 public class SpaceDao {
@@ -49,6 +51,16 @@ public class SpaceDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return (ArrayList)sqlSession.selectList("guestspaceMapper.selectReviewsForHomep", userId, rowBounds);
+	}
+
+	public HostInfo hostInfo(SqlSessionTemplate sqlSession, Reservation reserv) {
+	
+		return sqlSession.selectOne("guestReservtaionMapper.hostInfo", reserv);
+	}
+
+	public int insertReservation(SqlSessionTemplate sqlSession, Reservation r) {
+		
+		return sqlSession.insert("guestReservtaionMapper.insertReservation", r);
 	}
 
 

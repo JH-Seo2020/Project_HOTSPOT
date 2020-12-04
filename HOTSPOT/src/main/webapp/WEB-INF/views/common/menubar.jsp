@@ -27,7 +27,10 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 <!-- Semantic UI theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
-
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!-- include summernote-ko-KR -->
+<script src="resources/js/summernote-ko-KR.js"></script>
 </head>
 <body>
 	<c:if test="${ !empty alertMsg }">
@@ -101,10 +104,10 @@
 		                    	<span onClick="closeLayer(this)" style="cursor:pointer;font-size:1.5em; float:right" title="닫기">X</span>
 		                    </div>
 		                <div id="myPage_Content">
-		                    <img width="60px" height="60px" style="float:left" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>"> &nbsp;&nbsp;&nbsp;
+		                    <img width="80px" height="80px" style="float:left; border-radius:100%;" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>"> &nbsp;&nbsp;
 		                    <span id="nickName">${ loginUser.userNickname } 님</span><br>
 		                    <a href="myProfile.me" style="color: black; padding-left: 20px"><small>내 프로필 관리</small></a>
-		                    <br><hr><br>
+		                    <br><br><hr><br>
 		                    <table id="myPageMenu">
 		                    	<tr>
 			                        <td>
@@ -115,6 +118,7 @@
 		                        <tr>
 			                        <td>
 		                                <img src="resources/images/list.png" width="25px" height="25px">&nbsp;&nbsp;&nbsp;
+		                                <input type="hidden" name="reservNo" value="${ r.reservNo }">
 		                                <a href="myReview.mg"><span>이용후기 / 문의관리</span></a> <br>
 			                        </td>
 			                    </tr>

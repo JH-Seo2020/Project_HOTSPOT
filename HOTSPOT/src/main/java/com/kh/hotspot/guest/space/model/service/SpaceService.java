@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Qna;
+import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
+import com.kh.hotspot.host.model.vo.HostInfo;
 import com.kh.hotspot.guest.space.model.vo.Review;
 
 public interface SpaceService {
@@ -21,6 +23,10 @@ public interface SpaceService {
 	
 	//5.예약하기 기능
 	SpaceInfo selectReservView(int spcNo, String userId);
+	//호스트정보가져와서 뿌려주기
+	HostInfo hostInfo(Reservation reserv);
+	//예약미리insert
+	int insertReservation(Reservation r);
 	
 	//6.결제하기 기능
 	int updatePaymentInfo(int reservNo);

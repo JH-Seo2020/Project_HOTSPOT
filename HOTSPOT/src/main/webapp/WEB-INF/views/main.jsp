@@ -34,7 +34,7 @@
     		});
     	});
     	function goSearch(space){
-    		location.href="";
+    		location.href="search.hotspot?searchWord="+space;
     	}
     </script>
 
@@ -85,7 +85,7 @@
 		            <div class="todaySpace">        	
 		                <img src="${today.spcChimg }" onclick="move(${today.spcNo})">	
 		                <div style="font-weight: bold; font-size: 20px;">[${today.spcName }]</div>
-		                <div style="color:gray;">${location2} | #${today.spcTag }</div>
+		                <div style="color:gray;">${location2} | ${today.spcTag }</div>
 		                <div>
 		                    <span style="color: rebeccapurple; font-weight: bold;">${today.spcPrice }원/시간</span>
 		                    <span class="badge badge-pill badge-warning"><img class="img_hotspotLogo" src="resources/images/common/main_reviewIcon.png">후기 ${today.reviews }개</span>
@@ -112,7 +112,7 @@
 		            <div class="spaceReview">
 		                <img src="${review.spcChimg }" onclick="move(${review.spcNo})">
 		                <div style="font-weight: bold; font-size: 20px;">[${review.spcName }]</div>
-		                <div style="color:gray;">${where2} | #${review.spcTag }</div>
+		                <div style="color:gray;">${where2} | ${review.spcTag }</div>
 		                <div>
 		                    <span style="color: rebeccapurple; font-weight: bold;">${review.spcPrice }원/시간</span>
 		                </div>

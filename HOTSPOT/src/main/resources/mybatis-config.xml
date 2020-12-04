@@ -31,6 +31,7 @@
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Review" alias="Reviews" />
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Qna" alias="Qna" />
 		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Wish" alias="Wish" />
+		
 		<!-- 호스트 관련(지은) -->
 		<typeAlias type="com.kh.hotspot.host.model.vo.HostInfo" alias="HostInfo" />
 		<typeAlias type="com.kh.hotspot.space.model.vo.Space" alias="Space" />
@@ -43,6 +44,9 @@
 		<!-- 마이페이지(성희) -->
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Reservation" alias="Reservation"/>
 		<typeAlias type="com.kh.hotspot.admin.model.vo.Report" alias="reservReport" />
+		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Review" alias="myReview" />
+		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Qna" alias="myQna" />
+		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesInquiry" alias="VoicesInquiry"/>
 	</typeAliases>
 	
 	
@@ -66,6 +70,7 @@
 		<!-- 메인,게스트공간(지혜) -->
 		<mapper resource="mappers/guest/guestspace-mapper.xml"/>
 		<mapper resource="mappers/guest/customerservice-mapper.xml"/>
+		<mapper resource="mappers/guest/guestReservation-mapper.xml" />
 		
 		<!-- 호스트,공간 관련(지은) -->
 		<mapper resource="mappers/host/host-mapper.xml"/>
