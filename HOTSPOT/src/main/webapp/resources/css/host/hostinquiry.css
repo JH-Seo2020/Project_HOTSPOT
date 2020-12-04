@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+ #inquiryContainer{
+     width:900px;
+     position: absolute;
+     top:130px;
+     left:400px;
+     }
+ .inquiry_head{
+ 	 height:40px;
+     background-color: var(--color-purple);
+     text-align: center;
+     line-height: 40px;
+ }
+.myinquiry{
+ 	margin-top:40px;
+ 	text-align:center;
+ 	
+ }
+#writeBtn{
+	margin-left:700px;
+	width:80px;
+}
+.inq_1{
+ 	 width:410px;
+     border: solid 2px #704de4;
+     padding:20px;
+     margin:15px;
+     display: inline-block;
+     border-radius:10px;
+}
+h4:not(.title){
+	font-size:16px !important;
+
+}
+.answer h4{
+	color:#704de4;
+}
+hr{
+	 border-top: 3px solid #eee !important;
+}
+.qdate{
+	color:grey !important;
+}
+.contentBase{
+	width:360px;
+	background-color:#fafafa;
+	height:70px;
+	padding:10px;
+	margin-top:0px;
+	margin-bottom:10px;
+}

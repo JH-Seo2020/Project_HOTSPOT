@@ -20,9 +20,10 @@
 <style>
 
 	.outerForm{
-   width:1000px;
-   margin:auto;
-   margin-top: 100px; 
+   width:900px;
+   position:absolute;
+   top:130px;
+   left:400px;
    margin-bottom:200px; 
   }
   .outerForm span{
@@ -33,7 +34,7 @@
      text-align: center;
  }
   .inquiry_content{
-      margin-left: 150px;
+      margin-left: 110px;
       /* text-align: center; */
       margin-top: 40px;
   }  
@@ -48,11 +49,21 @@
   input[type=button]{
       margin-top: 10px;
   }
+  .title{
+   height:40px;
+   background-color: var(--color-purple);
+   text-align: center;
+   width:900px;
+   margin-bottom:50px;
+  }
 </style>
 </head>
 <body>
 
 <div class="outerForm">
+		<div class="title">
+			<h4 style="color:white; line-height: 40px;">1:1 관리자 문의</h4>
+		</div>
         <div class="inquiry_head">
             <h4>1:1 문의 하기</h4><br>
             <span>1:1 챗봇으로 해결하지 못한 사항들만 문의해주세요<br>
