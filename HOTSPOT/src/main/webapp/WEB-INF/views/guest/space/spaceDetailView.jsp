@@ -125,7 +125,7 @@
                         </c:forEach>
                     </select>
                 </div>
-                <p><input type="text" id="endDate" name="endDate" class="datepicker form-control" placeholder="종료일" required></p>
+                <p><input type="text" id="endDate" name="endDate" class="form-control" placeholder="종료일" required></p>
                 <div class="input-group mb-3">
                     <select class="custom-select" id="endTime" name="endTime">
                        <option value="" disabled selected>종료시간</option>
@@ -176,14 +176,69 @@
                 <button id="reservBtn" type="submit" class="btn btn-warning btn-lg btn-block" style="background-color: rebeccapurple; color:white; border: none;">예약하기</button>  
             </form>
         </div>
+        
+
 
         <script>
         var loginUser = '${loginUser}';
+        
+		var days=new Array();
+		<% String[] holiday=(String[])request.getAttribute("holiday");
+		if(holiday!=null){
+		    for(int i=0; i<holiday.length; i++){ %>
+		        var day='<%= holiday[i] %>';           //--> without this doesnt work
+		        days[<%= i %>]=day; 
+		    <%}
+		}%>
+		
+		console.log(days[1]);
+        
             $( function() {
+                //한글설정
+                $.datepicker.regional['ko'] = {
+                    closeText: '닫기',
+                    prevText: '이전달',
+                    nextText: '다음달',
+                    currentText: '오늘',
+                    monthNames: ['1월','2월','3월','4월','5월','6월',
+                    '7월','8월','9월','10월','11월','12월'],
+                    monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+                    '7월','8월','9월','10월','11월','12월'],
+                    dayNames: ['일','월','화','수','목','금','토'],
+                    dayNamesShort: ['일','월','화','수','목','금','토'],
+                    dayNamesMin: ['일','월','화','수','목','금','토'],
+                    weekHeader: 'Wk',
+                    dateFormat: 'yy-mm-dd',
+                    firstDay: 0,
+                    isRTL: false,
+                    duration:200,
+                    showAnim:'show',
+                    showMonthAfterYear: true,
+                    yearSuffix: ''
+                };
+                $.datepicker.setDefaults($.datepicker.regional['ko']);
               
             	$( ".datepicker" ).datepicker({
             		dateFormat: 'yy-mm-dd',
-                	showButtonPanel: true
+                	showButtonPanel: true,
+                	 beforeShowDay : function(date){
+                		 var day=date.getDay();
+                		 
+                		 for(var i = 0; i < days.length; i++){
+                			 
+                			 switch(days[i]){
+                			 case "0" : return [day != 0]; break;
+                			 case "1" : return [day != 1]; break;
+                			 case "2" : return [day != 2]; break;
+                			 case "3" : return [day != 3]; break;
+                			 case "4" : return [day != 4]; break;
+                			 case "5" : return [day != 5]; break;
+                			 case "6" : return [day != 6]; break;
+                			 }
+                			 
+                		 }
+                		 
+                	 }
               	});
             	
             	$("#payCheck").on('click',function(){
@@ -222,9 +277,20 @@
             		}
             		$("#endTime").append(etime);
             	});
+            	
+            	/*종료일 자동선택쿼리*/
+            	$("#useDate").on("change",function(){
+            		$("#endDate").val($("#useDate").val());
+            	});
               
             } );
-           
+            
+         // 이전 날짜들은 선택막기
+            function noBefore(date){
+                if (date < new Date())
+                    return [false];
+                return [true];
+            }
         </script>
         
         <script> <!-- Details 관련 -->

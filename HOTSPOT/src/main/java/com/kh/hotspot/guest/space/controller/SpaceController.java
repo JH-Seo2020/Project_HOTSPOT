@@ -56,6 +56,31 @@ public class SpaceController {
 		//1.공간정보
 		SpaceInfo si = spaceDetailService.selectSpaceDetail(spcNo);
 		
+		//요일처리
+		String holidays = si.getSpcHoliday();
+		String[] holiday = null;
+		if(holidays != null) {
+			holiday = holidays.split(",");
+			for (int i = 0; i < holiday.length; i++) {
+				if (holiday[i].equals("일")) {
+					holiday[i] = "0";
+				}else if (holiday[i].equals("월")) {
+					holiday[i] = "1";
+				}else if (holiday[i].equals("화")) {
+					holiday[i] = "2";
+				}else if (holiday[i].equals("수")) {
+					holiday[i] = "3";
+				}else if (holiday[i].equals("목")) {
+					holiday[i] = "4";
+				}else if (holiday[i].equals("금")) {
+					holiday[i] = "5";
+				}else {
+					holiday[i] = "6";
+				}
+			}
+		}
+		
+		
 		//2.공간이미지들
 		ArrayList<SpaceImages> simg = spaceDetailService.selectSpaceImages(spcNo);
 		
@@ -80,6 +105,7 @@ public class SpaceController {
 		model.addAttribute("host",host);
 		model.addAttribute("userReviews",userReviews);
 		model.addAttribute("pi",pi);
+		model.addAttribute("holiday",holiday);
 		
 		return "guest/space/spaceDetailView";
 	}
