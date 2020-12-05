@@ -24,7 +24,7 @@
         <input type="hidden" name="userId" value="${reserv.userId }" />
         <input type="hidden" name="spcNo" value="${reserv.spcNo }" />
         <input type="hidden" name="userIdHost" value="${reserv.userIdHost }" />
-        <input type="hidden" name="totalTime" value="24" />
+        <input type="hidden" name="totalTime" value="${reserv.totalTime }" />
         <input type="hidden" name="reservTotal" value="${reserv.reservTotal }" />
         <input type="hidden" name="amountTime" value="${reserv.amountTime }" />
         <input type="hidden" name="useDate" value="${reserv.useDate }" />
@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                     <th scope="row">예약일 및 시간</th>
-                    <td>${reserv.useDate } ${reserv.useTime }:00 ~ ${reserv.endDate } ${reserv.endTime }:00 (24시간)</td>
+                    <td>${reserv.useDate } ${reserv.useTime }:00 ~ ${reserv.endDate } ${reserv.endTime }:00 (${reserv.totalTime }시간)</td>
                 </tr>
                 <tr>
                     <th scope="row">예약 인원</th>
@@ -125,8 +125,8 @@
         <div id="totalPay">
             <span class="forTitle">결제할 금액</span>
             <hr>
-            <span style="font-size: 25px; ">24시간  x ${reserv.amountTime }원 =</span>
-            <span class="forRight">${reserv.amountTime *24 } 원</span> 
+            <span style="font-size: 25px; ">${reserv.totalTime }시간  x ${reserv.amountTime }원 =</span>
+            <span class="forRight">${reserv.amountTime * reserv.totalTime  } 원</span> 
         </div>
         <div id="methods">
             <span class="forTitle">결제 방법</span>

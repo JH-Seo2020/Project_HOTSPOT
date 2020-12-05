@@ -112,26 +112,24 @@
                 <hr>
                 <p><input type="text" id="useDate" name="useDate" class="datepicker form-control" placeholder="시작일" required></p>
                 <div class="input-group mb-3">
+                    
+                    <!-- 영업시간 잘라서 넣기 -->
+                    <c:set var="Hours" value="${fn:split(si.spcHours,',') }" />
+                    <c:set var="startHour" value="${fn:substring(Hours[0],0,2) }" />
+                    <c:set var="endHour" value="${fn:substring(Hours[1],0,2) }" />
+                    
                     <select class="custom-select" id="useTime" name="useTime">
                     	<option value="" disabled selected>시작시간</option>
-                        <option value="1">1:00</option>
-                        <option value="2">2:00</option>
-                        <option value="3">3:00</option>
-                        <option value="4">4:00</option>
-                        <option value="5">5:00</option>
-                        <option value="6">6:00</option>
+                    	<c:forEach var="h" begin="${startHour }" end="${endHour-1 }" >
+                        	<option value="${h }">${h}:00</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <p><input type="text" id="endDate" name="endDate" class="datepicker form-control" placeholder="종료일" required></p>
                 <div class="input-group mb-3">
                     <select class="custom-select" id="endTime" name="endTime">
-                        <option value="" disabled selected>종료시간</option>
-                        <option value="1">1:00</option>
-                        <option value="2">2:00</option>
-                        <option value="3">3:00</option>
-                        <option value="4">4:00</option>
-                        <option value="5">5:00</option>
-                        <option value="6">6:00</option>
+                       <option value="" disabled selected>종료시간</option>
+                       <!-- 제이쿼리로 추가함! -->
                     </select>
                 </div>
                 <br>
@@ -145,7 +143,8 @@
                         </c:forEach>
                     </select>
                 </div>
-                <button type="button" id="payCheck" class="btn btn-warning btn-lg btn-block" style="background-color: lavender; border: none;">예상금액 확인</button>
+                <button type="button" id="payCheck" class="btn btn-warning btn-lg btn-block" style="background-color: lavender; border: none;">예상금액 확인</button><br>
+                <button type="button" id="chatToHost" class="btn btn-warning btn-lg btn-block" style="background-color: orange; border: none;">호스트에게 문의채팅</button>
                 <br><br>
                 <span style="color: rebeccapurple; font-weight: bold;">결제정보</span>
                 <hr>
@@ -161,7 +160,8 @@
                       </tr>
                       <tr>
                         <th scope="row">시간</th>
-                        <td id="totalTime" name="totalTime"></td>
+                        <td id="totalTime_view" ></td>
+                        <input id="totalTime" type="hidden" name="totalTime" value="" />
                       </tr>
                       <tr>
                         <th scope="row">인원</th>
@@ -195,9 +195,10 @@
 	            		$("#checkDate").text(
 	            			$('#useDate').val()+'   '+$('#useTime').val()+':00'+'  '+'~'+'  '+$('#endDate').val()+'   '+$('#endTime').val()+':00'
 	            		);
-	            		$("#totalTime").text(3);
+	            		$("#totalTime_view").text($("#endTime").val()-$("#useTime").val());
+	            		$("#totalTime").val($("#endTime").val()-$("#useTime").val());
 	            		$("#checkPeople").text($('#reservTotal').val());
-	            		$("#checkTotalpay").text(${si.spcPrice} * $("#reservTotal").val() * $("#totalTime").text());
+	            		$("#checkTotalpay").text(${si.spcPrice} * $("#totalTime_view").text());
 					}
             	});
             	
@@ -209,20 +210,21 @@
             			$("#reservBtn").prop('disabled',false);
             		}
             	});
+            	
+            	/*종료시간 option 추가 쿼리*/
+            	$("#useTime").on("change",function(){
+            		$('#endTime').children('option:not(:first)').remove();
+            		
+            		var s= parseInt($('#useTime').val());
+            		var etime="";
+            		for(var et = s+1; et <= ${endHour}; et++ ){
+            			etime += "<option value="+(et) +">"+et+":00</option>";
+            		}
+            		$("#endTime").append(etime);
+            	});
               
             } );
-            
-			function createDate(){
-	            moment().toObject({
-                         years: 2015,
-                         months: 6,
-                         date: 26,
-                         hours: 1,
-                         minutes: 53,
-                         seconds: 14,
-                         milliseconds: 600
-	                 });
-			}
+           
         </script>
         
         <script> <!-- Details 관련 -->
