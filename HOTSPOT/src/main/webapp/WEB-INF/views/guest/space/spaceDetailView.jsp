@@ -21,13 +21,19 @@
     
     <!-- 위치 자르기 (앞에서 두글자) -->
     <c:set var="location" value="${si.location}" />
-    <c:set var="location2" value="${fn:substring(location,0,8)}" />
+    <c:set var="location2" value="${fn:substring(location,0,7)}" />
     
     <div id="infoWrapper">
         <div id="infoTitle">
             <div><h2>[${location2 }] &nbsp; ${si.spcName }</h2></div>
             <h4><div  class="badge badge-light">${si.spcInt }</div></h4>
-            <h5><div  class="badge badge-light">#${si.spcTag }</div></h5>
+            
+            <!-- 키워드 잘라서 넣기 -->
+            <c:set var="tags" value="${fn:split(si.spcTag,',') }" />
+            <c:forEach var="tag" items="${tags }">        	
+            	<h5><div  class="badge badge-light">${tag }</div></h5>
+	        </c:forEach> 
+	        
             <div id="wishandlike">
                 <a data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
                     <img src="resources/images/report.png">
@@ -327,7 +333,7 @@
 		              </table>
 		        </div>
 		        <br>
-		        <div id="qnaPagination">
+		        <div id="qnaPagination" style="text-align:center;">
 		        </div>
 		        <br>
             </div>
@@ -338,6 +344,7 @@
 	                $("#qna .answers").hide(100);   //괄호안의 숫자는 duration-시간-
 	                $("#qna tr[class=on]").attr("class","off");
 	            })
+	            
 	        });
 	        
 	        //질문클릭시 구동되는 함수 
@@ -347,7 +354,11 @@
 	            $("#qna .on").attr("class","off").css("color","black").css("font-weight","400");
 	            $("#qna tr:eq("+(no*2)+")").slideDown(100);
 	            $("#qna tr:eq("+(no*2-1)+")").attr("class","on").css("color","rebeccapurple").css("font-weight","800");
-	            
+	            if($(".answerArea").text() == 'undefined'){
+	            	$(".hostname").text("");
+	            	$(".answerArea").text("답변이 등록되지 않았습니다.");
+	            	$(".answerDateArea").text("");
+	            }
 	        }
 	        
 	        //ajax로 큐앤에이 리스트불러오기
@@ -372,7 +383,7 @@
 			    					     + "<td>"+result.qna[i].qaDate+"</td>"
 			    					     + "</tr>"
 			    					     + "<tr class='answers'>"
-			    					     + "<td>👾호스트</td>"
+			    					     + "<td class='hostname'>👾호스트</td>"
 			    					     + "<td class='answerArea'>"+result.qna[i].qaAnswer+"</td>"
 			    					     + "<td class='answerDateArea'>"+result.qna[i].qaAnswerDate+"</td>"
 			    					     + "</tr>"; 
@@ -432,37 +443,40 @@
                 <br>
                 <h4><span class="badge badge-pill badge-dark">#이용후기 ${fn:length(userReviews)}개</span></h4>                
                 <br>
-                <c:forEach var="ur" items="${userReviews}">
-	                <div class="reviewContent">
-	                    <div class="personImgs">
-	                        <img src="${ur.profilePath }${ur.userProfileCh}" >
-	                    </div>
-	                    <div class="review">
-	                        <span><h4>${ur.userNickname }</h4></span> 
-	                        <span>
-	                        	<c:forEach var="star" begin="1" end="${ur.reviewScore }">
-	                        		★
-	                        	</c:forEach>
-	                        </span>
-	                        <br>
-	                        <span><h4>${ur.reviewCon}</h4></span>
-	                        <span style="color: gray;"><h6>${ur.reviewDate }</h6></span>
-	                        <a id="reportModal" class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;" onclick="reviewReportSetting('${ur.reviewWriter},${ur.reviewNo }');">
-	                        <h8>신고하기</h8></a>
-	                        <br><Br>
-	                    </div>
-	                </div>
-	                <div class="reviewContent" >
-	                    <div class="review">
-	                        <span style="color: indigo;"><h4>👾호스트의 답변</h4></span> <br>
-	                        <span><h4>${ur.reviewReply }</h4></span>
-	                        <span style="color: gray;"><h6>00월00일00시00초</h6></span>
-	                    </div>
-	                </div>
-	                <hr>
-	                <c:set var="target" value="${ur.reviewWriter}"/>
-	                
-				</c:forEach>
+	                <c:forEach var="ur" items="${userReviews}">
+		                <div class="reviewContent">
+		                    <div class="personImgs">
+		                        <img src="${ur.profilePath }${ur.userProfileCh}" >
+		                    </div>
+		                    <div class="review">
+		                        <span><h4>${ur.userNickname }</h4></span> 
+		                        <span>
+		                        	<c:forEach var="star" begin="1" end="${ur.reviewScore }">
+		                        		★
+		                        	</c:forEach>
+		                        </span>
+		                        <br>
+		                        <span><h4>${ur.reviewCon}</h4></span>
+		                        <span style="color: gray;"><h6>${ur.reviewDate }</h6></span>
+		                        <c:if test="${loginUser != null }" >
+			                        <a id="reportModal" class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;" onclick="reviewReportSetting('${ur.reviewWriter},${ur.reviewNo }');">
+			                        <h8>신고하기</h8></a>
+		                        </c:if>
+		                        <br><Br>
+		                    </div>
+		                </div>
+		                <div class="reviewContent" >
+		                    <div class="review">
+		                        <span style="color: indigo;"><h4>👾호스트의 답변</h4></span> <br>
+		                        <span><h4>${ur.reviewReply }</h4></span>
+		                        <span style="color: gray;"><h6>${ur.reviewReplyDate }</h6></span>
+		                    </div>
+		                </div>
+		                <hr>
+		                <c:set var="target" value="${ur.reviewWriter}"/>
+		                
+					</c:forEach>
+
 				
                 <script> /*후기 신고 시 기본세팅*/
                 	function reviewReportSetting(result){
@@ -475,27 +489,35 @@
                 </script>
 				
             <div id="pagination">
-	        	<c:choose>
-	        		<c:when test="${pi.currentPage eq 1 }">
-			            <a class="badge badge-pill purple disabled ">이전</a>
-			        </c:when>
-			        <c:otherwise>
-			        	<a href="spaceDetail.guest?currentPage=${pi.currentPage-1}&spcNo=${si.spcNo}" class="badge badge-pill purple">이전</a>
-			        </c:otherwise>
-			    </c:choose>
-			    
-			    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
-			            <a href="spaceDetail.guest?currentPage=${p }&spcNo=${si.spcNo}" class="badge badge-pill purple">${p }</a>
-			    </c:forEach>
-			            
-			    <c:choose>
-			    	<c:when test="${pi.currentPage eq pi.maxPage}" >
-			    		<a class="badge badge-pill purple disabled ">다음</a>
-			    	</c:when>
-			    	<c:otherwise>
-			    		<a href="spaceDetail.guest?currentPage=${pi.currentPage +1 }&spcNo=${si.spcNo}" class="badge badge-pill purple">다음</a>
-			    	</c:otherwise>
-			    </c:choose> 
+            <c:choose>
+	            <c:when test="${userReviews.size() eq 0 }">
+	            	<p>보여드릴 후기가 없습니다.</p>
+	            </c:when>
+	            <c:otherwise>
+		        	<c:choose>
+		        		<c:when test="${pi.currentPage eq 1 }">
+				            <a class="badge badge-pill purple disabled ">이전</a>
+				        </c:when>
+				        <c:otherwise>
+				        	<a href="spaceDetail.guest?currentPage=${pi.currentPage-1}&spcNo=${si.spcNo}" class="badge badge-pill purple">이전</a>
+				        </c:otherwise>
+				    </c:choose>
+				    
+				    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
+				            <a href="spaceDetail.guest?currentPage=${p }&spcNo=${si.spcNo}" class="badge badge-pill purple">${p }</a>
+				    </c:forEach>
+				            
+				    <c:choose>
+				    	<c:when test="${pi.currentPage eq pi.maxPage}" >
+				    		<a class="badge badge-pill purple disabled ">다음</a>
+				    	</c:when>
+				    	<c:otherwise>
+				    		<a href="spaceDetail.guest?currentPage=${pi.currentPage +1 }&spcNo=${si.spcNo}" class="badge badge-pill purple">다음</a>
+				    	</c:otherwise>
+				    </c:choose> 
+
+	            </c:otherwise>
+	        </c:choose>
             </div>
 	            
         </div>

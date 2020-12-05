@@ -25,6 +25,7 @@ public class Review {
 	private Date reviewDate;
 	private String reviewStatus;
 	private String reviewReply;
+	private Date reviewReplyDate;
 	private String userNickname;
 	private String userProfileCh;
 	private String profilePath;

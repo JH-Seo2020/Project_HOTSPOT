@@ -50,7 +50,7 @@
                     
                     <div>${spaceLoca2 } | 
 	                    <c:forEach var="tag" items="${tags }">
-	                    	#${tag }
+	                    	${tag }
 	                    </c:forEach>                    
                     </div>
                     <div>
@@ -83,22 +83,25 @@
 	                        <span><h4>${r.reviewCon }
 	                        </h4></span>
 	                        <span style="color: gray;"><h6>${r.reviewDate }</h6></span>
-	                        <a id="reportModal" class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;"><h8>신고하기</h8></a>
+	                        <c:if test="${loginUser != null }">
+	                        	<a id="reportModal" class="badge badge-pill badge-danger" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;"><h8>신고하기</h8></a>
+	                        </c:if>
 	                        <br><Br>
 	                    </div>
 	                </div>
 	                <div class="qnaContent" >
 	                    <div class="qna">
-	                        <span style="color: indigo;"><h4>👾호스트의 답변</h4></span> <br>
+	                        
 	                        <c:choose>
 		                        <c:when test="${r.reviewReply eq null }">
-		                        	아직 답변이 등록되지 않았습니다.
+		                        	
 		                        </c:when>
 		                        <c:otherwise>
+		                        <span style="color: indigo;"><h4>👾호스트의 답변</h4></span> <br>
 			                        <span><h5>${r.reviewReply }</h5></span>
 		                        </c:otherwise>
 		                    </c:choose>
-	                        <span style="color: gray;"><h6>00월00일00시00초</h6></span>
+	                        <span style="color: gray;"><h6>${r.reviewReplyDate }</h6></span>
 	                    </div>
 	                </div>
 	                <hr>

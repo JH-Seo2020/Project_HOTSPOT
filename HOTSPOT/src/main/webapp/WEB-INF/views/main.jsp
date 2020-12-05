@@ -85,7 +85,14 @@
 		            <div class="todaySpace">        	
 		                <img src="${today.spcChimg }" onclick="move(${today.spcNo})">	
 		                <div style="font-weight: bold; font-size: 20px;">[${today.spcName }]</div>
-		                <div style="color:gray;">${location2} | ${today.spcTag }</div>
+		                
+		                 <!-- 키워드 잘라서 넣기 -->
+            			<c:set var="tags" value="${fn:split(today.spcTag,',') }" />
+ 						<div style="color:gray;">${location2} | 
+				            <c:forEach var="tag" items="${tags }">        	
+				            	${tag }
+					        </c:forEach>
+			            </div>
 		                <div>
 		                    <span style="color: rebeccapurple; font-weight: bold;">${today.spcPrice }원/시간</span>
 		                    <span class="badge badge-pill badge-warning"><img class="img_hotspotLogo" src="resources/images/common/main_reviewIcon.png">후기 ${today.reviews }개</span>

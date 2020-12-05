@@ -57,6 +57,7 @@
   		<result column="REVIEW_DATE" property="reviewDate" />
   		<result column="REVIEW_STATUS" property="reviewStatus" />
   		<result column="REVIEW_REPLY" property="reviewReply" />
+  		<result column="REVIEW_REPLYDATE" property="reviewReplyDate" />
   		<result column="USER_NICKNAME" property="userNickname" />
   		<result column="USER_PROFILE_C" property="userProfileCh" />
   		<result column="PROFILE_PATH" property="profilePath" />
@@ -247,6 +248,7 @@
 		                     , review_score
 		                     , review_date
 		                     , review_reply
+		                     , review_replydate
 		                  from review
 		                  join member on (review_writer = user_id)
 		                 where review_status = 'Y'
@@ -367,6 +369,7 @@
 		     , review_score
 		     , review_date
 		     , review_reply
+		     , review_replydate
 		     , user_nickname
 		     , user_profile_c
 		     , profile_path
