@@ -34,7 +34,7 @@
     		});
     	});
     	function goSearch(space){
-    		location.href="search.hotspot?searchWord="+space;
+    		location.href="search.hotspot?spcType="+space;
     	}
     </script>
 

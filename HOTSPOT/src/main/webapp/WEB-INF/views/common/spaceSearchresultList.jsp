@@ -120,7 +120,7 @@
     		</c:when>
     		<c:otherwise>
 	    		<c:forEach var="list" items="${ list }">
-			    	<div class="list">
+			    	<div class="list" onclick="detail(${list.spcNo})">
 			            <img class="spcImage" src="${ list.spcChimg }">
 			            <div class="spcName">${ list.spcName }</div>
 			            <div class="spcLocationTag">${ fn:substring(list.location, 0, 2) } / ${ fn:replace(list.spcTag, ',', ' ') }</div>
@@ -168,13 +168,8 @@
     
     <script>
     	$(function(){
-    		if('${searchWord}' != ''){
-    			$("#spcType").val('${searchWord}');
-    		}
     		if('${spcType}' != ''){
     			$("#spcType").val('${spcType}');
-    		}else{
-    			$("#spcType").val('');
     		}
     		if('${location}' != ''){
     			$("#location").val('${location}');
@@ -214,8 +209,13 @@
     			$("#SearchConditionForm").submit();	
     		});
 
-    	})
+    	});
     	
+    	// 상세화면이동
+        function detail(spcNo){
+    		console.log("눌림");
+        	location.href="spaceDetail.guest?spcNo=" + spcNo;
+        }
     </script>
     
 </body>
