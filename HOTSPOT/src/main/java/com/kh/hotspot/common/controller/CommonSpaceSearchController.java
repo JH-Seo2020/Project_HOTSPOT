@@ -25,14 +25,20 @@ public class CommonSpaceSearchController {
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 							 SpaceInfo spaceInfo, String location, Model model) {
 		
-		System.out.println("convn : " + spaceInfo.getSpcConvn());
-		if(spaceInfo.getSpcType() == null & spaceInfo.getLocation() == null) {
+		if(spaceInfo.getSpcType() == null) {
 			spaceInfo.setSpcType("");
+		}
+		if(spaceInfo.getLocation() == null) {
 			spaceInfo.setLocation("");
 		}
-		if(spaceInfo.getSpcConvn() != null) {
+		if(spaceInfo.getOrder() == null) {
+			spaceInfo.setOrder("newEnroll");
+		}
+
+		if(spaceInfo.getSpcConvn() != null & spaceInfo.getSpcConvn() != "") {
 			//String으로 담긴 편의시설 배열로 옮겨담기
 			String[] spcConvnList = spaceInfo.getSpcConvn().split(",");
+			// 배열에 담긴 편의시설 잘라서 각각 저장
 			switch(spcConvnList.length) {
 			case 5: spaceInfo.setCheckbox4(spcConvnList[4]);
 			case 4: spaceInfo.setCheckbox3(spcConvnList[3]);
@@ -48,7 +54,7 @@ public class CommonSpaceSearchController {
 		PageInfo pageInfo = Pagination.getPageInfo(currentPage, listCount, 5, 9);
 		// 검색결과리스트 조회
 		ArrayList<SpaceInfo> list = spaceSearchService.selectList(spaceInfo, pageInfo);
-		
+
 		// 각 공간별 리뷰수 조회
 		for(SpaceInfo num : list) {
 			num.setReviewCount(spaceSearchService.selectReviewCount(num.getSpcNo()));
@@ -68,6 +74,8 @@ public class CommonSpaceSearchController {
 		model.addAttribute("checkbox2", spaceInfo.getCheckbox2());
 		model.addAttribute("checkbox3", spaceInfo.getCheckbox3());
 		model.addAttribute("checkbox4", spaceInfo.getCheckbox4());
+		model.addAttribute("order", spaceInfo.getOrder());
+		model.addAttribute("spcConvn", spaceInfo.getSpcConvn());
 		
 		return "common/spaceSearchresultList";
 	}

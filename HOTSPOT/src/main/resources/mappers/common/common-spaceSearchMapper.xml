@@ -38,6 +38,26 @@
 				        spc_type like #{searchWord}||'%' or spc_type like '%'||#{searchWord}||'%' or spc_type like '%'||#{searchWord} or spc_type like #{searchWord} or
 				        map_location like #{searchWord}||'%'
 		       )
+		  where (spc_type like #{spcType}||'%' or spc_type like #{spcType}) and (map_location like #{location}||'%')
+		  <if test="spcConvn != null and spcConvn != ''">
+		  	and (spc_convn like #{checkbox0}||'%' or spc_convn like '%'||#{checkbox0}||'%' or spc_convn like '%'||#{checkbox0})
+		  	and (spc_convn like #{checkbox1}||'%' or spc_convn like '%'||#{checkbox1}||'%' or spc_convn like '%'||#{checkbox1})
+		  	and (spc_convn like #{checkbox2}||'%' or spc_convn like '%'||#{checkbox2}||'%' or spc_convn like '%'||#{checkbox2})
+		  	and (spc_convn like #{checkbox3}||'%' or spc_convn like '%'||#{checkbox3}||'%' or spc_convn like '%'||#{checkbox3})
+		  	and (spc_convn like #{checkbox4}||'%' or spc_convn like '%'||#{checkbox4}||'%' or spc_convn like '%'||#{checkbox4})
+		  </if>
+		  <if test="order == 'newEnroll'">
+		  	order by enroll_date desc
+		  </if>
+		  <if test="order == 'oldEnroll'">
+		  	order by enroll_date asc
+		  </if>
+		  <if test="order == 'highPrice'">
+		  	order by spc_price desc
+		  </if>
+		  <if test="order == 'rowPrice'">
+		  	order by spc_price asc
+		  </if>
 	</select>
 	
 	<!-- 검색결과리스트 조회 -->
@@ -72,14 +92,25 @@
 				        map_location like #{searchWord}||'%'
 		       )
 		  where (spc_type like #{spcType}||'%' or spc_type like #{spcType}) and (map_location like #{location}||'%')
-		  <if test="spcConvn != null">
+		  <if test="spcConvn != null and spcConvn != ''">
 		  	and (spc_convn like #{checkbox0}||'%' or spc_convn like '%'||#{checkbox0}||'%' or spc_convn like '%'||#{checkbox0})
 		  	and (spc_convn like #{checkbox1}||'%' or spc_convn like '%'||#{checkbox1}||'%' or spc_convn like '%'||#{checkbox1})
 		  	and (spc_convn like #{checkbox2}||'%' or spc_convn like '%'||#{checkbox2}||'%' or spc_convn like '%'||#{checkbox2})
 		  	and (spc_convn like #{checkbox3}||'%' or spc_convn like '%'||#{checkbox3}||'%' or spc_convn like '%'||#{checkbox3})
 		  	and (spc_convn like #{checkbox4}||'%' or spc_convn like '%'||#{checkbox4}||'%' or spc_convn like '%'||#{checkbox4})
 		  </if>
-		  order by enroll_date desc
+		  <if test="order == 'newEnroll'">
+		  	order by enroll_date desc
+		  </if>
+		  <if test="order == 'oldEnroll'">
+		  	order by enroll_date asc
+		  </if>
+		  <if test="order == 'highPrice'">
+		  	order by spc_price desc
+		  </if>
+		  <if test="order == 'rowPrice'">
+		  	order by spc_price asc
+		  </if>
 	</select>
 	
 	<!-- 해당 공간의 총 리뷰 수 조회 -->
@@ -98,37 +129,4 @@
 		 where spc_no = #{spcNo} 
 	</select>
 	
-	<!-- 테스트 -->
-	<select id="selectSearchCondition" parameterType="SpaceInfo" resultMap="commonSpaceInfoSet">
-		select
-		       spc_no
-		     , spc_name
-		     , spc_int
-		     , spc_long
-		     , spc_tag
-		     , spc_type
-		     , spc_min
-		     , spc_max
-		     , spc_img
-		     , spc_chimg
-		     , spc_price
-		     , spc_hours
-		     , spc_holiday
-		     , spc_status
-		     , spc_convn
-		     , user_id
-		     , map_latitude
-		     , map_longitude
-		     , map_location
-		  from (
-		         select
-                         *
-                   from space_info
-				  where spc_name like #{searchWord}||'%' or spc_name like '%'||#{searchWord}||'%' or spc_name like '%'||#{searchWord} or
-				        spc_tag like '%'||#{searchWord}||'%' or spc_tag like '%'||#{searchWord} or
-				        spc_type like #{searchWord}||'%' or spc_type like '%'||#{searchWord}||'%' or spc_type like '%'||#{searchWord} or spc_type like #{searchWord} or
-				        map_location like #{searchWord}||'%'
-		       )
-		 where spc_type like #{spcType}||'%' and map_location like #{location}||'%'
-	</select>
 </mapper>

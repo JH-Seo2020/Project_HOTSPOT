@@ -104,7 +104,7 @@
         <tr>
             <td>
                 <select id="select_order" name="order" class="custom-select custom-select-sm mb-3">
-                    <option value="newEnroll">최신등록순</option>
+                    <option value="newEnroll" selected>최신등록순</option>
                     <option value="oldEnroll">과거등록순</option>
                     <option value="highPrice">높은가격순</option>
                     <option value="rowPrice">낮은가격순</option>
@@ -143,13 +143,13 @@
 					<li class="page-item disabled"><a class="page-link">Previous</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item disabled"><a class="page-link" href="search.hotspot?searchWord=${ searchWord }&currentPage=${ pageInfo.currentPage - 1 }">이전</a></li>
+					<li class="page-item disabled"><a class="page-link" href="search.hotspot?searchWord=${ searchWord }&spcType=${ spcType }&location=${ location }&spcConvn=${ spcConvn }&order=${ order }&currentPage=${ pageInfo.currentPage - 1 }">이전</a></li>
 				</c:otherwise>
 			</c:choose>
 			
 			<c:forEach var="page" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
 				<li class="page-item">
-					<a class="page-link" href="search.hotspot?searchWord=${ searchWord }&currentPage=${ page }">${ page }</a>
+					<a class="page-link" href="search.hotspot?searchWord=${ searchWord }&spcType=${ spcType }&location=${ location }&spcConvn=${ spcConvn }&order=${ order }&currentPage=${ page }">${ page }</a>
 				</li>
 			</c:forEach>
 			
@@ -158,7 +158,7 @@
 					<li class="page-item disabled"><a class="page-link">다음</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="search.hotspot?searchWord=${ searchWord }&currentPage=${ pageInfo.currentPage + 1 }">다음</a></li>
+					<li class="page-item"><a class="page-link" href="search.hotspot?searchWord=${ searchWord }&spcType=${ spcType }&location=${ location }&spcConvn=${ spcConvn }&order=${ order }&currentPage=${ pageInfo.currentPage + 1 }">다음</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
@@ -173,10 +173,16 @@
     		}
     		if('${spcType}' != ''){
     			$("#spcType").val('${spcType}');
+    		}else{
+    			$("#spcType").val('');
     		}
     		if('${location}' != ''){
     			$("#location").val('${location}');
     		}
+    		if('${order}' != ''){
+    			$("#select_order").val('${order}');
+    		}
+    		
     		
     		if("${checkbox0}" != null){
     			$("input[value='${checkbox0}']").attr("checked", true);
@@ -209,6 +215,7 @@
     		});
 
     	})
+    	
     </script>
     
 </body>
