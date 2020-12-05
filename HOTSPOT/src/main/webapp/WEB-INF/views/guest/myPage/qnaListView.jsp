@@ -24,16 +24,9 @@
 	    margin-bottom: 15px;
 	    width: 60%;
 	}
-	.updateBtn{
-	    width: 70px;
-	    height: 30px;
-	    background:  rgb(145, 37, 247);
-	    color:white;
-	    border: none;
-	    border-radius: 3px
-	}
+
 	#paging-area li>a{color: rgb(139, 138, 138)}
-	.inputBtn{
+	#qnBtn{
 	    float: right;
 	    width: 90px;
 	    height: 30px;
@@ -43,6 +36,20 @@
 	    border-radius: 3px;
 	}
 	.qnaDate{color: rgb(177, 177, 177)}
+	#deleteQnAAlert{
+	    position: relative;
+	    background: rgb(243, 243, 243);
+	    padding: 15px;
+	    margin-top: 35%;
+	}
+	.qnSubmitBtn{
+	    width: 90px;
+	    height: 30px;
+	    background:  rgb(145, 37, 247);
+	    color:white;
+	    border: none;
+	    border-radius: 3px;
+	}
 </style>
 </head>
 <body>
@@ -71,8 +78,8 @@
                             <dt><a href="spaceDetail.guest?spcNo=${ q.spaceNo }"><b>공간명 : [${ q.spcType }][${ q.location }] ${ q.spcName }</b></a></dt><br>
                             <dd>
                                 <span> Q: ${ q.qaContent }</span><br>
-                                <span class="qnaDate"><small>${q.qaDate}</small></span>
-                                <button type="button" class="inputBtn" onclick="">삭제</button>
+                                <span class="qnaDate"><small>${ q.qaDate }</small></span>
+                                <button type="button" value="${ q.qaNo }" id="qnBtn" data-toggle="modal" data-target="#deleteQnAModal">삭제</button>
                             </dd>
                         </dl>
                     </div><hr>
@@ -82,19 +89,17 @@
                             <dd>
                                 <span>${ q.qaAnswer }</span><br>
                                 <span  class="qnaDate"><small>${ q.qaAnswerDate }</small></span>
-                            
+
                             </dd>
                             <dd></dd>
                         </dl>
                     </div>
                 </div> 
               </c:forEach>
-                  
-
             </div>
         </div>
         <br><br>
-
+        
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
                 <c:choose>
@@ -123,6 +128,36 @@
         </div><br><br><br>
         
     </div>
+    
+    <script>
+    $(function(){
+        $("#qnBtn").click(function(){
+           var qaNo = $(this).val();
+           console.log(qaNo);
+        });
+     });
+    </script>
+    
+  
+	  <!-- qna삭제하기 모달 -->
+	  <div class="modal" id="deleteQnAModal">
+	    <div class="modal-dialog">
+	         <div id="deleteQnAAlert" class="modal-content">
+	         	<form action="deleteQnA.mg" method="post">
+	         	<input type="hidden" name="qaNo" value="${ q.qaNo }">
+		        <div align="center">
+		            <br>
+		            <h6><b>정말로 삭제하시겠습니까?</b></h6>
+		            <div>
+		                <span><b>삭제하시면 모든 내용은 삭제됩니다.</b></span><br><br>
+		                <button type="submit" class="qnSubmitBtn">확인</button> &nbsp;
+		                <button type="button" class="qnSubmitBtn" class="close" data-dismiss="modal">취소</button>
+		            </div>
+		        </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
     
     <jsp:include page="../../common/footer.jsp"/>
 </body>

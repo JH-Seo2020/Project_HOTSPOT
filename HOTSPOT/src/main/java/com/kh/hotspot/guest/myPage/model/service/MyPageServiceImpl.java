@@ -76,9 +76,8 @@ public class MyPageServiceImpl implements MyPageService{
 
 	
 	@Override
-	public int selectDetailReview(int reviewNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Reservation selectEnrollFormReview(int reservNo) {
+		return mpDao.selectEnrollFormReview(sqlSession, reservNo);
 	}
 	
 	
@@ -120,9 +119,8 @@ public class MyPageServiceImpl implements MyPageService{
 
 
 	@Override
-	public int deleteMyQna(int QnaNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteMyQna(int qaNo, String userId) {
+		return mpDao.deleteMyQna(sqlSession, qaNo, userId);
 	}
 
 	
@@ -142,12 +140,21 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
+	
+	@Override
+	public int insertMyInquiry(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	@Override
 	public int deleteMyInquiry(int inquiryNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+
+	
 
 	
 	

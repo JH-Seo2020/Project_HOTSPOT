@@ -95,6 +95,14 @@ public class MyPageDao {
 	}
 	
 	
+	public Reservation selectEnrollFormReview(SqlSessionTemplate sqlSession, int reservNo) {
+		return sqlSession.selectOne("mypageMapper.selectEnrollFormReview", reservNo);
+		
+	}
+	
+	
+	
+	
 	/**
 	 * Qna
 	 * 
@@ -111,6 +119,15 @@ public class MyPageDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyQnaList", userId, rowBounds);
+	}
+	
+	public int deleteMyQna(SqlSessionTemplate sqlSession, int qaNo, String userId) {
+		
+		HashMap<Object, Object> hmap = new HashMap<>();
+		hmap.put("qaNo", qaNo);
+		hmap.put("userId", userId);
+		
+		return sqlSession.selectOne("mypagMapper.deleteMyQna", hmap);
 	}
 	
 	
