@@ -61,7 +61,7 @@
         <div class="sidebar">
             
             <br>
-            <a href="" style="margin-left:35px; font-size:20px;" ><img src="resources/images/admin/로고.png" style="width:40px; height:40px;">관리자페이지</a>
+            <a href="main.ad" style="margin-left:35px; font-size:20px;" ><img src="resources/images/admin/로고.png" style="width:40px; height:40px;">관리자페이지</a>
             <hr style="background:lightgrey; width:200px;">
             <br>
             <ul>
@@ -92,6 +92,10 @@
                         <li><a href="list.inq" style="font-size:15px;">1:1문의</a></li>
                         <li><a href="list.fad" style="font-size:15px;">FAQ</a></li>
                     </ul>
+                </li>
+                <br><br>
+                <li>
+                	<a href="/hotspot" id="adminCenter"><img src="resources/images/admin/house.png">&nbsp;메인페이지</a>
                 </li>
             </ul>
         </div>

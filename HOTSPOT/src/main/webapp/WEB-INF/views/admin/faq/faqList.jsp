@@ -31,7 +31,7 @@
 	<div class="outer">
         <div>
             <br>
-            <div style="font-size:20px; margin-left:20px;">FAQ</div>
+            <div style="font-size:20px; margin-left:20px; margin-top:11px;">FAQ</div>
             <hr style="background:ligthgrey;">
             <br><br>
             

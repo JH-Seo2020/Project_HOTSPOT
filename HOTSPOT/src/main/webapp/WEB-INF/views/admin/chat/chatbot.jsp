@@ -77,7 +77,7 @@
     </div>
         <c:set var="current" value="<%= new java.util.Date() %>"/>
         <div align="center" style="background:#eef0f3; height:500px; overflow:scroll;" id="chatBox"> 
-            <div style="margin-top:10px;"><fmt:formatDate value="${ current }" type="date" pattern="yyyy-MM-dd HH:mm"/></div>
+            <div style="margin-top:10px; font-weight:bold;" ><fmt:formatDate value="${ current }" type="date" pattern="yyyy-MM-dd HH:mm"/></div>
             <hr>
             <div class="chatContent" >
                 <ul align="left">    

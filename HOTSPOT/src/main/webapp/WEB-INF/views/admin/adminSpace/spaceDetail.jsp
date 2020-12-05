@@ -53,7 +53,7 @@
 	<div class="outer">
         
         <br>
-        <div style="font-size:20px; margin-left:20px;">공간관리</div>
+        <div style="font-size:20px; margin-left:20px; margin-top:11px;">공간관리</div>
         <hr style="background:ligthgrey;">
         <br><br>
 

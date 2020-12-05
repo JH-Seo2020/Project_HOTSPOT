@@ -11,7 +11,7 @@
 	<jsp:include page="../../common/sidebar.jsp"/>
 	<div class="outer">
         <br>
-            <div style="font-size:20px; margin-left:20px;">공지사항</div>
+            <div style="font-size:20px; margin-left:20px; margin-top:11px;">공지사항</div>
             <hr style="background:ligthgrey;">
             <br><br>
         <div class="adminNotice" style="width:1000px; margin:auto;">
