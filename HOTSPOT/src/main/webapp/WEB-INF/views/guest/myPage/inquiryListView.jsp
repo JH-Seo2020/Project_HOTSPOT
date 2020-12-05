@@ -18,13 +18,13 @@
 	.inquiry{
 	    border: 1px solid rgb(218, 218, 218);
 	    background: white;
-	    padding: 17px;
+	    padding: 25px;
 	    padding-inline: 30px;
 	    margin: auto;
 	    margin-bottom: 15px;
 	    width: 60%;
 	}
-	#inquiryBtn{
+	.inquiryBtn{
 	    float: right;
 	    width: 90px;
 	    height: 30px;
@@ -71,14 +71,13 @@
             <c:forEach var="vi" items="${ viList }">
 	            <div class="inquiry">
 	                <input type="hidden" name="userId" value="${ loginUser.userId }">
-	                <input type="hidden" name="inquiryNo" value="${ vi.inquiryNo }">
 	                    <div class="inquiryInfo">
 	                        <dl>
-	                            <dt><b>제목 : ${ vi.inquiryTitle }</b></dt><br>
-	                            <dd>
-	                                <span> ${ vi.inquiryContent }</span><br>
-	                                <span class="qnaDate"><small>${ vi.inquiryDate }</small></span>
-	                                <button type="button" id="inquiryBtn" data-toggle="modal" data-target="#inquiryModal">삭제</button>
+	                            <dt style="color:rgb(145, 37, 247);"><b>제목 : ${ vi.inquiryTitle }</b></dt><br>
+	                            <dd style="margin-bottom: 25px">
+	                                <span> ${ vi.inquiryContent }</span> &nbsp;
+	                                <span class="qnaDate"><small>작성일 : ${ vi.inquiryDate }</small></span>
+	                                <button type="button" class="inquiryBtn" value="${ vi.inquiryNo }" data-toggle="modal" data-target="#inquiryModal">삭제</button>
 	                            </dd>
 	                        </dl>
 	                    </div><hr>
@@ -86,8 +85,8 @@
 	                        <dl>
 	                            <dt><b>관리자 답변 :</b></dt><br>
 	                            <dd>
-	                                <span>${ vi.inquiryReply }</span><br>
-	                                <span  class="qnaDate"><small>${ vi.inquiryDate }</small></span>
+	                                <span>${ vi.inquiryReply }</span>
+	                                <span  class="qnaDate"><small>&nbsp; 답변일 : ${ vi.inquiryDate }</small></span>
 	                            </dd>
 	                            <dd></dd>
 	                        </dl>
@@ -127,13 +126,22 @@
         </div><br><br><br>
     </div>
     
+    
+   <script>
+    $(function(){
+        $(".inquiryBtn").click(function(){
+           var inquiryNo = $(this).val();
+           $("input[name=inquiryNo]").attr("value", inquiryNo);
+        });
+     });
+    </script>
             
      <!-- 1:1문의 삭제하기 모달 -->
 	 <div class="modal" id="inquiryModal">
 	   <div class="modal-dialog">
-	        <div id="inquiryAlert" class="modal-content">
-	        	<form action="" method="post">
-	        	<input type="hidden" name="qnNo" value="${ q.qaNo}">
+	    <div id="inquiryAlert" class="modal-content">
+	     <form action="deleteInquiry.mg" method="post">
+	        	<input type="hidden" name="inquiryNo" value="">
 	        <div align="center">
 	            <br>
 	            <h6><b>정말로 삭제하시겠습니까?</b></h6>

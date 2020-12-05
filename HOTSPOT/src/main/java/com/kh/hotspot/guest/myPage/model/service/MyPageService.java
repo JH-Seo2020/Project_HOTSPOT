@@ -44,7 +44,7 @@ public interface MyPageService {
 	
 	
 	// 이용후기 작성하기 서비스
-	Reservation selectEnrollFormReview(int reservNo);
+	Review selectEnrollFormReview(int reservNo);
 	
 	int insertMyReview(int reservNo);
 	
@@ -63,7 +63,7 @@ public interface MyPageService {
 	// Qna작성하기는 공간에서 가능 그래서 없어두 됨!
 	
 	// Qna삭제하기 서비스
-	int deleteMyQna(int qaNo, String userId);
+	int deleteMyQna(int qaNo);
 	
 	
 	// 1:1고객문의
@@ -77,7 +77,6 @@ public interface MyPageService {
 	
 	// 1:1고객문의 삭제하기 서비스
 	int deleteMyInquiry(int inquiryNo);
-	
 	
 	
 	

@@ -101,6 +101,11 @@ public class MyPageDao {
 	}
 	
 	
+	public int deleteMyReview(SqlSessionTemplate sqlSession, int reviewNo) {
+		return sqlSession.update("mypageMapper.deleteMyReview", reviewNo);
+	}
+	
+	
 	
 	
 	/**
@@ -121,14 +126,10 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyQnaList", userId, rowBounds);
 	}
 	
-	public int deleteMyQna(SqlSessionTemplate sqlSession, int qaNo, String userId) {
-		
-		HashMap<Object, Object> hmap = new HashMap<>();
-		hmap.put("qaNo", qaNo);
-		hmap.put("userId", userId);
-		
-		return sqlSession.selectOne("mypagMapper.deleteMyQna", hmap);
+	public int deleteMyQna(SqlSessionTemplate sqlSession, int qaNo) {
+		return sqlSession.update("mypageMapper.deleteMyQna", qaNo);
 	}
+	
 	
 	
 	/**
@@ -149,6 +150,10 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyInquiryList", userId, rowBounds);
 	}
 	
+	
+	public int deleteMyInquiry(SqlSessionTemplate sqlSession, int inquiryNo) {
+		return sqlSession.update("mypageMapper.deleteMyInquiry", inquiryNo);
+	}
 	
 	
 }

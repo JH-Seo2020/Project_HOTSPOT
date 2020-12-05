@@ -43,7 +43,7 @@
 	    border: none;
 	    border-radius: 3px;
 	}
-	#reviewDeleteBtn{
+	.reviewDeleteBtn{
 		float: right;
 	    width: 90px;
 	    height: 30px;
@@ -60,7 +60,7 @@
 	.review{
 	    border: 1px solid rgb(218, 218, 218);
 	    background: white;
-	    padding: 17px;
+	    padding: 25px;
 	    padding-inline: 30px;
 	    margin: auto;
 	    margin-bottom: 15px;
@@ -109,9 +109,7 @@
             </div>
             <br><br>
             <div class="reviewDropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                	예약번호순
-                </button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">예약번호순</button>
                 <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">최신순</a>
                 </div>
@@ -126,8 +124,8 @@
 			            <div class="review">
 			                    <div class="reviewInfo">
 			                        <dl>
-			                            <dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
-			                            <dd>
+			                            <dt> 예약번호 : ${ rv.reservNo }</dt><br>
+			                            <dd style="margin-bottom: 25px">
 			                                <a href="spaceDetail.guest?spcNo=${ rv.spcNo }"><b>공간명 : [${ rv.spcType }][${ rv.location }] ${ rv.spcName }</b></a><br>
 			                                <small class="useDate"> 이용날짜 : ${ rv.useDate }</small> 
 			                                <button type="button" class="inputBtn" onclick="location.href='enrollReview.mg?reservNo=' + ${ rv.reservNo }">후기 작성</button>
@@ -148,7 +146,7 @@
 			                                <span><b>제목 : ${ rv.reviewTitle }</b></span> &nbsp;
 			                                <span class="useDate"><small>작성일 : ${ rv.reviewDate }</small></span>
 			                                <button type="button" id="updateBtn" onclick="">수정</button> <br clear="both">
-			                                <button type="button" id="reviewDeleteBtn" data-toggle="modal" data-target="#reviewModal">삭제</button>
+			                                <button type="button" class="reviewDeleteBtn" value="${ rv.reviewNo }" data-toggle="modal" data-target="#reviewModal">삭제</button>
 			                            </dd>
 			                        </dl>
 			                    </div>
@@ -196,29 +194,38 @@
                	</c:choose>
             </ul>
         </div><br><br><br>
-        
     </div>
     
     
-    <!-- 리뷰삭제하기 모달 -->
-	<div class="modal" id="reviewModal">
-	   <div class="modal-dialog">
-	        <div id="reviewAlert" class="modal-content">
-	        	<form action="" method="post">
-	        	<input type="hidden" name="reviewNo" value="${ rb.reviewNo }">
-	        <div align="center">
-	            <br>
-	            <h6><b>정말로 삭제하시겠습니까?</b></h6>
-	            <div>
-	                <span><b>삭제하시면 모든 내용은 삭제됩니다.</b></span><br><br>
-	                <button type="submit" class="reSubmitBtn">확인</button> &nbsp;
-	                <button type="button" class="reSubmitBtn" class="close" data-dismiss="modal">취소</button>
-	            </div>
-	        </div>
-	       </form>
-	     </div>
-	   </div>
-	 </div>
+	    <script>
+	    $(function(){
+	        $(".reviewDeleteBtn").click(function(){
+	           var reviewNo = $(this).val();
+	           $("input[name=reviewNo]").attr("value", reviewNo);
+	        });
+	     });
+	    </script>
+    
+	    
+	    <!-- 리뷰삭제하기 모달 -->
+		<div class="modal" id="reviewModal">
+		   <div class="modal-dialog">
+		        <div id="reviewAlert" class="modal-content">
+		        	<form action="deleteReview.mg" method="post">
+		        	<input type="hidden" name="reviewNo" value="">
+		        <div align="center">
+		            <br>
+		            <h6><b>정말로 삭제하시겠습니까?</b></h6>
+		            <div>
+		                <span><b>삭제하시면 모든 내용은 삭제됩니다.</b></span><br><br>
+		                <button type="submit" class="reSubmitBtn">확인</button> &nbsp;
+		                <button type="button" class="reSubmitBtn" class="close" data-dismiss="modal">취소</button>
+		            </div>
+		        </div>
+		       </form>
+		     </div>
+		   </div>
+		 </div>
     
     
 

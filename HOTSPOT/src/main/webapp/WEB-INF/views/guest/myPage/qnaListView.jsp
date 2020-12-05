@@ -18,7 +18,7 @@
 	.qna{
 	    border: 1px solid rgb(218, 218, 218);
 	    background: white;
-	    padding: 17px;
+	    padding: 25px;
 	    padding-inline: 30px;
 	    margin: auto;
 	    margin-bottom: 15px;
@@ -26,7 +26,7 @@
 	}
 
 	#paging-area li>a{color: rgb(139, 138, 138)}
-	#qnBtn{
+	.qnBtn{
 	    float: right;
 	    width: 90px;
 	    height: 30px;
@@ -73,13 +73,12 @@
                 <div class="qna">
                   <div class="qnaInfo">
                     <input type="hidden" name="userId" value="${ loginUser.userId }">
-                    <input type="hidden" name="qaNo" value="${ q.qaNo }">
                         <dl>
                             <dt><a href="spaceDetail.guest?spcNo=${ q.spaceNo }"><b>공간명 : [${ q.spcType }][${ q.location }] ${ q.spcName }</b></a></dt><br>
-                            <dd>
-                                <span> Q: ${ q.qaContent }</span><br>
-                                <span class="qnaDate"><small>${ q.qaDate }</small></span>
-                                <button type="button" value="${ q.qaNo }" id="qnBtn" data-toggle="modal" data-target="#deleteQnAModal">삭제</button>
+                            <dd style="margin-bottom: 25px">
+                                <span> Q: ${ q.qaContent }</span> &nbsp;
+                                <span class="qnaDate"><small>작성일 : ${ q.qaDate }</small></span>
+                                <button class="qnBtn" type="button" value="${ q.qaNo }" id="qnBtn" data-toggle="modal" data-target="#deleteQnAModal">삭제</button>
                             </dd>
                         </dl>
                     </div><hr>
@@ -87,9 +86,8 @@
                         <dl>
                             <dt><b>호스트님의 답글 :</b></dt><br>
                             <dd>
-                                <span>${ q.qaAnswer }</span><br>
-                                <span  class="qnaDate"><small>${ q.qaAnswerDate }</small></span>
-
+                                <span>${ q.qaAnswer }</span>
+                                <span  class="qnaDate"><small>&nbsp; 답변일 : ${ q.qaAnswerDate }</small></span>
                             </dd>
                             <dd></dd>
                         </dl>
@@ -125,15 +123,15 @@
                     </c:otherwise>
                	</c:choose>
             </ul>
-        </div><br><br><br>
-        
+        </div>
+        <br><br><br>
     </div>
     
     <script>
     $(function(){
-        $("#qnBtn").click(function(){
+        $(".qnBtn").click(function(){
            var qaNo = $(this).val();
-           console.log(qaNo);
+           $("input[name=qaNo]").attr("value", qaNo);
         });
      });
     </script>
@@ -142,9 +140,9 @@
 	  <!-- qna삭제하기 모달 -->
 	  <div class="modal" id="deleteQnAModal">
 	    <div class="modal-dialog">
-	         <div id="deleteQnAAlert" class="modal-content">
-	         	<form action="deleteQnA.mg" method="post">
-	         	<input type="hidden" name="qaNo" value="${ q.qaNo }">
+	       <div id="deleteQnAAlert" class="modal-content">
+	         <form action="deleteQnA.mg" method="post">
+	         	<input type="hidden" name="qaNo" value="">
 		        <div align="center">
 		            <br>
 		            <h6><b>정말로 삭제하시겠습니까?</b></h6>
@@ -158,6 +156,9 @@
 	      </div>
 	    </div>
 	  </div>
+	  
+	  
+	  
     
     <jsp:include page="../../common/footer.jsp"/>
 </body>

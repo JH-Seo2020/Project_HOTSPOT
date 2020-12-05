@@ -144,22 +144,29 @@ public class MyPageController {
 	}
 
 	
+
 	@RequestMapping("enrollFormReview.mg")
-	public String selectEnrollFormReview(HttpSession session, Model model) {
+	public String selectEnrollFormReview(int reservNo, HttpSession session, Model model) {
 
-		Reservation rv = (Reservation)session.getAttribute("list");
-		System.out.println(rv);
+		//int result = mpService.reviewDeatilForm(reservNo);
 		
-		Reservation r = mpService.selectEnrollFormReview(rv.getReservNo());
+		int result = (int)session.getAttribute("list");
+		
+		if(result > 0) {
+			
+			Review r = mpService.selectEnrollFormReview(reservNo);
+
+			session.setAttribute("r", r);
+			return "guest/myPage/reviewEnrollForm?reservNo=" + reservNo;
+			
+		}else {
+			
+			model.addAttribute("errorMsg", "잘못된 요청입니다. 다시 시도해주세요.");
+			return "common/errorPage";
+		}
+		
 
 			
-			model.addAttribute("r", r);
-			return "guest/myPage/reviewEnrollForm";
-			
-
-	
-		
-	
 		
 	}
 	
@@ -172,6 +179,23 @@ public class MyPageController {
 		return "guest/myPage/reviewEnrollForm";
 	}
 	
+	@RequestMapping("deleteReview.mg")
+	public String deleteMyReview(int reviewNo, HttpSession session, Model model) {
+		
+		int result = mpService.deleteMyReview(reviewNo);
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "게시물이 성공적으로 삭제되었습니다!");
+			return "redirect:myReview.mg";
+			
+		}else {
+			
+			model.addAttribute("errorMsg", "게시물 삭제에 실패하셨습니다. 다시 시도해주세요.");
+			return "common:erroPage";
+			
+		}
+	}
 	
 	
 	
@@ -201,17 +225,16 @@ public class MyPageController {
 	@RequestMapping("deleteQnA.mg")
 	public String deleteMyQna(int qaNo, HttpSession session, Model model) {
 		
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		int result = mpService.deleteMyQna(qaNo, loginUser.getUserId());
+		int result = mpService.deleteMyQna(qaNo);
 		
 		if(result > 0) {
 			
-			session.setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
+			session.setAttribute("alertMsg", "게시물이 성공적으로 삭제되었습니다!");
 			return "redirect:myQna.mg";
 			
 		}else {
 			
-			session.setAttribute("errorMsg", "게시물 삭제에 실패하셨습니다.");
+			model.addAttribute("errorMsg", "게시물 삭제에 실패하셨습니다. 다시 시도해주세요.");
 			return "common/errorPage";
 			
 		}
@@ -238,6 +261,26 @@ public class MyPageController {
 		model.addAttribute("viList", viList);
 		
 		return "guest/myPage/inquiryListView";
+	}
+	
+	
+	
+	@RequestMapping("deleteInquiry.mg")
+	public String deleteMyInquiry(int inquiryNo, HttpSession session, Model model) {
+		
+		int result = mpService.deleteMyInquiry(inquiryNo);
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "게시물이 성공적으로 삭제되었습니다!");
+			return "redirect:myInquiry.mg";
+			
+		}else {
+			
+			model.addAttribute("errorMsg", "게시물 삭제에 실패하셨습니다. 다시 시도해주세요.");
+			return "common/errorPage";
+			
+		}
 	}
 	
 

@@ -285,6 +285,14 @@
 	</select>
 	
 	
+	<update id="deleteMyReview" parameterType="_int">
+		update
+		       review
+		   set review_status='N'
+		 where review_no=#{reviewNo}
+	</update>
+	
+	
 	<!-- QnA -->
 	<select id="selectMyQnaListCount" parameterType="string" resultType="_int">
 		 select
@@ -315,12 +323,11 @@
 		   and qa_status='Y'
 	</select>
 	
-	<update id="deleteMyQna">
+	<update id="deleteMyQna" parameterType="_int">
 		update
 		       question_answer
 		   set qa_status='N'
-		 where user_id=#{userId}
-		  and qa_no=#{qaNo}
+		 where qa_no=#{qaNo}
 	</update>
 	
 	
@@ -351,6 +358,12 @@
 		   and i.status='Y'
 	</select>
 
+	<update id="deleteMyInquiry" parameterType="_int">
+		update
+		       inquiry
+		   set status='N'
+		 where inquiry_no=#{inquiryNo}
+	</update>
 </mapper>
 
 
