@@ -194,6 +194,7 @@
 	   and r.reservation_no = #{reservNo}
 	</select>
 	
+	<!-- 예약취소하기 -->
 	<update id="deleteReserv" parameterType="_int">
 		update
 		        reservation
@@ -202,6 +203,7 @@
 		   and reservation_status like '%예약확정%'
 	</update>
 	
+	<!-- 호스트,공간신고하기 -->
 	<insert id="reportReserv" parameterType="Report">
 		insert
 		  into report
@@ -226,6 +228,10 @@
 		  )
 	</insert>
 	
+	
+	
+	<!-- 이용후기 -->
+	<!-- 이용후기 총게시물 갯수 -->
 	<select id="selectMyReviewListCount" parameterType="string" resultType="_int">
 		 select
 		       count(*)
@@ -235,7 +241,7 @@
 		   and reservation_status like '%이용완료%'
 	</select>
 	
-	
+	<!-- 이용후기 게시물리스트 -->
 	<select id="selectMyReviewList" resultMap="myReviewSet">
 		select
 		       r.reservation_no
@@ -265,6 +271,21 @@
 	</select>
 	
 	
+	<select id="selectEnrollFormReview" parameterType="_int" resultMap="myReviewSet">
+		select
+		        r.reservation_no
+		      , sp.spc_no
+		      , sp.spc_name
+		      , sp.spc_type
+		      , substr(map_location, 0, 7) as map_location
+		  from reservation r
+		  join space_info sp on(r.spc_no=sp.spc_no)
+		 where r.user_id='user01'
+		   and reservation_no=#{reservNo}
+	</select>
+	
+	
+	<!-- QnA -->
 	<select id="selectMyQnaListCount" parameterType="string" resultType="_int">
 		 select
 		       count(*)
@@ -294,6 +315,18 @@
 		   and qa_status='Y'
 	</select>
 	
+	<update id="deleteMyQna">
+		update
+		       question_answer
+		   set qa_status='N'
+		 where user_id=#{userId}
+		  and qa_no=#{qaNo}
+	</update>
+	
+	
+	
+	
+	<!-- 1:1문의 -->
 	<select id="selectMyInquiryListCount" parameterType="string" resultType="_int">
 		 select
 		       count(*)

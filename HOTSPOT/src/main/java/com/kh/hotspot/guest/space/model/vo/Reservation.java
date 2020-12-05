@@ -36,6 +36,7 @@ public class Reservation {
 	private String refund;		//환불계좌
 	private String payMethod;	//결제방법아니야여기..?
 	private String reservStatus;//결제상태(예약확정,결제대기,취소환불,이용완료)
+	private String spcName;		//공간명...
 	
 	private int ReSpcNo;
 	private String ReSpcName;

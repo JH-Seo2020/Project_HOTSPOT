@@ -99,9 +99,9 @@
             </div>
             	<div id="reservation_listArea">
 		            <input type="hidden" name="userId" value="${ loginUser.userId }">
+		            <input type="hidden" name="reserve" value="${ r.reservNo }">
 	            	<c:forEach var="r" items="${ list }">
 		                <div class="reserveInfo">
-		                    <input type="hidden" name="reservNo" id="reservNo" value="${ r.reservNo }">
 						<c:choose>
 			                <c:when test="${ r.reSpcImg != null}">
 			                	<img class="reservation_thumbnail" src="<c:url value='resources/images/spaces/${ r.reSpcImg }'/>">
@@ -160,7 +160,7 @@
 	       	
 	       	$("#reviewBtn").click(function(e){
 	       		e.stopPropagation();  // '후기작성'버튼에 이벤트 버블링 주기
-	       		location.href="enrollReview.mg?reservNo=" + $(".reserveInfo").children("#reservNo").val();
+	       		location.href="enrollFormReview.mg?reservNo=" + $(".reserveInfo").children("#reservNo").val();
 	       	})
 	       </script>
 	       

@@ -13,18 +13,18 @@ import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 public class CommonSpaceSearchDao {
 	
 	// 조회결과수
-	public int selectListCount(String searchWord, SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("spaceSearchMapper.selectListCount", searchWord);
+	public int selectListCount(SpaceInfo spaceInfo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("spaceSearchMapper.selectListCount", spaceInfo);
 	}
 	
 	// 검색결과리스트 조회
-	public ArrayList<SpaceInfo> selectList(String searchWord, PageInfo pageInfo, SqlSessionTemplate sqlSession){
+	public ArrayList<SpaceInfo> selectList(SpaceInfo spaceInfo, PageInfo pageInfo, SqlSessionTemplate sqlSession){
 		
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
 		int limit = pageInfo.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return (ArrayList)sqlSession.selectList("spaceSearchMapper.selectList", searchWord, rowBounds);
+		return (ArrayList)sqlSession.selectList("spaceSearchMapper.selectList", spaceInfo, rowBounds);
 	}
 	
 	// 각 공간별 리뷰수 조회
@@ -35,6 +35,10 @@ public class CommonSpaceSearchDao {
 	// 각 공간별 위시수 조회
 	public int selectWishCount(int spcNo, SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("spaceSearchMapper.selectWishCount", spcNo);
+	}
+	
+	public ArrayList<SpaceInfo> selectSearchCondition(SpaceInfo spaceInfo, SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("spaceSearchMapper.selectSearchCondition", spaceInfo);		
 	}
 
 }

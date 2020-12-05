@@ -44,6 +44,12 @@ public class SpaceInfo {
 	
 	private int reviewCount;	// 공간의 총 리뷰수
 	private int wishCount;		// 공간의 총 위시수
-	
+	private String searchWord;	// 공간검색어
+	private String order;		// 정렬순서
+	private String checkbox0;	// 체크박스
+	private String checkbox1;	// 체크박스 
+	private String checkbox2;	// 체크박스 
+	private String checkbox3;	// 체크박스 
+	private String checkbox4;	// 체크박스 
 
 }

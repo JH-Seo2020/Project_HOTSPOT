@@ -275,5 +275,18 @@ public class SpaceController {
 		}
 		
 	}
+	
+	@RequestMapping("paySuccess.guest")
+	public String paymentSuccess() {
+		
+		return "guest/space/reservSuccessView";
+	}
+	
+	@RequestMapping("payError.guest")
+	public String paymentFail() {
+		
+		return "common/errorPage";
+	}
+	
 
 }

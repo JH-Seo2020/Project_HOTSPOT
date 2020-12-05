@@ -97,7 +97,7 @@
             </div>
             <form id="selections" action="reservation.guest" method="post">
             	<input type="hidden" name="userId" value="${loginUser.userId }" />
-            	<input type="hidden" name="reservName" value="${si.spcName }"/>
+            	<input type="hidden" name="spcName" value="${si.spcName }"/>
             	<input type="hidden" name="spcNo" value="${si.spcNo }"	/>
             	<input type="hidden" name="userIdHost" value="${si.userId }" />
             	<input type="hidden" name="amountTime" value="${si.spcPrice }" />

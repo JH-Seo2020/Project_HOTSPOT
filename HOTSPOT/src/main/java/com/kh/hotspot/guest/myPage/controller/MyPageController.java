@@ -40,7 +40,7 @@ public class MyPageController {
 		ArrayList<Reservation> list = mpService.selectReservList(pi, loginUser.getUserId());
 		
 		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
+		session.setAttribute("list", list);
 		
 		return "guest/myPage/reservationListView";
 
@@ -138,19 +138,32 @@ public class MyPageController {
 		ArrayList<Review> rvList = mpService.selectMyReviewList(pi, loginUser.getUserId());
 		
 		model.addAttribute("pi", pi);
-		//System.out.println(pi);
-		model.addAttribute("rvList", rvList);
-		//System.out.println(rvList);
+		session.setAttribute("rvList", rvList);
 		
 		return "guest/myPage/reviewListView";
 	}
 
-//	@RequestMapping("enrollFormReview.mg")
-//	public String selectEnrollFormReview(int reservNo, HttpSession session, Model model) {
-//		
-//	}
-//	
-//	
+	
+	@RequestMapping("enrollFormReview.mg")
+	public String selectEnrollFormReview(HttpSession session, Model model) {
+
+		Reservation rv = (Reservation)session.getAttribute("list");
+		System.out.println(rv);
+		
+		Reservation r = mpService.selectEnrollFormReview(rv.getReservNo());
+
+			
+			model.addAttribute("r", r);
+			return "guest/myPage/reviewEnrollForm";
+			
+
+	
+		
+	
+		
+	}
+	
+	
 	
 	@RequestMapping("insertReview.mg")
 	public String insertEnrollReview() {
@@ -175,13 +188,34 @@ public class MyPageController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
 		
 		ArrayList<Qna> qnList = mpService.selectMyQnaList(pi, loginUser.getUserId());
+		//qnList.getQaNo.getClass().getName();
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("qnList", qnList);
 		
 		return "guest/myPage/qnaListView";
+		
+		
 	}
-	
+
+	@RequestMapping("deleteQnA.mg")
+	public String deleteMyQna(int qaNo, HttpSession session, Model model) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int result = mpService.deleteMyQna(qaNo, loginUser.getUserId());
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
+			return "redirect:myQna.mg";
+			
+		}else {
+			
+			session.setAttribute("errorMsg", "게시물 삭제에 실패하셨습니다.");
+			return "common/errorPage";
+			
+		}
+	}
 	
 	
 	

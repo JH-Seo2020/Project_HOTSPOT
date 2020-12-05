@@ -43,7 +43,7 @@
 	    border: none;
 	    border-radius: 3px;
 	}
-	#deleteBtn{
+	#reviewDeleteBtn{
 		float: right;
 	    width: 90px;
 	    height: 30px;
@@ -66,6 +66,12 @@
 	    margin-bottom: 15px;
 	    width: 60%;
 	}
+	#reviewAlert{
+		position: relative;
+	    background: rgb(243, 243, 243);
+	    padding: 15px;
+	    margin-top: 35%;
+	}
 	.updateBtn{
 	    width: 70px;
 	    height: 30px;
@@ -73,6 +79,14 @@
 	    color:white;
 	    border: none;
 	    border-radius: 3px
+	}
+	.reSubmitBtn{
+	    width: 90px;
+	    height: 30px;
+	    background:  rgb(145, 37, 247);
+	    color:white;
+	    border: none;
+	    border-radius: 3px;
 	}
 	#paging-area li>a{color: rgb(139, 138, 138)}
 	.useDate{color: rgb(177, 177, 177)}
@@ -134,7 +148,7 @@
 			                                <span><b>제목 : ${ rv.reviewTitle }</b></span> &nbsp;
 			                                <span class="useDate"><small>작성일 : ${ rv.reviewDate }</small></span>
 			                                <button type="button" id="updateBtn" onclick="">수정</button> <br clear="both">
-			                                <button type="button" id="deleteBtn" onclick="" >삭제</button>
+			                                <button type="button" id="reviewDeleteBtn" data-toggle="modal" data-target="#reviewModal">삭제</button>
 			                            </dd>
 			                        </dl>
 			                    </div>
@@ -155,8 +169,6 @@
             </div>
         </div>
         <br><br>
-
-
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
@@ -186,6 +198,29 @@
         </div><br><br><br>
         
     </div>
+    
+    
+    <!-- 리뷰삭제하기 모달 -->
+	<div class="modal" id="reviewModal">
+	   <div class="modal-dialog">
+	        <div id="reviewAlert" class="modal-content">
+	        	<form action="" method="post">
+	        	<input type="hidden" name="reviewNo" value="${ rb.reviewNo }">
+	        <div align="center">
+	            <br>
+	            <h6><b>정말로 삭제하시겠습니까?</b></h6>
+	            <div>
+	                <span><b>삭제하시면 모든 내용은 삭제됩니다.</b></span><br><br>
+	                <button type="submit" class="reSubmitBtn">확인</button> &nbsp;
+	                <button type="button" class="reSubmitBtn" class="close" data-dismiss="modal">취소</button>
+	            </div>
+	        </div>
+	       </form>
+	     </div>
+	   </div>
+	 </div>
+    
+    
 
     <jsp:include page="../../common/footer.jsp"/>
 </body>

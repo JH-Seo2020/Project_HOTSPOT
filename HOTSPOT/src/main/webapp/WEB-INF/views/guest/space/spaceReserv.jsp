@@ -20,6 +20,7 @@
     <form id="reservWrap" action="reservInsert.guest" method="post">
         
         <!-- 같이 넘겨줘야할 정보들 -->
+        <input type="hidden" name="spcName" value="${reserv.spcName }" />
         <input type="hidden" name="userId" value="${reserv.userId }" />
         <input type="hidden" name="spcNo" value="${reserv.spcNo }" />
         <input type="hidden" name="userIdHost" value="${reserv.userIdHost }" />
@@ -41,7 +42,7 @@
             <table class="table table-borderless">
                 <tr>
                     <th scope="row">공간명</th>
-                    <td>${reserv.reservName }</td>
+                    <td>${reserv.spcName }</td>
                 </tr>
                 <tr>
                     <th scope="row">예약일 및 시간</th>
@@ -125,7 +126,7 @@
             <span class="forTitle">결제할 금액</span>
             <hr>
             <span style="font-size: 25px; ">24시간  x ${reserv.amountTime }원 =</span>
-            <span class="forRight">1,344,000원</span> 
+            <span class="forRight">${reserv.amountTime *24 } 원</span> 
         </div>
         <div id="methods">
             <span class="forTitle">결제 방법</span>

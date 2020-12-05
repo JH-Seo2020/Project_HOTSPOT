@@ -39,14 +39,14 @@
     <div id="content">
         <div id="reviewContent">
             <input type="hidden" name="userId" value="${ loginUser.userId }">
-            <input type="hidden" name="reviewNo" value="${ rv.reviewNo }">
+            <input type="hidden" name="reservNo" value="${ r.reservNo }">
             <h2 align="center"><b>이용후기 작성</b></h2>
             <br><hr><br>
             <div id="reviewHeader" style="border: 2px solid rgb(145, 37, 247);">
                 <dl>
-                    <dt><b> 예약번호 : ${ rv.reviewNo }</b></dt><br>
+                    <dt><b> 예약번호 : ${ r.reservNo }</b></dt><br>
                     <dd>
-                        <b style="color: rgb(145, 37, 247);">공간명 : [${ rv.spcType }][${ rv.location }] ${ rv.spcName }</b><br>
+                        <b style="color: rgb(145, 37, 247);">공간명 : [${ r.spcType }][${ r.location }] ${ r.spcName }</b><br>
                         <small> 이용날짜 : ${ rv.useDate }</small>
                     </dd>
                 </dl>

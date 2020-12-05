@@ -20,6 +20,7 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -288,7 +289,6 @@ public class HostController {
 
 	    // 타이틀 
 	    rowCount++;
-	 //   sheet.addMergedRegion(new CellRangeAddress(0,1,0,1)); //열시작, 열종료, 행시작, 행종료
 	    
 	    row = sheet.createRow(rowNo++);
 	    cell = row.createCell(0);
@@ -297,21 +297,21 @@ public class HostController {
 	    cell = row.createCell(1);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("핫스팟 정산내역 보고서 ");
-	    cell = row.createCell(2);
-	    cell.setCellStyle(headStyle);
-	    cell.setCellValue("호스트 아이디: ");
 	    cell = row.createCell(3);
 	    cell.setCellStyle(headStyle);
-	    cell.setCellValue(cal.getUserId());
+	    cell.setCellValue("호스트 아이디: ");
 	    cell = row.createCell(4);
 	    cell.setCellStyle(headStyle);
-	    cell.setCellValue("");
+	    cell.setCellValue(cal.getUserId());
 	    cell = row.createCell(5);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("");
 	    cell = row.createCell(6);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("");
+//	    cell = row.createCell(6);
+//	    cell.setCellStyle(headStyle);
+//	    cell.setCellValue("");
 
 	    // 헤더 생성
 
@@ -445,7 +445,17 @@ public class HostController {
 	    wb.close();
 	
 	}
-	
+	/**
+	 * @author jieun
+	 * @param session
+	 * @param h
+	 * @return 호스트 qna 페이지
+	 */
+	@RequestMapping("hostInquiry.ho")
+	public String hostInquiry(HttpSession session, Model model) {
+		
+		return "host/hostPage/hostInquiry";
+	}
 	/**
 	 * @author jieun
 	 * @param session
@@ -554,7 +564,7 @@ public class HostController {
 		
 	}
 	
-	@RequestMapping("hostInquiry.ho")
+	@RequestMapping("hostInquiryForm.ho")
 	public String hostInquiryForm() {
 		
 		return "host/hostPage/hostInquiryForm";

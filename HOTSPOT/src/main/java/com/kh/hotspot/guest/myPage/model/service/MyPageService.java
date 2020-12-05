@@ -39,32 +39,40 @@ public interface MyPageService {
 	 */
 	// 이용후기리스트 조회용 서비스
 	int selectMyReviewListCount(String userId); // 총게시물 갯수
+	
 	ArrayList<Review> selectMyReviewList(PageInfo pi, String userId);
 	
+	
 	// 이용후기 작성하기 서비스
-	int selectDetailReview(int reviewNo);
+	Reservation selectEnrollFormReview(int reservNo);
+	
 	int insertMyReview(int reservNo);
 	
 	// 이용후기 수정하기 서비스
-	int updateMyReview(int reservNo);
+	int updateMyReview(int reviewNo);
 	
-	//이용후기 수정하기 서비스
-	int deleteMyReview(int reservNo);
+	//이용후기 삭제하기 서비스
+	int deleteMyReview(int reviewNo);
 	
 	
 	// Qna리스트 조회용 서비스 
 	int selectMyQnaListCount(String userId);
+	
 	ArrayList<Qna> selectMyQnaList(PageInfo pi, String userId);
 	
 	// Qna작성하기는 공간에서 가능 그래서 없어두 됨!
 	
 	// Qna삭제하기 서비스
-	int deleteMyQna(int QnaNo);
+	int deleteMyQna(int qaNo, String userId);
 	
 	
 	// 1:1고객문의
 	int selectMyInquiryListCount(String userId);
+	
 	ArrayList<VoicesInquiry> selectMyInquiryList(PageInfo pi, String userId);
+	
+	// 1:1고객문의 작성하기
+	int insertMyInquiry(String userId);
 	
 	
 	// 1:1고객문의 삭제하기 서비스
