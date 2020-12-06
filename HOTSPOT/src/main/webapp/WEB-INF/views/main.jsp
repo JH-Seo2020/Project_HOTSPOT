@@ -131,10 +131,10 @@
 		                	<br>
 		                <c:choose>
 		                	<c:when test="${fn:length(review.reviewCon) gt 30 }">
-		                		<span class="half_background2" style="font-size:13px;">"${review.reviewCon }.."</span>
+		                		<span class="half_background2" style="font-size:13px;">"<c:out value='${review.reviewCon.replaceAll("\\\<.*?\\\>","")}' />.."</span>
 		                	</c:when>
 		                	<c:otherwise>
-		                		<span class="half_background2" style="font-size:13px;">"${review.reviewCon }"</span>
+		                		<span class="half_background2" style="font-size:13px;">"<c:out value='${review.reviewCon.replaceAll("\\\<.*?\\\>","")}' />"</span>
 		                	</c:otherwise>
 		            	</c:choose>
 		            </div>
