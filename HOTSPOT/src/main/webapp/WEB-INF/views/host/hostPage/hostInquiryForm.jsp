@@ -71,12 +71,12 @@
             </span>
         </div>
         <div class="inquiry_content">
-            <form action="" id="insertForm" method="post">
-                <input type="hidden" name="userId" value="">
+            <form action="insertInquiry.ho" id="insertForm" method="post">
+                <input type="hidden" name="inquiryWriter" value="${loginUser.userId }">
                 <h5>문의제목</h5>
-                <input type="text" name="" class="form-control"style="width: 710px;" placeholder="제목"/>
+                <input type="text" name="inquiryTitle" class="form-control"style="width: 710px;" placeholder="제목"/>
                 <h5>문의내용</h5>
-                <textarea id="summernote" name="content"></textarea>
+                <textarea id="summernote" name="inquiryContent"></textarea>
                 <input id="subBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkModal" value="글 작성" style="float: right;" />
 
                   <!-- Modal -->

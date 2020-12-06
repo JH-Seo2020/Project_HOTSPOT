@@ -20,10 +20,12 @@
    <div id="inquiryContainer">
    		<div class="inquiry_head">
    			<p style="color: white; font-size:18px;">1:1 문의 </p>
-   			<div class="myinquiry">
-   				<h4 class="title">나의 문의 내역 </h4>
-   			</div>
-			<button id="writeBtn"class="btn btn-warning"><a href="hostInquiryForm.ho" style="text-decoration:none;color:white;">글쓰기</a></button>
+   			<div class="inquiryTitleBox">
+	   			<div class="myinquiry">
+	   				<h4 class="title">나의 문의 내역 </h4>
+	   			</div>
+				<button id="writeBtn"class="btn btn-warning"><a href="hostInquiryForm.ho" style="text-decoration:none;color:white;">글쓰기</a></button>
+			</div>
    		</div>
    		<div class="inquiry_body" style="background-color:#f5f5f5; margin-top: 150px; border-radius:10px; padding:4px">
    			

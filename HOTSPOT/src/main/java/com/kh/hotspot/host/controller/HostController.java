@@ -20,7 +20,6 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +35,7 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.host.model.service.HostService;
 import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
+import com.kh.hotspot.host.model.vo.Inquiry;
 import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.space.model.vo.Space;
 
@@ -297,6 +297,9 @@ public class HostController {
 	    cell = row.createCell(1);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("핫스팟 정산내역 보고서 ");
+	    cell = row.createCell(2);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("");
 	    cell = row.createCell(3);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("호스트 아이디: ");
@@ -309,54 +312,31 @@ public class HostController {
 	    cell = row.createCell(6);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("");
-//	    cell = row.createCell(6);
-//	    cell.setCellStyle(headStyle);
-//	    cell.setCellValue("");
+	   
 
 	    // 헤더 생성
 
 	    row = sheet.createRow(rowNo++);
-	   
 	    cell = row.createCell(0);
-
 	    cell.setCellStyle(headStyle);
-
 	    cell.setCellValue("결제번호");
-
 	    cell = row.createCell(1);
-
 	    cell.setCellStyle(headStyle);
-
 	    cell.setCellValue("공간명");
-
 	    cell = row.createCell(2);
-
 	    cell.setCellStyle(headStyle);
-
 	    cell.setCellValue("거래일자");
-	    
 	    cell = row.createCell(3);
-
 	    cell.setCellStyle(headStyle);
-
 	    cell.setCellValue("총금액");
-	    
 	    cell = row.createCell(4);
-
 	    cell.setCellStyle(headStyle);
-
 	    cell.setCellValue("수수료");
-	    
 	    cell = row.createCell(5);
-
 	    cell.setCellStyle(headStyle);
-
 	    cell.setCellValue("정산금액");
-	    
 	    cell = row.createCell(6);
-
 	    cell.setCellStyle(headStyle);
-
 	    cell.setCellValue("승인");
 
 	    // 데이터 부분 생성
@@ -447,15 +427,62 @@ public class HostController {
 	}
 	/**
 	 * @author jieun
+	 * @return 
+	 */
+	@RequestMapping("hostInquiryForm.ho")
+	public String hostInquiryForm() {
+		
+		return "host/hostPage/hostInquiryForm";
+	}
+
+	/**
+	 * @author jieun
 	 * @param session
+	 * @param currentPage 
+	 * @param loginUser 
 	 * @param h
-	 * @return 호스트 qna 페이지
+	 * @return 호스트 1:1문의 리스트 조회
 	 */
 	@RequestMapping("hostInquiry.ho")
-	public String hostInquiry(HttpSession session, Model model) {
-		
-		return "host/hostPage/hostInquiry";
+	public String selectInquiry(@RequestParam(value="currentPage", defaultValue="1")HttpSession session, int currentPage) {
+		// 현재 로그인 되어있는 userId 값 가져오기  
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		String userId = loginUser.getUserId();
+		 int listCount = hService.selectInquiryCount(userId);
+//		 PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 2, 4);
+//		 ArrayList<Inquiry> list = hService.selectInquiry(pi,userId);
+//		 
+//		 if(list != null) {
+//			 model.addAttribute("list", list);
+//			 model.addAttribute("pi", pi);
+//			 return "host/hostPage/hostInquiry";
+//		 }else {
+//			 return "common/errorPage";
+//		 }
+		 return "host/hostPage/hostInquiry";
 	}
+	/**
+	 * @author jieun
+	 * @param session
+	 * @param currentPage 
+	 * @param listCount 
+	 * @param h
+	 * @return 호스트1:1문의 작성
+	 */
+	@RequestMapping("insertInquiry.ho")
+	public String insertInquiry(Inquiry inq,HttpSession session, Model model) {
+		
+		int result = hService.insertInquiry(inq);
+		
+		if (result > 0) {
+			session.setAttribute("alertMsg", "1:1문의 작성이 완료 되었습니다.");
+			return "host/hostPage/hostInquiry";
+		}else {
+			session.setAttribute("alertMsg", "1:1문의 작성이 실패하였습니다.");
+			return "common/errorPage";
+		}
+	}
+	
 	/**
 	 * @author jieun
 	 * @param session
@@ -564,15 +591,7 @@ public class HostController {
 		
 	}
 	
-	@RequestMapping("hostInquiryForm.ho")
-	public String hostInquiryForm() {
-		
-		return "host/hostPage/hostInquiryForm";
-	}
-	
-	
-	
-	
+
 	/**
 	 * @author jisu
 	 * @return

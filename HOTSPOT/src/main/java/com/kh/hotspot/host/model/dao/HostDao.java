@@ -11,6 +11,7 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
+import com.kh.hotspot.host.model.vo.Inquiry;
 import com.kh.hotspot.space.model.vo.Space;
 
 @Repository
@@ -74,5 +75,21 @@ public class HostDao {
 
 	public ArrayList<Calculation> selectCalList(SqlSessionTemplate sqlSession, Calculation cal) {
 		return (ArrayList)sqlSession.selectList("hostMapper.selectCalList",cal);
+	}
+
+	public int insertInquiry(SqlSessionTemplate sqlSession, Inquiry inq) {
+		return sqlSession.insert("hostMapper.insertInquiry", inq);
+	}
+
+	public ArrayList<Inquiry> selectInquiry(SqlSessionTemplate sqlSession,PageInfo pi, String userId) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		return (ArrayList)sqlSession.selectList("hostMapper.selectInquiry",userId,rowBounds);
+	}
+
+	public int selectInquiryCount(SqlSessionTemplate sqlSession, String userId) {
+		
+		return sqlSession.selectOne("hostMapper.selectInquiryCount",userId);
 	}
 }

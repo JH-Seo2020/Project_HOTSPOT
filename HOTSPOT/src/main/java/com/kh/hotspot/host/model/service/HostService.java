@@ -6,6 +6,7 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
+import com.kh.hotspot.host.model.vo.Inquiry;
 import com.kh.hotspot.space.model.vo.Space;
 
 
@@ -34,4 +35,11 @@ public interface HostService {
 	ArrayList<Calculation> selectCalAll(Calculation cal);
 	//5_1.공간별 정산 조회 
 	ArrayList<Calculation> selectCalList(Calculation cal);
+	//6. 1:1문의 작성
+	int insertInquiry(Inquiry inq);
+	//6_2. 1:1문의 전체 개수 조회
+	int selectInquiryCount(String userId);
+	//6_3. 1:1 문의 리스트조회
+	ArrayList<Inquiry> selectInquiry(PageInfo pi, String userId);
+
 }

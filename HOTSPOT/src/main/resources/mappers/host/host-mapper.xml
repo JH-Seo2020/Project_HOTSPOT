@@ -61,6 +61,18 @@
 		<result column="spc_name" property="spcName" />
 		<result column="spc_type" property="spcType" />
 	</resultMap> 
+  	<resultMap id="hostInquiryResultSet" type="hostInquiry">
+  		<id column="inquiry_no" property="inquiryNo"/>
+  		<result column="user_id" property="inquiryWriter"/>
+  		<result column="inquiry_title" property="inquiryTitle"/>
+  		<result column="inquiry_content" property="inquiryContent"/>
+  		<result column="inquiry_reply" property="inquiryReply"/>
+  		<result column="reply_status" property="replyStatus"/>
+  		<result column="enroll_date" property="enrollDate"/>
+  		<result column="reply_date" property="replyDate"/>
+  		<result column="status" property="status"/> 	
+  	</resultMap>
+  	
   <insert id="insertHost" parameterType="HostInfo">
 	insert
 	  into host_info
@@ -312,5 +324,42 @@
 		    or reservation_status = '이용완료')
 		  order by pay_date
          	  desc
+  </select>
+  <insert id="insertInquiry" parameterType="Inquiry">
+   insert
+   into inquiry
+        (
+           inquiry_no
+          ,user_id
+          ,inquiry_title
+          ,inquiry_content
+        
+        )
+   values(
+          SEQ_INQUIRY.nextval
+         ,#{inquiryWriter}
+         ,#{inquiryTitle}
+         ,#{inquiryContent}
+         )
+  
+  </insert>
+  <select id="selectInquiryCount" resultType="_int" parameterType="string">
+   select count(*)
+	 from inquiry
+	where user_id = #{userId}
+	 and status ='Y'
+  </select>
+  <select id="selectInauiry" resultMap="hostInquiryResultSet" parameterType="string">
+   select
+  	       inquiry_no
+  	     , user_id
+  	     , inquiry_title
+  	     , inquiry_content
+  	     , inquiry_reply
+  	     , enroll_date
+  	     , reply_date
+  	  from inquiry 
+  	 where status='Y'    
+  	   and user_id = #{userId} 
   </select>
 </mapper>

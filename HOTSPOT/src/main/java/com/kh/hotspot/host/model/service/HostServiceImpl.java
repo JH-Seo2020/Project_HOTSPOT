@@ -11,6 +11,7 @@ import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.dao.HostDao;
 import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
+import com.kh.hotspot.host.model.vo.Inquiry;
 import com.kh.hotspot.space.model.vo.Space;
 
 
@@ -75,5 +76,17 @@ public class HostServiceImpl implements HostService {
 	@Override
 	public ArrayList<Calculation> selectCalList(Calculation cal) {
 		return hDao.selectCalList(sqlSession,cal);
+	}
+	@Override
+	public int insertInquiry(Inquiry inq) {
+		return hDao.insertInquiry(sqlSession,inq);
+	}
+	@Override
+	public ArrayList<Inquiry> selectInquiry(PageInfo pi,String userId) {
+		return hDao.selectInquiry(sqlSession,pi,userId);
+	}
+	@Override
+	public int selectInquiryCount(String userId) {
+		return hDao.selectInquiryCount(sqlSession,userId);
 	}
 }

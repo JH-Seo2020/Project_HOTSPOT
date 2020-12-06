@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class Inquiry {
 	private int inquiryNo;
-	private String inquiryWriter;
+	private String inquiryWriter; // 작성자 아이디
 	private String inquiryTitle;
 	private String inquiryContent;
 	private String inquiryReply;
