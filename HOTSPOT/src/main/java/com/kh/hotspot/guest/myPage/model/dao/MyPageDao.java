@@ -12,6 +12,7 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 @Repository
@@ -95,9 +96,13 @@ public class MyPageDao {
 	}
 	
 	
-	public Reservation selectEnrollFormReview(SqlSessionTemplate sqlSession, int reservNo) {
-		return sqlSession.selectOne("mypageMapper.selectEnrollFormReview", reservNo);
+	public Reservation selectReviewEnrollForm(SqlSessionTemplate sqlSession, int reservNo) {
+		return sqlSession.selectOne("mypageMapper.selectReviewEnrollForm", reservNo);
 		
+	}
+	
+	public int insertMyReview(SqlSessionTemplate sqlSession, Review rv) {
+		return sqlSession.insert("mypageMapper.insertMyReview", rv);
 	}
 	
 	
@@ -155,6 +160,22 @@ public class MyPageDao {
 		return sqlSession.update("mypageMapper.deleteMyInquiry", inquiryNo);
 	}
 	
+	
+	/**
+	 * 찜한공간
+	 */
+	public int selectMyWishListCount(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("mypageMapper.selectMyWishListCount", userId);
+	}
+	
+	public ArrayList<SpaceInfo> selectMyWishList(SqlSessionTemplate sqlSession, PageInfo pi, String userId){
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyWishList", userId, rowBounds);
+	}
 	
 }
 

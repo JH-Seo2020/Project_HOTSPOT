@@ -62,7 +62,7 @@
 		margin-right: 110px;
 		border-radius: 30px;
 	}
-	#reviewBtn{
+	.reviewBtn{
 		float: right;
 	    width: 90px;
 	    height: 30px;
@@ -99,9 +99,9 @@
             </div>
             	<div id="reservation_listArea">
 		            <input type="hidden" name="userId" value="${ loginUser.userId }">
-		            <input type="hidden" name="reserve" value="${ r.reservNo }">
 	            	<c:forEach var="r" items="${ list }">
 		                <div class="reserveInfo">
+		            		<input type="hidden" name="reserve" id="reservNo" value="${ r.reservNo }">
 						<c:choose>
 			                <c:when test="${ r.reSpcImg != null}">
 			                	<img class="reservation_thumbnail" src="<c:url value='resources/images/spaces/${ r.reSpcImg }'/>">
@@ -124,7 +124,7 @@
 		                        </c:choose>
 		                        <span class="statusRable">${ r.reservStatus }</span>
 		                        <c:if test="${ r.reservStatus eq '이용완료' }">
-		                        	<button type="button" id="reviewBtn">후기 작성</button>
+		                        	<button type="button" class="reviewBtn" value="${ r.reservNo }">후기 작성</button>
 		                        </c:if>
 		                    </div>
 		                </div><br>
@@ -158,14 +158,12 @@
 	       		})
 	       	});
 	       	
-	       	$("#reviewBtn").click(function(e){
+	       	$(".reviewBtn").click(function(e){
 	       		e.stopPropagation();  // '후기작성'버튼에 이벤트 버블링 주기
-	       		location.href="enrollFormReview.mg?reservNo=" + $(".reserveInfo").children("#reservNo").val();
+	       		location.href="enrollFormReview.mg?reservNo=" + $(".reviewBtn").val();
+	       		
 	       	})
 	       </script>
-	       
-	       
-	       
 	       
 
         <div id="paging-area" align="center">

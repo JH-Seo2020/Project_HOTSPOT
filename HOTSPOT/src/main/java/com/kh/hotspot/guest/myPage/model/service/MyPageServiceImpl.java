@@ -12,6 +12,7 @@ import com.kh.hotspot.guest.myPage.model.dao.MyPageDao;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 @Service
@@ -76,16 +77,14 @@ public class MyPageServiceImpl implements MyPageService{
 
 	
 	@Override
-	public Review selectEnrollFormReview(int reservNo) {
-		return mpDao.selectEnrollFormReview(sqlSession, reservNo);
+	public Reservation selectReviewEnrollForm(int reservNo) {
+		return mpDao.selectReviewEnrollForm(sqlSession, reservNo);
 	}
-	
 	
 
 	@Override
-	public int insertMyReview(int reservNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertMyReview(Review rv) {
+		return mpDao.insertMyReview(sqlSession, rv);
 	}
 
 
@@ -138,7 +137,6 @@ public class MyPageServiceImpl implements MyPageService{
 		return mpDao.selectMyInquiryList(sqlSession, pi, userId);
 	}
 
-
 	
 	@Override
 	public int insertMyInquiry(String userId) {
@@ -149,6 +147,18 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public int deleteMyInquiry(int inquiryNo) {
 		return mpDao.deleteMyInquiry(sqlSession, inquiryNo);
+	}
+
+
+	@Override
+	public int selectMyWishListCount(String userId) {
+		return mpDao.selectMyWishListCount(sqlSession, userId);
+	}
+
+
+	@Override
+	public ArrayList<SpaceInfo> selectMyWishList(PageInfo pi, String userId) {
+		return mpDao.selectMyWishList(sqlSession, pi, userId);
 	}
 
 

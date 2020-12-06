@@ -7,6 +7,7 @@ import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 public interface MyPageService {
@@ -42,11 +43,10 @@ public interface MyPageService {
 	
 	ArrayList<Review> selectMyReviewList(PageInfo pi, String userId);
 	
-	
 	// 이용후기 작성하기 서비스
-	Review selectEnrollFormReview(int reservNo);
-	
-	int insertMyReview(int reservNo);
+	Reservation selectReviewEnrollForm(int reservNo);
+
+	int insertMyReview(Review rv);
 	
 	// 이용후기 수정하기 서비스
 	int updateMyReview(int reviewNo);
@@ -55,17 +55,18 @@ public interface MyPageService {
 	int deleteMyReview(int reviewNo);
 	
 	
+	
+	
 	// Qna리스트 조회용 서비스 
 	int selectMyQnaListCount(String userId);
-	
 	ArrayList<Qna> selectMyQnaList(PageInfo pi, String userId);
-	
-	// Qna작성하기는 공간에서 가능 그래서 없어두 됨!
 	
 	// Qna삭제하기 서비스
 	int deleteMyQna(int qaNo);
 	
 	
+	
+		
 	// 1:1고객문의
 	int selectMyInquiryListCount(String userId);
 	
@@ -80,5 +81,11 @@ public interface MyPageService {
 	
 	
 	
+	/**
+	 * 찜한공간
+	 */
+	int selectMyWishListCount(String userId);
+	
+	ArrayList<SpaceInfo> selectMyWishList(PageInfo pi, String userId);
 
 }

@@ -118,8 +118,9 @@
             <div id="inputReview">
             <input type="hidden" name="userId" value="${ loginUser.userId }">
             <input type="hidden" name="reviewNo" value="${ rv.reviewNo }">
+
             <c:choose>
-            <c:when test="${ !empty spcName }">
+            <c:when test="${ empty rv.spcName }">
 			      <c:forEach var="rv" items="${ rvList }">
 			            <div class="review">
 			                    <div class="reviewInfo">
@@ -128,7 +129,7 @@
 			                            <dd style="margin-bottom: 25px">
 			                                <a href="spaceDetail.guest?spcNo=${ rv.spcNo }"><b>공간명 : [${ rv.spcType }][${ rv.location }] ${ rv.spcName }</b></a><br>
 			                                <small class="useDate"> 이용날짜 : ${ rv.useDate }</small> 
-			                                <button type="button" class="inputBtn" onclick="location.href='enrollReview.mg?reservNo=' + ${ rv.reservNo }">후기 작성</button>
+			                                <button type="button" class="inputBtn" onclick="location.href='enrollFormReview.mg?reservNo=' + ${ rv.reservNo }">후기 작성</button>
 			                            </dd>
 			                        </dl>
 			                    </div>
@@ -137,6 +138,7 @@
 		            </c:when>
 		            
 		            <c:otherwise>
+
 		            	<c:forEach var="rv" items="${ rvList }">
 			                <div class="review">
 			                    <div class="reviewInfo">
@@ -162,8 +164,10 @@
 				                 </c:if>
 			               	</div>
 		                </c:forEach>
+
                		</c:otherwise>
                </c:choose>
+ 
             </div>
         </div>
         <br><br>

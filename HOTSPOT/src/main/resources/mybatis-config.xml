@@ -47,6 +47,8 @@
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Review" alias="myReview" />
 		<typeAlias type="com.kh.hotspot.guest.space.model.vo.Qna" alias="myQna" />
 		<typeAlias type="com.kh.hotspot.guest.voices.model.vo.VoicesInquiry" alias="VoicesInquiry"/>
+		<typeAlias type="com.kh.hotspot.guest.myPage.model.vo.Wish" alias="myWish"/>
+		<typeAlias type="com.kh.hotspot.guest.space.model.vo.SpaceInfo" alias="WishSpaceInfo" />
 	</typeAliases>
 	
 	

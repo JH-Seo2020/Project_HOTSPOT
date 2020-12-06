@@ -54,7 +54,7 @@
   		<result column="SPC_NO" property="spcNo" />
   		<result column="REVIEW_WRITER" property="reviewWriter" />
   		<result column="REVIEW_TITLE" property="reviewTitle" />
-  		<result column="REVIEW_CONTENT" property="reviewCon" jdbcType="CLOB" javaType="java.lang.String"  />
+  		<result column="REVIEW_CONTENT" property="reviewContent" jdbcType="CLOB" javaType="java.lang.String"  />
   		<result column="REVIEW_SCORE" property="reviewScore" />
   		<result column="REVIEW_DATE" property="reviewDate" />
   		<result column="REVIEW_STATUS" property="reviewStatus" />
@@ -97,6 +97,40 @@
   		<result column="reply_date" property="replyDate"/>
   		<result column="status" property="inquiryStatus"/> 	
   	</resultMap>
+	
+	<resultMap id="wishResultSet" type="myWish">
+		<result column="user_id" property="userId"/>
+		<result column="spc_no" property="spcNo"/>
+		<result column="wish_date" property="wishDate"/>
+	</resultMap>
+	
+	<resultMap id="spaceInfoSet" type="WishSpaceInfo">
+  		<id column="SPC_NO" property="spcNo" />
+  		<result column="SPC_NAME" property="spcName" />
+  		<result column="SPC_INT" property="spcInt" />
+  		<result column="SPC_LONG" property="spcLong" />
+  		<result column="SPC_TAG" property="spcTag" />
+  		<result column="SPC_TYPE" property="spcType" />
+  		<result column="SPC_MIN" property="spcMin" />
+  		<result column="SPC_MAX" property="spcMax" />
+  		<result column="SPC_IMG" property="spcImg" />
+  		<result column="SPC_CHIMG" property="spcChimg" />
+  		<result column="SPC_PRICE" property="spcPrice" />
+  		<result column="SPC_HOURS" property="spcHours" />
+  		<result column="SPC_HOLIDAY" property="spcHoliday" />
+  		<result column="SPC_STATUS" property="spcStatus" />
+  		<result column="SPC_CONVN" property="spcConvn" />
+  		<result column="USER_ID" property="userId" />
+  		<result column="MAP_LATITUDE" property="latitude" />
+  		<result column="MAP_LONGITUDE" property="longitude" />
+  		<result column="MAP_LOCATION" property="location" />
+  		<result column="REVIEWS" property="reviews" />
+  		<result column="WISHES" property="wishes" />
+  		<result column="REVIEW_CONTENT" property="reviewCon" jdbcType="CLOB" javaType="java.lang.String" />
+  		<result column="REVIEW_SCORE" property="reviewScore" />
+  		<result column="REVIEW_DATE" property="reviewDate" />
+  	</resultMap>
+	
 	
 	<!-- 로그인한 유저의 예약총게시물 갯수 -->
 	<select id="selectReservListCount" parameterType="string" resultType="_int">
@@ -270,19 +304,42 @@
 		    by r.reservation_no desc
 	</select>
 	
-	
-	<select id="selectEnrollFormReview" parameterType="_int" resultMap="myReviewSet">
+	<select id="selectReviewEnrollForm" parameterType="_int" resultMap="reservationSet">
 		select
 		        r.reservation_no
+		      , r.use_date
 		      , sp.spc_no
 		      , sp.spc_name
 		      , sp.spc_type
 		      , substr(map_location, 0, 7) as map_location
 		  from reservation r
 		  join space_info sp on(r.spc_no=sp.spc_no)
-		 where r.user_id='user01'
-		   and reservation_no=#{reservNo}
+		   and reservation_no=${reservNo}
 	</select>
+	
+	<insert id="insertMyReview" parameterType="Review">
+		insert
+		  into review
+		  (
+		     review_no
+		   , spc_no
+		   , review_writer
+		   , review_title
+		   , review_content
+		   , review_score
+		   , review_date
+		  )
+		  values
+		  (
+		     seq_review.nextval
+		   , #{spcNo}
+		   , #{reviewWriter}
+		   , #{reviewTitle}
+		   , #{reviewContent}
+		   , #{reviewScore}
+		   , sysdate
+		  )
+	</insert>
 	
 	
 	<update id="deleteMyReview" parameterType="_int">
@@ -364,6 +421,56 @@
 		   set status='N'
 		 where inquiry_no=#{inquiryNo}
 	</update>
+	
+	
+	
+	<!-- 찜한공간 -->
+	<select id="selectMyWishListCount" parameterType="string" resultType="_int">
+		select
+		       count(*)
+		  from wish
+		 where user_id=#{userId}
+	</select>
+	
+	
+	<select id="selectMyWishList" parameterType="string" resultMap="spaceInfoSet">
+		select *
+		from (
+		    select * 
+		      from (
+		            select 
+		                   spc_no
+		                 , spc_name
+		                 , map_location
+		                 , spc_type
+		                 , spc_img
+		                 , spc_chimg
+		                 , spc_tag
+		                 , spc_price
+		                 , count(review_no) reviews
+		              from space_info
+		              full outer join review using(spc_no)
+		              where spc_status='Y'
+		              group by spc_no, spc_name, map_location, spc_type, spc_img, spc_chimg, spc_tag, spc_price
+		            )
+		      join (   
+		            select 
+		                   spc_no 
+		                 , count (*) wishes
+		            from wish 
+		            group by spc_no
+		            ) 
+		     using (spc_no)
+		     order 
+		        by reviews desc, wishes desc
+		    )
+	</select>
+	
+	
+	
+	
+	
+	
 </mapper>
 
 

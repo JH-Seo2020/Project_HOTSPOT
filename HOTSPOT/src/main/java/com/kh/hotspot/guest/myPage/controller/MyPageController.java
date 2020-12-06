@@ -18,6 +18,7 @@ import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
+import com.kh.hotspot.guest.space.model.vo.SpaceInfo;
 import com.kh.hotspot.guest.voices.model.vo.VoicesInquiry;
 
 @Controller
@@ -144,40 +145,38 @@ public class MyPageController {
 	}
 
 	
-
+	
 	@RequestMapping("enrollFormReview.mg")
-	public String selectEnrollFormReview(int reservNo, HttpSession session, Model model) {
-
-		//int result = mpService.reviewDeatilForm(reservNo);
+	public String selectReviewEnrollForm(int reservNo, HttpSession session, Model model) {
 		
-		int result = (int)session.getAttribute("list");
+		Reservation r = mpService.selectReviewEnrollForm(reservNo);
 		
-		if(result > 0) {
-			
-			Review r = mpService.selectEnrollFormReview(reservNo);
-
-			session.setAttribute("r", r);
-			return "guest/myPage/reviewEnrollForm?reservNo=" + reservNo;
-			
-		}else {
-			
-			model.addAttribute("errorMsg", "잘못된 요청입니다. 다시 시도해주세요.");
-			return "common/errorPage";
-		}
-		
-
-			
+		model.addAttribute("r", r);
+		return "guest/myPage/reviewEnrollForm";
 		
 	}
-	
 	
 	
 	@RequestMapping("insertReview.mg")
-	public String insertEnrollReview() {
-
+	public String insertMyReview(Review rv, HttpSession session, Model model) {
 		
-		return "guest/myPage/reviewEnrollForm";
+		int result = mpService.insertMyReview(rv);
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "후기가 성공적으로 등록되었습니다!");
+			return "redirect:myReview.mg";
+			
+		}else {
+			
+			model.addAttribute("errorMsg", "후기등록에 실패하셨습니다.");
+			return "common/errorPage";
+			
+		}
+
 	}
+	
+	
 	
 	@RequestMapping("deleteReview.mg")
 	public String deleteMyReview(int reviewNo, HttpSession session, Model model) {
@@ -288,7 +287,18 @@ public class MyPageController {
 	 * 찜한공간 시작
 	 */ 
 	@RequestMapping("myLike.lv")
-	public String selectmyWishList(HttpSession session, Model model) {
+	public String selectMyWishList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int listCount = mpService.selectMyWishListCount(loginUser.getUserId());
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+		
+		ArrayList<SpaceInfo> wishList = mpService.selectMyWishList(pi, loginUser.getUserId());
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("wishList", wishList);
+		
 		return "guest/myPage/likeView";
 	}
 	
