@@ -144,7 +144,7 @@
                     </select>
                 </div>
                 <button type="button" id="payCheck" class="btn btn-warning btn-lg btn-block" style="background-color: lavender; border: none;">예상금액 확인</button><br>
-                <button type="button" id="chatToHost" class="btn btn-warning btn-lg btn-block" style="background-color: orange; border: none;">호스트에게 문의채팅</button>
+                <button type="button" id="chatToHost" class="btn btn-warning btn-lg btn-block" style="background-color: orange; border: none;" onclick="window.open('goChat.guest','_blank','width=800 height=600')">호스트에게 문의채팅</button>
                 <br><br>
                 <span style="color: rebeccapurple; font-weight: bold;">결제정보</span>
                 <hr>
@@ -191,7 +191,7 @@
 		    <%}
 		}%>
 		
-		console.log(days[1]);
+
         
             $( function() {
                 //한글설정
@@ -224,20 +224,23 @@
                 	 beforeShowDay : function(date){
                 		 var day=date.getDay();
                 		 
-                		 for(var i = 0; i < days.length; i++){
-                			 
-                			 switch(days[i]){
-                			 case "0" : return [day != 0]; break;
-                			 case "1" : return [day != 1]; break;
-                			 case "2" : return [day != 2]; break;
-                			 case "3" : return [day != 3]; break;
-                			 case "4" : return [day != 4]; break;
-                			 case "5" : return [day != 5]; break;
-                			 case "6" : return [day != 6]; break;
-                			 }
-                			 
+                		 if(days.length != 0){
+	                		 for(var i = 0; i < days.length; i++){
+	                			 
+	                			 switch(days[i]){
+	                			 case "0" : return [day != 0]; break;
+	                			 case "1" : return [day != 1]; break;
+	                			 case "2" : return [day != 2]; break;
+	                			 case "3" : return [day != 3]; break;
+	                			 case "4" : return [day != 4]; break;
+	                			 case "5" : return [day != 5]; break;
+	                			 case "6" : return [day != 6]; break;
+	                			 }
+	                			 
+	                		 }
+                		 }else{
+                			 return [true];
                 		 }
-                		 
                 	 }
               	});
             	

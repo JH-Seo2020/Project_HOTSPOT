@@ -314,5 +314,9 @@ public class SpaceController {
 		return "common/errorPage";
 	}
 	
+	@RequestMapping("goChat.guest")
+	public String goChat() {
+		return "guest/space/chattingPage";
+	}
 
 }
