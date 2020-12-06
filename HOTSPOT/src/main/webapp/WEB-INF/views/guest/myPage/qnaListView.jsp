@@ -74,7 +74,7 @@
                   <div class="qnaInfo">
                     <input type="hidden" name="userId" value="${ loginUser.userId }">
                         <dl>
-                            <dt><a href="spaceDetail.guest?spcNo=${ q.spaceNo }"><b>공간명 : [${ q.spcType }][${ q.location }] ${ q.spcName }</b></a></dt><br>
+                            <dt><a href="spaceDetail.guest?spcNo=${ q.spaceNo }"><b>공간명 : [${ q.location }][${ q.spcType }] ${ q.spcName }</b></a></dt><br>
                             <dd style="margin-bottom: 25px">
                                 <span> Q: ${ q.qaContent }</span> &nbsp;
                                 <span class="qnaDate"><small>작성일 : ${ q.qaDate }</small></span>

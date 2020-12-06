@@ -111,7 +111,7 @@
 							</c:otherwise>
 			            </c:choose>
 		                    <div>
-		                        <span class="listInfo1">[${ r.reSpcType }][${ r.location }] ${ r.reSpcName }</span><br>
+		                        <span class="listInfo1">[${ r.location }][${ r.reSpcType }] ${ r.reSpcName }</span><br>
 	                        	<span class="listInfo2">${ r. reservDate } ${ r.useTime }시 ~ ${ r.endTime }시, ${ r.totalTime }시간, ${ r.reservTotal }명</span><br><br>
 		                        <c:choose>
 			                        <c:when test="${ r.reservStatus eq '취소환불'}">

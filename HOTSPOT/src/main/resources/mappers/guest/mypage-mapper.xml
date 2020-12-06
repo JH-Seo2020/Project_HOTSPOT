@@ -158,7 +158,7 @@
 		      , spc_img
 		      , spc_chimg
 		      , spc_price
-		      , substr(map_location, 0, 7) as map_location
+		      , substr(map_location, 0, 2) as map_location
 		  from reservation r
 		  join space_info using(spc_no)
         where r.user_id=#{userId}
@@ -182,7 +182,7 @@
 	      , spc_img
 	      , spc_chimg
 	      , spc_price
-	      , substr(map_location, 0, 6) as map_location
+	      , substr(map_location, 0, 2) as map_location
 	  from reservation r
 	  join space_info using(spc_no)
      where r.user_id=#{userId}
@@ -291,7 +291,7 @@
 		     , sp.spc_no
 		     , sp.spc_name
 		     , sp.spc_type
-		     , substr(map_location, 0, 7) as map_location
+		     , substr(map_location, 0, 2) as map_location
 		  from review rv
 		  join space_info sp on(sp.spc_no=rv.spc_no)
 		full outer  
@@ -311,7 +311,7 @@
 		      , sp.spc_no
 		      , sp.spc_name
 		      , sp.spc_type
-		      , substr(map_location, 0, 7) as map_location
+		      , substr(map_location, 0, 2) as map_location
 		  from reservation r
 		  join space_info sp on(r.spc_no=sp.spc_no)
 		   and reservation_no=${reservNo}
@@ -350,6 +350,7 @@
 	</update>
 	
 	
+	
 	<!-- QnA -->
 	<select id="selectMyQnaListCount" parameterType="string" resultType="_int">
 		 select
@@ -373,7 +374,7 @@
 		     , sp.spc_no
 		     , sp.spc_name
 		     , sp.spc_type
-		     , substr(sp.map_location, 0, 7) as map_location
+		     , substr(sp.map_location, 0, 2) as map_location
 		  from question_answer q
 		  join space_info sp on(q.spc_no=sp.spc_no)
 		 where q.user_id=#{userId}
@@ -386,7 +387,6 @@
 		   set qa_status='N'
 		 where qa_no=#{qaNo}
 	</update>
-	
 	
 	
 	
@@ -457,18 +457,16 @@
 		            select 
 		                   spc_no 
 		                 , count (*) wishes
-		            from wish 
+		            from wish
+		           where user_id=#{userId}
 		            group by spc_no
+		            order by wish_date desc
 		            ) 
 		     using (spc_no)
 		     order 
 		        by reviews desc, wishes desc
 		    )
 	</select>
-	
-	
-	
-	
 	
 	
 </mapper>

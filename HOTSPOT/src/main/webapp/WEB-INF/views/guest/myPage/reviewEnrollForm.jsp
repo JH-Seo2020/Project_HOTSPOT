@@ -57,7 +57,7 @@
                 <label for="reviewTitle"><b>제목</b></label> &nbsp;&nbsp;
                 <input type="text" name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;&nbsp;
                 <label for="reviewScore"><b>별점</b></label>
-                <select name="reviewScore" required>
+                <select name="reviewScore" id="reviewScore" required>
                     <option value="5">5점</option>
                     <option value="4">4점</option>
                     <option value="3">3점</option>
@@ -68,7 +68,7 @@
                 <div id="reviewEnrollCotent">
                     <textarea id="summernote" name="reviewContent" style="resize: none;" required ></textarea><br><br>
                     <div class="forMiddle">
-                        <button type="submit" class="reviewBtn">후기등록</button> &nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="reviewBtn">후기 등록</button> &nbsp;&nbsp;&nbsp;
                         <button type="button" class="reviewBtn">취소하기</button>
                     </div>
                 </div>
@@ -95,9 +95,9 @@
    
             
    <script>
-   	$(function(){
-   		$("#reviewScore option:selected").val(); // selected옵션으로 선택한 value값을 요청
-   	});
+   $("#reviewScore").change(function(){
+	   $(this).children("option:selected").val();
+   })
     </script>
         
 

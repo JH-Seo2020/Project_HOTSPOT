@@ -31,7 +31,7 @@
 	    width: 30%; 
 	    height: 80%;
 	}
-	.todaySpace>img{
+	.todaySpace img{
 	    width: 300px;
 	    height: 200px;
 	}
@@ -67,7 +67,7 @@
             <div id="todaySpaceGroup">
               <c:forEach var="w" items="${ wishList }">
                 <div class="todaySpace">
-                    <img src="resources/images/spaces/${ w.spcImg }">
+                    <a href="spaceDetail.guest?spcNo=${ w.spcNo }"><img src="resources/images/spaces/${ w.spcImg }"></a>
                     <div style="font-weight: bold; font-size: 20px;">
                     <c:set var="location" value="${ w.location }"/>
                     <c:set var="location2" value="${fn:substring(location,0,2)}"/>

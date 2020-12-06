@@ -60,7 +60,7 @@
 	.review{
 	    border: 1px solid rgb(218, 218, 218);
 	    background: white;
-	    padding: 25px;
+	    padding: 20px;
 	    padding-inline: 30px;
 	    margin: auto;
 	    margin-bottom: 15px;
@@ -126,8 +126,8 @@
 			                    <div class="reviewInfo">
 			                        <dl>
 			                            <dt> 예약번호 : ${ rv.reservNo }</dt><br>
-			                            <dd style="margin-bottom: 25px">
-			                                <a href="spaceDetail.guest?spcNo=${ rv.spcNo }"><b>공간명 : [${ rv.spcType }][${ rv.location }] ${ rv.spcName }</b></a><br>
+			                            <dd style="margin-bottom: 15px">
+			                                <a href="spaceDetail.guest?spcNo=${ rv.spcNo }"><b>공간명 : [${ rv.location }][${ rv.spcType }] ${ rv.spcName }</b></a><br>
 			                                <small class="useDate"> 이용날짜 : ${ rv.useDate }</small> 
 			                                <button type="button" class="inputBtn" onclick="location.href='enrollFormReview.mg?reservNo=' + ${ rv.reservNo }">후기 작성</button>
 			                            </dd>
@@ -136,9 +136,7 @@
 			               </div>
 		             </c:forEach>
 		            </c:when>
-		            
 		            <c:otherwise>
-
 		            	<c:forEach var="rv" items="${ rvList }">
 			                <div class="review">
 			                    <div class="reviewInfo">
