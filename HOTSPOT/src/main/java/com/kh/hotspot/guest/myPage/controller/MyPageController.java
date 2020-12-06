@@ -178,6 +178,13 @@ public class MyPageController {
 	
 	
 	
+	@RequestMapping("updateReview.mg")
+	public String updateMyReview() {
+		return "guest/myPage/reviewUpdateForm";
+	}
+	
+	
+	
 	@RequestMapping("deleteReview.mg")
 	public String deleteMyReview(int reviewNo, HttpSession session, Model model) {
 		

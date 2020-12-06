@@ -287,7 +287,9 @@
 		     , rv.review_content
 		     , rv.review_date
 		     , rv.review_status
+		     <if test="reviewReply != null">
 		     , rv.review_reply
+		     </if>
 		     , sp.spc_no
 		     , sp.spc_name
 		     , sp.spc_type
@@ -301,7 +303,7 @@
 		   and review_status='Y'
 		   and reservation_status like '%이용완료%'
 		 order 
-		    by r.reservation_no desc
+		    by review_date desc
 	</select>
 	
 	<select id="selectReviewEnrollForm" parameterType="_int" resultMap="reservationSet">
@@ -317,7 +319,7 @@
 		   and reservation_no=${reservNo}
 	</select>
 	
-	<insert id="insertMyReview" parameterType="Review">
+	<insert id="insertMyReview" parameterType="myReview">
 		insert
 		  into review
 		  (

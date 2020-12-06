@@ -34,7 +34,7 @@
 </style>
 </head>
 <body>
-    <jsp:include page="../../common/menubar.jsp"/>
+  <jsp:include page="../../common/menubar.jsp"/>
 
     <div id="content">
         <div id="reviewContent">
@@ -55,7 +55,7 @@
             	<input type="hidden" name="reviewWriter" value="${ loginUser.userId }">
             	<input type="hidden" name="spcNo" value="${ r.spcNo }">
                 <label for="reviewTitle"><b>제목</b></label> &nbsp;&nbsp;
-                <input type="text" name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;&nbsp;
+                <input type="text" name="reviewTitle" id="reviewTitle" value="${ rv.reviewTitle }" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;&nbsp;
                 <label for="reviewScore"><b>별점</b></label>
                 <select name="reviewScore" id="reviewScore" required>
                     <option value="5">5점</option>
@@ -66,9 +66,9 @@
                 </select>
                 <br><br>
                 <div id="reviewEnrollCotent">
-                    <textarea id="summernote" name="reviewContent" style="resize: none;" required ></textarea><br><br>
+                    <textarea id="summernote" name="reviewContent" value="${ rv.reviewContent }" style="resize: none;" required ></textarea><br><br>
                     <div class="forMiddle">
-                        <button type="submit" class="reviewBtn">후기 등록</button> &nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="reviewBtn">수정하기</button> &nbsp;&nbsp;&nbsp;
                         <button type="button" class="reviewBtn" onclick="location.href='myReview.mg'">취소하기</button>
                     </div>
                 </div>
@@ -102,8 +102,8 @@
         
 
 
+
     <!--푸터-->
     <jsp:include page="../../common/footer.jsp"/>
-    
 </body>
 </html>
