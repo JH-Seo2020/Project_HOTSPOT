@@ -41,7 +41,7 @@ public class MyPageDao {
 	
 	public ArrayList<Reservation> alignReservList(SqlSessionTemplate sqlSession, String align, String userId){
 		
-		HashMap<String, String> hmap = new HashMap<String, String>();
+		HashMap<String, String> hmap = new HashMap<>();
 		hmap.put("align", align);
 		hmap.put("userId", userId);
 		return (ArrayList)sqlSession.selectList("mypageMapper.alignReservList", hmap);
@@ -50,7 +50,7 @@ public class MyPageDao {
 	
 	public Reservation selectDetailReserv(SqlSessionTemplate sqlSession, int reservNo, String userId) {
 		
-		HashMap<Object, Object> hmap = new HashMap<Object, Object>();
+		HashMap<Object, Object> hmap = new HashMap<>();
 		hmap.put("reservNo", reservNo);
 		hmap.put("userId", userId);
 		return sqlSession.selectOne("mypageMapper.selectDetailReserv", hmap);
@@ -105,13 +105,13 @@ public class MyPageDao {
 		return sqlSession.insert("mypageMapper.insertMyReview", rv);
 	}
 	
-	public Review selectUpdateMyReviewForm(SqlSessionTemplate sqlSession, Review rv, String userId) {
+	public Review selectUpdateMyReviewForm(SqlSessionTemplate sqlSession, Review rv) {
 		
-		HashMap<Object, Object> hmap = new HashMap<Object, Object>();
-		hmap.put("rv", rv);
-		hmap.put("userId", userId);
+		//HashMap<Object, Object> hmap = new HashMap<>();
+		//hmap.put("rv", rv);
+		//hmap.put("userId", userId);
 		
-		return sqlSession.selectOne("mypageMapper.selectUpdateMyReviewForm", hmap);
+		return sqlSession.selectOne("mypageMapper.selectUpdateMyReviewForm", rv);
 	}
 	
 	
@@ -176,6 +176,12 @@ public class MyPageDao {
 	}
 	
 	
+	public int insertMyInquiry(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.insert("mypageMapper.insertMyInquiry", userId);
+	}
+	
+	
+	
 	/**
 	 * 찜한공간
 	 */
@@ -191,6 +197,8 @@ public class MyPageDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyWishList", userId, rowBounds);
 	}
+	
+	
 	
 }
 

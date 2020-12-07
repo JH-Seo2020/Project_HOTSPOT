@@ -150,7 +150,7 @@
 	                                            
 	        }
      function newWindow(){
-    	 window.open("list.fad");
+    	 window.open("insertInquiryForm.mg");
      }
     </script>
 </body>

@@ -39,20 +39,21 @@
     <div id="content">
         <div id="reviewContent">
             <input type="hidden" name="userId" value="${ loginUser.userId }">
-            <input type="hidden" name="reviewNo" value="${ rv.reviewNo }">
+            <input type="hidden" name="reviewNo" value="${ updateRv.reviewNo }">
             <h2 align="center"><b>이용후기 작성</b></h2>
             <br><hr><br>
             <div id="reviewHeader" style="border: 2px solid rgb(145, 37, 247);">
                 <dl>
-                    <dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
+                    <dt><b> 예약번호 : ${ updateRv.reservNo }</b></dt><br>
                     <dd>
-                        <b style="color: rgb(145, 37, 247);">공간명 : [${ rv.spcType }][${ rv.location }] ${ updateRv.spcName }</b><br>
-                        <small> 이용날짜 : ${ rv.useDate }</small>
+                        <b style="color: rgb(145, 37, 247);">공간명 : [${ updateRv.spcType }][${ updateRv.location }] ${ updateRv.spcName }</b><br>
+                        <small> 이용날짜 : ${ updateRv.useDate }</small>
                     </dd>
                 </dl>
             </div>
             <br><br>
             <form action="updateReview.mg" method="POST">
+            	<input type="hidden" name="userId" value="${ loginUser.userId }">
             	<input type="hidden" name="reviewNo" value="${ updateRv.reviewNo }">
                 <label for="reviewTitle"><b>제목</b></label> &nbsp;&nbsp;
                 <input type="text" name="reviewTitle" id="reviewTitle" value="${ updateRv.reviewTitle }" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;&nbsp;
@@ -66,7 +67,7 @@
                 </select>
                 <br><br>
                 <div id="reviewEnrollCotent">
-                    <textarea id="summernote" name="reviewContent" style="resize: none;" required >${ rv.reviewContent }</textarea><br><br>
+                    <textarea id="summernote" name="reviewContent" style="resize: none;" required >${ updateRv.reviewContent }</textarea><br><br>
                     <div class="forMiddle">
                         <button type="submit" class="reviewBtn">수정하기</button> &nbsp;&nbsp;&nbsp;
                         <button type="button" class="reviewBtn" onclick="location.href='myReview.mg'">취소하기</button>

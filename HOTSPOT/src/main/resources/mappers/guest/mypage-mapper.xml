@@ -372,9 +372,15 @@
 	</select>
 	
 	
-	<select id="updateMyReview" parameterType="myReview">
-	
-	</select>
+	<update id="updateMyReview" parameterType="myReview">
+		update
+		       review
+		   set review_title=#{reviewTitle}
+		     , review_score=#{reviewScore}
+		     , review_content=#{reviewContent}
+		 where review_writer=#{userId}
+		   and review_no=#{reviewNo}
+	</update>
 	
 	
 	<update id="deleteMyReview" parameterType="_int">
@@ -438,9 +444,15 @@
 		select
 		       i.inquiry_no
 		     , i.user_id
+		     <if test="inquiryTitle != null">
 		     , i.inquiry_title
+		     </if>
+		     <if test="inquiryContent != null">
 		     , i.inquiry_content
+		     </if>
+		     <if test="inquiryReply != null">
 		     , i.inquiry_reply
+		     </if>
 		     , i.reply_status
 		     , i.enroll_date
 		     , i.reply_date
@@ -448,6 +460,8 @@
 		  from inquiry i
 		 where i.user_id=#{userId}
 		   and i.status='Y'
+		 order 
+		    by enroll_date desc
 	</select>
 
 	<update id="deleteMyInquiry" parameterType="_int">
@@ -456,6 +470,26 @@
 		   set status='N'
 		 where inquiry_no=#{inquiryNo}
 	</update>
+	
+	<insert id="insertMyInquiry" parameterType="string">
+	insert
+	  into inquiry
+	  (
+	     inquiry_no
+	   , user_id
+	   , inquiry_title
+	   , inquiry_content
+	   , enroll_date
+	  )
+	  values
+	  (
+	     seq_inquiry.nextval
+	   , #{userId}
+	   , #{inquiryTitle}
+	   , #{inquiryContent}
+	   , sysdate
+	  )
+	</insert>
 	
 	
 	

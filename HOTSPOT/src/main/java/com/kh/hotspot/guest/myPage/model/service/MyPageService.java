@@ -49,7 +49,7 @@ public interface MyPageService {
 	int insertMyReview(Review rv);
 	
 	// 이용후기 수정하기 서비스
-	Review selectUpdateMyReviewForm(Review rv, String userId);
+	Review selectUpdateMyReviewForm(Review rv);
 	int updateMyReview(Review rv);
 	
 	//이용후기 삭제하기 서비스
