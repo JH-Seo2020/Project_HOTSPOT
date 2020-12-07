@@ -144,7 +144,7 @@
                     </select>
                 </div>
                 <button type="button" id="payCheck" class="btn btn-warning btn-lg btn-block" style="background-color: lavender; border: none;">예상금액 확인</button><br>
-                <button type="button" id="chatToHost" class="btn btn-warning btn-lg btn-block" style="background-color: orange; border: none;" onclick="window.open('goChat.guest','_blank','width=800 height=600')">호스트에게 문의채팅</button>
+                <button type="button" id="chatToHost" class="btn btn-warning btn-lg btn-block" style="background-color: orange; border: none;" >호스트에게 문의채팅</button>
                 <br><br>
                 <span style="color: rebeccapurple; font-weight: bold;">결제정보</span>
                 <hr>
@@ -191,9 +191,9 @@
 		    <%}
 		}%>
 		
-
         
             $( function() {
+            	
                 //한글설정
                 $.datepicker.regional['ko'] = {
                     closeText: '닫기',
@@ -266,6 +266,16 @@
             			$("#reservBtn").prop('disabled',true);
             		}else{
             			$("#reservBtn").prop('disabled',false);
+            		}
+            	});
+            	
+            	$("#chatToHost").on('click',function(){
+            		if(loginUser == ''){
+            			$("#chatToHost").prop('disabled',true);
+            			alert("로그인 후 이용하세요");
+            		}else{
+            			$("#chatToHost").prop('disabled',false);
+            			window.open('goChat.guest','_blank','width=800 height=600');
             		}
             	});
             	
