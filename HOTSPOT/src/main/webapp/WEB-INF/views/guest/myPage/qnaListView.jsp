@@ -76,7 +76,7 @@
                         <dl>
                             <dt><a href="spaceDetail.guest?spcNo=${ q.spaceNo }"><b>공간명 : [${ q.location }][${ q.spcType }] ${ q.spcName }</b></a></dt><br>
                             <dd style="margin-bottom: 25px">
-                                <span> Q: ${ q.qaContent }</span> &nbsp;
+                                <span>Q : ${ q.qaContent }</span> &nbsp;
                                 <span class="qnaDate"><small>작성일 : ${ q.qaDate }</small></span>
                                 <button class="qnBtn" type="button" value="${ q.qaNo }" id="qnBtn" data-toggle="modal" data-target="#deleteQnAModal">삭제</button>
                             </dd>

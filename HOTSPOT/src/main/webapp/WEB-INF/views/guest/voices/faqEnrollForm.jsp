@@ -61,7 +61,7 @@
 	    margin-top: 3%;
 	}
 	.inquiryBtn{
-	    width: 100px;
+	    width: 130px;
         height: 30px;
         background:  rgb(145, 37, 247);
         color:white;
@@ -92,9 +92,9 @@
             <div id="askContent">
                 <p class="tinyTitle">문의내용</p>
                 <div id="EnrollForm">
-                    <textarea id="summernote" name="inquiryContent" required></textarea><br><br>
+                    <textarea id="summernote" name="inquiryContent" style="resize: none;" required ></textarea><br><br>
                     <div class="forMiddle">
-                        <button class="inquiryBtn" class="btn purple forMiddle" type="submit">문의하기</button>
+                        <button class="inquiryBtn" class="btn purple forMiddle" type="submit">문의하기</button> &nbsp;&nbsp;&nbsp;
                         <button class="inquiryBtn" class="btn btn-secondary forMiddle" onclick="location.href='faq.guest'"> 취소하기 </button>
                     </div>
                 </div>
@@ -105,10 +105,11 @@
     <script>
         $(function(){
             $('#summernote').summernote({
-            placeholder: '내용을 입력하세요',
-            tabsize: 2,
-            height:600,
-            focus: true
+	 	    	placeholder: '내용을 입력하세요',
+                maxHeight : 500,
+                minHeight: 600,
+		        focus: true, 
+		        lang : 'ko-KR'
             });
         });
     </script>

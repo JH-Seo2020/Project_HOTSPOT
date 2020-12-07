@@ -23,7 +23,7 @@
 	}
 	#mainProfile{
 	    font-weight: bold;
-	    font-size: 15px;
+	    font-size: 17px;
 	    color:rgb(80, 80, 80)
 	}
 	#mainProfile div{
@@ -60,6 +60,7 @@
 	    border-radius: 3px;
 	}
 	.serviceBtn:hover{background: rgb(184, 108, 255);}
+	#profileImage .target_img{border-radius:100%}
 </style>
 </head>
 <body>
@@ -75,10 +76,10 @@
                 <div id="profileImage">
                 <c:choose>
 	                <c:when test="${ loginUser.userProfile != null}">
-	                	<img class="target_img" width="150px" height="150px" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>">
+	                	<img class="target_img" width="160px" height="160px" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>">
 					</c:when>
 					<c:otherwise>
-						<img class="target_img" width="150px" height="150px" src="resources/images/profileImage.png" >
+						<img class="target_img" width="160px" height="160px" src="resources/images/profileImage.png" >
 					</c:otherwise>
 	            </c:choose>
 		             <h2 align="center">${ loginUser.userId }</h2>

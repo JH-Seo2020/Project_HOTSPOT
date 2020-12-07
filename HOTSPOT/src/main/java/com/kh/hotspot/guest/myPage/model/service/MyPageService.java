@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
-import com.kh.hotspot.guest.myPage.model.vo.Wish;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
@@ -36,7 +35,7 @@ public interface MyPageService {
 	
 	
 	/**
-	 * 이용후기 / 문의관리
+	 * 이용후기
 	 * 
 	 */
 	// 이용후기리스트 조회용 서비스
@@ -59,6 +58,10 @@ public interface MyPageService {
 	
 	
 	
+	/**
+	 * Q & A
+	 * 
+	 */
 	// Qna리스트 조회용 서비스 
 	int selectMyQnaListCount(String userId);
 	ArrayList<Qna> selectMyQnaList(PageInfo pi, String userId);
@@ -67,15 +70,17 @@ public interface MyPageService {
 	int deleteMyQna(int qaNo);
 	
 	
-	
-		
+	/**
+	 * 1:1고객문의
+	 * 
+	 */
 	// 1:1고객문의
 	int selectMyInquiryListCount(String userId);
 	
 	ArrayList<VoicesInquiry> selectMyInquiryList(PageInfo pi, String userId);
 	
 	// 1:1고객문의 작성하기
-	int insertMyInquiry(String userId);
+	int insertMyInquiry(VoicesInquiry vi);
 	
 	
 	// 1:1고객문의 삭제하기 서비스

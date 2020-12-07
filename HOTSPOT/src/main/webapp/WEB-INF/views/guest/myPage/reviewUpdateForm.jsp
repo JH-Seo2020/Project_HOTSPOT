@@ -86,8 +86,8 @@
 	$(document).ready(function() {
 		  $('#summernote').summernote({
 	 	    	placeholder: '내용을 입력하세요',
-                   maxHeight : 500,
-                   minHeight: 500,
+                maxHeight : 500,
+                minHeight: 500,
 		        focus: true, 
 		        lang : 'ko-KR'
 		  });

@@ -145,8 +145,8 @@ public class MyPageServiceImpl implements MyPageService{
 
 	
 	@Override
-	public int insertMyInquiry(String userId) {
-		return mpDao.insertMyInquiry(sqlSession, userId);
+	public int insertMyInquiry(VoicesInquiry vi) {
+		return mpDao.insertMyInquiry(sqlSession, vi);
 	}
 
 	@Override

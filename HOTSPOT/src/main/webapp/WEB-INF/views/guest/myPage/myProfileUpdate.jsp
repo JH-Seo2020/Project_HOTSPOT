@@ -57,6 +57,7 @@
     border-radius: 3px;
 	}
 	.serviceBtn:hover{background: rgb(184, 108, 255);}
+	#profileImage .target_img{border-radius:100%}
 </style>
 </head>
 <body>
@@ -70,10 +71,10 @@
                  	<input type="hidden" name="userId" value=${ loginUser.userId }>
 	                <c:choose>
 		                <c:when test="${ loginUser.userProfile != null}">
-		                	<img class="target_img" width="150px" height="150px" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>">
+		                	<img class="target_img" width="160px" height="160px" src="<c:url value='resources/images/profile/${ loginUser.userProfile }'/>">
 						</c:when>
 						<c:otherwise>
-							<img class="target_img" width="150px" height="150px" src="resources/images/profileImage.png" >
+							<img class="target_img" width="160px" height="160px" src="resources/images/profileImage.png" >
 						</c:otherwise>
 		            </c:choose>  
                     <h2 align="center">${ loginUser.userId }</h2>
@@ -82,12 +83,12 @@
                  <div id="mainProfile">
                     <div>
                         <label for="userNickName">닉네임</label> &nbsp;&nbsp;&nbsp;
-                        <input type="text" name ="userNickname" id="userNickname" value="${ loginUser.userNickname }"><br>
-                        <span id="checkNickname" style="font-size:0.8em"></span><br><br>
+                        <input type="text" name ="userNickname" id="userNickname" value="${ loginUser.userNickname }" required><br>
+                        <span id="checkNickname" style="font-size:0.8em"></span><br>
 
                         <label for="userEmail">이메일</label> &nbsp;&nbsp;&nbsp;
                         <input type="email" name="userEmail" id="userEmail" value="${ loginUser.userEmail }">
-                        <button type="submit" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">이메일 인증받기</button><br><br>
+                        <!-- <button type="submit" class="serviceBtn" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">이메일 인증받기</button>--><br><br>
 
                         <label for="userPhone">연락처</label>&nbsp;&nbsp;&nbsp;
                         <input type="text" name ="userPhone" id="profilePhone" value="${ loginUser.userPhone }"><br>
@@ -96,23 +97,23 @@
                     <div id="userPwdArea">
                         <span>비밀번호 변경</span><br><br>
                         <label for="userPwd">현재 비밀번호 <br>
-                        	<input type="password" name="userPwd" id="userPwd" style="width: 250px"><br><br>
+                        	<input type="password" name="userPwd" id="userPwd" style="width: 250px" required><br><br>
                         </label>
                         <label for="newUserPwd">새 비밀번호<br>
                         	<!-- <span id="checkUpdatePwd" style="font-size:0.8em; color:rgb(145, 37, 247)">
                         	(숫자, 특문 각 1회 이상,영문은 2개 이상 사용하여<br> 8자리 이상 입력해주세요.)</span><br> -->
-                        	<input type="password" name="newUserPwd" id="newUserPwd" style="width: 250px"><br>
+                        	<input type="password" name="newUserPwd" id="newUserPwd" style="width: 250px" required><br>
                         </label><br>
                         <br>
 
                         <label for="newUserPwdCheck">새 비밀번호 확인 <br>
-                        	<input type="password" id="newUserPwdCheck" style="width: 250px"><br>
-                        	<span id="checkResult" style="font-size:0.8em"></span><br><br>
+                        	<input type="password" id="newUserPwdCheck" style="width: 250px" required><br>
+                        	<span id="checkResult" style="font-size:0.9em"></span><br><br>
                         </label>             
                     </div>
                     <div>마케팅 수신동의 : <br><br>
 
-                                                    이메일   &nbsp;&nbsp;&nbsp;<input type="radio" name="updateEmail" value="yes"> 예
+                                          이메일   &nbsp;&nbsp;&nbsp;<input type="radio" name="updateEmail" value="yes"> 예
                              &nbsp;&nbsp;&nbsp;<input type="radio" name="updateEmail" value="no" checked> 아니오
                              <br>&nbsp;&nbsp;
                         SMS &nbsp;&nbsp;&nbsp;<input type="radio" name="updateSms" value="yes"> 예
@@ -159,7 +160,7 @@
 	    		
 	    		$idInput.keyup(function(){
 	    			
-	    			if($idInput.val().length >= 3){
+	    			if($idInput.val().length >= 2){
 	    				
 	    				$.ajax({
 	    					url:"updateCheckNickname.me",

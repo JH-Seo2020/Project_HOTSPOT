@@ -333,13 +333,7 @@ public class MyPageController {
 	@RequestMapping("insertInquiry.mg")
 	public String insertMyInquiry(VoicesInquiry vi, HttpSession session, Model model) {
 		
-		System.out.println(vi.getInquiryContent());
-		System.out.println(vi.getInquiryTitle());
-		System.out.println(vi.getInquiryWriter());
-		
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		int result = mpService.insertMyInquiry(loginUser.getUserId());
+		int result = mpService.insertMyInquiry(vi);
 		
 		if(result > 0) {
 			
