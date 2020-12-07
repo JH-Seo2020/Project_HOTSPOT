@@ -21,14 +21,14 @@ public interface HostService {
 	//3.호스트정보 수정 
 	int updateHost(HostInfo hi);
 	//4. qna리스트 전체조회(개수)
-	int selectQnaListCount(int spcNo);
+	int selectQnaListCount(String spcName);
 	//4_1. qna리스트 전체조회
-	ArrayList<Qna> selectQnaList(PageInfo pi, int spcNo);
+	ArrayList<Qna> selectQnaList(PageInfo pi, String spcName);
 	//4_2. qna 답글 등록
 	int insertQna(Qna q);
 	//4_3. qna 답변유무 조회
-	ArrayList<Qna> selectAnswerComplete(PageInfo pi, int spcNo);
-	ArrayList<Qna> selectAnswerInComplete(PageInfo pi, int spcNo);
+	ArrayList<Qna> selectAnswerComplete(PageInfo pi, String spcName);
+	ArrayList<Qna> selectAnswerInComplete(PageInfo pi, String spcName);
 	//4_4 qna 삭제
 	int deleteQna(Qna q);
 	//5. 전체 정산 조회
@@ -43,5 +43,6 @@ public interface HostService {
 	ArrayList<Inquiry> selectInquiry(PageInfo pi, String userId);
 	//6_4. 1:1 문의 삭제 
 	int deleteInquiry(int inquiryNo);
+
 
 }

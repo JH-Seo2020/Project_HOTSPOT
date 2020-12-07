@@ -26,11 +26,11 @@
                 <p style="display: block; font-size: 17px;">공간선택</p>
                 <form action="" method="get" id="selectQnaListForm">
                 	
-                    <input type="text" name="spcNo" list="space" class="searchSpace"placeholder="공간을 선택해주세요">
+                    <input type="text" name="spcName" list="space" class="form-control" style="border 3px; solid #d1c4e9;"id="searchSpace" placeholder="공간을 선택해주세요">
                   		
 	                    <datalist id="space"  >
 	                      <c:forEach var="sp" items="${ space }">
-	                        <option class="hiddenSpcNo" value="${sp.spcNo}" label="${sp.spcName}"></option>
+	                        <option class="hiddenSpcNo" value="${sp.spcName}" name="spcName" label="${sp.spcName}"></option>
 	                       </c:forEach>
 	                    </datalist>
                     <input type="image" img src="resources/images/host_images/search.png" onclick="searchSubmit(1);" class="searchIcon"style="width: 25px;height:25px; border:0px;"></input>

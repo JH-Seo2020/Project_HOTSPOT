@@ -74,7 +74,7 @@
             color: gray;
             margin-top: 10px;
         }
-        .searchSpace{
+        #searchSpace{
             border: 3px solid #d1c4e9;
             border-radius: 10px;
             height:37px;

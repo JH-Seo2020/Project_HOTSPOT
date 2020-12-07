@@ -44,13 +44,13 @@ public class HostServiceImpl implements HostService {
 		return space;
 	}
 	@Override
-	public int selectQnaListCount(int spcNo) {
-		int count = hDao.selectQnaListCount(sqlSession,spcNo);
+	public int selectQnaListCount(String spcName) {
+		int count = hDao.selectQnaListCount(sqlSession,spcName);
 		return count;
 	}
 	@Override
-	public ArrayList<Qna> selectQnaList(PageInfo pi,int spcNo) {
-		return hDao.selectQnaList(sqlSession,pi,spcNo);
+	public ArrayList<Qna> selectQnaList(PageInfo pi,String spcName) {
+		return hDao.selectQnaList(sqlSession,pi,spcName);
 		
 	}
 	@Override
@@ -58,12 +58,12 @@ public class HostServiceImpl implements HostService {
 		return hDao.insertQna(sqlSession,q);
 	}
 	@Override
-	public ArrayList<Qna> selectAnswerComplete(PageInfo pi, int spcNo) {
-		return hDao.selectAnswerComplete(sqlSession,pi,spcNo);
+	public ArrayList<Qna> selectAnswerComplete(PageInfo pi,String spcName) {
+		return hDao.selectAnswerComplete(sqlSession,pi,spcName);
 	}
 	@Override
-	public ArrayList<Qna> selectAnswerInComplete(PageInfo pi, int spcNo) {
-		return hDao.selectAnswerIncomplete(sqlSession,pi,spcNo);
+	public ArrayList<Qna> selectAnswerInComplete(PageInfo pi, String spcName) {
+		return hDao.selectAnswerIncomplete(sqlSession,pi,spcName);
 	}
 	@Override
 	public int deleteQna(Qna q) {

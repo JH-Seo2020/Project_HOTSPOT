@@ -34,7 +34,7 @@
 	   					<input type="hidden" name="inquiryNo" value="${ li.inquiryNo }">
 	   				   <div class="question">
 		                    <h4>제목 : ${li.inquiryTitle }</h4><Br>
-		                    <h5 style="margin-right: 200px;">Q. ${ li.inquiryContent}</h5><br>
+		                    <h5 style="margin-right: 200px; font-size:15px;">Q. ${ li.inquiryContent}</h5><br>
 		                    <p class="qdate"style="margin-right: 200px !important;">${ li.enrollDate }</p>
 		                    <button type="submit" style="margin-left: 300px;"id="deleteBtn"class="btn btn-primary">삭제</button>
 		                </div><hr>
@@ -42,11 +42,11 @@
 		                <div class="answer">
 		                    <h4>관리자 답글</h4><br>
 		                    <c:if test="${li.replyStatus eq 'N'}">
-		                    	<h5>답변이 작성 되지 않았습니다.</h5><br>
+		                    	<textarea rows="3"class="form-control" style="width:360px;" readonly>답변이 작성 되지 않았습니다.</textarea><br>
 		                    	<p class="qdate"style="margin-right: 200px !important;">${li.replyDate }</p> 
 		                    </c:if>
 		                    <c:if test="${li.replyStatus eq 'Y' }">
-			                   	<h5>A. 호스트페이지 공간정보관리 에서 하면 됩니다.</h5><br>
+			                   	<textarea rows="3"class="form-control" style="width:360px;" readonly>A. ${li.inquiryReply }</textarea><br>
 			                   	<p class="qdate"style="margin-right: 200px !important;">${li.replyDate }</p> 	
 		        			</c:if>
 		                </div>
