@@ -117,16 +117,15 @@
             <br>
             <div id="inputReview">
             <input type="hidden" name="userId" value="${ loginUser.userId }">
-            <input type="hidden" name="reviewNo" value="${ rv.reviewNo }">
            	<c:forEach var="rv" items="${ rvList }">
                 <div class="review">
                     <div class="reviewInfo">
                         <dl>
-                        	<dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
+                        	<dt id="reservNo">예약번호 : ${ rv.reservNo }</dt><br>
                             <dd style="margin-bottom: 25px">
                                 <span><b>제목 : ${ rv.reviewTitle }</b></span> &nbsp;
                                 <span class="useDate"><small>작성일 : ${ rv.reviewDate }</small></span>
-                                <button type="button" id="updateBtn" onclick="location.href='updateReview.mg'">수정</button> <br clear="both">
+                                <button type="button" id="updateBtn" onclick="location.href='updateReviewForm.mg?reservNo='+ ${rv.reservNo}">수정</button> <br clear="both">
                                 <button type="button" class="reviewDeleteBtn" value="${ rv.reviewNo }" data-toggle="modal" data-target="#reviewModal">삭제</button>
                             </dd>
                         </dl>
@@ -151,6 +150,10 @@
             </div>
         </div>
         <br><br>
+        
+        <script>
+        $()
+        </script>
 
         <div id="paging-area" align="center">
             <ul class="pagination justify-content-center">
@@ -179,7 +182,7 @@
             </ul>
         </div><br><br><br>
     </div>
-    
+
     
 	    <script>
 	    $(function(){

@@ -30,6 +30,7 @@ public class Review {
 	private String profilePath;
 	private String reviewCon;
 	
+	private String userId;
 	private String reservNo; 	   // 예약번호
 	private String reservStatus;
 	private String useDate;  		// 이용날짜

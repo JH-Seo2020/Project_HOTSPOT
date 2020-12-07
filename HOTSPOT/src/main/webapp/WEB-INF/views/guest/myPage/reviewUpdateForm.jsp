@@ -39,23 +39,23 @@
     <div id="content">
         <div id="reviewContent">
             <input type="hidden" name="userId" value="${ loginUser.userId }">
+            <input type="hidden" name="reviewNo" value="${ rv.reviewNo }">
             <h2 align="center"><b>이용후기 작성</b></h2>
             <br><hr><br>
             <div id="reviewHeader" style="border: 2px solid rgb(145, 37, 247);">
                 <dl>
-                    <dt><b> 예약번호 : ${ r.reservNo }</b></dt><br>
+                    <dt><b> 예약번호 : ${ rv.reservNo }</b></dt><br>
                     <dd>
-                        <b style="color: rgb(145, 37, 247);">공간명 : [${ r.reSpcType }][${ r.location }] ${ r.reSpcName }</b><br>
-                        <small> 이용날짜 : ${ r.useDate }</small>
+                        <b style="color: rgb(145, 37, 247);">공간명 : [${ rv.spcType }][${ rv.location }] ${ updateRv.spcName }</b><br>
+                        <small> 이용날짜 : ${ rv.useDate }</small>
                     </dd>
                 </dl>
             </div>
             <br><br>
-            <form action="insertReview.mg" method="POST">
-            	<input type="hidden" name="reviewWriter" value="${ loginUser.userId }">
-            	<input type="hidden" name="spcNo" value="${ r.spcNo }">
+            <form action="updateReview.mg" method="POST">
+            	<input type="hidden" name="reviewNo" value="${ updateRv.reviewNo }">
                 <label for="reviewTitle"><b>제목</b></label> &nbsp;&nbsp;
-                <input type="text" name="reviewTitle" id="reviewTitle" value="${ rv.reviewTitle }" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;&nbsp;
+                <input type="text" name="reviewTitle" id="reviewTitle" value="${ updateRv.reviewTitle }" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;&nbsp;
                 <label for="reviewScore"><b>별점</b></label>
                 <select name="reviewScore" id="reviewScore" required>
                     <option value="5">5점</option>
@@ -66,7 +66,7 @@
                 </select>
                 <br><br>
                 <div id="reviewEnrollCotent">
-                    <textarea id="summernote" name="reviewContent" value="${ rv.reviewContent }" style="resize: none;" required ></textarea><br><br>
+                    <textarea id="summernote" name="reviewContent" style="resize: none;" required >${ rv.reviewContent }</textarea><br><br>
                     <div class="forMiddle">
                         <button type="submit" class="reviewBtn">수정하기</button> &nbsp;&nbsp;&nbsp;
                         <button type="button" class="reviewBtn" onclick="location.href='myReview.mg'">취소하기</button>

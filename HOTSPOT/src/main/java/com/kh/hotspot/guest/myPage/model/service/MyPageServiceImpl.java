@@ -86,12 +86,18 @@ public class MyPageServiceImpl implements MyPageService{
 	public int insertMyReview(Review rv) {
 		return mpDao.insertMyReview(sqlSession, rv);
 	}
+	
+	
+	@Override
+	public Review selectUpdateMyReviewForm(Review rv, String userId) {
+		return mpDao.selectUpdateMyReviewForm(sqlSession, rv, userId);
+	}
+
 
 
 	@Override
-	public int updateMyReview(int reservNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateMyReview(Review rv) {
+		return mpDao.updateMyReview(sqlSession, rv);
 	}
 
 
@@ -160,6 +166,8 @@ public class MyPageServiceImpl implements MyPageService{
 	public ArrayList<SpaceInfo> selectMyWishList(PageInfo pi, String userId) {
 		return mpDao.selectMyWishList(sqlSession, pi, userId);
 	}
+
+
 
 
 	

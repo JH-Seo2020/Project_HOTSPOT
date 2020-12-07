@@ -49,7 +49,8 @@ public interface MyPageService {
 	int insertMyReview(Review rv);
 	
 	// 이용후기 수정하기 서비스
-	int updateMyReview(int reviewNo);
+	Review selectUpdateMyReviewForm(Review rv, String userId);
+	int updateMyReview(Review rv);
 	
 	//이용후기 삭제하기 서비스
 	int deleteMyReview(int reviewNo);

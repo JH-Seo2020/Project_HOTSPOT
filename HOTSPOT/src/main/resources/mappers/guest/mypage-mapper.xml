@@ -68,6 +68,7 @@
   		<result column="spc_name" property="spcName"/>
   		<result column="spc_type" property="spcType"/>
   		<result column="map_location" property="location"/>
+  		<result column="user_id" property="userId"/>
   	</resultMap>
   	
   	 <resultMap id="qnaResultSet" type="myQna">
@@ -342,6 +343,38 @@
 		   , sysdate
 		  )
 	</insert>
+	
+	
+	<select id="selectUpdateMyReviewForm" resultMap="myReviewSet">
+		select
+		       r.reservation_no
+		     , r.use_date
+		     , r.reservation_status
+		     , rv.review_no
+		     , rv.review_writer
+		     , rv.spc_no
+		     , rv.review_title
+		     , rv.review_content
+		     , rv.review_date
+		     , rv.review_status
+		     , rv.review_reply
+		     , sp.spc_name
+		     , sp.spc_type
+		     , substr(map_location, 0, 7) as map_location
+		  from review rv
+		  join space_info sp on(sp.spc_no=rv.spc_no)
+		full outer  
+		      join reservation r on(sp.spc_no=r.spc_no)
+		 where review_writer=#{userId}
+		   and reservation_no=#{reservNo}
+		   and review_no=#{reviewNo}
+		   and reservation_status like '%이용완료%'
+	</select>
+	
+	
+	<select id="updateMyReview" parameterType="myReview">
+	
+	</select>
 	
 	
 	<update id="deleteMyReview" parameterType="_int">

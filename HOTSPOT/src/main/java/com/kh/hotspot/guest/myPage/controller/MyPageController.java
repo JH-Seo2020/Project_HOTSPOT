@@ -178,11 +178,35 @@ public class MyPageController {
 	
 	
 	
-	@RequestMapping("updateReview.mg")
-	public String updateMyReview() {
+	@RequestMapping("updateReviewForm.mg")
+	public String selectUpdateMyReviewForm(Review rv, HttpSession session, Model model) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		Review updateRv = mpService.selectUpdateMyReviewForm(rv, loginUser.getUserId());
+		
+		model.addAttribute("updateRv", updateRv);
 		return "guest/myPage/reviewUpdateForm";
 	}
 	
+	
+	
+	@RequestMapping("updateReview.mg")
+	public String udpateMyReview(Review rv, HttpSession session, Model model) {
+		
+		int result = mpService.updateMyReview(rv);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "수정한 후기가 등록되었습니다.");
+			return "redirect:myReview.mg";
+			
+		}else {
+			model.addAttribute("alertMsg", "후기수정에 실패하셨습니다. 다시 수정해주세요");
+			return "redirect:updateReviewForm.mg";
+			
+		}
+			
+	}
 	
 	
 	@RequestMapping("deleteReview.mg")

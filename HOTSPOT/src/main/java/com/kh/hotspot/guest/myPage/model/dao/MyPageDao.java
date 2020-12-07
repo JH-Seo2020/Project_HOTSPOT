@@ -105,6 +105,21 @@ public class MyPageDao {
 		return sqlSession.insert("mypageMapper.insertMyReview", rv);
 	}
 	
+	public Review selectUpdateMyReviewForm(SqlSessionTemplate sqlSession, Review rv, String userId) {
+		
+		HashMap<Object, Object> hmap = new HashMap<>();
+		hmap.put("rv", rv);
+		hmap.put("userId", userId);
+		
+		return sqlSession.selectOne("mypageMapper.selectUpdateMyReviewForm", hmap);
+	}
+	
+	
+	public int updateMyReview(SqlSessionTemplate sqlSession, Review rv) {
+		return sqlSession.update("mypageMapper.updateMyReview", rv);
+		
+	}
+	
 	
 	public int deleteMyReview(SqlSessionTemplate sqlSession, int reviewNo) {
 		return sqlSession.update("mypageMapper.deleteMyReview", reviewNo);
