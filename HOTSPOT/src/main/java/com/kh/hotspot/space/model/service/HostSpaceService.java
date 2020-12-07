@@ -3,6 +3,7 @@ package com.kh.hotspot.space.model.service;
 import java.util.ArrayList;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.vo.Space;
 import com.kh.hotspot.space.model.vo.SpcImages;
@@ -39,6 +40,12 @@ public interface HostSpaceService {
 	
 	// 상세이미지 등록
 	int insertImages(SpcImages si);
+
+	ArrayList<Reservation> spaceReservationList(String userId);
+
+	//공간정보 업데이트
+	int updateSpace(Space sp, ArrayList<SpcNotes> noteList);
+	
 
 	
 	

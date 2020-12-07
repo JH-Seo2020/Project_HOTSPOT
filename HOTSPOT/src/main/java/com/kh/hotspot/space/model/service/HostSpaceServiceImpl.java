@@ -10,6 +10,7 @@ import com.kh.hotspot.space.model.vo.Space;
 import com.kh.hotspot.space.model.vo.SpcImages;
 import com.kh.hotspot.space.model.vo.SpcNotes;
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.dao.HostSpaceDao;
 
@@ -100,6 +101,31 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 		// TODO Auto-generated method stub
 		return hSpaceDao.selectSearchNoticeList(sqlSession, keyword, pi);
 	}
+
+
+	@Override
+	public ArrayList<Reservation> spaceReservationList(String userId) {
+		// TODO Auto-generated method stub
+		return hSpaceDao.spaceReservationList(sqlSession, userId);
+	}
+
+
+	@Override
+	public int updateSpace(Space sp, ArrayList<SpcNotes> noteList) {
+		
+		int result = hSpaceDao.updateSpace(sqlSession,sp);
+		int result2 = 0;
+		for(int i =0; i<noteList.size(); i++) {
+			result2= hSpaceDao.updateNotes(sqlSession, noteList.get(i));
+		}
+		
+		
+//		if(result == 0 || result2 == 0  ) {
+//			return 0;
+//		}
+		return result;
+	}
+
 
 
 

@@ -131,11 +131,10 @@
 		                </c:when>
 		                <c:otherwise>
 		                	<tr>
-			                  	<th></th>
-			                    <td scope="row">
+			                    <td colspan="3">
 			                        <p style="font-size:20px;">"보여드릴 결과가 없습니다. 다시 검색해보세요."</p>
 			                    </td>
-			                    <td></td>
+			                    
 			                 </tr>
 		                </c:otherwise>
                 	</c:choose>

@@ -73,6 +73,31 @@
   		<result column="status" property="status"/> 	
   	</resultMap>
   	
+  <resultMap id="reservationResultSet" type="Reservation">
+  	<id column="reservation_no" property="reservNo"/>
+  	<result column="user_id" property="userId"/>
+  	<result column="user_id_h" property="userIdHost"/>
+  	<result column="spc_no" property="spcNo"/>
+  	<result column="reservation_date" property="reservDate"/>
+  	<result column="reservation_name" property="reservName"/>
+  	<result column="t_time" property="totalTime"/>
+  	<result column="reservation_total" property="reservTotal"/>
+  	<result column="purpose_type" property="perpose"/>
+  	<result column="use_date" property="useDate"/>
+  	<result column="use_time" property="useTime"/>
+  	<result column="end_date" property="endDate"/>
+  	<result column="end_time" property="endTime"/>
+  	<result column="pay_date" property="payDate"/>
+  	<result column="pay_sum" property="paySum"/>
+  	<result column="refund" property="refund"/>
+  	<result column="pay_method" property="payMethod"/>
+  	<result column="spc_name" property="spcName"/>
+  	<result column="reservation_status" property="reservStatus"/>
+  	<result column="total_time" property="totalTime"/>
+  	<result column="spc_name" property="spcName"/>
+  </resultMap>
+  	
+  	
   <insert id="insertHost" parameterType="HostInfo">
 	insert
 	  into host_info
@@ -361,5 +386,32 @@
   	  from inquiry 
   	 where status='Y'    
   	   and user_id = #{userId} 
+  </select>
+  
+  <select id="spaceReservationList"
+          resultMap="reservationResultSet" parameterType="string">
+  	select
+  		   tion.reservation_no
+  	     , tion.user_id
+  	     , tion.spc_no
+  	     , tion.user_id_h
+  	     , tion.reservation_date
+  	     , tion.reservation_name
+  	     , tion.reservation_total
+  	     , tion.purpose_type
+  	     , tion.use_date
+  	     , tion.use_time
+  	     , tion.end_date
+  	     , tion.end_time
+  	     , tion.pay_date
+  	     , tion.pay_sum
+  	     , tion.refund
+  	     , tion.pay_method
+  	     , tion.reservation_status
+  	     , tion.total_time
+         , ss.spc_name
+  	  from RESERVATION tion left outer join space_info ss 
+  	    on tion.spc_no = ss.spc_no
+     where tion.user_id_h = #{userId}
   </select>
 </mapper>

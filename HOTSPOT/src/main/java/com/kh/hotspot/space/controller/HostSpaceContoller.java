@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.service.HostSpaceService;
 import com.kh.hotspot.space.model.vo.Space;
@@ -172,10 +173,46 @@ public class HostSpaceContoller {
 	 * @return
 	 */
 	@RequestMapping("spaceModify.ho")
-	public String spaceModify(Space sp, HttpSession session) {
-		
-		
-		return null;
+	public String spaceModify(Space sp, MultipartFile upfile, MultipartFile[] upfiles,SpcNotes sn,HttpSession session,Model model) {
+					// 1. 대표 이미지 파일 작업 
+					// 전달 된 파일이 있을 경우 => 파일명 수정 작업 후 업로드 
+					if(!upfile.getOriginalFilename().equals("")) {
+						
+						String changeName = saveFile(upfile,session); 
+						
+						if(changeName != null) {
+							sp.setSpcImg(upfile.getOriginalFilename());
+							sp.setSpcChimg("resources/upFiles/" + changeName);
+						}
+					}
+			
+				// 2. 유의사항 null 체크 및 값 넣어주기 
+					ArrayList<SpcNotes>noteList = new ArrayList();
+					if(sp.getNoteList() != null) {
+						noteList=sp.getNoteList();
+					}
+				// 3. service 호출
+				int result =  hSpaceService.updateSpace(sp,noteList);
+				
+				// 4. 상세이미지 파일작업
+				int imageResult =0;
+				SpcImages si = new SpcImages();
+				if(upfiles.length > 0) {
+				ArrayList changeName = saveFile2(upfiles,session); 
+					if(changeName != null) {
+						for(int i=0; i<upfiles.length; i++) {
+							si.setImgOgImg(upfiles[i].getOriginalFilename());
+							si.setImgChImg("resources/upFiles/" + changeName.get(i));
+							imageResult = hSpaceService.insertImages(si);
+						}
+					}
+				}
+				if(result > 0 && imageResult > 0) {
+					session.setAttribute("alertMsg","공간수정이 성공적으로 완료 되었습니다 :)");
+					return "host/common/hostMain";
+				}else {
+					return "common/errorPage";
+				}
 	}
 	
 	
@@ -268,5 +305,17 @@ public class HostSpaceContoller {
 		
 		return "host/hostPage/hostNoticePage";
 		
+	}
+	
+	@RequestMapping("reservation.ho")
+	public String spaceReservationList(HttpSession session ,Model model) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		String userId = loginUser.getUserId();
+		
+		ArrayList<Reservation> list = hSpaceService.spaceReservationList(userId);
+		model.addAttribute("reservationList", list);
+		
+		return "host/space/spaceReservationList";
 	}
 }
