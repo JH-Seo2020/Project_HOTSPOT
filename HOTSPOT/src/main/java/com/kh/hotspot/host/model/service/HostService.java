@@ -41,5 +41,7 @@ public interface HostService {
 	int selectInquiryCount(String userId);
 	//6_3. 1:1 문의 리스트조회
 	ArrayList<Inquiry> selectInquiry(PageInfo pi, String userId);
+	//6_4. 1:1 문의 삭제 
+	int deleteInquiry(int inquiryNo);
 
 }

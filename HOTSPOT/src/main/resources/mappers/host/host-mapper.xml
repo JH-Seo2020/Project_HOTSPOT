@@ -392,6 +392,13 @@
   	  order
 	     by inquiry_no desc
   </select>
+  <update id="deleteInquiry" parameterType="_int">
+  update
+    inquiry
+    set status = 'N'
+    where inquiry_no = #{inquiryNo}
+  
+  </update>
   
   <select id="spaceReservationList" resultMap="reservationResultSet" parameterType="string">
           

@@ -92,4 +92,9 @@ public class HostDao {
 		
 		return sqlSession.selectOne("hostMapper.selectInquiryCount",userId);
 	}
+
+	public int deleteInquiry(SqlSessionTemplate sqlSession, int inquiryNo) {
+	
+		return sqlSession.update("hostMapper.deleteInquiry", inquiryNo);
+	}
 }

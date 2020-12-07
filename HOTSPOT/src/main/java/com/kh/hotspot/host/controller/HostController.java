@@ -451,7 +451,6 @@ public class HostController {
 		
 		 PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 2, 4);
 		 ArrayList<Inquiry> list = hService.selectInquiry(pi,userId);
-		 System.out.println(list);
 		 if(list != null) {
 			 model.addAttribute("list", list);
 			 model.addAttribute("pi", pi);
@@ -460,6 +459,7 @@ public class HostController {
 			 return "common/errorPage";
 		 }
 	}
+	
 	/**
 	 * @author jieun
 	 * @param session
@@ -480,6 +480,22 @@ public class HostController {
 			session.setAttribute("alertMsg", "1:1문의 작성이 실패하였습니다.");
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping("deleteInquiry.ho")
+	public String insertInquiry(HttpSession session, Model model, int inquiryNo) {
+		
+		int result = hService.deleteInquiry(inquiryNo);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg","1:1문의 삭제가 완료 되었습니다.");
+			return "host/hostPage/hostInquiry";
+		}else {
+			session.setAttribute("alertMsg", "1:1문의 삭제가 실패하였습니다.");
+			return "common/errorPage";
+		}
+	
+		
 	}
 	
 	/**

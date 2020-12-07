@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>핫스팟 호스트페이지</title>
+<meta name="author" content="jieun" />
+<link rel="icon" type="image/png" sizes="132x132" href="resources/images/host_images/logoIcon.png" />
 <link rel="stylesheet" href="resources/css/host/hostmain.css" type="text/css"/>
 </head>
 <body>
