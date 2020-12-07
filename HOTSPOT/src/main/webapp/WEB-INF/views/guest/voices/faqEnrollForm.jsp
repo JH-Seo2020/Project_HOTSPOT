@@ -74,15 +74,15 @@
             </p>
             <hr>
         </div>
-        <form id="askNote">
+        <form action="insertInquiry.mg" method="POST" id="askNote">
             <div id="smallTitle">
                 <p class="tinyTitle">문의제목</p>
-                <input type="text" class="form-control" placeholder="제목을 입력해주세요">
+                <input type="text" name="inquiryTitle" class="form-control" placeholder="제목을 입력해주세요" required>
             </div>
             <div id="askContent">
                 <p class="tinyTitle">문의내용</p>
                 <div method="post" id="EnrollForm">
-                    <textarea id="summernote" name="editordata"></textarea>
+                    <textarea id="summernote" name="inquiryContent" required></textarea>
                     <div class="forMiddle">
                         <button class="btn purple forMiddle" type="submit">문의하기</button>
                         <button class="btn btn-secondary forMiddle"> 취소하기 </button>

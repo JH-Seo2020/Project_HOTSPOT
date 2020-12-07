@@ -28,49 +28,28 @@
 			</div>
    		</div>
    		<div class="inquiry_body" style="background-color:#f5f5f5; margin-top: 150px; border-radius:10px; padding:4px">
+   			<c:forEach var="li" items="${list}">
+	   			<div class="inq_1">
+	   				   <div class="question">
+		                    <h4>제목 : ${li.inquiryTitle }</h4><Br>
+		                    <h5 style="margin-right: 200px;">Q. ${ li.inquiryContent}</h5><br>
+		                    <p class="qdate"style="margin-right: 200px !important;">${ li.enrollDate }</p>
+		                    <button style="margin-left: 300px;"id="deleteBtn"class="btn btn-primary">삭제</button>
+		                </div><hr>
+		                <div class="answer">
+		                    <h4>관리자 답글</h4><br>
+		                    <c:if test="${li.replyStatus eq 'N'}">
+		                    	<h5>답변이 작성 되지 않았습니다.</h5><br>
+		                    	<p class="qdate"style="margin-right: 200px !important;">${li.replyDate }</p> 
+		                    </c:if>
+		                    <c:if test="${li.replyStatus eq 'Y' }">
+			                   	<h5>A. 호스트페이지 공간정보관리 에서 하면 됩니다.</h5><br>
+			                   	<p class="qdate"style="margin-right: 200px !important;">${li.replyDate }</p> 	
+		        			</c:if>
+		                </div>
+	   			</div>
+	   		</c:forEach>
    			
-   			<div class="inq_1">
-   				   <div class="question">
-	                    <h4>제목 : 호스트등록 정보 수정문의</h4><Br>
-	                    <h5 style="margin-right: 200px;">Q. 상호명수정어디서하나요</h5><br>
-	                    <p class="qdate"style="margin-right: 200px !important;">2020-01-01</p>
-	                    <button id="deleteBtn"class="btn btn-primary">삭제</button>
-	                </div><hr>
-	                <div class="answer">
-	                    <h4>관리자 답글</h4><br>
-	                   	<h5>A. 호스트페이지 공간정보관리 에서 하면 됩니다.</h5><br>
-	                   	<p class="qdate"style="margin-right: 200px !important;">2020-01-01</p> 	
-	                   	<!--	<h5>답변이 작성되지 않았습니다.</h5> -->
-	                </div>
-   			</div>
-   				<div class="inq_1">
-   				   <div class="question">
-	                    <h4>제목 : 호스트등록 정보 수정문의</h4><Br>
-	                    <h5 style="margin-right: 200px;">Q. 상호명수정어디서하나요</h5><br>
-	                    <p class="qdate"style="margin-right: 200px !important;">2020-01-01</p>
-	                    <button id="deleteBtn"class="btn btn-primary">삭제</button>
-	                </div><hr>
-	                <div class="answer">
-	                    <h4>관리자 답글</h4><br>
-	                   	<h5>A. 호스트페이지 공간정보관리 에서 하면 됩니다.</h5><br>
-	                   	<p class="qdate"style="margin-right: 200px !important;">2020-01-01</p> 	
-	                   	<!--	<h5>답변이 작성되지 않았습니다.</h5> -->
-	                </div>
-   			</div>
-   				<div class="inq_1">
-   				   <div class="question">
-	                    <h4>제목 : 호스트등록 정보 수정문의</h4><Br>
-	                    <h5 style="margin-right: 200px;">Q. 상호명수정어디서하나요</h5><br>
-	                    <p class="qdate"style="margin-right: 200px !important;">2020-01-01</p>
-	                    <button id="deleteBtn"class="btn btn-primary">삭제</button>
-	                </div><hr>
-	                <div class="answer">
-	                    <h4>관리자 답글</h4><br>
-	                   	<h5>A. 호스트페이지 공간정보관리 에서 하면 됩니다.</h5><br>
-	                   	<p class="qdate"style="margin-right: 200px !important;">2020-01-01</p> 	
-	                   	<!--	<h5>답변이 작성되지 않았습니다.</h5> -->
-	                </div>
-   			</div>
    		
    		</div>
    		<!-- 페이징 처리 -->

@@ -15,19 +15,23 @@ import com.kh.hotspot.host.model.vo.HostInfo;
 public class AdminMemberDao {
 	
 	// 총 회원수 조회
-	public int selectListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("memberMapper.selectListCount");
+	public int selectListCount(Member member, SqlSessionTemplate sqlSession) {
+		
+		System.out.println("userType : " + member.getUserType());
+		System.out.println("userId : " + member.getUserId());
+		
+		return sqlSession.selectOne("memberMapper.selectListCount", member);
 	}
 	
 	// 모든 회원리스트 조회
-	public ArrayList<Member> selectList(SqlSessionTemplate sqlSession, PageInfo pageInfo) {
+	public ArrayList<Member> selectList(Member member, PageInfo pageInfo, SqlSessionTemplate sqlSession) {
 		
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
 		int limit = pageInfo.getBoardLimit();
-		
+
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("memberMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("memberMapper.selectList", member, rowBounds);
 	}
 	
 	// 회원상세정보 조회
@@ -58,6 +62,22 @@ public class AdminMemberDao {
 	// 호스트정보 상태변경(거절)
 	public int updateHostStatusN(String userId, SqlSessionTemplate sqlSession) {
 		return sqlSession.update("memberMapper.updateHostStatusN", userId);
+	}
+	
+	// 검색결과수 조회
+	public int selectSearchCount(Member member, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.selectSearchCount", member);
+	}
+	
+	// 검색결과리스트 조회
+	public ArrayList<Member> selectSearch(Member member, PageInfo pageInfo, SqlSessionTemplate sqlSession){
+		
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
+		int limit = pageInfo.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("memberMapper.selectSearch", member, rowBounds);
 	}
 	
 }

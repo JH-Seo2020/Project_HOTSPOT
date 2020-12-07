@@ -9,10 +9,10 @@ import com.kh.hotspot.host.model.vo.HostInfo;
 public interface AdminMemberService {
 	
 	// 총 회원수 조회
-	int selectListCount();
+	int selectListCount(Member member);
 	
 	// 모든 회원리스트 조회
-	ArrayList<Member> selectList(PageInfo pageInfo);
+	ArrayList<Member> selectList(Member member, PageInfo pageInfo);
 	
 	// 회원상세정보 조회
 	Member selectDetail(String userId);
@@ -31,6 +31,12 @@ public interface AdminMemberService {
 	
 	// 호스트상태 변경
 	int updateHostStatus(String userId, String result);
+	
+	// 검색결과수 조회
+	int selectSearchCount(Member member);
+	
+	// 검색결과리스트 조회
+	ArrayList<Member> selectSearch(Member member, PageInfo pageInfo);
 	
 	
 

@@ -89,8 +89,8 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	
 	@Override
-	public Review selectUpdateMyReviewForm(Review rv, String userId) {
-		return mpDao.selectUpdateMyReviewForm(sqlSession, rv, userId);
+	public Review selectUpdateMyReviewForm(Review rv) {
+		return mpDao.selectUpdateMyReviewForm(sqlSession, rv);
 	}
 
 
@@ -146,8 +146,7 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	@Override
 	public int insertMyInquiry(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mpDao.insertMyInquiry(sqlSession, userId);
 	}
 
 	@Override

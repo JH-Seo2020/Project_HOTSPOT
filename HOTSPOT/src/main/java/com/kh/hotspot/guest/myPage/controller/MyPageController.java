@@ -182,10 +182,11 @@ public class MyPageController {
 	public String selectUpdateMyReviewForm(Review rv, HttpSession session, Model model) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		String userId = loginUser.getUserId();
-		Review updateRv = mpService.selectUpdateMyReviewForm(rv, userId);
-	
-		model.addAttribute("rv",rv);
+		rv.setUserId(loginUser.getUserId());
+
+		
+		Review updateRv = mpService.selectUpdateMyReviewForm(rv);
+		
 		model.addAttribute("updateRv", updateRv);
 		
 		return "guest/myPage/reviewUpdateForm";
@@ -196,7 +197,14 @@ public class MyPageController {
 	@RequestMapping("updateReview.mg")
 	public String udpateMyReview(Review rv, HttpSession session, Model model) {
 		
+		System.out.println(rv.getUserId());
+		System.out.println(rv.getReviewTitle());
+		System.out.println(rv.getReviewContent());
+		System.out.println(rv.getReviewNo());
+		System.out.println(rv.getReviewScore());
+		
 		int result = mpService.updateMyReview(rv);
+		System.out.println(result);
 		
 		if(result > 0) {
 			session.setAttribute("alertMsg", "수정한 후기가 등록되었습니다.");
@@ -313,6 +321,34 @@ public class MyPageController {
 			return "common/errorPage";
 			
 		}
+	}
+	
+	
+	
+	@RequestMapping("insertInquiryForm.mg")
+	public String selectMyInquiryForm() {
+		return "guest/voices/faqEnrollForm";
+	}
+	
+	@RequestMapping("insertInquiry.mg")
+	public String insertMyInquiry(HttpSession session, Model model) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int result = mpService.insertMyInquiry(loginUser.getUserId());
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "작성한 문의가 성공적으로 등록되었습니다.");
+			return "redirect:myInquiry.mg";
+			
+		}else {
+			
+			session.setAttribute("alertMsg", "문의작성에 실패하셨습니다. 다시 작성해주세요");
+			return "redirect:myInquiry.mg";
+			
+		}
+	
 	}
 	
 

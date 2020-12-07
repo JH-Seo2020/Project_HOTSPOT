@@ -24,7 +24,7 @@
 	</select>
 	
 	<!-- 검색내용 없는경우  -->
-	<select id="selectOneFilterList" parameterType="String" resultMap="reviewResultSet">
+	<select id="selectList" parameterType="String" resultMap="reviewResultSet">
 		select
 		       review_no
 		     , spc_no
@@ -34,7 +34,6 @@
 		     , review_date
 		     , review_status
 		  from review
-		 where review_status = #{status}
 		 order by review_date desc
 	</select>
 
@@ -54,4 +53,27 @@
 		 where #{searchOption} like #{searchWord}||'%' and review_status = #{status}
 		 order by review_date desc  
 	</select>
+	
+	<!-- 후기상세 조회 -->
+	<select id="selectDetail" parameterType="_int" resultMap="reviewResultSet">
+		select
+		       review_no
+		     , spc_no
+		     , review_writer
+		     , review_title
+		     , review_content
+		     , review_score
+		     , review_date
+		     , review_status
+		  from review
+		 where review_no = #{reviewNo}
+	</select>
+	
+	<!-- 후기상태 변경 -->
+	<update id="updateStatus" parameterType="_int">
+		update
+		       review
+		   set review_status = 'N'
+		 where review_no = #{reviewNo}
+	</update>
 </mapper>

@@ -125,7 +125,7 @@
                             <dd style="margin-bottom: 25px">
                                 <span><b>제목 : ${ rv.reviewTitle }</b></span> &nbsp;
                                 <span class="useDate"><small>작성일 : ${ rv.reviewDate }</small></span>
-                                <button type="button" id="updateBtn" onclick="location.href='updateReviewForm.mg?reservNo='+ ${rv.reservNo}">수정</button> <br clear="both">
+                                <button type="button" id="updateBtn" onclick="location.href='updateReviewForm.mg?reservNo='+ ${rv.reservNo} + '&reviewNo=' + ${rv.reviewNo}">수정</button> <br clear="both">
                                 <button type="button" class="reviewDeleteBtn" value="${ rv.reviewNo }" data-toggle="modal" data-target="#reviewModal">삭제</button>
                             </dd>
                         </dl>
