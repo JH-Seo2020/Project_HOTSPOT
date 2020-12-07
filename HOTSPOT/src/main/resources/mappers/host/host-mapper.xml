@@ -96,6 +96,28 @@
   	<result column="total_time" property="totalTime"/>
   	<result column="spc_name" property="spcName"/>
   </resultMap>
+  
+  	<resultMap id="myReviewSet" type="myReview">
+  		<id column="REVIEW_NO" property="reviewNo" />
+  		<result column="SPC_NO" property="spcNo" />
+  		<result column="REVIEW_WRITER" property="reviewWriter" />
+  		<result column="REVIEW_TITLE" property="reviewTitle" />
+  		<result column="REVIEW_CONTENT" property="reviewContent" jdbcType="CLOB" javaType="java.lang.String"  />
+  		<result column="REVIEW_SCORE" property="reviewScore" />
+  		<result column="REVIEW_DATE" property="reviewDate" />
+  		<result column="REVIEW_STATUS" property="reviewStatus" />
+  		<result column="REVIEW_REPLY" property="reviewReply" />
+  		<result column="USER_NICKNAME" property="userNickname" />
+  		<result column="USER_PROFILE_C" property="userProfileCh" />
+  		<result column="PROFILE_PATH" property="profilePath" />
+  		<result column="reservation_no" property="reservNo"/>
+  		<result column="reservation_status" property="reservStatus"/>
+  		<result column="use_date" property="useDate"/>
+  		<result column="spc_name" property="spcName"/>
+  		<result column="spc_type" property="spcType"/>
+  		<result column="map_location" property="location"/>
+  		<result column="user_id" property="userId"/>
+  	</resultMap>
   	
   	
   <insert id="insertHost" parameterType="HostInfo">
@@ -429,4 +451,53 @@
      order by
            reservation_date desc
   </select>
+  
+  <update id="ReservationCancle" parameterType="Reservation">
+  	update RESERVATION
+       set RESERVATION_STATUS = '취소환불'
+     where user_id = #{userId}
+       and spc_no = (
+          select spc_no
+            from space_info
+           where spc_name = #{ReSpcName})
+  </update>
+  
+  	<!-- 이용후기 총게시물 갯수 -->
+	<select id="selectMyReviewListCount" parameterType="string" resultType="_int">
+		select
+		       count(*)
+		  from reservation
+		 where user_id_h=#{userId}
+		   and reservation_status like '이용완료'
+	</select>
+	
+	<!-- 이용후기 게시물리스트 -->
+	<select id="selectMyReviewList" resultMap="myReviewSet">
+		select
+		       r.reservation_no
+		     , r.use_date
+		     , r.reservation_status
+		     , rv.review_no
+		     , rv.review_writer
+		     , rv.review_title
+		     , rv.review_content
+		     , rv.review_date
+		     , rv.review_status
+		     <if test="reviewReply != null">
+		     , rv.review_reply
+		     </if>
+		     , sp.spc_no
+		     , sp.spc_name
+		     , sp.spc_type
+		     , substr(map_location, 0, 2) as map_location
+		  from review rv
+		  join space_info sp on(sp.spc_no=rv.spc_no)
+		full outer  
+		      join reservation r on(sp.spc_no=r.spc_no)
+		 where r.user_id_h=#{userId}
+		   and review_status='Y'
+		   and reservation_status like '%이용완료%'
+		 order 
+		    by review_date desc
+	</select>
 </mapper>

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -317,5 +318,44 @@ public class HostSpaceContoller {
 		model.addAttribute("list", list);
 		
 		return "host/space/spaceReservationList";
+	}
+	
+	@RequestMapping("cancle.reservation")
+	public String ReservationCancle(HttpSession session, String guestId, String spcName,Model model) {
+		
+		Member refundUser = (Member) hSpaceService.refundEmail(guestId);
+		
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		String hostEmail = loginUser.getUserEmail();
+		
+		String refundEmail = refundUser.getUserEmail();
+		String userId = loginUser.getUserId();
+		
+		Reservation searchReservation = new Reservation();
+		
+		searchReservation.setUserId(guestId);
+		searchReservation.setReSpcName(spcName);
+		
+
+		int result = hSpaceService.ReservationCancle(searchReservation);
+		
+		if(result >0) {
+			
+			session.setAttribute("alertMsg", "예약이 취소되었습니다!");
+			session.setAttribute("checkNum", hSpaceService.mailSend(session, refundEmail, hostEmail));
+			return "redirect:reservation.ho";
+		
+		}else {
+
+			model.addAttribute("errorMsg", "오류가 발생했습니다.");
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("review.ho")
+	public String hostReview() {
+		
+		return "host/space/reviewHostList";
 	}
 }

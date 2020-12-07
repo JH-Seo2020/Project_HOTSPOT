@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
@@ -96,5 +97,23 @@ public class HostDao {
 	public int deleteInquiry(SqlSessionTemplate sqlSession, int inquiryNo) {
 	
 		return sqlSession.update("hostMapper.deleteInquiry", inquiryNo);
+	}
+
+	public ArrayList<Review> selectMyReviewList(SqlSessionTemplate sqlSession, PageInfo pi, String userId) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);	
+		
+		//HashMap<Object, Object> hmap = new HashMap<>();
+		//hmap.put("reservNo", reservNo);
+		//hmap.put("userId", userId);
+		
+		return (ArrayList)sqlSession.selectList("hostMapper.selectMyReviewList", userId, rowBounds);
+	}
+
+	public int selectMyReviewListCount(SqlSessionTemplate sqlSession, String userId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("hostMapper.selectMyReviewListCount", userId);
 	}
 }

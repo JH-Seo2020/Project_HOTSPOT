@@ -2,7 +2,10 @@ package com.kh.hotspot.space.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.vo.Space;
@@ -45,6 +48,15 @@ public interface HostSpaceService {
 
 	//공간정보 업데이트
 	int updateSpace(Space sp, ArrayList<SpcNotes> noteList);
+
+	//환불 받을 유저 아이디
+	Member refundEmail(String guestId);
+
+	//환불 메일 전송
+	int mailSend(HttpSession session, String refundEmail, String hostEmail);
+
+	//환불메일 전송후 상태 수정
+	int ReservationCancle(Reservation searchReservation);
 	
 
 	
