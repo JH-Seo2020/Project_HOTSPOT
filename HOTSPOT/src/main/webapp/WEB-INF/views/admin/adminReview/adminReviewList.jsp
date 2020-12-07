@@ -88,6 +88,12 @@
     </div>
     <script>
     	$(function(){
+    		// 테이블 행 누를경우
+    		$(".table tbody>tr").click(function(){
+    			// 후기번호 넘기면서 상세화면요청
+    			var reviewNo = $(this).children().eq(0).text();
+    			location.href = "reviewDetail.ad?reviewNo=" + reviewNo; 
+    		});
     		// 검색버튼누를경우
     		$("#btn_reviewSearch").click(function(){
 			var searchOption = $("#select_reviewSearchSelect").val();		// ''/'작성자'/'공간번호'	
