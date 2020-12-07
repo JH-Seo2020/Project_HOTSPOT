@@ -333,6 +333,7 @@
           ,user_id
           ,inquiry_title
           ,inquiry_content
+          ,reply_status
         
         )
    values(
@@ -340,6 +341,7 @@
          ,#{inquiryWriter}
          ,#{inquiryTitle}
          ,#{inquiryContent}
+         ,'N'
          )
   
   </insert>
@@ -349,7 +351,7 @@
 	where user_id = #{userId}
 	 and status ='Y'
   </select>
-  <select id="selectInauiry" resultMap="hostInquiryResultSet" parameterType="string">
+  <select id="selectInquiry" resultMap="hostInquiryResultSet" parameterType="string">
    select
   	       inquiry_no
   	     , user_id
@@ -358,8 +360,11 @@
   	     , inquiry_reply
   	     , enroll_date
   	     , reply_date
+  	     , reply_status
   	  from inquiry 
   	 where status='Y'    
   	   and user_id = #{userId} 
+  	  order
+	     by inquiry_no desc
   </select>
 </mapper>

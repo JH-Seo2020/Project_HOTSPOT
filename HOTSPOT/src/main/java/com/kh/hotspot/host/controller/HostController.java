@@ -214,7 +214,6 @@ public class HostController {
 		cal.setReservDate(reservDate);
 
 		ArrayList<Calculation> list = hService.selectCalAll(cal);
-		System.out.println(list);
 		
 	    // 워크북 생성
 	    Workbook wb = new HSSFWorkbook();
@@ -444,22 +443,22 @@ public class HostController {
 	 * @return 호스트 1:1문의 리스트 조회
 	 */
 	@RequestMapping("hostInquiry.ho")
-	public String selectInquiry(@RequestParam(value="currentPage", defaultValue="1")HttpSession session, int currentPage) {
+	public String selectInquiry(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model) {
 		// 현재 로그인 되어있는 userId 값 가져오기  
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
-		 int listCount = hService.selectInquiryCount(userId);
-//		 PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 2, 4);
-//		 ArrayList<Inquiry> list = hService.selectInquiry(pi,userId);
-//		 
-//		 if(list != null) {
-//			 model.addAttribute("list", list);
-//			 model.addAttribute("pi", pi);
-//			 return "host/hostPage/hostInquiry";
-//		 }else {
-//			 return "common/errorPage";
-//		 }
-		 return "host/hostPage/hostInquiry";
+	    int listCount = hService.selectInquiryCount(userId);
+		
+		 PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 2, 4);
+		 ArrayList<Inquiry> list = hService.selectInquiry(pi,userId);
+		 System.out.println(list);
+		 if(list != null) {
+			 model.addAttribute("list", list);
+			 model.addAttribute("pi", pi);
+			 return "host/hostPage/hostInquiry";
+		 }else {
+			 return "common/errorPage";
+		 }
 	}
 	/**
 	 * @author jieun
@@ -535,7 +534,6 @@ public class HostController {
 		}else {
 			return "fail";
 		}
-		
 	}
 	/**
 	 * @author jieun
@@ -552,7 +550,6 @@ public class HostController {
 		}else {
 			return "fail";
 		}
-		
 	}
 	/**
 	 * @author jieun
@@ -570,7 +567,6 @@ public class HostController {
 		model.addAttribute("list",list);
 	
 		return "host/hostPage/hostQna";
-		
 	}
 	/**
 	 * @author jieun
@@ -616,7 +612,6 @@ public class HostController {
 		
 		return "host/hostPage/hostMyPageModify";
 	}
-	
 	
 	/**
 	 * @author jisu
