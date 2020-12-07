@@ -167,6 +167,12 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
+	@Override
+	public int deleteWish(int spcNo, String userId) {
+		return mpDao.deleteWish(sqlSession, spcNo, userId);
+	}
+
+
 
 
 	

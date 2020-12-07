@@ -198,7 +198,14 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyWishList", userId, rowBounds);
 	}
 	
-	
+	public int deleteWish(SqlSessionTemplate sqlSession, int spcNo, String userId) {
+		
+		HashMap<Object, Object> hmap = new HashMap<>();
+		hmap.put("spcNo", spcNo);
+		hmap.put("userId", userId);
+		
+		return sqlSession.delete("mypageMapper.deleteWish", hmap);
+	}
 	
 }
 

@@ -66,6 +66,7 @@
         <div id="likeSpace">
             <div id="todaySpaceGroup">
               <c:forEach var="w" items="${ wishList }">
+              <input type="hidden" name="userId" value="${ loginUser.userId }">
                 <div class="todaySpace">
                     <a href="spaceDetail.guest?spcNo=${ w.spcNo }"><img src="resources/images/spaces/${ w.spcImg }"></a>
                     <div style="font-weight: bold; font-size: 20px;">
@@ -78,7 +79,7 @@
                         <span style="color: rebeccapurple; font-weight: bold;">${ w.spcPrice }원</span>
                         <span class="badge badge-pill badge-warning">후기 ${ w.reviews }개</span>
                         <span class="badge badge-pill badge-warning">관심 ${ w.wishes }개</span>
-                        <button class="badge badge-pill purple">👾찜해제</button>
+                        <button type="button" class="badge badge-pill purple" onclick="location.href='deleteWish.lv?spcNo=' + ${w.spcNo}">👾찜해제</button>
                     </div>
                 </div>
               </c:forEach>

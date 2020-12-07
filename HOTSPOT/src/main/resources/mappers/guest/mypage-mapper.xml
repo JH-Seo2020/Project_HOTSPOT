@@ -470,24 +470,24 @@
 		 where inquiry_no=#{inquiryNo}
 	</update>
 	
-	<insert id="insertMyInquiry" parameterType="string">
-	insert
-	  into inquiry
-	  (
-	     inquiry_no
-	   , user_id
-	   , inquiry_title
-	   , inquiry_content
-	   , enroll_date
-	  )
-	  values
-	  (
-	     seq_inquiry.nextval
-	   , #{userId}
-	   , #{inquiryTitle}
-	   , #{inquiryContent}
-	   , sysdate
-	  )
+	<insert id="insertMyInquiry" parameterType="VoicesInquiry">
+		insert
+		  into inquiry
+		  (
+		     inquiry_no
+		   , user_id
+		   , inquiry_title
+		   , inquiry_content
+		   , enroll_date
+		  )
+		  values
+		  (
+		     seq_inquiry.nextval
+		   , #{inquiryWriter}
+		   , #{inquiryTitle}
+		   , #{inquiryContent}
+		   , sysdate
+		  )
 	</insert>
 	
 	
@@ -523,11 +523,12 @@
 		            )
 		      join (   
 		            select 
-		                   spc_no 
+		            	   user_id
+		                 , spc_no 
 		                 , count (*) wishes
 		            from wish
 		           where user_id=#{userId}
-		            group by spc_no
+		            group by user_id, spc_no
 		            order by wish_date desc
 		            ) 
 		     using (spc_no)
@@ -536,6 +537,12 @@
 		    )
 	</select>
 	
+	<update id="deleteWish">
+		delete
+		  from wish
+		 where user_id=#{userId}
+		   and spc_no=#{spcNo}
+	</update>
 	
 </mapper>
 

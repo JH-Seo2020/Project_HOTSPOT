@@ -14,6 +14,7 @@
 	    width: 100%;
 	    height: auto;
 	    margin: auto;
+	    margin-top: 40px;
 	}
 	#askWrap div,form{
 	    margin: auto;
@@ -59,6 +60,14 @@
 	    text-align: center;
 	    margin-top: 3%;
 	}
+	.inquiryBtn{
+	    width: 100px;
+        height: 30px;
+        background:  rgb(145, 37, 247);
+        color:white;
+        border: none;
+        border-radius: 3px
+	}
 </style>
 </head>
 <body>
@@ -83,10 +92,10 @@
             <div id="askContent">
                 <p class="tinyTitle">문의내용</p>
                 <div id="EnrollForm">
-                    <textarea id="summernote" name="inquiryContent" required></textarea>
+                    <textarea id="summernote" name="inquiryContent" required></textarea><br><br>
                     <div class="forMiddle">
-                        <button class="btn purple forMiddle" type="submit">문의하기</button>
-                        <button class="btn btn-secondary forMiddle"> 취소하기 </button>
+                        <button class="inquiryBtn" class="btn purple forMiddle" type="submit">문의하기</button>
+                        <button class="inquiryBtn" class="btn btn-secondary forMiddle" onclick="location.href='faq.guest'"> 취소하기 </button>
                     </div>
                 </div>
             </div>

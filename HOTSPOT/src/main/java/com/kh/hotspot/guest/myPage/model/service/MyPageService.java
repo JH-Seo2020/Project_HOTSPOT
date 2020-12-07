@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.hotspot.admin.model.vo.Report;
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.myPage.model.vo.Wish;
 import com.kh.hotspot.guest.space.model.vo.Qna;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.space.model.vo.Review;
@@ -88,5 +89,7 @@ public interface MyPageService {
 	int selectMyWishListCount(String userId);
 	
 	ArrayList<SpaceInfo> selectMyWishList(PageInfo pi, String userId);
+	
+	int deleteWish(int spcNo, String userId);
 
 }
