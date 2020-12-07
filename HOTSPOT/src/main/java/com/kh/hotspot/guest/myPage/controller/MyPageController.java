@@ -129,14 +129,18 @@ public class MyPageController {
 	 * 이용후기 리스트 조회 서비스
 	 */
 	@RequestMapping("myReview.mg")
-	public String selectMyReviewList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model) {
+	public String selectMyReviewList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model, String userId) {
 		
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		int listCount = mpService.selectMyReviewListCount(loginUser.getUserId());
+		if(userId == null) {
+			// 맨 처음 페이지 들어올때
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			userId = loginUser.getUserId();
+		}
+		int listCount = mpService.selectMyReviewListCount(userId);
+		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
 
-		ArrayList<Review> rvList = mpService.selectMyReviewList(pi, loginUser.getUserId());
+		ArrayList<Review> rvList = mpService.selectMyReviewList(pi, userId);
 		
 		model.addAttribute("pi", pi);
 		session.setAttribute("rvList", rvList);
@@ -197,11 +201,11 @@ public class MyPageController {
 	@RequestMapping("updateReview.mg")
 	public String udpateMyReview(Review rv, HttpSession session, Model model) {
 		
-		System.out.println(rv.getUserId());
-		System.out.println(rv.getReviewTitle());
-		System.out.println(rv.getReviewContent());
-		System.out.println(rv.getReviewNo());
-		System.out.println(rv.getReviewScore());
+//		System.out.println(rv.getUserId());
+//		System.out.println(rv.getReviewTitle());
+//		System.out.println(rv.getReviewContent());
+//		System.out.println(rv.getReviewNo());
+//		System.out.println(rv.getReviewScore());
 		
 		int result = mpService.updateMyReview(rv);
 		System.out.println(result);
@@ -330,8 +334,14 @@ public class MyPageController {
 		return "guest/voices/faqEnrollForm";
 	}
 	
+	
+	
 	@RequestMapping("insertInquiry.mg")
-	public String insertMyInquiry(HttpSession session, Model model) {
+	public String insertMyInquiry(VoicesInquiry vi, HttpSession session, Model model) {
+		
+		System.out.println(vi.getInquiryContent());
+		System.out.println(vi.getInquiryTitle());
+		System.out.println(vi.getInquiryWriter());
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		

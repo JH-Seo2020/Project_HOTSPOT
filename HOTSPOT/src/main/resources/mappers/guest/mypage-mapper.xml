@@ -268,12 +268,11 @@
 	<!-- 이용후기 -->
 	<!-- 이용후기 총게시물 갯수 -->
 	<select id="selectMyReviewListCount" parameterType="string" resultType="_int">
-		 select
+		select
 		       count(*)
-		  from review rv
-		  join reservation r on(rv.spc_no=r.spc_no)
-		 where review_writer=#{userId}
-		   and reservation_status like '%이용완료%'
+		  from reservation
+		 where user_id=#{userId}
+		   and reservation_status like '이용완료'
 	</select>
 	
 	<!-- 이용후기 게시물리스트 -->
