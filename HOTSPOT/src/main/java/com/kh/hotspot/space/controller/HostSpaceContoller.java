@@ -314,7 +314,7 @@ public class HostSpaceContoller {
 		String userId = loginUser.getUserId();
 		
 		ArrayList<Reservation> list = hSpaceService.spaceReservationList(userId);
-		model.addAttribute("reservationList", list);
+		model.addAttribute("list", list);
 		
 		return "host/space/spaceReservationList";
 	}
