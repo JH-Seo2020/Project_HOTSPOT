@@ -401,8 +401,8 @@
   
   </update>
   
-  <select id="spaceReservationList"
-          resultMap="reservationResultSet" parameterType="string">
+  <select id="spaceReservationList" resultMap="reservationResultSet" parameterType="string">
+          
   	select
   		   tion.reservation_no
   	     , tion.user_id
@@ -426,5 +426,8 @@
   	  from RESERVATION tion left outer join space_info ss 
   	    on tion.spc_no = ss.spc_no
      where tion.user_id_h = #{userId}
+       and rownum &lt; 10
+     order by
+           reservation_date desc
   </select>
 </mapper>

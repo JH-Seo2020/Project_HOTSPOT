@@ -1,179 +1,189 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<!--부트스트랩-->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<!--제이쿼리-->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- 메뉴바 css -->
-<link rel="stylesheet" href="resources/css/guest/menubar.css" type="text/css"/>
-<!-- 구글폰트 -->
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&amp;display=swap" rel="stylesheet">
-<!-- JavaScript -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<!-- alertify cdn -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<link rel="stylesheet" href="resources/css/host/hostmenubar.css" type="text/css"/>
+<link rel="stylesheet" href="resources/css/host/hostcalculate.css" type="text/css"/>
 
 <style>
-    #noticeWrap{
-        width: 100%;
-        height: auto;
-        margin: auto;
-    }
-    #noticeWrap div,form{
-        margin: auto;
-    }
-    #noticeTitle{
-        text-align: center;
-        font-weight: bold;
-        font-size: 30px;
-        padding-top:3%;
-    }
-    #noticeSearch{
-        width: 1200px;
-        height: auto;
-        margin-top: 4%;
-        margin-bottom: 4%;
-    }
-    #noticeSpace{
-        width: 1200px;
-        height: auto;
-        padding: 2% 2%;
-        background-color: white;
-    }
-    table>thead,tbody>tr>th,td{text-align:center;}
-   
-    #pagination{
-        text-align: center;
-        padding: 4% 0;
-    }
-    #pagination>button{
-        border: none;
-        background-color: rebeccapurple;
-        color: white;
-    }
-    /*기타 css*/
-    .purple{
-        background-color: rebeccapurple;
-        color: white;
-        border: white;
-    }
-    .purple:hover{
-    	color:gray;
-    }
-    .black{
-        color: black !important;
-        text-decoration: none !important;
-        font-weight: lighter;
-    }
-    .disabled{
-    	disabled:true;
-    	background-color: black;
-    }
+.result{
+	color:red;
+}
 </style>
+</head>
 <body>
-	<jsp:include page="../common/hostMenubar.jsp" />
-	<jsp:include page="../common/subMenubar.jsp"/>
+<jsp:include page="../common/hostMenubar.jsp" />
+	
 
+<jsp:include page="../common/subMenubar.jsp" />
+	 <div id="calculate_container">
+        <div class="container1">
+            <div class="container1_head" >
+                <p style="color: white; font-size:17px;">호스트 공간 예약 내역</p>
+            </div>
+            <div class="container2" style="height:700px"> <!--스크롤 테스트 삭제예정-->
+                <div class="container2_title">
+                	<c:if test="${ list != null }">
+                   		 <h5 style="font-size:18px;margin-top: 40px;margin-bottom:70px;">최근 10건의 예약내역 입니다.</h5>
+                   		 <br>
+                   		 <span>그 이후 내역들은 정산기능을 이용해 주세요</span>
+                    </c:if>
+                </div>
+                <c:choose>
+                    	<c:when test="${list!=null}">
+			               
+			                 <table id="paymentList" class="table table-hover" align="center">
+			                     <thead>
+			                       <tr>
+			                         <th>구분</th>
+			                         <th>결제번호</th>
+			                         <th>공간명</th>
+			                         <th>거래일자</th>
+			                         <th>총금액</th>
+			                         <th>수수료</th>
+			                         <th>정산금액</th>
+			                         <th>승인</th>
+			                         <th>결제 취소</th>
+			                       </tr>
+			                     </thead>
+			                     <tbody>
+			                      <c:set var="total" value="0"/>
+			                      <c:set var="fee" value="0"/>
+			                      <c:set var="Allsuccess" value="0"/>
+			                      <c:set var="cancel" value="0"/>
+			                      <c:set var="Ctotal" value="0"/>
+			                      <c:set var="Cfee" value="0"/>
+			                      <c:set var="calcalte" value="0"/>
+			                     <c:forEach var="li" items="${list }" varStatus="status">
+			                         <tr>
+			                            <td>${ status.count }</td>
+			                            <td>${li.reservNo}</td>
+			                            <td>${li.spcName }</td>
+			                            <td class="payDate">${li.payDate }</td>
+			                            <td class="paySum"><fmt:formatNumber  pattern="#.##" value="${li.paySum}" ></fmt:formatNumber><p>원</p></td>
+			                            <td> <fmt:formatNumber  pattern="#.##" value="${li.paySum*0.1}" ></fmt:formatNumber><p>원</p></td>
+			                            <td><fmt:formatNumber  pattern="#.##" value="${li.paySum- li.paySum/10}" ></fmt:formatNumber><p>원</p></td>
+			                            <td class="reservStatus">${li.reservStatus }</td>
+			                            <c:if test="${li.reservStatus eq '예약확정' }">
+			                            <td><button class="btn btn-primary" id="reservationCancle" data-toggle="modal" data-target="#myModal" >결제 취소</button> </td>
+			                            </c:if>
+			                            
+			                            <c:set var="Allsuccess" value="${ Allsuccess + 1 }"/>
+			                            <c:if test="${li.reservStatus eq '이용완료' }">
+			                            	 <c:set var="success" value="${ success + 1 }"/>
+			                            </c:if>
+			                            <c:if test="${ li.reservStatus eq '취소환불' }">
+			                           		<c:set var="cancel" value="${ cancel + 1 }"/>
+			                           		<c:set var="Ctotal" value="${ Ctotal + li.paySum}"/>
+			                           		<c:set var="Cfee" value="${ Cfee + li.paySum*0.1}"/>
+			                           		<c:set var="Cresult" value="${ Ctotal - Cfee}"/>
+			                            </c:if>
+			                         </tr>
+			                        	<c:set var= "total" value="${total + li.paySum}"/>
+			                        	<c:set var="fee" value="${fee + li.paySum*0.1 }"/>
+			                        	
+			                        	<script>
+			                            function emailSend(){
+			                                    $.ajax({
+			                                        type:"POST",
+			                                        url:"cancle.reservation",
+			                                        data:{guestId:${li.userId}},
+			                                        success : function(data){
+			                        					  alert('메일이 전송되었습니다.')
+			                                        },error : function(e){
+			                                            alert('오류입니다. 다시 시도해주십시오.')
+			                                        }
+			                                    });
 
-	<div style="position: absolute; top: 50px; left: 300px;" aling="center">
-    <div id="noticeWrap">
-        <div id="noticeTitle">
-            <p>호스트 공간 예약 내역</p>
+			                            }
+			                        	
+			                        	</script>
+			                        </c:forEach>
+			                         <tr class="resultHead">
+			                             <th></th>
+			                             <th></th>
+			                             <th></th>
+			                             <th></th>
+			                             <th>총금액</th>
+			                             <th>수수료</th>
+			                             <th>정산금액</th>
+			                             <th>총결제/취소</th>
+			                         </tr>
+			                         </tbody>
+			                        
+			                         <tr class="result">
+			                            <td>합계</td>
+			                            <td></td>
+			                            <td></td>
+			                            <td></td>
+			                            <td></td>
+		                             	<td id="allPrice"><c:out value="${total - Ctotal}"/>원</td>
+			                            <td id="fees"><fmt:formatNumber pattern="#.##"  value="${fee - Cfee}" ></fmt:formatNumber>원</td>
+			                            <td id="price"><fmt:formatNumber pattern="#.##" value="${total - Cresult - fee}"/>원</td>
+			                            <td id="count">총<c:out value="${Allsuccess }"/>건/ <c:out value="${cancel }"/>건</td>
+			                         </tr>
+			                         <tr>
+			                       
+			                         </tr>
+				                   
+			                 </table>
+			                  <div class="payment" stlye="top:212px;">
+			                     <div class="payment_clear">이용완료: <p><c:out value="${success }"/></p> </div>
+			                     <div class="payment_cancel">취소 :  <c:out value="${cancel }"/></div>
+			                 </div>
+			                 
+	                	 </c:when>
+	                   <c:otherwise>
+		                          <tr>
+		                          	<td>예약내역이 존재하지 않습니다. </td>
+		                          </tr>
+		               </c:otherwise>
+	              </c:choose>
+	          </div>
         </div>
+    </div>
+    
+    <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
         
-        <div id="noticeSpace" style="margin-left: 450px;">
-            <table style="border-collapse: separate; border-spacing: 30px;">
-                <thead >
-                  <tr>
-                  	<th>구분</th>
-                    <th>아이디</th>
-                    <th>공간명</th>
-                    <th>거래일자</th>
-                    <th>이용시간</th>
-                    <th>총금액</th>
-                    <th>상태</th>
-                    <th>결제 취소</th>
-                  </tr>
-                </thead>
-                <tbody>
-                	<c:choose>
-                		<c:when test="${!empty reservationList }">
-		                	<c:forEach var="rl" items="${reservationList }">
-				                  <tr>
-				                  	<th>${rl.reservNo }</th>
-                                    <td>${rl.userId }</td>
-									<td>${rl.spcName }</td>
-                                    <td>${rl.payDate}</td>
-                                    <td>${rl.totalTime}</td>
-                                    <td>${rl.paySum}</td>
-                                    <td>${rl.reservStatus}</td>
-                                    
-                                    <td><button class="btn btn-primary">결제 취소</button></td>
-				                  </tr>
-		                	</c:forEach>  
-		                </c:when>
-		                <c:otherwise>
-		                	<tr>
-			                  	<th></th>
-			                    <td colspan="8">
-			                        <p style="font-size:20px;">"등록하신 공간이 없거나 예약 인원이 없습니다"</p>
-			                    </td>
-			                    <td></td>
-			                 </tr>
-		                </c:otherwise>
-                	</c:choose>
-                </tbody>
-              </table>
-              <br><br><br>
-              <table style="border-collapse: separate; border-spacing: 30px;">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>총 금액</th>
-                        <th>수수료</th>
-                        <th>정산 금액</th>
-                        <th>총 결제</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr>
-                        <td>합계</td>
-                        <c:forEach var="i" items="${ reservationList }">
-                        	<c:set var="sum" value="${i.paySum + sum }"/>
-                        </c:forEach>
-                        	<td>${sum }원</td>
-                        <c:set var="pay" value="${sum/10 }"/>
-                        <td> ${pay }원 </td>
-                        <td>${sum - pay}원</td>
-                        <td>총 1 건</td>
-                    </tr>
-
-                </tbody>
-
-              </table>
+        <div class="modal-header">
+          <h4 class="modal-title">이메일 인증</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        
-   </div>
-	</div>
+  
+       
+        <div class="modal-body">
+        	<p>주의!</p> 정말로 결제를 취소하시겠습니까? 확인 버튼을 누르시면 자동으로 결제 취소 이메일이 사용자에게 전송됩니다.
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-danger" onclick="emailSend()"></button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
 
+    
+<script>                 
+	$(function(){
+		$("#hiddenTable").hide();
+		
+	
+	});
+	function searchSubmit(){
+		$("#calForm").attr("action","selectCalculate.ho").submit();
+	}
 
-	<jsp:include page="../../common/footer.jsp" />
+	</script>
 </body>
 </html>
