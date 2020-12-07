@@ -30,12 +30,15 @@
    		<div class="inquiry_body" style="background-color:#f5f5f5; margin-top: 150px; border-radius:10px; padding:4px">
    			<c:forEach var="li" items="${list}">
 	   			<div class="inq_1">
+	   			<form action="deleteInquiry.ho" method="post">
+	   					<input type="hidden" name="inquiryNo" value="${ li.inquiryNo }">
 	   				   <div class="question">
 		                    <h4>제목 : ${li.inquiryTitle }</h4><Br>
 		                    <h5 style="margin-right: 200px;">Q. ${ li.inquiryContent}</h5><br>
 		                    <p class="qdate"style="margin-right: 200px !important;">${ li.enrollDate }</p>
-		                    <button style="margin-left: 300px;"id="deleteBtn"class="btn btn-primary">삭제</button>
+		                    <button type="submit" style="margin-left: 300px;"id="deleteBtn"class="btn btn-primary">삭제</button>
 		                </div><hr>
+		         </form>
 		                <div class="answer">
 		                    <h4>관리자 답글</h4><br>
 		                    <c:if test="${li.replyStatus eq 'N'}">

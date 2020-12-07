@@ -4,9 +4,11 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>핫스팟 호스트페이지</title>
+<link rel="icon" type="image/png" sizes="132x132" href="resources/images/host_images/logoIcon.png" />
 <!-- 구글폰트  -->
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&amp;display=swap" rel="stylesheet">
 <!-- jQuery 라이브러리 -->
