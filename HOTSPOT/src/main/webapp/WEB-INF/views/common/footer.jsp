@@ -50,11 +50,9 @@
                 이메일 : yeok3@gmail.com<br>
                 전화번호 : 02-1253-8253(평일 오후 6시까지, 공휴일은 쉼)<br>
                 <br>
-                <!--<c:if test="${loginUser != null }">
-                	<c:if test="${loginUser.userId == 'admin' }">-->
-                		<button class="badge badge-pill badge-warning" onclick="location.href='main.ad'">관리자페이지로 이동</button>
-               		<!--</c:if>
-               	</c:if>-->
+                <c:if test="${ loginUser.userType eq 'admin' }">
+                	<button class="badge badge-pill badge-warning" onclick="location.href='main.ad'">관리자페이지로 이동</button>	
+                </c:if>               
             </div>
         </div>
         <div id="footerNotice">

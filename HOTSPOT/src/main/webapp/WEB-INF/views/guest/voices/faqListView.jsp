@@ -67,7 +67,9 @@
               </table>
         </div>
         <div id="ask">
-            <button class="forRight btn purple" type="button" onclick="chatBot();">챗봇으로 물어보기</button> 
+        	<c:if test="${ loginUser ne null }">
+            	<button class="forRight btn purple" type="button" onclick="chatBot();">챗봇으로 물어보기</button>
+            </c:if> 
         </div>
         <div id="pagination">
 
