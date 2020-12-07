@@ -38,7 +38,7 @@
         padding: 10px;
     }
     #reservation_listArea>div:hover{
-        box-shadow: 3px 3px 3px 3px rgb(207, 207, 207);
+        box-shadow: 1px 1px 2px 2px rgb(207, 207, 207);
         cursor:pointer;
     }
     .reserveInfo{
@@ -74,6 +74,7 @@
 	    margin-right: 7px;
 		border-radius: 30px;
 	}
+	.reviewBtn:hover{background: rgb(184, 108, 255)}
 </style>
 </head>
 <body>

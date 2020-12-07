@@ -33,37 +33,37 @@ public class HostDao {
 	public ArrayList<Space> selectSpaceList(SqlSessionTemplate sqlSession, String userId) {
 		return (ArrayList)sqlSession.selectList("hostMapper.selectSpaceList", userId);
 	}
-	public int selectQnaListCount(SqlSessionTemplate sqlSession, int spcNo) {
-		return sqlSession.selectOne("hostMapper.selectQnaListCount",spcNo);
+	public int selectQnaListCount(SqlSessionTemplate sqlSession, String spcName) {
+		return sqlSession.selectOne("hostMapper.selectQnaListCount",spcName);
 	}
-	public ArrayList<Qna> selectQnaList(SqlSessionTemplate sqlSession ,PageInfo pi, int spcNo){
+	public ArrayList<Qna> selectQnaList(SqlSessionTemplate sqlSession ,PageInfo pi, String spcName){
 		
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
-		ArrayList<Qna> list = (ArrayList)sqlSession.selectList("hostMapper.selectQnaList", spcNo, rowBounds);
+		ArrayList<Qna> list = (ArrayList)sqlSession.selectList("hostMapper.selectQnaList", spcName, rowBounds);
 		return list;
 	}
 	public int insertQna(SqlSessionTemplate sqlSession, Qna q) {
 		return sqlSession.update("hostMapper.insertQna",q);
 	}
 
-	public ArrayList<Qna> selectAnswerComplete(SqlSessionTemplate sqlSession, PageInfo pi, int spcNo) {
+	public ArrayList<Qna> selectAnswerComplete(SqlSessionTemplate sqlSession, PageInfo pi, String spcName) {
 		
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
-		return (ArrayList)sqlSession.selectList("hostMapper.selectAnswerComplete", spcNo, rowBounds);
+		return (ArrayList)sqlSession.selectList("hostMapper.selectAnswerComplete", spcName, rowBounds);
 	}
 
-	public ArrayList<Qna> selectAnswerIncomplete(SqlSessionTemplate sqlSession, PageInfo pi, int spcNo) {
+	public ArrayList<Qna> selectAnswerIncomplete(SqlSessionTemplate sqlSession, PageInfo pi,String spcName) {
 		
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,limit);
-		return (ArrayList)sqlSession.selectList("hostMapper.selectAnswerIncomplete", spcNo, rowBounds);
+		return (ArrayList)sqlSession.selectList("hostMapper.selectAnswerIncomplete", spcName, rowBounds);
 	}
 
 	public int deleteQna(SqlSessionTemplate sqlSession, Qna q) {

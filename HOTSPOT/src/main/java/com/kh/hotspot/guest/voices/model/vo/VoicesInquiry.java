@@ -19,7 +19,7 @@ public class VoicesInquiry {
 	private String inquiryWriter;	// 문의글작성자(회원)
 	private String inquiryTitle;	// 문의글 제목
 	private String inquiryContent; 	// 문의글 내용
-	private String inquiryReply;		// 문의글 답변
+	private String inquiryReply;	// 문의글 답변
 	private String replyStatus;		// 답변 유무
 	private Date inquiryDate;		// 문의글작성일
 	private Date replyDate;			// 문의글답변일

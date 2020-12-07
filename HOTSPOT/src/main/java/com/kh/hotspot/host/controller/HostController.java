@@ -527,10 +527,11 @@ public class HostController {
 	 * @return qna 리스트 조회
 	 */
 	@RequestMapping("selectQnaList.ho")
-	public String hostQnaList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, int spcNo, Model model) {
-		int listCount = hService.selectQnaListCount(spcNo);
+	public String hostQnaList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, String spcName, Model model) {
+
+		int listCount = hService.selectQnaListCount(spcName);
 		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
-		ArrayList<Qna> list = hService.selectQnaList(pi,spcNo);
+		ArrayList<Qna> list = hService.selectQnaList(pi,spcName);
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
 	
@@ -576,10 +577,10 @@ public class HostController {
 	 * @return QnA 답변여부 정렬
 	 */
 	@RequestMapping("qnaAnswerComplete.ho")
-	public String selectAnswerComplete(@RequestParam(value="currentPage", defaultValue="1")int currentPage, int spcNo, Model model) {
-		int listCount = hService.selectQnaListCount(spcNo);
+	public String selectAnswerComplete(@RequestParam(value="currentPage", defaultValue="1")int currentPage, String spcName, Model model) {
+		int listCount = hService.selectQnaListCount(spcName);
 		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
-		ArrayList<Qna> list = hService.selectAnswerComplete(pi,spcNo);
+		ArrayList<Qna> list = hService.selectAnswerComplete(pi,spcName);
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
 	
@@ -593,10 +594,10 @@ public class HostController {
 	 * @return QnA 답변여부 정렬
 	 */
 	@RequestMapping("qnaAnswerIncomplete.ho")
-	public String selectAnswerWhether(@RequestParam(value="currentPage", defaultValue="1")int currentPage, int spcNo, Model model) {
-		int listCount = hService.selectQnaListCount(spcNo);
+	public String selectAnswerWhether(@RequestParam(value="currentPage", defaultValue="1")int currentPage, String spcName, Model model) {
+		int listCount = hService.selectQnaListCount(spcName);
 		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
-		ArrayList<Qna> list = hService.selectAnswerInComplete(pi,spcNo);
+		ArrayList<Qna> list = hService.selectAnswerInComplete(pi,spcName);
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
 	

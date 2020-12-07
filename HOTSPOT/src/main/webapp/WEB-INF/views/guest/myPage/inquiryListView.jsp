@@ -75,7 +75,7 @@
 	                        <dl>
 	                            <dt style="color:rgb(145, 37, 247);"><b>제목 : ${ vi.inquiryTitle }</b></dt><br>
 	                            <dd style="margin-bottom: 20px">
-	                                <span> ${ vi.inquiryContent }</span> &nbsp;
+	                                <span>Q : ${ vi.inquiryContent }</span> &nbsp;
 	                                <span class="qnaDate"><small>작성일 : ${ vi.inquiryDate }</small></span>
 	                                <button type="button" class="inquiryBtn" value="${ vi.inquiryNo }" data-toggle="modal" data-target="#inquiryModal">삭제</button>
 	                            </dd>
@@ -87,7 +87,7 @@
 			                        <dl>
 			                            <dt><b>관리자 답변 :</b></dt><br>
 			                            <dd>
-			                                <span>${ vi.inquiryReply }</span>
+			                                <span>A : ${ vi.inquiryReply }</span>
 			                                <span  class="qnaDate"><small>&nbsp; 답변일 : ${ vi.inquiryDate }</small></span>
 			                            </dd>
 			                            <dd></dd>

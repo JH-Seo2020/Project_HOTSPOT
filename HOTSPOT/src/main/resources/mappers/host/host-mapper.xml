@@ -240,15 +240,16 @@
   </select>
   
   
- <select id="selectQnaListCount" parameterType="_int" resultType="_int">
-  	select count(*)
-	 from question_answer
-	 where spc_no = #{spcNo}
+ <select id="selectQnaListCount" parameterType="string" resultType="_int">
+    select count(*)
+	 from question_answer q
+     join space_info s on(q.spc_no=s.spc_no)
+	 where s.spc_name = #{spcName}
 	   and qa_status = 'Y'
   </select>
   
   
- <select id="selectQnaList" parameterType="_int" resultMap="selectQnaListResultSet">
+ <select id="selectQnaList" parameterType="string" resultMap="selectQnaListResultSet">
 	select 
 	     qa_no
 	    ,qa_content
@@ -264,7 +265,7 @@
 	    ,s.spc_type
 	  from question_answer q
 	  join space_info s on(q.spc_no=s.spc_no)
-	  where q.spc_no = #{spcNo}
+	  where s.spc_name = #{spcName}
 	    and qa_status = 'Y'
 	  order
 	     by qa_no desc
@@ -284,7 +285,7 @@
        set spc_status = 'N'
      where spc_no = #{spcNo}
   </update>
-   <select id="selectAnswerComplete" parameterType="_int" resultMap="selectQnaListResultSet">
+   <select id="selectAnswerComplete" parameterType="string" resultMap="selectQnaListResultSet">
 	select 
 	     qa_no
 	    ,qa_content
@@ -300,13 +301,13 @@
 	    ,s.spc_type
 	  from question_answer q
 	  join space_info s on(q.spc_no=s.spc_no)
-	  where q.spc_no = #{spcNo}
+	  where s.spc_name = #{spcName}
 	    and qa_status = 'Y'
 	    and qa_answer is not null
 	  order
 	     by qa_no desc
   </select>
-   <select id="selectAnswerIncomplete" parameterType="_int" resultMap="selectQnaListResultSet">
+   <select id="selectAnswerIncomplete" parameterType="string" resultMap="selectQnaListResultSet">
 	select 
 	     qa_no
 	    ,qa_content
@@ -322,7 +323,7 @@
 	    ,s.spc_type
 	  from question_answer q
 	  join space_info s on(q.spc_no=s.spc_no)
-	  where q.spc_no = #{spcNo}
+	  where s.spc_name = #{spcName}
 	    and qa_status = 'Y'
 	    and qa_answer is null
 	  order

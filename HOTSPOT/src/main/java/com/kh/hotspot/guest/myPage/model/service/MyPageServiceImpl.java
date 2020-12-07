@@ -145,8 +145,8 @@ public class MyPageServiceImpl implements MyPageService{
 
 	
 	@Override
-	public int insertMyInquiry(String userId) {
-		return mpDao.insertMyInquiry(sqlSession, userId);
+	public int insertMyInquiry(VoicesInquiry vi) {
+		return mpDao.insertMyInquiry(sqlSession, vi);
 	}
 
 	@Override
@@ -164,6 +164,12 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public ArrayList<SpaceInfo> selectMyWishList(PageInfo pi, String userId) {
 		return mpDao.selectMyWishList(sqlSession, pi, userId);
+	}
+
+
+	@Override
+	public int deleteWish(int spcNo, String userId) {
+		return mpDao.deleteWish(sqlSession, spcNo, userId);
 	}
 
 

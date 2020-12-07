@@ -35,7 +35,7 @@ public interface MyPageService {
 	
 	
 	/**
-	 * 이용후기 / 문의관리
+	 * 이용후기
 	 * 
 	 */
 	// 이용후기리스트 조회용 서비스
@@ -58,6 +58,10 @@ public interface MyPageService {
 	
 	
 	
+	/**
+	 * Q & A
+	 * 
+	 */
 	// Qna리스트 조회용 서비스 
 	int selectMyQnaListCount(String userId);
 	ArrayList<Qna> selectMyQnaList(PageInfo pi, String userId);
@@ -66,15 +70,17 @@ public interface MyPageService {
 	int deleteMyQna(int qaNo);
 	
 	
-	
-		
+	/**
+	 * 1:1고객문의
+	 * 
+	 */
 	// 1:1고객문의
 	int selectMyInquiryListCount(String userId);
 	
 	ArrayList<VoicesInquiry> selectMyInquiryList(PageInfo pi, String userId);
 	
 	// 1:1고객문의 작성하기
-	int insertMyInquiry(String userId);
+	int insertMyInquiry(VoicesInquiry vi);
 	
 	
 	// 1:1고객문의 삭제하기 서비스
@@ -88,5 +94,7 @@ public interface MyPageService {
 	int selectMyWishListCount(String userId);
 	
 	ArrayList<SpaceInfo> selectMyWishList(PageInfo pi, String userId);
+	
+	int deleteWish(int spcNo, String userId);
 
 }

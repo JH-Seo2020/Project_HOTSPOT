@@ -13,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Review {
+public class Review{
 	
 	private int reviewNo;
 	private int spcNo;
