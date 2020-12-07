@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+* {
+	font-family: "Nanum Gothic", sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.outer {
+	width: 1200px;
+	height: 700px;
+	margin: auto;
+	position: absolute;
+}
+
+body {
+	margin: 0px;
+}
+
+.outer>div {
+	height: 100%;
+	float: left;
+}
+
+#categoryName {
+	width: 100%;
+	height: 10%;
+	border-bottom: 2px solid gray;
+}
+
+#categoryName span {
+	float: left;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+#rightSpace {
+	width: 80%;
+}
+
+/* 신고상세영역css */
+#reviewDetailSpace {
+	width: 870px;
+	height: 500px;
+	float: left;
+	margin-left: 42px;
+	margin-top: 40px;
+	background: #E0E0E0;
+}
+
+#table_reviewInfo1 {
+	font-size: 14px;
+	float: left;
+	margin-top: 15px;
+	margin-left: 20px;
+}
+
+#table_reviewInfo1 tr>th {
+	color: gray
+}
+
+#table_reviewInfo2 {
+	float: left;
+	margin-top: 30px;
+	margin-left: 20px;
+}
+
+#table_reviewInfo2 tr>th {
+	font-size: 20px;
+	color: gray;
+}
+
+#selectUserId {
+	width: 500px;
+	height: 40px;
+	padding-top: 8px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+}
+
+.img_scoreIcon {
+	width: 18px;
+	height: 18px;
+}
+
+#selectScore {
+	width: 130px;
+	height: 40px;
+	background: white;
+	padding-left: 11px;
+	padding-top: 7px;
+	margin-bottom: 20px;
+}
+
+#selectUserId, #selectReviewContent {
+	font-size: 14px;
+	font-weight: lighter;
+	background: white;
+}
+
+#selectReviewContent {
+	width: 670px;
+	height: 270px;
+	padding: 15px;
+	overflow: auto;
+}
+
+.btn {
+	background: gray;
+	color: white;
+	width: 90px;
+	float: right;
+	margin-top: 388px;
+	margin-right: 40px;
+}

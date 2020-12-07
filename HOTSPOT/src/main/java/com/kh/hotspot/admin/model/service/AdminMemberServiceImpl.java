@@ -27,13 +27,13 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	private JavaMailSender mailSender;
 	
 	@Override	// 총 회원수 조회
-	public int selectListCount() {
-		return memberDao.selectListCount(sqlSession);
+	public int selectListCount(Member member) {
+		return memberDao.selectListCount(member, sqlSession);
 	}
 	
 	@Override	// 모든 회원리스트 조회
-	public ArrayList<Member> selectList(PageInfo pageInfo) {
-		return memberDao.selectList(sqlSession, pageInfo);
+	public ArrayList<Member> selectList(Member member, PageInfo pageInfo) {
+		return memberDao.selectList(member, pageInfo, sqlSession);
 	}
 	
 	@Override	// 회원상세정보 조회
@@ -113,6 +113,16 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 			return memberDao.updateHostStatusN(userId, sqlSession);		// 거절
 		}
 		
+	}
+
+	@Override	// 검색결과수 조회
+	public int selectSearchCount(Member member) {
+		return memberDao.selectSearchCount(member, sqlSession);
+	}
+
+	@Override	// 검색결과리스트 조회
+	public ArrayList<Member> selectSearch(Member member, PageInfo pageInfo) {
+		return memberDao.selectSearch(member, pageInfo, sqlSession);
 	}
 	
 	

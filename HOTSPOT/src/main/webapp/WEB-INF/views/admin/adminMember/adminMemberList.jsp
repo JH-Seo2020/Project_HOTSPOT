@@ -24,9 +24,9 @@
                     <option value="userId">아이디</option>
                 </select>
                 <input type="text" id="input_userSearch" class="form-control" name="searchText">
-                <button class="btn" id="btn_userSearch">검색</button>
+                <button id="btn_userSearch">검색</button>
                 <select id="select_userStatus" name="userStatus" class="custom-select custom-select-sm mb-3">
-                    <option id="userStatusY" value="Y">Y</option>
+                    <option id="userStatusY" value="Y" selected>Y</option>
                     <option id="userStatusN" value="N">N</option>
                 </select>
                 <table class="table table-hover">
@@ -73,13 +73,33 @@
                   			<li class="page-item disabled"><a class="page-link">Previous</a></li>
                   		</c:when>
                   		<c:otherwise>
-                  			<li class="page-item"><a class="page-link" href="memberList.ad?currentPage=${ pageInfo.currentPage-1 }">Previous</a></li>
+                  			<c:choose>
+                  				<c:when test="${ userType ne null || userType ne ''}">
+                  					<li class="page-item"><a class="page-link" href="memberList.ad?userType=${ userType }&userStatus=${ userStatus }&currentPage=${ pageInfo.currentPage-1 }">Previous</a></li>
+                  				</c:when>
+                  				<c:when test="${ userId ne null || userId ne ''}">
+                  					<li class="page-item"><a class="page-link" href="memberList.ad?userId=${ userId }&userStatus=${ userStatus }&currentPage=${ pageInfo.currentPage-1 }">Previous</a></li>
+                  				</c:when>
+                  				<c:otherwise>
+                  					<li class="page-item"><a class="page-link" href="memberList.ad?&userStatus=${ userStatus }&currentPage=${ pageInfo.currentPage-1 }">Previous</a></li>
+                  				</c:otherwise>
+                  			</c:choose>
                   		</c:otherwise>
                     </c:choose>
                     
                     <c:forEach var="page" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
                     	<li class="page-item">
-                    		<a class="page-link" href="memberList.ad?currentPage=${ page }">${ page }</a>
+                  			<c:choose>
+                  				<c:when test="${ userType ne null && userType ne ''}">
+                  					<a class="page-link" href="memberList.ad?userType=${ userType }&userStatus=${ userStatus }&currentPage=${ page }">${ page }</a>
+                  				</c:when>
+                  				<c:when test="${ userId ne null && userId ne ''}">
+                  					<a class="page-link" href="memberList.ad?userId=${ userId }&userStatus=${ userStatus }&currentPage=${ page }">${ page }</a>
+                  				</c:when>
+                  				<c:otherwise>
+                  					<a class="page-link" href="memberList.ad?&userStatus=${ userStatus }&currentPage=${ page }">${ page }</a>
+                  				</c:otherwise>
+                  			</c:choose>
                     	</li>
                     </c:forEach>
                     
@@ -88,7 +108,17 @@
                     		<li class="page-item disabled"><a class="page-link">Next</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="memberList.ad?currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
+                  			<c:choose>
+                  				<c:when test="${ userType ne null && userType ne ''}">
+                  					<li class="page-item"><a class="page-link" href="memberList.ad?userType=${ userType }&userStatus=${ userStatus }&currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
+                  				</c:when>
+                  				<c:when test="${ userId ne null && userId ne ''}">
+                  					<li class="page-item"><a class="page-link" href="memberList.ad?userId=${ userId }&userStatus=${ userStatus }&currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
+                  				</c:when>
+                  				<c:otherwise>
+                  					<li class="page-item"><a class="page-link" href="memberList.ad?&userStatus=${ userStatus }&currentPage=${ pageInfo.currentPage+1 }">Next</a></li>
+                  				</c:otherwise>
+                  			</c:choose>
                     	</c:otherwise>
                     </c:choose>
                   </ul>
@@ -97,11 +127,45 @@
     </div>
     <script>
 		$(function(){
+     		if('${userType}' != null && '${userType}' != ''){
+    			$("#select_userSearchSelect").val('userType');
+    			$("#input_userSearch").val('${userType}');
+    		}
+    		if('${userId}' != null && '${userId}' != ''){
+    			$("#select_userSearchSelect").val('userId');
+    			$("#input_userSearch").val('${userId}');
+    		}
+    		if('${userStatus}' != null && '${userStatus}' != ''){
+    			$("#select_userStatus").val('${userStatus}');
+    		} 
 			$(".table tbody>tr").click(function(){
 				// 회원아이디 넘기면서 상세화면 요청
 				var userId = $(this).children().eq(1).text();
-				console.log(userId);
 				location.href = "memberDetail.ad?userId=" + userId;
+			});
+			
+			// 검색버튼 누르는 경우
+			$("#btn_userSearch").click(function(){
+				var searchType = $("#select_userSearchSelect").val();
+				var searchText = $("#input_userSearch").val();
+				var userStatus = $("#select_userStatus").val();
+				if(searchType == null){
+					$("#input_userSearch").focus();
+				}else{
+					if(searchType == 'userType'){
+						// 회원유형으로 검색하는경우
+						location.href="memberList.ad?userType=" + searchText + "&userStatus=" + userStatus;
+					}else{
+						// 회원아이디로 검색하는경우
+						location.href="memberList.ad?userId=" + searchText + "&userStatus=" + userStatus;
+					}
+				}
+
+			});
+			
+			$("#select_userStatus").change(function(){
+				var userStatus = $("#select_userStatus").val();
+				location.href="memberList.ad?userStatus=" + userStatus;
 			})
 		});
     </script>

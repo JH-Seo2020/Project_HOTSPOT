@@ -26,16 +26,26 @@ public class AdminMemberController {
 	// 회원리스트 조회요청
 	@RequestMapping("memberList.ad")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
-							 Model model) {
+							 Member member, Model model) {
+		
 		// 총 회원수 조회
-		int listCount = memberService.selectListCount();
+		int listCount = memberService.selectListCount(member);
 		// 페이지 정보 조회
 		PageInfo pageInfo = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		// 모든 회원리스트 조회
-		ArrayList<Member> list = memberService.selectList(pageInfo);
+		ArrayList<Member> list = memberService.selectList(member, pageInfo);
+		
+		System.out.println(member.getUserType());
+		System.out.println(member.getUserId());
+		System.out.println(member.getUserStatus());
+		
+		System.out.println(listCount);
 		
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("list", list);
+		model.addAttribute("userType", member.getUserType());
+		model.addAttribute("userId", member.getUserId());
+		model.addAttribute("userStatus", member.getUserStatus());
 		
 		return "admin/adminMember/adminMemberList";
 	}
@@ -107,4 +117,5 @@ public class AdminMemberController {
 		
 		return new Gson().toJson(memberService.updateHostStatus(member.getUserId(), result));
 	}
+	
 }

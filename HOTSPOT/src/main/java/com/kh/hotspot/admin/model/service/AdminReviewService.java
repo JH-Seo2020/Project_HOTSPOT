@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.springframework.ui.Model;
 
-import com.kh.hotspot.admin.model.vo.AdminSearchCondition;
 import com.kh.hotspot.admin.model.vo.Review;
 import com.kh.hotspot.common.model.vo.PageInfo;
 
@@ -14,6 +13,12 @@ public interface AdminReviewService {
 	int selectListCount();
 	
 	// 후기리스트 조회
-	ArrayList<Review> selectList(AdminSearchCondition searchCondition, PageInfo pageInfo);
+	ArrayList<Review> selectList(PageInfo pageInfo);
+	
+	// 후기상세조회
+	Review selectDetail(int reviewNo);
+	
+	// 후기상태 변경
+	int updateStatus(int reviewNo);
 	
 }
