@@ -182,10 +182,12 @@ public class MyPageController {
 	public String selectUpdateMyReviewForm(Review rv, HttpSession session, Model model) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		Review updateRv = mpService.selectUpdateMyReviewForm(rv, loginUser.getUserId());
-		
+		String userId = loginUser.getUserId();
+		Review updateRv = mpService.selectUpdateMyReviewForm(rv, userId);
+	
+		model.addAttribute("rv",rv);
 		model.addAttribute("updateRv", updateRv);
+		
 		return "guest/myPage/reviewUpdateForm";
 	}
 	

@@ -41,7 +41,7 @@ public class MyPageDao {
 	
 	public ArrayList<Reservation> alignReservList(SqlSessionTemplate sqlSession, String align, String userId){
 		
-		HashMap<String, String> hmap = new HashMap<>();
+		HashMap<String, String> hmap = new HashMap<String, String>();
 		hmap.put("align", align);
 		hmap.put("userId", userId);
 		return (ArrayList)sqlSession.selectList("mypageMapper.alignReservList", hmap);
@@ -50,7 +50,7 @@ public class MyPageDao {
 	
 	public Reservation selectDetailReserv(SqlSessionTemplate sqlSession, int reservNo, String userId) {
 		
-		HashMap<Object, Object> hmap = new HashMap<>();
+		HashMap<Object, Object> hmap = new HashMap<Object, Object>();
 		hmap.put("reservNo", reservNo);
 		hmap.put("userId", userId);
 		return sqlSession.selectOne("mypageMapper.selectDetailReserv", hmap);
@@ -107,7 +107,7 @@ public class MyPageDao {
 	
 	public Review selectUpdateMyReviewForm(SqlSessionTemplate sqlSession, Review rv, String userId) {
 		
-		HashMap<Object, Object> hmap = new HashMap<>();
+		HashMap<Object, Object> hmap = new HashMap<Object, Object>();
 		hmap.put("rv", rv);
 		hmap.put("userId", userId);
 		
