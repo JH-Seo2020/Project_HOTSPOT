@@ -36,7 +36,7 @@
         <div id="container1">
             <span class="comment1">*호스트 정보 수정
             </span>
-            <form action="updateHost.ho" id="hostInsertForm" method="POST"enctype="multipart/form-data">
+            <form action="spaceModifyForm.ho" id="hostInsertForm" method="POST" enctype="multipart/form-data">
             	<input type="hidden" name="userId" value="${ loginUser.userId }"/>
                 <table class="hostInsertTable" >
                     <tr>

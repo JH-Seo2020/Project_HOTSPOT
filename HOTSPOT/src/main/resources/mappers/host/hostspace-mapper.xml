@@ -76,5 +76,36 @@
          )
   </insert> 
   
+  <update id="updateSpace" parameterType="Space">
+    update SPACE_INFO
+	   set  
+           SPC_INT = #{spcInt}
+         , SPC_LONG = #{spcLong}
+         , SPC_TAG = #{spcTag}
+         , SPC_TYPE = #{spcType}
+         , SPC_MIN = #{spcMin}
+         , SPC_MAX = #{spcMax}
+         , SPC_IMG = #{spcImg}
+         , SPC_CHIMG = #{spcChimg}
+         , SPC_PRICE = #{spcPrice}
+         , SPC_HOURS = #{spcHours}
+         , SPC_HOLIDAY = #{spcHoliday}
+         , SPC_CONVN = #{spcConvn}
+         , MAP_LATITUDE = #{latitude}
+	     , MAP_LONGITUDE = #{longitude}
+	     , MAP_LOCATION = #{location}
+     where user_id = #{userId} 
+       and SPC_NAME = #{spcName}
+  </update>
+  
+  <update id="updateNotes" parameterType="spcNotes">
+  MERGE INTO spc_notes note
+  USING space_info a
+     ON (a.spc_no = note.spc_no)
+   WHEN MATCHED THEN
+ UPDATE SET note.notes_content = #{notesContent}
+  where a.user_id = #{userId}  
+  </update>
+  
 
 </mapper>

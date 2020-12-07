@@ -74,7 +74,7 @@
     
           <ul class="f_profile"><img src="resources/images/host_images/reservation.png"><a href="hostMyPage.ho"> 프로필 관리</a></ul>
           <ul class="f_space"><img src="resources/images/host_images/hosthome.png"><a href="space.list"> 공간정보관리 </a></ul>
-          <ul class="f_reservation"><img src="resources/images/host_images/clipboard-regular.png"><a href=""> 예약리스트 </a></ul>
+          <ul class="f_reservation"><img src="resources/images/host_images/clipboard-regular.png"><a href="reservation.ho"> 예약리스트 </a></ul>
           <ul class="f_qna"><img src="resources/images/host_images/comment.png"><a href="hostQnaForm.ho"> Q&A </a></ul>
           <ul class="f_review"><img src="resources/images/host_images/camera.png"> <a href=""> 이용후기 </a></ul>
           <ul class="f_question"><img src="resources/images/host_images/person.png"> <a href=""> 1:1문의</a></ul>

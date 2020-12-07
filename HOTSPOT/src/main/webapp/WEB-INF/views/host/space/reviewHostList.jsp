@@ -100,14 +100,6 @@
             <br><br><br>
             <h2 align="center"><b>이용후기 관리</b></h2>
             <br><br>
-            <div class="ManageBtn" data-example-id="simple-button-group" align="center">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button class="btn btn-primary" id="review" style="background: rgb(145, 37, 247);" onclick="location.href='myReview.mg'">이용후기</button>
-                    <button class="btn btn-default" id="qna" style="background: rgb(212, 212, 212);" onclick="location.href='myQna.mg'">Q & A</button>
-                    <button class="btn btn-default" id="inquiry" style="background: rgb(212, 212, 212);" onclick="location.href='myInquiry.mg'">1:1문의</button>
-                </div>
-            </div>
-            <br><br>
             <div class="reviewDropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">최신순</button>
                 <div class="dropdown-menu">
@@ -125,7 +117,7 @@
                             <dd style="margin-bottom: 25px">
                                 <span><b>제목 : ${ rv.reviewTitle }</b></span> &nbsp;
                                 <span class="useDate"><small>작성일 : ${ rv.reviewDate }</small></span>
-                                <button type="button" id="updateBtn" onclick="location.href='updateReviewForm.mg?reservNo='+ ${rv.reservNo} + '&reviewNo=' + ${rv.reviewNo}">수정</button> <br clear="both">
+                                <button type="button" id="updateBtn" onclick="location.href='updateReviewForm.mg?reservNo='+ ${rv.reservNo}">수정</button> <br clear="both">
                                 <button type="button" class="reviewDeleteBtn" value="${ rv.reviewNo }" data-toggle="modal" data-target="#reviewModal">삭제</button>
                             </dd>
                         </dl>
@@ -162,13 +154,13 @@
                     	<li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>
                     </c:when>
                     <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage-1 }&userId=${loginUser.userId}">&lt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage-1 }">&lt;</a></li>
                     </c:otherwise>
                    </c:choose>
                    
                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                    	<input type="hidden" name="userId" value="${ loginUser.userId }"> 
-                   	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ p }&userId=${loginUser.userId}">${ p }</a></li>
+                   	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ p }">${ p }</a></li>
 				</c:forEach>
 				
 				<c:choose>
@@ -176,7 +168,7 @@
                     	<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>
                     </c:when>
                     <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage+1 }&userId=${loginUser.userId}">&gt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="myReview.mg?currentPage=${ pi.currentPage+1 }">&gt;</a></li>
                     </c:otherwise>
                	</c:choose>
             </ul>

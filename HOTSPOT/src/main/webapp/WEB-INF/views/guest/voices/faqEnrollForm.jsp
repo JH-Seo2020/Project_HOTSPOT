@@ -72,16 +72,17 @@
             <p>1:1채팅봇으로 해결하지 못한 사항들만 문의해주세요.
                 <br>답변은 평균적으로 1~2일 정도 소요됩니다.
             </p>
-            <hr>
+            <br><hr><br>
         </div>
         <form action="insertInquiry.mg" method="POST" id="askNote">
+        	<input type="hidden" name="inquiryWriter" value="${ loginUser.userId }">
             <div id="smallTitle">
                 <p class="tinyTitle">문의제목</p>
                 <input type="text" name="inquiryTitle" class="form-control" placeholder="제목을 입력해주세요" required>
             </div>
             <div id="askContent">
                 <p class="tinyTitle">문의내용</p>
-                <div method="post" id="EnrollForm">
+                <div id="EnrollForm">
                     <textarea id="summernote" name="inquiryContent" required></textarea>
                     <div class="forMiddle">
                         <button class="btn purple forMiddle" type="submit">문의하기</button>

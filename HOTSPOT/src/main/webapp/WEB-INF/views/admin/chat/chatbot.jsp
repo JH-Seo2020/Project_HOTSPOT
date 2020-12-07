@@ -139,7 +139,7 @@
 		   	  					
 				        
 				        	
-		   	  			$(".chatContent>ul").append(value).fadeIn(500);
+		   	  			$(".chatContent>ul").append(value);
 				        	
 	          	  $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
 		   	  		},
