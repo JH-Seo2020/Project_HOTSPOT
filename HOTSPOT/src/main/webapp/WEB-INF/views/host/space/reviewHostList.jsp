@@ -96,17 +96,11 @@
 	<jsp:include page="../common/hostMenubar.jsp" />
 	<jsp:include page="../common/subMenubar.jsp" />
 
-    <div id="content" style="position: absolute; top: 50px; left: 300px;">
+    <div id="content" style="position: absolute; top: 50px; left: 300px; width: 1200px;">
         <div id="reviewArea">
             <br><br><br>
             <h2 align="center"><b>이용후기 관리</b></h2>
             <br><br>
-            <div class="reviewDropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">최신순</button>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">예약번호순</a>
-                </div>
-            </div>
             <br>
             <div id="inputReview">
             <input type="hidden" name="userId" value="${ loginUser.userId }">
@@ -209,7 +203,9 @@
 		 </div>
     
     
-
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
+	
     <jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>

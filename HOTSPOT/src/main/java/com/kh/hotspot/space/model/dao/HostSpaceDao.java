@@ -145,6 +145,11 @@ public class HostSpaceDao {
 		return sqlSession.update("hostMapper.ReservationCancle", searchReservation);
 	}
 
+	public Space selectOneSpace(SqlSessionTemplate sqlSession, int sno) {
+		
+		return sqlSession.selectOne("hostMapper.selectOneSpace", sno);
+	}
+
 	
 
 

@@ -63,7 +63,7 @@ public class HostSpaceContoller {
 				noteList=sp.getNoteList();
 			}
 		// 3. service 호출
-		int result =  hSpaceService.insertSpace(sp,noteList);
+		int result =  hSpaceService.updateSpace(sp,noteList);
 		
 		// 4. 상세이미지 파일작업
 		int imageResult =0;
@@ -79,7 +79,7 @@ public class HostSpaceContoller {
 			}
 		}
 		if(result > 0 && imageResult > 0) {
-			session.setAttribute("alertMsg","공간등록이 성공적으로 완료 되었습니다 :)");
+			session.setAttribute("alertMsg","공간수정이 성공적으로 완료 되었습니다 :)");
 			return "host/common/hostMain";
 		}else {
 			return "common/errorPage";
@@ -162,7 +162,12 @@ public class HostSpaceContoller {
 	 * @return
 	 */
 	@RequestMapping("spaceModifyForm.ho")
-	public String spaceModifyForm() {
+	public String spaceModifyForm(int sno, HttpSession session) {
+		
+		Space sc = hSpaceService.selectOneSpace(sno);
+		
+		session.setAttribute("spaceInfo", sc);
+		
 		return "host/space/spaceModifyForm";
 	}
 	
@@ -353,9 +358,5 @@ public class HostSpaceContoller {
 		}
 	}
 	
-	@RequestMapping("review.ho")
-	public String hostReview() {
-		
-		return "host/space/reviewHostList";
-	}
+
 }

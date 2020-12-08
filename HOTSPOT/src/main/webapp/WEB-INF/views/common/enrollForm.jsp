@@ -72,7 +72,7 @@
             <div id="EnrollData2" style="height: 400px; width: 70%;">
                 
                     <label for="userEmail">이메일 입력</label><br>
-                    <input type="text" name="userEmail" placeholder="인증절차를 거쳐주세요" required> 
+                    <input type="text" name="userEmail" placeholder="인증절차를 거쳐주세요" required readonly> 
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
     					이메일 인증
   					</button>
@@ -112,6 +112,7 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+          <button type="button" id="confirm" class="btn btn-primary" onclick="confirm()">확인</button>
         </div>
   
       </div>
@@ -128,36 +129,16 @@
   		console.log($idInput.val());
   	if($idInput.val().length >= 5){
   		console.log($idInput.val());
-      	$.ajax({
-          	url :"checkId.me",
-          	data: {userId : $idInput.val()},
-          	dataType: "text",
-          	success:function(result){
-              if(result != ""){
-            	  	console.log(result);
-            	  
-					$("#idCheckResult").show();
-					$("#idCheckResult").css("color", "green").text("사용가능한 아이디입니다.");
-					$("#confirm").removeAttr("disabled");
-              }else if(result == 0){
-					$("#idCheckResult").show();
-					$("#idCheckResult").css("color", "red").text("중복된 아이디가 존재합니다. 다시입력해주세요.");
-					$("#confirm").prop("disabled", true);
-					
-              }
-            },error:function(){
-          		console.log("아이디 중복체크용 ajax 통신 실패");
-          		}
-      	})
+
   	}else{
-				$("#idCheckResult").hide();
+				$("#idCheckResult").prop('text','5자 이상을 입력해주세요');
   		}
       
   	})
   	})
   	</script>
   	<script>
-  	/*
+  	$(function(){
   	let $pwdInput =$("#EnrollData1 input[name=userPwd]");
   	
   	$pwdInput.keyup(function(){
@@ -177,41 +158,22 @@
   			
   	let $nickInput = $("#EnrollData1 input[name=userNickname]");
   		  	
-  	$idInput.keyup(function(){
+  	$nickInput.keyup(function(){
   		  	
   	if($nickInput.val().length >=5){
-  		      	$.ajax({
-  		          	url :"checkNick.me",
-  		          	type:"POST",
-  		          	dataType: "json",
-  		          	data: {"userNickname": $("#userNickname").val()},
-  		          	success:function(data){
-  		              if(date == 1){
-  							$("#nickCheckResult").show();
-  							$("#nickCheckResult").css("color", "green").text("사용가능한 닉네임입니다.");
-  							$("#confirm").removeAttr("disabled");
-  		              }else if(data == 0){
-  							$("#nickCheckResult").show();
-  							$("#nickCheckResult").css("color", "red").text("중복된 닉네임이 존재합니다. 다시입력해주세요.");
-  							$("#confirm").prop("disabled", true);
-  							
-  		              }
-  		            },error:function(){
-  		          		console.log("아이디 중복체크용 ajax 통신 실패");
-  		          		}
-  		      	})
+  		      	
   		  	}else{
-  						$("#nickCheckResult").hide();
+  		  	$("#idCheckResult").prop('text','5자 이상을 입력해주세요');
   		  		}
   		      
   		  	});  	
   	
   	
+  	});
   	
   	
   	
   	
-  	*/
   	
   
   
@@ -258,16 +220,27 @@
                 if(result=true){
                   alert('인증 완료');
                   document.getElementById('certificationYN').value ="true";
+                  	$("#confirm").show();
                   clientEmail.onchange = function(){
                     document.getElementById('certificationYN').value="false";
+                    $("confirm").hide();
                   };
                   
-                  $("#userEmail").attr("text", clientEmail);
+                  
                 }else{
                   alert('다시 한번 시도해주시기 바랍니다.')
                 }
               }
           })
+      }
+      
+      function confirm(){
+    	  var clientEmail = document.getElementById('emailText').value;
+    	  console.log(clientEmail);
+    	  
+    	  $("#EnrollData1 input[name=userEmail]").removeAttr("readonly");
+    	  
+    	  
       }
       
   </script>

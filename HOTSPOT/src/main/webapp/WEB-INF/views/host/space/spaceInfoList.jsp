@@ -127,7 +127,7 @@ label {
 								</div>
 								<br>
 								<button class="btn btn-primary" id="spaceModify"
-									onclick="location.href='spaceModifyForm.ho'">공간 정보 변경</button>
+									onclick="location.href='spaceModifyForm.ho?sno=${b.spcNo }'">공간 정보 변경</button>
 
 								<button class="btn btn-danger" id="spaceDelete"
 									style="margin-left: 30px;" data-toggle="modal"

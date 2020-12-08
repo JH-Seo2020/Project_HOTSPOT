@@ -191,6 +191,13 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 	}
 
 
+	@Override
+	public Space selectOneSpace(int sno) {
+		// TODO Auto-generated method stub
+		return hSpaceDao.selectOneSpace(sqlSession, sno);
+	}
+
+
 
 
 	

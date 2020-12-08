@@ -57,6 +57,9 @@ public interface HostSpaceService {
 
 	//환불메일 전송후 상태 수정
 	int ReservationCancle(Reservation searchReservation);
+
+	//단일 공간정보 받기
+	Space selectOneSpace(int sno);
 	
 
 	

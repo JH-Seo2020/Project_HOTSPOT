@@ -501,4 +501,30 @@
 		 order 
 		    by review_date desc
 	</select>
+	
+	<select id="selectOneSpace" parameterType="_int" resultMap="spaceResultSet">
+	SELECT SPC_NO
+     	 , SPC_NAME
+     	 , SPC_INT
+     	 , SPC_LONG
+     	 , SPC_TAG
+     	 , SPC_TYPE
+     	 , SPC_MIN
+     	 , SPC_MAX
+     	 , SPC_IMG
+      	 , SPC_CHIMG
+     	 , SPC_PRICE
+     	 , SPC_HOURS
+     	 , SPC_HOLIDAY
+     	 , SPC_STATUS
+     	 , SPC_CONVN
+     	 , USER_ID
+     	 , MAP_LATITUDE
+     	 , MAP_LONGITUDE
+     	 , MAP_LOCATION
+     	 , ENROLL_DATE
+  	  FROM SPACE_INFO
+ 	 WHERE spc_no =#{sno}
+	
+	</select>
 </mapper>
