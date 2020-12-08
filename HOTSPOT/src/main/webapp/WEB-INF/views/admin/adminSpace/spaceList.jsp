@@ -102,7 +102,7 @@
               <c:choose>
               	<c:when test="${ empty sc }">
 	                <c:choose>
-	                	<c:when test="${ pi.currentPage eq pi.startPage }">
+	                	<c:when test="${ pi.currentPage eq 1 }">
 	                		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
 	                	</c:when>
 	                	<c:otherwise>
@@ -130,7 +130,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:choose>
-	                	<c:when test="${ pi.currentPage eq pi.startPage }">
+	                	<c:when test="${ pi.currentPage eq 1 }">
 	                		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
 	                	</c:when>
 	                	<c:otherwise>

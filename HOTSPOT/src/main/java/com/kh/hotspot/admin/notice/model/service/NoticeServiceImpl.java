@@ -72,4 +72,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return nDao.deleteNotice(sqlSession, nno);
 	}
 
+	@Override
+	public int count() {
+		return nDao.count(sqlSession);
+	}
+
 }

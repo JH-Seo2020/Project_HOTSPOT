@@ -31,6 +31,7 @@
             </fieldset>
             <br><br>
             <div style="width:1000px; margin:auto;" id="inquireForm">
+            	<p style="font-weight:bold;">답변</p>
                 <form action="reply.inq">
                 <c:choose>
                 	<c:when test="${!empty i.inquiryReply }">
@@ -42,7 +43,7 @@
                 </c:choose>
                     <hr>
                     <input type="hidden" name="inquiryNo" value="${i.inquiryNo }">
-                    <button style="float:right" class="btn btn-secondary" onclick="history.back()">목록으로</button>
+                    <button type="button" style="float:right" class="btn btn-secondary" onclick="location.href='list.inq'">목록으로</button>
                     <br>
                     <button type="button" onclick="if(confirm('삭제하시겠습니까?')){location.href='delete.inq?ino=${ i.inquiryNo }'}" style="margin-left:420px;" class="btn btn-danger" >삭제</button>
             		

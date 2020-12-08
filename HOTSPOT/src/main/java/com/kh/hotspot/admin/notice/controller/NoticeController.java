@@ -59,8 +59,9 @@ public class NoticeController {
 	public String noticeInsert(Notice n, HttpSession session) {
 		
 		int result = nService.insertNotice(n);
+		int count = nService.count();
 		session.setAttribute("alertAd", "등록되었습니다.");
-		return "redirect:detail.no?nno="+n.getNoticeNo();
+		return "redirect:detail.no?nno="+count;
 	}
 	@RequestMapping("deleteList.no")
 	public String deleteListNotice(String[] nno, HttpSession session) {

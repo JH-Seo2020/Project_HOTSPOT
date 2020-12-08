@@ -119,7 +119,7 @@
                    <button class="btn btn-primary" style="margin-bottom:4px;">검색</button>
                 </form>
                 <c:choose>
-                	<c:when test="${ pi.currentPage ne pi.startPage}">
+                	<c:when test="${ pi.currentPage ne 1}">
                 		<c:choose>
                 			<c:when test="${ empty sc }">	
                 				<button onclick="location.href='list.no?currentPage=${ pi.currentPage-1 }'" style="margin-left:90px;" class="btn btn-secondary"><</button>
@@ -136,10 +136,24 @@
                 <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">
                 	<c:choose>
                 		<c:when test="${ empty sc }">
-                			<button class="btn btn-secondary" onclick="location.href='list.no?currentPage=${ p }'">${ p }</button>
+               				<c:choose>
+	                			<c:when test="${ pi.currentPage eq p }">
+	                				<button class="btn btn-secondary" disabled>${ p }</button>
+	                			</c:when>
+	                			<c:otherwise>
+                					<button class="btn btn-secondary" onclick="location.href='list.no?currentPage=${ p }'">${ p }</button>
+                				</c:otherwise>
+                			</c:choose>
                 		</c:when>
                 		<c:otherwise>
-                			<button class="btn btn-secondary" onclick="location.href='search.no?currentPage=${ p }&search=${ search }&keyword=${ keyword }'">${ p }</button>	
+                			<c:choose>
+	                			<c:when test="${ pi.currentPage eq p }">
+	                				<button class="btn btn-secondary" disabled>${ p }</button>
+	                			</c:when>
+	                			<c:otherwise>
+                					<button class="btn btn-secondary" onclick="location.href='search.no?currentPage=${ p }&search=${ search }&keyword=${ keyword }'">${ p }</button>
+                				</c:otherwise>
+                			</c:choose>	
                 		</c:otherwise>
                 	</c:choose>	
                 </c:forEach>

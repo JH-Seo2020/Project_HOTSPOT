@@ -83,8 +83,9 @@ public class FaqController {
 	public String insertFaq(Faq f, HttpSession session) {
 		
 		int result = fService.insertFaq(f);
+		int count = fService.selectListCount();
 		session.setAttribute("alertAd", "등록되었습니다.");
-		return "redirect:detail.fad=" + f.getFaqNo();
+		return "redirect:detail.fad?fno=" + count;
 	}
 	
 	@RequestMapping("updateForm.fad")
@@ -100,6 +101,7 @@ public class FaqController {
 	public String update(Faq f, HttpSession session) {
 		
 		int result = fService.updateFaq(f);
+		
 		session.setAttribute("alertAd", "수정되었습니다.");
 		return "redirect:detail.fad?fno=" + f.getFaqNo();
 	}

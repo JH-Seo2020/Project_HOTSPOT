@@ -90,14 +90,56 @@
   	  from reservation
   	
   	 <choose>
-  	 	<when test="guest != null">
-  	 		where user_id = #{guest}
+  	 	<when test="sc.guest != null">
+  	 		where user_id = #{sc.guest}
+  	 		<choose>  		 	
+	  		 	<when test="head == '예약확정'">
+			  		 and reservation_status= '예약확정'  
+	  		 	</when>
+	  		 	<when test="head == '결제대기'">
+			  		 and reservation_status= '결제대기'  
+	  		 	</when>
+	  		 	<when test="head == '취소환불'">
+			  		 and reservation_status= '취소환불'  
+	  		 	</when>
+	  		 	<when test="head == '이용완료'">
+			  		 and reservation_status= '이용완료'  
+	  		 	</when>
+  		 	</choose>
   	 	</when>
-  	 	<when test="host != null">
-  	 		where user_id_h = #{host}
+  	 	<when test="sc.host != null">
+  	 		where user_id_h = #{sc.host}
+  	 		<choose>  		 	
+	  		 	<when test="head == '예약확정'">
+			  		 and reservation_status= '예약확정'  
+	  		 	</when>
+	  		 	<when test="head == '결제대기'">
+			  		 and reservation_status= '결제대기'  
+	  		 	</when>
+	  		 	<when test="head == '취소환불'">
+			  		 and reservation_status= '취소환불'  
+	  		 	</when>
+	  		 	<when test="head == '이용완료'">
+			  		 and reservation_status= '이용완료'  
+	  		 	</when>
+  		 	</choose>
   	 	</when>
-  	 	<when test="reNo != null">
-  	 		where reservation_no = #{reNo}
+  	 	<when test="sc.reNo != null">
+  	 		where reservation_no = #{sc.reNo}
+  	 		<choose>  		 	
+	  		 	<when test="head == '예약확정'">
+			  		 and reservation_status= '예약확정'  
+	  		 	</when>
+	  		 	<when test="head == '결제대기'">
+			  		 and reservation_status= '결제대기'  
+	  		 	</when>
+	  		 	<when test="head == '취소환불'">
+			  		 and reservation_status= '취소환불'  
+	  		 	</when>
+	  		 	<when test="head == '이용완료'">
+			  		 and reservation_status= '이용완료'  
+	  		 	</when>
+  		 	</choose>
   	 	</when>
   	 </choose> 	       
   </select>

@@ -129,7 +129,14 @@
                 	</c:otherwise>
                 </c:choose>
                 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                	<button class="btn btn-secondary" onclick="location.href='list.inq?currentPage=${p}'">${ p }</button>
+                	<c:choose>
+                		<c:when test="${ pi.currentPage eq p }">
+                			<button class="btn btn-secondary" disabled>${ p }</button>
+                		</c:when>
+                		<c:otherwise>
+                			<button class="btn btn-secondary" onclick="location.href='list.inq?currentPage=${p}&head=${head}'">${ p }</button>
+                		</c:otherwise>
+                	</c:choose>
                 </c:forEach>
                 <c:choose>
                 	<c:when test="${ pi.currentPage eq pi.maxPage }">

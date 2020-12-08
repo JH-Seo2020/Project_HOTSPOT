@@ -96,7 +96,7 @@
                    <button class="btn btn-primary" style="margin-bottom:4px;">검색</button>
                 </form>
                 <c:choose>
-                	<c:when test="${ pi.currentPage ne pi.startPage }">
+                	<c:when test="${ pi.currentPage ne 1  }">
                 		<c:choose>
                 			<c:when test="${ empty sc }">
                 				<button style="margin-left:90px;" class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${ pi.currentPage -1}&head=${ head }'"><</button>
@@ -110,16 +110,32 @@
                 		<button style="margin-left:90px;" class="btn btn-secondary" disabled><</button>
                 	</c:otherwise>
                 </c:choose>
-                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                 	<c:choose>
                 		<c:when test="${empty sc }">
-                			<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${p}&head=${ head }'">${ p }</button>
+           				 	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+           				 		<c:choose>
+			                		<c:when test="${ pi.currentPage eq p }">
+			                			<button class="btn btn-secondary" disabled>${ p }</button>
+			                		</c:when>
+			                		<c:otherwise>
+                						<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${p}&head=${ head }'">${ p }</button>
+                					</c:otherwise>
+               					</c:choose>	
+               				 </c:forEach>
                 		</c:when>
                 		<c:otherwise>
-                			<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${p}&search=${search }&keyword=${keyword }&head=${ head }'">${ p }</button>
+                			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                				<c:choose>
+			                		<c:when test="${ pi.currentPage eq p }">
+			                			<button class="btn btn-secondary" disabled>${ p }</button>
+			                		</c:when>
+			                		<c:otherwise>
+                						<button class="btn btn-secondary" onclick="location.href='list.rad?currentPage=${p}&search=${search }&keyword=${keyword }&head=${ head }'">${ p }</button>
+                					</c:otherwise>
+                				</c:choose>		
+                			 </c:forEach>
                 		</c:otherwise>
                 	</c:choose>
-                </c:forEach>
                 <c:choose>
                 	<c:when test="${ pi.currentPage ne pi.maxPage }">
                 		<c:choose>
