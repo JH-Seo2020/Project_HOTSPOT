@@ -91,7 +91,7 @@
                  </tr>
                  <tr>
                     <td>사업자 등록증</td> 
-                    <td><a>${hostInfo.businessLicense}</a></td> <!-- 클릭하면 이미지 보이도록 수정예정 -->
+                    <td><a href="${hostInfo.licensePath }">${hostInfo.businessLicense}</a></td> <!-- 클릭하면 이미지 보이도록 수정예정 -->
                  </tr>
                  <tr>
                     <td>사업장 소재지</td> 
