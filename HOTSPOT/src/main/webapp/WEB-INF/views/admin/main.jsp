@@ -9,6 +9,7 @@
 </head>
 <body>
 	<jsp:include page="../common/sidebar.jsp"/>
+	
 	 <div class="outer">
         <br>
         <div style="font-size:20px; margin-left:20px;">&nbsp;</div>

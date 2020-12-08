@@ -67,4 +67,9 @@ public class NoticeDao {
 		
 		return sqlSession.update("noticeMapper.increaseCount", nno);
 	}
+	
+	public int count(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("noticeMapper.count");
+	}
 }

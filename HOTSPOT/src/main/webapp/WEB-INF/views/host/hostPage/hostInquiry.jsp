@@ -40,7 +40,7 @@
 	   					<input type="hidden" name="inquiryNo" value="${ li.inquiryNo }">
 	   				   <div class="question">
 		                    <h4>제목 : ${li.inquiryTitle }</h4><Br>
-		                    <h5 style="margin-right: 200px; font-size:15px;">Q. ${ li.inquiryContent}</h5><br>
+		                    <h5 style=" font-size:15px;">Q. ${ li.inquiryContent}</h5><br>
 		                    <p class="qdate"style="margin-right: 200px !important;">${ li.enrollDate }</p>
 		                    <button type="submit" style="margin-left: 300px;"id="deleteBtn"class="btn btn-primary">삭제</button>
 		                </div><hr>
@@ -49,11 +49,11 @@
 		                    <h4>관리자 답글</h4><br>
 		                    <c:if test="${li.replyStatus eq 'N'}">
 		                    	<textarea rows="3"class="form-control" style="width:360px;" readonly>답변이 작성 되지 않았습니다.</textarea><br>
-		                    	<p class="qdate"style="margin-right: 200px !important;">${li.replyDate }</p> 
+		                    	
 		                    </c:if>
 		                    <c:if test="${li.replyStatus eq 'Y' }">
 			                   	<textarea rows="3"class="form-control" style="width:360px;" readonly>A. ${li.inquiryReply }</textarea><br>
-			                   	<p class="qdate"style="margin-right: 200px !important;">${li.replyDate }</p> 	
+			                   		
 		        			</c:if>
 		                </div>
 	   			</div>
@@ -69,12 +69,12 @@
                	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                </c:when>
                <c:otherwise>
-               	<li class="page-item"><a class="page-link" href="selectQnaList.ho?currentPage=${ pi.currentPage-1 }">Previous</a></li>
+               	<li class="page-item"><a class="page-link" href="">Previous</a></li>
                </c:otherwise>
               </c:choose>
               
               <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-              	<li class="page-item"><a class="page-link" href="selectQnaList.ho?currentPage=${ p }">${ p }</a></li>
+              	<li class="page-item"><a class="page-link" href="">${ p }</a></li>
               </c:forEach>
               
               <c:choose>
@@ -82,7 +82,7 @@
                	<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                </c:when>
                <c:otherwise>
-               	<li class="page-item"><a class="page-link" href="selectQnaList.ho??currentPage=${ pi.currentPage+1 }">Next</a></li>
+               	<li class="page-item"><a class="page-link" href="">Next</a></li>
                </c:otherwise>
               </c:choose>
               

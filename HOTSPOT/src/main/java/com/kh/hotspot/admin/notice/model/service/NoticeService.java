@@ -21,4 +21,5 @@ public interface NoticeService {
 	int deleteNotice(int nno);
 	int searchListCount(SearchCondition sc);
 	ArrayList<Notice> searchList(PageInfo pi, SearchCondition sc);
+	int count();
 }

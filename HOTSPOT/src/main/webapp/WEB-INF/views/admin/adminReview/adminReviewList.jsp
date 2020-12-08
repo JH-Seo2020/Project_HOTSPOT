@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="outer">
-    <%@ include file="../../common/menubar.jsp"%>
+    	<%@ include file="../../common/menubar.jsp"%>
     	<%@ include file="../sidebarSunkyung.jsp"%>
         <div id="rightSpace">
             <div id="categoryName">

@@ -142,5 +142,10 @@
    		   set count = count +1
    		 where notice_no = #{nno}      
    </update>
-      
+   <select id="count"
+          resultType="_int">
+  	select
+  	       count(*)
+  	  from notice
+  	</select>    
 </mapper>

@@ -111,6 +111,9 @@
 		function enrollFail(){
 			alert('이미 호스트 등록 하셨습니다!')
 		}
+		$(".clickChat").click(function(){
+			window.open("chat.ad","_blank","width=400px, height=552px");
+		});
    </script>
 
 
