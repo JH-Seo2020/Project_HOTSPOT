@@ -78,7 +78,7 @@
           <ul class="f_qna"><img src="resources/images/host_images/comment.png"><a href="hostQnaForm.ho"> Q&A </a></ul>
           <ul class="f_review"><img src="resources/images/host_images/camera.png"> <a href="review.host"> 이용후기 </a></ul>
           <ul class="f_question"><img src="resources/images/host_images/person.png"> <a href=""> 1:1문의</a></ul>
-          <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6pdx;margin-left:30px;"> <a href="">1:1챗봇 문의</a></ul>
+          <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6pdx;margin-left:30px;"onclick="clickChat();"> <a href="" onclick="clickChat();">1:1챗봇 문의</a></ul>
           <ul class="f_question_"><img src="resources/images/host_images/next.png"style="width:15px;heigt:6px;margin-left:30px;">  <a href="hostInquiry.ho">나의 문의 내역</a></ul>
           <ul class="f_notice"><img src="resources/images/host_images/volume.png" style="width:20px"><a href="notice.ho">공지사항</a></ul>
           <ul class="f_calculate"><img src="resources/images/host_images/money.png"><a href="hostCalculateForm.ho">정산</a></ul>
@@ -94,6 +94,10 @@
         	},function(){
             	 $(".f_question_").hide();
             });
+        function clickChat(){
+    		window.open("chat.ad","_blank","width=400px, height=552px");
+    		
+    	}
     </script>
        <div id="brr" style="height:1000px;"></div>
 </body>

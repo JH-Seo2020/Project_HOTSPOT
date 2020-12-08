@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="outer">
-        <%@ include file="../../common/menubar.jsp"%>
+    	<%@ include file="../../common/menubar.jsp"%>
         <!-- CSS -->
 		<link href="resources/css/admin/adminReviewDetail.css" rel="stylesheet" type="text/css">
     	<%@ include file="../sidebarSunkyung.jsp"%>
