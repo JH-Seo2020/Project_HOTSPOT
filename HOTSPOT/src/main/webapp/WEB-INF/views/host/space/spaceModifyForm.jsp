@@ -89,7 +89,6 @@ $(function(){
 
   </script>
   
-  	<jsp:include page="../common/hostMenubar.jsp"/>
 	<jsp:include page="../common/subMenubar.jsp"/>
   
   <div style="position: absolute; top:50px; left:50px; margin-left: 300px;">
@@ -106,7 +105,7 @@ $(function(){
                         <tr class="title">
                             <th>공간명 <p style="color:red">*</p></th>
                             <td colspan="2">
-                                <input type="text" id="spcName" class="form-control" name="spcName" placeholder="공간명을 입력해주세요!">
+                                <input type="text" id="spcName" class="form-control" name="spcName" value="${spaceInfo.spcName }" readonly>
                             </td>
                         </tr>
                         <tr class="introduce">
@@ -542,7 +541,7 @@ $(function(){
     </div>
     
     </div>
-    
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <jsp:include page="../../common/footer.jsp"/>
  </body>
  

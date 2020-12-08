@@ -3,6 +3,7 @@ package com.kh.hotspot.host.model.service;
 import java.util.ArrayList;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
@@ -43,6 +44,11 @@ public interface HostService {
 	ArrayList<Inquiry> selectInquiry(PageInfo pi, String userId);
 	//6_4. 1:1 문의 삭제 
 	int deleteInquiry(Inquiry inquiryNo);
+	
+	//이용후기 리스트 불러오기
+	int selectMyReviewListCount(String userId);
+	ArrayList<Review> selectMyReviewList(PageInfo pi, String userId);
+	
 
 
 }

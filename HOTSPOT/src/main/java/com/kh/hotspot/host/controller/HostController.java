@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.hotspot.common.model.vo.PageInfo;
 import com.kh.hotspot.common.template.Pagination;
 import com.kh.hotspot.guest.myPage.model.vo.Member;
+import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.host.model.service.HostService;
 import com.kh.hotspot.host.model.vo.Calculation;
 import com.kh.hotspot.host.model.vo.HostInfo;
@@ -652,5 +653,25 @@ public class HostController {
 		int result = hService.updateHost(hi);
 		
 		return "host/hostPage/hostMyPage";
+	}
+	
+	@RequestMapping("review.host")
+	public String selectMyReviewList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model, String userId) {
+		
+		if(userId == null) {
+			// 맨 처음 페이지 들어올때
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			userId = loginUser.getUserId();
+		}
+		int listCount = hService.selectMyReviewListCount(userId);
+		System.out.println(listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
+
+		ArrayList<Review> rvList = hService.selectMyReviewList(pi, userId);
+		
+		model.addAttribute("pi", pi);
+		session.setAttribute("rvList", rvList);
+		
+		return "host/space/reviewHostList";
 	}
 }

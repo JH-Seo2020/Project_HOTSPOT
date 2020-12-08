@@ -215,7 +215,7 @@
 		                        <td>신고유형</td>
 		                        <td>
 		                            <select name="reportType1"> 
-		                                <option value="호스트신고">호스트신고</option>
+		                                <option value="호스트신고">게스트신고</option>
 		                                <option value="공간신고">공간신고</option>
 		                            </select>
 		                        </td>
@@ -232,8 +232,8 @@
 		                        </td> 
 		                    </tr>
 		                    <tr>
-		                        <td>신고할 호스트</td>
-		                        <td><input type="text" name="reportTarget" value="${ r.userIdHost }" readonly></td>
+		                        <td>신고할 게스트</td>
+		                        <td><input type="text" name="reportTarget" value="${ r.userId }" readonly></td>
 		                    </tr>
 		                    <tr>
 		                        <td>신고내용</td>

@@ -87,10 +87,6 @@ public class MyPageDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		//HashMap<Object, Object> hmap = new HashMap<>();
-		//hmap.put("reservNo", reservNo);
-		//hmap.put("userId", userId);
-		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyReviewList", userId, rowBounds);
 		
 	}
@@ -106,11 +102,6 @@ public class MyPageDao {
 	}
 	
 	public Review selectUpdateMyReviewForm(SqlSessionTemplate sqlSession, Review rv) {
-		
-		//HashMap<Object, Object> hmap = new HashMap<>();
-		//hmap.put("rv", rv);
-		//hmap.put("userId", userId);
-		
 		return sqlSession.selectOne("mypageMapper.selectUpdateMyReviewForm", rv);
 	}
 	
@@ -129,7 +120,7 @@ public class MyPageDao {
 	
 	
 	/**
-	 * Qna
+	 * Q & A
 	 * 
 	 */
 	public int selectMyQnaListCount(SqlSessionTemplate sqlSession, String userId){
@@ -176,8 +167,8 @@ public class MyPageDao {
 	}
 	
 	
-	public int insertMyInquiry(SqlSessionTemplate sqlSession, String userId) {
-		return sqlSession.insert("mypageMapper.insertMyInquiry", userId);
+	public int insertMyInquiry(SqlSessionTemplate sqlSession, VoicesInquiry vi) {
+		return sqlSession.insert("mypageMapper.insertMyInquiry", vi);
 	}
 	
 	
@@ -198,7 +189,14 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectMyWishList", userId, rowBounds);
 	}
 	
-	
+	public int deleteWish(SqlSessionTemplate sqlSession, int spcNo, String userId) {
+		
+		HashMap<Object, Object> hmap = new HashMap<>();
+		hmap.put("spcNo", spcNo);
+		hmap.put("userId", userId);
+		
+		return sqlSession.delete("mypageMapper.deleteWish", hmap);
+	}
 	
 }
 

@@ -93,19 +93,14 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../../common/menubar.jsp"/>
+	<jsp:include page="../common/hostMenubar.jsp" />
+	<jsp:include page="../common/subMenubar.jsp" />
 
-    <div id="content">
+    <div id="content" style="position: absolute; top: 50px; left: 300px; width: 1200px;">
         <div id="reviewArea">
             <br><br><br>
             <h2 align="center"><b>이용후기 관리</b></h2>
             <br><br>
-            <div class="reviewDropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">최신순</button>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">예약번호순</a>
-                </div>
-            </div>
             <br>
             <div id="inputReview">
             <input type="hidden" name="userId" value="${ loginUser.userId }">
@@ -117,8 +112,7 @@
                             <dd style="margin-bottom: 25px">
                                 <span><b>제목 : ${ rv.reviewTitle }</b></span> &nbsp;
                                 <span class="useDate"><small>작성일 : ${ rv.reviewDate }</small></span>
-                                <button type="button" id="updateBtn" onclick="location.href='updateReviewForm.mg?reservNo='+ ${rv.reservNo}">수정</button> <br clear="both">
-                                <button type="button" class="reviewDeleteBtn" value="${ rv.reviewNo }" data-toggle="modal" data-target="#reviewModal">삭제</button>
+
                             </dd>
                         </dl>
                     </div>
@@ -129,6 +123,8 @@
 		                            <dt><b>호스트님의 답글 :</b></dt><br>
 		                            <dd>
 		                                <span>${ rv.reviewReply }</span><br>
+		                        <button type="button" id="updateBtn" onclick="location.href='updateReviewForm.mg?reservNo='+ ${rv.reservNo}">수정</button> <br clear="both">
+                                <button type="button" class="reviewDeleteBtn" value="${ rv.reviewNo }" data-toggle="modal" data-target="#reviewModal">삭제</button>
 		                            </dd>
 		                        </dl>
 		                    </div>
@@ -207,7 +203,9 @@
 		 </div>
     
     
-
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
+	
     <jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>

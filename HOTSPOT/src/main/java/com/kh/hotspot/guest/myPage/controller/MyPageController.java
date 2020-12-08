@@ -36,7 +36,6 @@ public class MyPageController {
 		
 		int listCount = mpService.selectReservListCount(loginUser.getUserId());
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
-		//sout + ctrl+space
 		
 		ArrayList<Reservation> list = mpService.selectReservList(pi, loginUser.getUserId());
 		
@@ -132,10 +131,12 @@ public class MyPageController {
 	public String selectMyReviewList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, HttpSession session, Model model, String userId) {
 		
 		if(userId == null) {
+			
 			// 맨 처음 페이지 들어올때
 			Member loginUser = (Member)session.getAttribute("loginUser");
 			userId = loginUser.getUserId();
 		}
+		
 		int listCount = mpService.selectMyReviewListCount(userId);
 		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
@@ -201,12 +202,6 @@ public class MyPageController {
 	@RequestMapping("updateReview.mg")
 	public String udpateMyReview(Review rv, HttpSession session, Model model) {
 		
-//		System.out.println(rv.getUserId());
-//		System.out.println(rv.getReviewTitle());
-//		System.out.println(rv.getReviewContent());
-//		System.out.println(rv.getReviewNo());
-//		System.out.println(rv.getReviewScore());
-		
 		int result = mpService.updateMyReview(rv);
 		System.out.println(result);
 		
@@ -256,7 +251,6 @@ public class MyPageController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 5);
 		
 		ArrayList<Qna> qnList = mpService.selectMyQnaList(pi, loginUser.getUserId());
-		//qnList.getQaNo.getClass().getName();
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("qnList", qnList);
@@ -288,7 +282,7 @@ public class MyPageController {
 	
 	
 	/**
-	 * 고객문의관리시작
+	 * 1:1고객문의관리시작
 	 * 
 	 */
 	@RequestMapping("myInquiry.mg")
@@ -339,13 +333,7 @@ public class MyPageController {
 	@RequestMapping("insertInquiry.mg")
 	public String insertMyInquiry(VoicesInquiry vi, HttpSession session, Model model) {
 		
-		System.out.println(vi.getInquiryContent());
-		System.out.println(vi.getInquiryTitle());
-		System.out.println(vi.getInquiryWriter());
-		
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		int result = mpService.insertMyInquiry(loginUser.getUserId());
+		int result = mpService.insertMyInquiry(vi);
 		
 		if(result > 0) {
 			
@@ -379,6 +367,28 @@ public class MyPageController {
 		model.addAttribute("wishList", wishList);
 		
 		return "guest/myPage/likeView";
+	}
+	
+	
+	@RequestMapping("deleteWish.lv")
+	public String deleteWish(int spcNo, HttpSession session, Model model) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+
+		int result = mpService.deleteWish(spcNo, loginUser.getUserId());
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "성공적으로 해제되었습니다!");
+			return "redirect:myLike.lv";
+		
+		}else {
+			
+			model.addAttribute("errorMsg", "찜해제에 실패하셨습니다.");
+			return "common/errorPage";
+			
+		}
+		
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,7 @@ public class HostSpaceContoller {
 				noteList=sp.getNoteList();
 			}
 		// 3. service 호출
-		int result =  hSpaceService.insertSpace(sp,noteList);
+		int result =  hSpaceService.updateSpace(sp,noteList);
 		
 		// 4. 상세이미지 파일작업
 		int imageResult =0;
@@ -78,7 +79,7 @@ public class HostSpaceContoller {
 			}
 		}
 		if(result > 0 && imageResult > 0) {
-			session.setAttribute("alertMsg","공간등록이 성공적으로 완료 되었습니다 :)");
+			session.setAttribute("alertMsg","공간수정이 성공적으로 완료 되었습니다 :)");
 			return "host/common/hostMain";
 		}else {
 			return "common/errorPage";
@@ -161,7 +162,12 @@ public class HostSpaceContoller {
 	 * @return
 	 */
 	@RequestMapping("spaceModifyForm.ho")
-	public String spaceModifyForm() {
+	public String spaceModifyForm(int sno, HttpSession session) {
+		
+		Space sc = hSpaceService.selectOneSpace(sno);
+		
+		session.setAttribute("spaceInfo", sc);
+		
 		return "host/space/spaceModifyForm";
 	}
 	
@@ -318,4 +324,39 @@ public class HostSpaceContoller {
 		
 		return "host/space/spaceReservationList";
 	}
+	
+	@RequestMapping("cancle.reservation")
+	public String ReservationCancle(HttpSession session, String guestId, String spcName,Model model) {
+		
+		Member refundUser = (Member) hSpaceService.refundEmail(guestId);
+		
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		String hostEmail = loginUser.getUserEmail();
+		
+		String refundEmail = refundUser.getUserEmail();
+		String userId = loginUser.getUserId();
+		
+		Reservation searchReservation = new Reservation();
+		
+		searchReservation.setUserId(guestId);
+		searchReservation.setReSpcName(spcName);
+		
+
+		int result = hSpaceService.ReservationCancle(searchReservation);
+		
+		if(result >0) {
+			
+			session.setAttribute("alertMsg", "예약이 취소되었습니다!");
+			session.setAttribute("checkNum", hSpaceService.mailSend(session, refundEmail, hostEmail));
+			return "redirect:reservation.ho";
+		
+		}else {
+
+			model.addAttribute("errorMsg", "오류가 발생했습니다.");
+			return "common/errorPage";
+		}
+	}
+	
+
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.space.model.vo.Review;
 import com.kh.hotspot.host.model.vo.Qna;
 import com.kh.hotspot.host.model.dao.HostDao;
 import com.kh.hotspot.host.model.vo.Calculation;
@@ -92,5 +93,15 @@ public class HostServiceImpl implements HostService {
 	@Override
 	public int deleteInquiry(Inquiry inquiryNo) {
 		return hDao.deleteInquiry(sqlSession,inquiryNo);
+	}
+	@Override
+	public int selectMyReviewListCount(String userId) {
+		// TODO Auto-generated method stub
+		return hDao.selectMyReviewListCount(sqlSession,userId);
+	}
+	@Override
+	public ArrayList<Review> selectMyReviewList(PageInfo pi, String userId) {
+		// TODO Auto-generated method stub
+		return hDao.selectMyReviewList(sqlSession,pi,userId);
 	}
 }

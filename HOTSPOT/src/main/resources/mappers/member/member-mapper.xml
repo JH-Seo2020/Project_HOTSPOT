@@ -104,5 +104,26 @@
 		      , withdrawal_date=sysdate
 		  where user_id=#{userId}
   	</update>
+  	
+  	<select id="refundEmail" parameterType="string" resultMap="memberResultSet">
+		select
+		       user_id
+		     , user_type
+		     , user_pwd
+		     , user_nickname
+		     , user_email
+		     , user_phone
+		     , user_profile
+		     , user_profile_c
+		     , profile_path
+		     , user_status
+		     , enroll_date
+		     , modify_date
+		     , withdrawal_date
+		     , user_memo
+		  from member
+		 where user_status='Y'
+		   and user_id=#{guestId}
+  	</select>
 
 </mapper>

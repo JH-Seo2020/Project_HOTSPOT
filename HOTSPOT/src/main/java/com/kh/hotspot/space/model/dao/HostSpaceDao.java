@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.hotspot.common.model.vo.PageInfo;
+import com.kh.hotspot.guest.myPage.model.vo.Member;
 import com.kh.hotspot.guest.space.model.vo.Reservation;
 import com.kh.hotspot.guest.voices.model.vo.VoicesNotice;
 import com.kh.hotspot.space.model.vo.Space;
@@ -132,6 +133,21 @@ public class HostSpaceDao {
 	public int updateNotes(SqlSessionTemplate sqlSession, SpcNotes spcNotes) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("hostSpaceMapper.updateNotes",spcNotes);
+	}
+
+	public Member refundEmail(SqlSessionTemplate sqlSession, String guestId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberMapper.refundEmail",guestId);
+	}
+
+	public int ReservationCancle(SqlSessionTemplate sqlSession,Reservation searchReservation) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("hostMapper.ReservationCancle", searchReservation);
+	}
+
+	public Space selectOneSpace(SqlSessionTemplate sqlSession, int sno) {
+		
+		return sqlSession.selectOne("hostMapper.selectOneSpace", sno);
 	}
 
 	
