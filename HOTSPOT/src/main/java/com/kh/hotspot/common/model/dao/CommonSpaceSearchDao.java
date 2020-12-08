@@ -36,9 +36,5 @@ public class CommonSpaceSearchDao {
 	public int selectWishCount(int spcNo, SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("spaceSearchMapper.selectWishCount", spcNo);
 	}
-	
-	public ArrayList<SpaceInfo> selectSearchCondition(SpaceInfo spaceInfo, SqlSessionTemplate sqlSession){
-		return (ArrayList)sqlSession.selectList("spaceSearchMapper.selectSearchCondition", spaceInfo);		
-	}
 
 }

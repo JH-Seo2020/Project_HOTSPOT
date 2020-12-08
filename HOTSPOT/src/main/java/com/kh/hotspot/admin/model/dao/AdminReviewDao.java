@@ -18,7 +18,7 @@ public class AdminReviewDao {
 	}
 	
 	// 후기리스트 조회
-	public ArrayList<Review> selectList(PageInfo pageInfo, SqlSessionTemplate sqlSession){
+	public ArrayList<Review> selectList(PageInfo pageInfo, SqlSessionTemplate sqlSession) {
 		
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit();
 		int limit = pageInfo.getBoardLimit();

@@ -216,6 +216,7 @@
     		console.log("눌림");
         	location.href="spaceDetail.guest?spcNo=" + spcNo;
         }
+    	
     </script>
     
 </body>

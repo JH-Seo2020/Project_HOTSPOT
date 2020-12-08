@@ -21,6 +21,7 @@ public class CommonSpaceSearchController {
 	@Autowired
 	private CommonSpaceSearchService spaceSearchService;
 	
+	// 검색결과 요청
 	@RequestMapping("search.hotspot")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 							 SpaceInfo spaceInfo, String location, Model model) {

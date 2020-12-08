@@ -71,6 +71,7 @@
     </div>
     <script>
     	$(function(){
+    		
     		// 숨기기버튼 선택시
     		$(".btn").click(function(){
     			var question = confirm("블라인드처리 하시겠습니까?");
@@ -90,6 +91,7 @@
     				});   	
     			}
     		});
+    		
     	});
     </script>
 </body>
