@@ -17,8 +17,6 @@
             <div id="categoryName">
                 <span>후기관리</span>
             </div>
-
-            <!-- <form action="reviewList.ad" method="post" id="form_reviewList"> -->
             <div id="reviewList">
                 <select id="select_reviewSearchSelect" name="reviewSearchSelect" class="custom-select custom-select-sm mb-3">
                     <option selected disabled>선택</option>
@@ -83,7 +81,6 @@
                     </c:choose>
                   </ul>
             </div>
-            <!-- </form> -->
         </div>
     </div>
     <script>

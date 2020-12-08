@@ -198,6 +198,13 @@ public class HostSpaceServiceImpl implements HostSpaceService{
 	}
 
 
+	@Override
+	public int selectAll() {
+		
+		return hSpaceDao.selectAll(sqlSession);
+	}
+
+
 
 
 	

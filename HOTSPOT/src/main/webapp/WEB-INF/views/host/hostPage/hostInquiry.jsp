@@ -16,7 +16,12 @@
 	
 
 <jsp:include page="../common/subMenubar.jsp" />
-   
+   	<c:if test="${ !empty alertMsg }">
+		<script>
+		 alertify.alert("${alertMsg}");//alert("xxx님 환영합니다")
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+	</c:if>
    <div id="inquiryContainer">
    		<div class="inquiry_head">
    			<p style="color: white; font-size:18px;">1:1 문의 </p>
@@ -28,6 +33,7 @@
 			</div>
    		</div>
    		<div class="inquiry_body" style="background-color:#f5f5f5; margin-top: 150px; border-radius:10px; padding:4px">
+   		
    			<c:forEach var="li" items="${list}">
 	   			<div class="inq_1">
 	   			<form action="deleteInquiry.ho" method="post">

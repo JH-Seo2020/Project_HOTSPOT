@@ -132,9 +132,10 @@
                     <button id="btn_concent" class="btn btn-primary">수락</button>
                     <button id="btn_refuse" class="btn btn-secondary" data-dismiss="modal">거절</button>
                     </div>
-                    
+                     
                 </div>
                 </div>
+                
             </div>
             
             <button id="btn_save" class="btn">저장</button>
@@ -143,6 +144,7 @@
     </div>
     <script>
     	$(function(){
+    		
     		// 전달받은 회원상태로 고정
     		$("#select_userStatus").val($("#hidden_userStatus").val()).attr("selected", "selected");
     		
@@ -176,6 +178,7 @@
 					});
 				}
     		});
+    		
     		// 호스트 수락
     		$("#btn_concent").click(function(){
     			var userId = $("#table_info2 tr:eq(0)>td").text();		// 회원아이디
@@ -224,6 +227,7 @@
     				}
     			});
     		});
+    		
     	});
     </script>    
 </body>

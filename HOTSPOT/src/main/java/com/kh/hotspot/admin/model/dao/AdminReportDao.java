@@ -26,8 +26,7 @@ public class AdminReportDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("reportMapper.selectList", reportStatus, rowBounds);
-		
+		return (ArrayList)sqlSession.selectList("reportMapper.selectList", reportStatus, rowBounds);		
 	}
 	
 	// 신고내역 상세조회

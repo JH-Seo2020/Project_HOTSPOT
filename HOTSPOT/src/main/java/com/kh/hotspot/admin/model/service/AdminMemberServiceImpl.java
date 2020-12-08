@@ -95,8 +95,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		mailHelper.setSubject(subject);
 		mailHelper.setText(content, true);
 		
-		mailSender.send(mail);
-		
+		mailSender.send(mail);		
 	}
 
 	@Override	// 회원유형 변경
@@ -111,21 +110,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 			return memberDao.updateHostStatusY(userId, sqlSession);		// 수락
 		}else {
 			return memberDao.updateHostStatusN(userId, sqlSession);		// 거절
-		}
-		
+		}		
 	}
-
-	@Override	// 검색결과수 조회
-	public int selectSearchCount(Member member) {
-		return memberDao.selectSearchCount(member, sqlSession);
-	}
-
-	@Override	// 검색결과리스트 조회
-	public ArrayList<Member> selectSearch(Member member, PageInfo pageInfo) {
-		return memberDao.selectSearch(member, pageInfo, sqlSession);
-	}
-	
-	
-
 
 }

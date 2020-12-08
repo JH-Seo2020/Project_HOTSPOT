@@ -35,12 +35,6 @@ public class AdminMemberController {
 		// 모든 회원리스트 조회
 		ArrayList<Member> list = memberService.selectList(member, pageInfo);
 		
-		System.out.println(member.getUserType());
-		System.out.println(member.getUserId());
-		System.out.println(member.getUserStatus());
-		
-		System.out.println(listCount);
-		
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("list", list);
 		model.addAttribute("userType", member.getUserType());
@@ -75,7 +69,6 @@ public class AdminMemberController {
 		}else {
 			return "admin/adminMember/adminGuestDetail";
 		}
-
 	}
 	
 	// 회원상태, 메모 저장요청

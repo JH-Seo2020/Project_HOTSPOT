@@ -11,21 +11,14 @@
 </head>
 <body>
 	<div class="outer">
-		<%@ include file="../common/menubar.jsp"%>
-        <%@ include file="sidebarSunkyung.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
+        <%@ include file="../sidebarSunkyung.jsp"%>
         <div id="rightSpace">
             <div id="categoryName">
                 <span>신고관리</span>
             </div>
 
             <div id="reportList">
-                <!-- <select id="select_reportSearchSelect" name="searchType" class="custom-select custom-select-sm mb-3">
-                    <option selected disabled>선택</option>
-                    <option value="reportWriter">신고자</option>
-                    <option value="reportTarget">신고대상</option>
-                </select>
-                <input type="text" id="input_reportSearch" class="form-control" name="reportSearch">
-                <button class="btn" id="btn_reportSearch">검색</button> -->
 				<form action="" method="post" id="form_reportStatus">
 					<select id="select_reportStatus" name="reportStatus" class="custom-select custom-select-sm mb-3">
 						<option value="접수완료">접수완료</option>
@@ -98,11 +91,13 @@
     </div>
     <script>
     	$(function(){
+    		
     		// 셀렉스박스가 변경될때마다
     		$("#select_reportStatus").change(function(){
     			// 선택한 신고상태기준으로 정렬요청
     			$("#form_reportStatus").attr("action", "reportList.ad").submit();
     		});
+    		
     		// 선택한 신고상태로 고정
     		$("#select_reportStatus").val($("#hidden_reportStatus").val()).attr("selected", "selected");
     		
@@ -113,6 +108,7 @@
     			$("#hidden_reportNo").attr("value", tdText);
     			$("#form_reportList").attr("action", "reportDetail.ad").submit();
     		});
+    		
     	});
     </script>
 </body>

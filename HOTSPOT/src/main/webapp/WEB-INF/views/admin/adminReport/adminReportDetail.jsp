@@ -68,8 +68,10 @@
     </div>
     <script>
     	$(function(){
+    		
     		// 전달받은 신고상태로 고정
     		$("#select_reportStatus").val($("#hidden_reportStatus").val()).attr("selected", "selected");
+    		
     		// 저장버튼누를경우
     		$(".btn").click(function(){
     			// 신고번호
@@ -99,6 +101,7 @@
 					});
 				}
     		});
+    		
     	});
     </script>
 </body>

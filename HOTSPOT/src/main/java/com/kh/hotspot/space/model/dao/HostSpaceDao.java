@@ -150,6 +150,10 @@ public class HostSpaceDao {
 		return sqlSession.selectOne("hostMapper.selectOneSpace", sno);
 	}
 
+	public int selectAll(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("hostMapper.selectAll");
+	}
+
 	
 
 

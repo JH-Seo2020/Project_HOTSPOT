@@ -107,5 +107,8 @@
   where a.user_id = #{userId}  
   </update>
   
-
+	<select id="selectAll" resultType="_int">
+	select seq_space.currval
+	from dual
+	</select>
 </mapper>

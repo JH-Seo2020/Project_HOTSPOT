@@ -415,7 +415,7 @@
   	  order
 	     by inquiry_no desc
   </select>
-  <update id="deleteInquiry" parameterType="_int">
+  <update id="deleteInquiry" parameterType="hostInquiry">
   update
     inquiry
     set status = 'N'

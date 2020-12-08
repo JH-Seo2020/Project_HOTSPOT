@@ -23,8 +23,8 @@
 		  from review
 	</select>
 	
-	<!-- 검색내용 없는경우  -->
-	<select id="selectList" parameterType="String" resultMap="reviewResultSet">
+	<!-- 후기리스트 조회  -->
+	<select id="selectList" resultMap="reviewResultSet">
 		select
 		       review_no
 		     , spc_no
@@ -34,24 +34,7 @@
 		     , review_date
 		     , review_status
 		  from review
-		 order by review_date desc
-	</select>
-
-	<!-- 검색내용/필터 모두있는경우 조회 -->
-	<select id="selectAllFilterList" parameterType="String" resultMap="reviewResultSet">
-		select
-		       review_no
-		     , spc_no
-		     , review_writer
-		     , review_title
-		     , review_content
-		     , review_score
-		     , review_date
-		     , review_status
-		     , review_reply
-		  from review
-		 where #{searchOption} like #{searchWord}||'%' and review_status = #{status}
-		 order by review_date desc  
+		 order by decode(review_status, 'Y', 1), review_date desc
 	</select>
 	
 	<!-- 후기상세 조회 -->
@@ -76,4 +59,5 @@
 		   set review_status = 'N'
 		 where review_no = #{reviewNo}
 	</update>
+	
 </mapper>

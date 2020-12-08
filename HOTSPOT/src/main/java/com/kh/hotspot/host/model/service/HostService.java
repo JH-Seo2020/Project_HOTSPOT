@@ -43,7 +43,7 @@ public interface HostService {
 	//6_3. 1:1 문의 리스트조회
 	ArrayList<Inquiry> selectInquiry(PageInfo pi, String userId);
 	//6_4. 1:1 문의 삭제 
-	int deleteInquiry(int inquiryNo);
+	int deleteInquiry(Inquiry inquiryNo);
 	
 	//이용후기 리스트 불러오기
 	int selectMyReviewListCount(String userId);

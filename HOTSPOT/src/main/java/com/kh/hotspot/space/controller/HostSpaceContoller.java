@@ -38,6 +38,7 @@ public class HostSpaceContoller {
 	 */
 	@RequestMapping("spaceEnrollForm.ho")
 	public String spaceEnrollForm() {
+	
 		return "host/space/spaceEnrollForm";
 	}
 	/**
@@ -53,7 +54,7 @@ public class HostSpaceContoller {
 				
 				if(changeName != null) {
 					sp.setSpcImg(upfile.getOriginalFilename());
-					sp.setSpcChimg("resources/upFiles/" + changeName);
+					sp.setSpcChimg("resources/images/spaces/" + changeName);
 				}
 			}
 	
@@ -63,7 +64,7 @@ public class HostSpaceContoller {
 				noteList=sp.getNoteList();
 			}
 		// 3. service 호출
-		int result =  hSpaceService.updateSpace(sp,noteList);
+		int result =  hSpaceService.insertSpace(sp,noteList);
 		
 		// 4. 상세이미지 파일작업
 		int imageResult =0;
@@ -73,13 +74,13 @@ public class HostSpaceContoller {
 			if(changeName != null) {
 				for(int i=0; i<upfiles.length; i++) {
 					si.setImgOgImg(upfiles[i].getOriginalFilename());
-					si.setImgChImg("resources/upFiles/" + changeName.get(i));
+					si.setImgChImg("resources/images/spaces/" + changeName.get(i));
 					imageResult = hSpaceService.insertImages(si);
 				}
 			}
 		}
-		if(result > 0 && imageResult > 0) {
-			session.setAttribute("alertMsg","공간수정이 성공적으로 완료 되었습니다 :)");
+		if(result > 0 ) {
+			session.setAttribute("alertMsg","공간등록이 성공적으로 완료 되었습니다 :)");
 			return "host/common/hostMain";
 		}else {
 			return "common/errorPage";
@@ -91,7 +92,7 @@ public class HostSpaceContoller {
 		
 		String originName = upfile.getOriginalFilename();
 		
-		String savePath = session.getServletContext().getRealPath("/resources/upFiles/");
+		String savePath = session.getServletContext().getRealPath("/resources/images/spaces/");
 		
 		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		int ranNum = (int)(Math.random() * 90000 + 10000);
@@ -115,7 +116,7 @@ public class HostSpaceContoller {
 			if(upfiles[i] != null) {
 				String originName = upfiles[i].getOriginalFilename();
 				// 저장시킬 폴더의 물리적인 경로 
-				String savePath = session.getServletContext().getRealPath("/resources/upFiles/");
+				String savePath = session.getServletContext().getRealPath("/resources/images/spaces/");
 				String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 				int ranNum = (int)(Math.random() * 90000 + 10000);
 				String ext = originName.substring(originName.lastIndexOf("."));

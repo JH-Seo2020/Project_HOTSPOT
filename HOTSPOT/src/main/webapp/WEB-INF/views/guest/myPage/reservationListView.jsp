@@ -125,7 +125,7 @@
 		                        </c:choose>
 		                        <span class="statusRable">${ r.reservStatus }</span>
 		                        <c:if test="${ r.reservStatus eq '이용완료' }">
-		                        	<button type="button" class="reviewBtn" value="${ r.reservNo }">후기 작성</button>
+		                        	<button type="button" class="reviewBtn" onclick="location.href='enrollFormReview.mg?reservNo='+ ${r.reservNo}">후기 작성</button>
 		                        </c:if>
 		                    </div>
 		                </div><br>
@@ -161,7 +161,6 @@
 	       	
 	       	$(".reviewBtn").click(function(e){
 	       		e.stopPropagation();  // '후기작성'버튼에 이벤트 버블링 주기
-	       		location.href="enrollFormReview.mg?reservNo=" + $(".reviewBtn").val();
 	       		
 	       	})
 	       </script>
