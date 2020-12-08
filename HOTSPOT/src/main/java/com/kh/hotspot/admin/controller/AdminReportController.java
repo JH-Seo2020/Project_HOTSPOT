@@ -39,7 +39,7 @@ public class AdminReportController {
 		model.addAttribute("list", list);
 		model.addAttribute("reportStatus", reportStatus);
 		
-		return "admin/adminReportList";
+		return "admin/adminReport/adminReportList";
 	}
 	
 	// 신고내역 상세조회 요청
@@ -50,8 +50,7 @@ public class AdminReportController {
 		
 		model.addAttribute("report", report);
 		 
-		 return "admin/adminReport/adminReportDetail";
-		
+		 return "admin/adminReport/adminReportDetail";	
 	}
 	
 	// 신고상태 변경 요청
@@ -67,8 +66,7 @@ public class AdminReportController {
 			result = "";
 		}
 		
-		return new Gson().toJson(result);
-		
+		return new Gson().toJson(result);		
 	}
 	
 

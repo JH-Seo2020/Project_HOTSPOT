@@ -64,4 +64,5 @@
 		   set report_status = #{reportStatus}
 		 where report_no = #{reportNo}
 	</select>
+	
 </mapper>
