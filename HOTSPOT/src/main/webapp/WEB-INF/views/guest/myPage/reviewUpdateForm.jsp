@@ -39,7 +39,6 @@
     <div id="content">
         <div id="reviewContent">
             <input type="hidden" name="userId" value="${ loginUser.userId }">
-            <input type="hidden" name="reviewNo" value="${ updateRv.reviewNo }">
             <h2 align="center"><b>이용후기 작성</b></h2>
             <br><hr><br>
             <div id="reviewHeader" style="border: 2px solid rgb(145, 37, 247);">
@@ -55,6 +54,7 @@
             <form action="updateReview.mg" method="POST">
             	<input type="hidden" name="userId" value="${ loginUser.userId }">
             	<input type="hidden" name="reviewNo" value="${ updateRv.reviewNo }">
+            	<input type="hidden" name="spcNo" value="${ updateRv.spcNo }"> 
                 <label for="reviewTitle"><b>제목</b></label> &nbsp;&nbsp;
                 <input type="text" name="reviewTitle" id="reviewTitle" value="${ updateRv.reviewTitle }" placeholder="제목을 입력하세요" maxlength="80" size="80" required> &nbsp;&nbsp;&nbsp;
                 <label for="reviewScore"><b>별점</b></label>

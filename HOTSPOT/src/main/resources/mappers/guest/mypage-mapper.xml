@@ -394,6 +394,7 @@
 		     , review_content=#{reviewContent}
 		 where review_writer=#{userId}
 		   and review_no=#{reviewNo}
+		   and spc_no=#{spcNo}
 	</update>
 	
 	
@@ -424,8 +425,12 @@
 		     , q.qa_content
 		     , q.qa_writer
 		     , q.qa_date
+		     <if test="qaAnswer != null">
 		     , q.qa_answer
+		     </if>
+		     <if test="qaAnswerDate != null">
 		     , q.qa_answerdate
+		     </if>
 		     , q.qa_status
 		     , q.qa_secret
 		     , q.user_id
@@ -437,6 +442,8 @@
 		  join space_info sp on(q.spc_no=sp.spc_no)
 		 where q.user_id=#{userId}
 		   and qa_status='Y'
+		 order
+		    by q.qa_date desc
 	</select>
 	
 	

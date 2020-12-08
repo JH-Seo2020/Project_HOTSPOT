@@ -81,17 +81,24 @@
                                 <button class="qnBtn" type="button" value="${ q.qaNo }" id="qnBtn" data-toggle="modal" data-target="#deleteQnAModal">삭제</button>
                             </dd>
                         </dl>
-                    </div><hr>
-                    <div class="qnaReply">
-                        <dl>
-                            <dt><b>호스트님의 답글 :</b></dt><br>
-                            <dd>
-                                <span>${ q.qaAnswer }</span>
-                                <span  class="qnaDate"><small>&nbsp; 답변일 : ${ q.qaAnswerDate }</small></span>
-                            </dd>
-                            <dd></dd>
-                        </dl>
                     </div>
+                    <c:choose>
+                      <c:when test="${ q.qaAnswer != null }">
+	                     <div class="qnaReply"><hr>
+	                        <dl>
+	                            <dt><b>호스트님의 답글 :</b></dt><br>
+	                            <dd>
+	                                <span>${ q.qaAnswer }</span>
+	                                <span  class="qnaDate"><small>&nbsp; 답변일 : ${ q.qaAnswerDate }</small></span>
+	                            </dd>
+	                            <dd></dd>
+	                        </dl>
+	                     </div>
+	                   </c:when>
+	                   <c:otherwise>
+	                   
+	                   </c:otherwise>
+                    </c:choose>
                 </div> 
               </c:forEach>
             </div>
