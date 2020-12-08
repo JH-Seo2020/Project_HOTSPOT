@@ -80,7 +80,7 @@
              <div style="width:1000px;" >
                  <hr>
                  <div align="right">
-                     <button class="btn btn-secondary">목록으로</button><br>
+                     <button class="btn btn-secondary" onclick="location.href='list.rad'">목록으로</button><br>
                  </div>
                  <c:choose>
                  	<c:when test="${ r.reStatus == '예약확정' || r.reStatus == '결제대기'}">                		
