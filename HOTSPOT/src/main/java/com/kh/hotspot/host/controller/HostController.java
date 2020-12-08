@@ -639,6 +639,12 @@ public class HostController {
 	@RequestMapping("updateHost.ho")
 	public String updateHost(HttpSession session,HostInfo hi,MultipartFile upfile) {
 		
+		Member loginUser =(Member) session.getAttribute("loginUser");
+		
+		String userId = loginUser.getUserId();
+		
+		hi.setUserId(userId);
+		
 		if(!upfile.getOriginalFilename().equals("")) {
 			
 			String changeName = saveFile(upfile,session); // 공통으로 쓰이게끔 뺀 메소드 호출만으로 끝
@@ -674,4 +680,19 @@ public class HostController {
 		
 		return "host/space/reviewHostList";
 	}
+	
+	@RequestMapping("insertHost.reply")
+	public String insertHostReply(@RequestParam(value="content")String content, @RequestParam(value="rvNum")int rvNum) {
+		Review reply = new Review();
+		reply.setReviewReply(content);
+		reply.setReviewNo(rvNum);
+		
+		System.out.print(content+rvNum);
+		
+		int result = hService.updateHostReply(reply);
+		
+		
+		return "redirect:review.host";
+	}
+	
 }

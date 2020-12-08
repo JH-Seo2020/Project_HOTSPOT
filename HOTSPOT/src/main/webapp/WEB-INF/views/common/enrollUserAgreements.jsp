@@ -126,7 +126,7 @@ NAVER 내의 개별 서비스 이용, 이벤트 응모 및 경품 신청 과정�
                 
 
                 
-                <a class="btn btn-primary" style="width: 120px; margin-left: 30px;" id="checkBoxCheck" href="enrollForm.me">확인</a>
+                <button class="btn btn-primary" style="width: 120px; margin-left: 30px;" id="checkBoxCheck" onclick="check();">확인</button>
             </div>
 
             <script>
@@ -139,18 +139,15 @@ NAVER 내의 개별 서비스 이용, 이벤트 응모 및 경품 신청 과정�
                 });
 
                 
-                $("#checkBoxCheck").click(
-                        function (){
-                            if($("input[type=checkbox]").is(":checked") == false){
-                                alert("선택사항들을 체크해주세요.");
-                                $(".btn btn-primary").prop("disabled",true);
-                            }else{
-                                $(".btn btn-primary").prop("disabled",false);
-                            }
-                        
-                        });
 
-
+			function check(){
+				if($("input[type=checkbox]").is(":checked") == false){
+                    alert("선택사항들을 체크해주세요.");
+                    $(".btn btn-primary").prop("disabled",true);
+                }else{
+                    window.open("http://localhost:8888/hotspot/enrollForm.me")                  
+                }
+			}
 
             </script>    
 

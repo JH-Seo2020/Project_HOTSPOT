@@ -118,7 +118,21 @@
   		<result column="map_location" property="location"/>
   		<result column="user_id" property="userId"/>
   	</resultMap>
-  	
+  	<resultMap id="reviewsSet" type="Reviews">
+  		<id column="REVIEW_NO" property="reviewNo" />
+  		<result column="SPC_NO" property="spcNo" />
+  		<result column="REVIEW_WRITER" property="reviewWriter" />
+  		<result column="REVIEW_TITLE" property="reviewTitle" />
+  		<result column="REVIEW_CONTENT" property="reviewCon" jdbcType="CLOB" javaType="java.lang.String"  />
+  		<result column="REVIEW_SCORE" property="reviewScore" />
+  		<result column="REVIEW_DATE" property="reviewDate" />
+  		<result column="REVIEW_STATUS" property="reviewStatus" />
+  		<result column="REVIEW_REPLY" property="reviewReply" />
+  		<result column="REVIEW_REPLYDATE" property="reviewReplyDate" />
+  		<result column="USER_NICKNAME" property="userNickname" />
+  		<result column="USER_PROFILE_C" property="userProfileCh" />
+  		<result column="PROFILE_PATH" property="profilePath" />
+  	</resultMap>
   	
   <insert id="insertHost" parameterType="HostInfo">
 	insert
@@ -527,4 +541,10 @@
  	 WHERE spc_no =#{sno}
 	
 	</select>
+	
+	<update id="insertHostReply" parameterType="Reviews">
+	update review
+       set review_reply = #{reviewReply}
+     where review_no = #{reviewNo}
+	</update>
 </mapper>

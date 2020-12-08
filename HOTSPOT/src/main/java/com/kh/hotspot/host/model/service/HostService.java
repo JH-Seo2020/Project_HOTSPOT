@@ -48,6 +48,8 @@ public interface HostService {
 	//이용후기 리스트 불러오기
 	int selectMyReviewListCount(String userId);
 	ArrayList<Review> selectMyReviewList(PageInfo pi, String userId);
+	//이용후기 호스트 리플
+	int updateHostReply(Review reply);
 	
 
 

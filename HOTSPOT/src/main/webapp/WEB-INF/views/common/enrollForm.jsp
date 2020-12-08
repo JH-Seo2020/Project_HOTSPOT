@@ -72,7 +72,7 @@
             <div id="EnrollData2" style="height: 400px; width: 70%;">
                 
                     <label for="userEmail">이메일 입력</label><br>
-                    <input type="text" name="userEmail" placeholder="인증절차를 거쳐주세요" required readonly> 
+                    <input type="text" name="userEmail" placeholder="인증절차를 거쳐주세요" required > 
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
     					이메일 인증
   					</button>
@@ -84,7 +84,7 @@
             </div>
             <div align="right">
                 <a id="cancle" class="btn btn-danger" style=" width: 100px; height: 40px; margin-right: 50px;">취소</a>
-                <a id="confirm" class="btn btn-primary" style=" width: 100px; height: 40px; margin-right: 50px;" href="insert.me">회원가입</a>
+                <button id="confirm" class="btn btn-primary" style=" width: 100px; height: 40px; margin-right: 50px;" type="submit">회원가입</button>
             </div>
         </form>
             

@@ -116,4 +116,9 @@ public class HostDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("hostMapper.selectMyReviewListCount", userId);
 	}
+
+	public int updateHostReply(SqlSessionTemplate sqlSession, Review reply) {
+		
+		return sqlSession.update("hostMapper.insertHostReply",reply);
+	}
 }

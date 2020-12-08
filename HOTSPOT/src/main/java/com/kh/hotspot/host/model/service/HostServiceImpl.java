@@ -104,4 +104,9 @@ public class HostServiceImpl implements HostService {
 		// TODO Auto-generated method stub
 		return hDao.selectMyReviewList(sqlSession,pi,userId);
 	}
+	@Override
+	public int updateHostReply(Review reply) {
+		// TODO Auto-generated method stub
+		return hDao.updateHostReply(sqlSession,reply);
+	}
 }

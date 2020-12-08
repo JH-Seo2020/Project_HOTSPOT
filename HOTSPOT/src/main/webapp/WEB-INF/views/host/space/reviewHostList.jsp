@@ -122,15 +122,69 @@
 		                        <dl>
 		                            <dt><b>호스트님의 답글 :</b></dt><br>
 		                            <dd>
-		                                <span>${ rv.reviewReply }</span><br>
-		                        <button type="button" id="updateBtn" onclick="location.href='updateReviewForm.mg?reservNo='+ ${rv.reservNo}">수정</button> <br clear="both">
+		                               <textarea id="replyContent" cols="50" row="3" style="resize:none;">${ rv.reviewReply }</textarea> <br>
+		                        <button type="button" id="updateBtn" onclick="addReply();">수정</button> <br clear="both">
                                 <button type="button" class="reviewDeleteBtn" value="${ rv.reviewNo }" data-toggle="modal" data-target="#reviewModal">삭제</button>
 		                            </dd>
 		                        </dl>
 		                    </div>
+		                    
+		                    <script>
+		                 
+		                    
+		                    function addReply(){
+		                		
+		                		$.ajax({
+		                			url:"insertHost.reply",
+		                			type:"post",
+		                			data:{
+		                				content:$("#replyContent").val(),
+		                				rvNum:${rv.reviewNo}
+		                			},
+		                			success:function(){
+
+		                					alert("댓글 작성 성공");
+		                				
+		                			},error:function(){
+		                				console.log("댓글 작성용 ajax 통신 실패");
+		                			}
+		                		});
+		                		
+		                	}
+		                    </script>
 	                    </c:when>
 	                    <c:otherwise>
-	                    
+	                    	<div class="reviewReply"><hr>
+	                    		<dt><b>호스트님의 답글 :</b></dt><br>
+	                    		<dd>
+	                    			 <textarea id="replyContent" cols="50" row="3" style="resize:none;"></textarea>
+	                    		</dd>
+	                    		<dd><button onclick="addReply();">댓글등록</button></dd>
+	                    	</div>
+	                    	
+	                        <script>
+		                    
+		                    function addReply(){
+		                		
+		                		$.ajax({
+		                			url:"insertHost.reply",
+		                			type:"post",
+		                			data:{
+		                				content:$("#replyContent").val(),
+		                				rvNum:${rv.reviewNo}
+		                			},
+		                			success:function(){
+		                				alert("댓글 작성 성공");
+		                					
+		                				}
+		                				
+		                			},error:function(){
+		                				console.log("댓글 작성용 ajax 통신 실패");
+		                			}
+		                		});
+		                		
+		                	}
+		                    </script>
 	                    </c:otherwise>
                     </c:choose>
                	</div>
