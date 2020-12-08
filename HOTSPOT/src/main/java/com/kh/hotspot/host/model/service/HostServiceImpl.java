@@ -90,7 +90,7 @@ public class HostServiceImpl implements HostService {
 		return hDao.selectInquiryCount(sqlSession,userId);
 	}
 	@Override
-	public int deleteInquiry(int inquiryNo) {
+	public int deleteInquiry(Inquiry inquiryNo) {
 		return hDao.deleteInquiry(sqlSession,inquiryNo);
 	}
 }

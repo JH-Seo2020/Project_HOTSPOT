@@ -475,7 +475,7 @@ public class HostController {
 		
 		if (result > 0) {
 			session.setAttribute("alertMsg", "1:1문의 작성이 완료 되었습니다.");
-			return "host/hostPage/hostInquiry";
+			return "redirect:hostInquiry.ho";
 		}else {
 			session.setAttribute("alertMsg", "1:1문의 작성이 실패하였습니다.");
 			return "common/errorPage";
@@ -483,19 +483,17 @@ public class HostController {
 	}
 	
 	@RequestMapping("deleteInquiry.ho")
-	public String insertInquiry(HttpSession session, Model model, int inquiryNo) {
-		
+	public String insertInquiry(HttpSession session,  ModelAndView mv, Inquiry inquiryNo) {
 		int result = hService.deleteInquiry(inquiryNo);
 		
 		if(result > 0) {
-			session.setAttribute("alertMsg","1:1문의 삭제가 완료 되었습니다.");
-			return "host/hostPage/hostInquiry";
+			session.setAttribute("alertMsg", "1:1문의 작성이 완료 되었습니다.");
+			return "redirect:hostInquiry.ho";
 		}else {
 			session.setAttribute("alertMsg", "1:1문의 삭제가 실패하였습니다.");
 			return "common/errorPage";
 		}
 	
-		
 	}
 	
 	/**
