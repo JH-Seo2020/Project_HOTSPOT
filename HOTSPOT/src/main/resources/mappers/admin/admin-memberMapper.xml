@@ -69,7 +69,7 @@
 			where user_id like #{userId}||'%' or user_id like '%'||#{userId}||'%' or user_id like '%'||#{userId} or user_id like #{userId}
 		</if>
 		<if test="userStatus != null and userType !=''">
-			order by decode(host_status, 'W', 1),decode(user_status, #{userStatus}, 2), enroll_date desc
+			order by decode(user_status, #{userStatus}, 1),decode(host_status, 'W', 2), enroll_date desc
 		</if>
 		<if test="userStatus == null or userType ==''">
 			order by decode(host_status, 'W', 1),decode(user_status, 'Y', 2), enroll_date desc

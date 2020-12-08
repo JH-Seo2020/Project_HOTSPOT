@@ -32,17 +32,17 @@
                     <img class="img_icon" src="resources/images/admin/spaceIcon.png">
                     <span>공간관리</span>
                     <ul style="display:none; padding: 0px;" id="subAdminSpace">
-                        <li style="padding: 5px; margin-left: 68px;"><a href="">공간관리</a></li>
-                        <li style="padding: 5px; margin-left: 68px;"><a href="">예약관리</a></li>
+                        <li style="padding: 5px; margin-left: 68px;"><a href="list.sad">공간관리</a></li>
+                        <li style="padding: 5px; margin-left: 68px;"><a href="list.rad">예약관리</a></li>
                     </ul>
                 </li>
                 <li id="adminFaq">
                     <img class="img_icon" src="resources/images/admin/faqIcon.png">
                     <span>고객센터</span>
-                    <ul style="display:none; padding: 0px;" id="subAdminFaq">
-                        <li style="padding: 5px; margin-left: 68px;"><a href="">공지사항</a></li>
-                        <li style="padding: 5px; margin-left: 68px;"><a href="">예약관리</a></li>
-                        <li style="padding: 5px; margin-left: 68px;"><a href="">FAQ</a></li>
+                    <ul style="display:none; padding: 0px;" id="subAdminCenter">
+                        <li style="padding: 5px; margin-left: 68px;"><a href="list.no">공지사항</a></li>
+                        <li style="padding: 5px; margin-left: 68px;"><a href="list.inq">예약관리</a></li>
+                        <li style="padding: 5px; margin-left: 68px;"><a href="list.fad">FAQ</a></li>
                     </ul>
                 </li>
             </ul>
@@ -51,20 +51,20 @@
             $(function(){
             	$("#adminUser").click(function(){
             		location.href="memberList.ad"
-            	})
+            	});
             	$("#adminReport").click(function(){
             		location.href="reportList.ad"
-            	})
+            	});
             	$("#adminReview").click(function(){
             		location.href="reviewList.ad"
-            	})
+            	});
 				$("#adminSpace").click(function(){
-					$("#subAdminSpace").toggle();
-				})
+					$("#subAdminSpace").fadeToggle(500);
+				});
 				$("#adminFaq").click(function(){
-					$("#subAdminFaq").toggle();
-				})
-            })
+					$("#subAdminCenter").fadeToggle(500);
+				});
+            });
         </script>
 </body>
 </html>
