@@ -127,6 +127,7 @@
     </div>
     <script>
 		$(function(){
+			// select고정
      		if('${userType}' != null && '${userType}' != ''){
     			$("#select_userSearchSelect").val('userType');
     			$("#input_userSearch").val('${userType}');
@@ -137,7 +138,9 @@
     		}
     		if('${userStatus}' != null && '${userStatus}' != ''){
     			$("#select_userStatus").val('${userStatus}');
-    		} 
+    		}
+    		
+    		// 행 누르는경우
 			$(".table tbody>tr").click(function(){
 				// 회원아이디 넘기면서 상세화면 요청
 				var userId = $(this).children().eq(1).text();
@@ -163,10 +166,12 @@
 
 			});
 			
+			// 회원상태select박스 변경하는경우
 			$("#select_userStatus").change(function(){
 				var userStatus = $("#select_userStatus").val();
 				location.href="memberList.ad?userStatus=" + userStatus;
-			})
+			});
+			
 		});
     </script>
 </body>

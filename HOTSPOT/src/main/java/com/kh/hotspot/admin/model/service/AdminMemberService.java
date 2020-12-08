@@ -31,14 +31,5 @@ public interface AdminMemberService {
 	
 	// 호스트상태 변경
 	int updateHostStatus(String userId, String result);
-	
-	// 검색결과수 조회
-	int selectSearchCount(Member member);
-	
-	// 검색결과리스트 조회
-	ArrayList<Member> selectSearch(Member member, PageInfo pageInfo);
-	
-	
-
 
 }

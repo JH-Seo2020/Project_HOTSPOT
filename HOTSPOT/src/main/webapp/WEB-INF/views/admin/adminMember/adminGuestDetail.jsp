@@ -86,8 +86,10 @@
     </div>
     <script>
     	$(function(){
+    		
     		// 전달받은 회원상태로 고정
     		$("#select_userStatus").val($("#hidden_userStatus").val()).attr("selected", "selected");
+    		
     		// 활동상태, 메모 저장
     		$("#btn_save").click(function(){
     			var userId = $("#table_info2 tr:eq(0)>td").text();	// 회원아이디
@@ -118,6 +120,7 @@
 					});
 				}
     		});
+    		
     	});
     </script>
 </body>
