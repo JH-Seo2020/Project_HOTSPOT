@@ -243,8 +243,8 @@ $(function(){
                         </div>
                     </div> 
                     <div class="notes" style="margin-top: 35px;">
-                        <p style="margin-right: 15px;">이용시 유의사항</p>
-                        <input type="text" id="note_0" class="form-control"> 
+                        <p style="margin-right: 15px;">이용시 유의사항<br><span style="color:red; font-size:15px;"> (최대 5개 )</span></p>
+                        <input style="margin-left:50px;"type="text" id="note_0" class="form-control"> 
                         <button type="button" id="notePlus"class="btn btn-primary">추가</button>
                         <div class="many_notes">
                         </div>
@@ -406,7 +406,6 @@ $(function(){
           						$(".cancelImg").click(function(){
                         	     $(this).next().removeAttr("src");
             
-                        	    
                         	   });
                 
                             });
@@ -544,19 +543,19 @@ $(function(){
 function validate(){
 		// 요소가 비어있는지 확인 
 		var isEmpty = function(value){
-		if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length 
-				) )
-		{return true 
-		}else{ return false } };
+			if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length 
+					) ){ return true 
+			}else{ return false 
+			} 
+		};
 
-	
 		var name = $("#spcName").val();
     	var spcInt = $("#spcInt").val();
     	var spcLong = $("#introduceSpc").val();
     	var tagBox = $(".span").val();
     	var spcType = $("#spcCategory").val();
-    	var nameCheck =/^[가-힣!@#$%^&*]{2,20}$/;
-    	var longCheck = /^[가-힣!@#$%^&*]{2,200}$/;
+    	var nameCheck =/^[가-힣!@#$%^&* ]{2,20}$/;
+    	var longCheck = /^[가-힣!@#$%^&* ]{2,200}$/;
     	
     	if(isEmpty(name)){
     		alert('공간명을 입력해주세요!');

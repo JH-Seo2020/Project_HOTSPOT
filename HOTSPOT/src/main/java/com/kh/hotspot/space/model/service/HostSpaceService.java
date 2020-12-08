@@ -13,7 +13,7 @@ import com.kh.hotspot.space.model.vo.SpcImages;
 import com.kh.hotspot.space.model.vo.SpcNotes;
 
 public interface HostSpaceService {
-
+	//0.
 	//1. 공간등록
 	ArrayList<Space> selectSpaceList(String userId);
 	
@@ -60,6 +60,8 @@ public interface HostSpaceService {
 
 	//단일 공간정보 받기
 	Space selectOneSpace(int sno);
+
+	int selectAll();
 	
 
 	
