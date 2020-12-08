@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<jsp:include page="../common/hostMenubar.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>핫스팟 호스트페이지</title>
+<link rel="icon" type="image/png" sizes="132x132" href="resources/images/host_images/logoIcon.png" />
 <!-- include libraries(jQuery, bootstrap) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="resources/css/host/hostEnrollForm.css" type="text/css"/>
@@ -21,7 +22,8 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/hostMenubar.jsp"/>
+
+	
 	<jsp:include page="../common/subMenubar.jsp"/>
 
 	
