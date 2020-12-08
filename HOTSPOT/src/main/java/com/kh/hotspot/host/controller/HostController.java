@@ -408,7 +408,7 @@ public class HostController {
 
 	    cell.setCellStyle(footStyle);
 
-	    cell.setCellValue(paySum-CpaySum-fees-Cfees+"원");
+	    cell.setCellValue(paySum-CpaySum-fees+Cfees+"원");
 	    cell = row.createCell(6);
 
 	    cell.setCellStyle(footStyle);
