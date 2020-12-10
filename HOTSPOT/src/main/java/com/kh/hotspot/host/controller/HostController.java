@@ -213,22 +213,19 @@ public class HostController {
 		String userId = cal.getUserId();
 		String reservDate = cal.getReservDate().replace(",", "");
 		cal.setReservDate(reservDate);
-
 		ArrayList<Calculation> list = hService.selectCalAll(cal);
 		
 	    // 워크북 생성
 	    Workbook wb = new HSSFWorkbook();
 	    org.apache.poi.ss.usermodel.Sheet sheet = wb.createSheet("정산내역");
-	    
-	   // 특정 서식 지정 (가격, 날짜타입)
+	    // 스타일
 	    CellStyle cellStyle = wb.createCellStyle();
 	    CellStyle dataStyle = wb.createCellStyle();
 	    DataFormat format = wb.createDataFormat();
-	    dataStyle.setDataFormat(format.getFormat("#,##0"));
+	    // 특정 서식 지정 (가격, 날짜타입)
 	    CreationHelper createHelper = wb.getCreationHelper();
 	    cellStyle.setDataFormat(
 	    createHelper.createDataFormat().getFormat("yyyy-mm-dd"));
-	    
 	    // 셀 너비 지정
 	    sheet.setColumnWidth(0, 11*256);
 	    sheet.setColumnWidth(1, 20*256);
@@ -238,9 +235,7 @@ public class HostController {
 	    sheet.setColumnWidth(5, 14*256);
 	    sheet.setColumnWidth(6, 14*256);
 	    Row row = null;
-
 	    Cell cell = null;
-
 	    int rowNo = 0;
 	    int rowCount =0;
 	    // 테이블 헤더용 스타일
@@ -267,20 +262,15 @@ public class HostController {
 	    // 스타일 배경색
 	    headStyle.setFillForegroundColor(HSSFColorPredefined.YELLOW.getIndex());
 	    headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-	   
 	    footStyle.setFillForegroundColor(HSSFColorPredefined.LAVENDER.getIndex());
 	    footStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-	    footStyle.setDataFormat(format.getFormat("#,##0"));
-
 	    //가운데 정렬
 	    headStyle.setAlignment(HorizontalAlignment.CENTER);
 	    footStyle.setAlignment(HorizontalAlignment.CENTER);
 	    cellStyle.setAlignment(HorizontalAlignment.CENTER);
 	    dataStyle.setAlignment(HorizontalAlignment.CENTER);
-	    // 데이터용 경계 스타일 테두리만 지정
-
+	    // 바디 스타일
 	    CellStyle bodyStyle = wb.createCellStyle();
-	    
 	    bodyStyle.setAlignment(HorizontalAlignment.CENTER);
 	    bodyStyle.setBorderTop(BorderStyle.THIN);
 	    bodyStyle.setBorderBottom(BorderStyle.THIN);
@@ -289,7 +279,7 @@ public class HostController {
 
 	    // 타이틀 
 	    rowCount++;
-	    
+	    // 헤더 생성
 	    row = sheet.createRow(rowNo++);
 	    cell = row.createCell(0);
 	    cell.setCellStyle(headStyle);
@@ -312,10 +302,8 @@ public class HostController {
 	    cell = row.createCell(6);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("");
-	   
 
-	    // 헤더 생성
-
+	  
 	    row = sheet.createRow(rowNo++);
 	    cell = row.createCell(0);
 	    cell.setCellStyle(headStyle);
@@ -384,35 +372,21 @@ public class HostController {
 	        	Ccalcul += CpaySum -c.getPaySum()/10;
 	        }
 	    }
-	    row = sheet.createRow(rowNo++);
-		   
+	    row = sheet.createRow(rowNo++);	   
 	    cell = row.createCell(2);
-
 	    cell.setCellStyle(footStyle);
-
-	    cell.setCellValue("총계 ");
-	    
+	    cell.setCellValue("총계 ");    
 	    cell = row.createCell(3);
-
 	    cell.setCellStyle(footStyle);
-
-	    cell.setCellValue(paySum-CpaySum+"원");
-	    
+	    cell.setCellValue(paySum-CpaySum+"원");  
 	    cell = row.createCell(4);
-
 	    cell.setCellStyle(footStyle);
-
-	    cell.setCellValue(fees-Cfees+"원");
-	    
+	    cell.setCellValue(fees-Cfees+"원");    
 	    cell = row.createCell(5);
-
 	    cell.setCellStyle(footStyle);
-
 	    cell.setCellValue(paySum-CpaySum-fees+Cfees+"원");
 	    cell = row.createCell(6);
-
 	    cell.setCellStyle(footStyle);
-
 	    cell.setCellValue("결제완료 총"+success+"건");
 	    
 	  
@@ -526,10 +500,12 @@ public class HostController {
 	 */
 	@RequestMapping("selectQnaList.ho")
 	public String hostQnaList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, String spcName, Model model) {
-
+		String mapping = "selectQnaList.ho";
 		int listCount = hService.selectQnaListCount(spcName);
 		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
 		ArrayList<Qna> list = hService.selectQnaList(pi,spcName);
+		model.addAttribute("sn",spcName);
+		model.addAttribute("mapping",mapping);
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
 	
@@ -576,9 +552,12 @@ public class HostController {
 	 */
 	@RequestMapping("qnaAnswerComplete.ho")
 	public String selectAnswerComplete(@RequestParam(value="currentPage", defaultValue="1")int currentPage, String spcName, Model model) {
+		String mapping = "qnaAnswerComplete.ho";
 		int listCount = hService.selectQnaListCount(spcName);
 		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
 		ArrayList<Qna> list = hService.selectAnswerComplete(pi,spcName);
+		model.addAttribute("mapping",mapping);
+		model.addAttribute("sn",spcName);
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
 	
@@ -593,9 +572,12 @@ public class HostController {
 	 */
 	@RequestMapping("qnaAnswerIncomplete.ho")
 	public String selectAnswerWhether(@RequestParam(value="currentPage", defaultValue="1")int currentPage, String spcName, Model model) {
+		String mapping = "qnaAnswerIncomplete.ho";
 		int listCount = hService.selectQnaListCount(spcName);
 		PageInfo pi = Pagination.getPageInfo (currentPage,listCount, 2,4);
 		ArrayList<Qna> list = hService.selectAnswerInComplete(pi,spcName);
+		model.addAttribute("mapping",mapping);
+		model.addAttribute("sn",spcName);
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
 	
