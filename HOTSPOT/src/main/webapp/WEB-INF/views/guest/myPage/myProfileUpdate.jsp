@@ -129,7 +129,7 @@
          </div>
      </div>
      
-     <!-- 프로필 첨부파일 클릭이벤트 -->
+     <!-- 프로필사진 첨부파일 클릭이벤트 -->
 	 <script>
 			$('.target_img').click(function(){
 				$("input[name='upfile']").click();
@@ -153,7 +153,7 @@
 			}
 	    </script>
 	    
-	    <!-- 동기식 닉네임 중복체크 -->
+	    <!-- 닉네임 중복체크 -->
 	    <script>
 	    	$(function(){
 	    		var $idInput = $("#myProfile input[name=userNickname]");

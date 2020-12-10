@@ -62,7 +62,7 @@ public class MemberController {
 			
 		}else { // 실패
 			
-			session.setAttribute("alertMsg", "로그인에 실패하셨습니다! 다시 시도해주세요.");
+			session.setAttribute("alertMsg", "로그인 실패 혹은 탈퇴한 회원입니다. 다시 시도해주세요.");
 			return "redirect:/";
 		}
 	
@@ -259,7 +259,7 @@ public class MemberController {
 		
 
             messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
-            messageHelper.setTo(tomail); // 받는사람 이메일
+            messageHelper.setTo(tomail); 	// 받는사람 이메일
             messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
             messageHelper.setText(content); // 메일 내용
 			
@@ -277,7 +277,7 @@ public class MemberController {
          response_email.setContentType("text/html; charset=UTF-8");
          //PrintWriter out_email = response_email("getWriter"); // getWriter가 어디서온걸까..
          //out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
-        //out_email.flush();
+         //out_email.flush();
 		
 		return mv;
 
